@@ -1,0 +1,45 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	
+  with(window.document.nature)
+	{	
+   if(nname.value=="")
+		{	alert("Enter Department");
+			nname.focus(); return false;
+		}
+		return true;
+	}
+	
+}
+
+//-->
+</Script>
+<table width="100%" align="left"> 
+  <tr>  
+    <td height="30">  
+      <table border="0" cellspacing="0" cellpadding="0" width="96%" align="left">  	
+        <tr>  		
+          <td height="30" valign="middle"><b>Edit Department Record</b</td>  	
+        </tr>  
+      </table>  
+    </td>  
+  </tr>  
+  <tr>  <td>  
+  <form name="nature" action="edit_nature.php" method="post" onsubmit='return checkSignUpDetails();'>  
+        <table align="left" cellspacing="5" cellpadding="5" width="98%" border="0" align="center">       
+          <tr>    
+            <td width="130" >Department<br>(<span style="font-family:Kruti Dev 011;font-size:13px;">foHkkx</span>):</td>    
+            <td align="left"><input type="text" name="nname" value="__name__" size="60"></td>   
+          </tr>     
+          <tr>   
+           <td></td>   
+           <td>
+            <input type="hidden" name="cid" value="__id__">
+            <input type="submit" name="submit" value="Edit" class="button">
+          </td>   
+          </tr>  
+        </table>  
+      </form> </td> 
+  </tr>
+</table>

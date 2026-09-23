@@ -1,0 +1,110 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.MemberLoginForm)
+	{	
+    if(username.value=="")
+		{	alert("Enter Username");
+			username.focus(); return false;
+		}
+		if(password.value=="")
+		{	alert("Enter Password");
+			password.focus(); return false;
+		}
+		return true;
+	}
+}
+//-->
+
+function openPopup(file)
+{	
+  window.open (file,"mywindow","scrollbars=1,width=650,height=800"); 
+}
+
+</Script>
+
+<tr>
+      <td align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="202" align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <!--<tr>
+              <td align="left" valign="top" class="bor"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td colspan="2" class="red">Site Search</td>
+                  </tr>
+                <tr>
+                  <td colspan="2" class="pad">
+                  <form action="search.php" method="GET">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td width="81%"><input type="text" name="comp" class="in"/></td>
+                      <td width="19%">&nbsp;</td>
+                      <td width="19%"><input type="submit" value="go !" class="go" /></td>
+                    </tr>
+                  </table>
+                  </form>
+                  </td>
+                  </tr>
+                
+                
+              </table></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+            </tr>-->
+            <tr>
+              <td class="bor"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="red">Login for Administrator/ Operator</td>
+                </tr>
+                <tr>
+                  <td align="left" valign="top" class="pad1">
+                  <form name="MemberLoginForm" action="admin/index.php" method="POST" onsubmit='return checkSignUpDetails();'>
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td class="black">User Name</td>
+                    </tr>
+                    <tr>
+                      <td><input type="text" name="username" class="in"/></td>
+                    </tr>
+                    <tr>
+                      <td class="black">Password</td>
+                    </tr>
+                    <tr>
+                      <td><input type="password" name="password" class="in"/></td>
+                    </tr>
+                    <tr>
+                      <td><input type="submit" name="submit" value="submit" class="sub" /></td>
+                    </tr>
+                  </table>
+                  </form>
+                  </td>
+                </tr>
+              </table></td>
+            </tr>
+          </table></td>
+          <td align="left" valign="top" class="left"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td align="left" valign="top">
+              <form name="search" action="search.php" method="POST">
+               <table width="100%" border="0" cellspacing="3" cellpadding="3" bgcolor="#FFFFFF">
+                 <tr>
+                   <td>Complaint No</td>
+                   <td>Complainant Name</td>
+                   <td>Complaint Date</td>
+                   <td>Complaint Status</td>
+                   <td>View</td>
+                  </tr>
+                 __complain_detail__
+               </table>
+               </form>
+              </td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+            </tr>
+          </table></td>
+        </tr>
+      </table></td>
+    </tr>
+          

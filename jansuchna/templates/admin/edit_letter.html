@@ -1,0 +1,71 @@
+<table width="100%" align="left"> 
+  <tr>  
+    <td height="30">  
+      <table border="0" cellspacing="0" cellpadding="0" width="96%" align="left">  	
+        <tr>  		
+          <td height="30" valign="middle"><b>Edit Letter
+              </b</td>  	
+        </tr>  
+      </table>  </td>  
+  </tr>  
+  <tr>  <td>  
+      <form name="edit_zone" action="edit_letter.php" method="post" onsubmit='return checkSignUpDetails();'>  
+        <table align="left" cellspacing="5" cellpadding="5" width="98%" border="0" align="center">       
+          <tr>    
+            <td width="110" >Daak Id:</td>    
+            <td align="left"><input type="text" name="daak_id" value="__daak_id__" size="50"></td>   
+          </tr>
+          <tr>    
+            <td width="110" >Paatal Name:</td>    
+            <td align="left"><input type="text" name="paatalname"  value="__paatalname__" size="50"></td>   
+          </tr> 
+          <tr>    
+            <td width="110" >Clerk Name:</td>    
+            <td align="left"><input type="text" name="clerkname" value="__clerkname__" size="50"></td>   
+          </tr>  
+          <tr>    
+            <td width="110" >letter No:</td>    
+            <td align="left"><input type="text" name="letterno" value="__letterno__" size="50"></td>   
+          </tr> 
+          <tr>    
+            <td width="110" >Subject:</td>    
+            <td align="left"><input type="text" name="l_subject" value="__l_subject__" size="50"></td>   
+          </tr>
+          <tr>    
+            <td width="110" >Date:</td>    
+            <td align="left"><input type="text" name="l_date" value="__l_date__" size="20" id="demo1"><a href="javascript:NewCal('demo1','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></td>   
+          </tr>
+          <tr>    
+            <td width="110" >From:</td>    
+            <td align="left"><input type="text" name="l_from" value="__l_from__" size="50"></td>   
+          </tr>
+          <tr>    
+            <td width="110" >To:</td>    
+            <td align="left"><input type="text" name="l_to" value="__l_to__" size="50"></td>   
+          </tr>
+          <tr>    
+            <td width="110" >Marked To:</td>    
+            <td align="left"><input type="text" name="markedto" value="__markedto__" size="50"></td>   
+          </tr>
+          <tr>    
+            <td width="110" >Status:</td>    
+            <td align="left"><input type="text" name="l_status" value="__l_status__" size="50"></td>   
+          </tr>
+          <tr>    
+            <td width="110" >Action Taken:</td>    
+            <td align="left"><input type="text" name="l_action" value="__l_action__" size="50"></td>   
+          </tr>
+          <tr>    
+            <td width="110" >Not Answerable:</td>    
+            <td align="left"><input type="text" name="l_answer" value="__l_answer__" size="50"></td>   
+          </tr>        
+          <tr>   
+            <td><input type="hidden" name="lid" value="__lid__"></td>  
+           <td>
+              <input type="submit" name="submit" value="Save" class="button">
+          </td>   
+          </tr>  
+        </table>  
+      </form> </td> 
+  </tr>
+</table>

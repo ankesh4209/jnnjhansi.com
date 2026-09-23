@@ -1,0 +1,99 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.zone)
+	{	
+   if(name.value=="")
+		{	
+      alert("Enter Zone Name.");
+			name.focus(); return false;
+		}
+	 if(jename.value=="")
+		{	
+      alert("Enter JE Name.");
+			jename.focus(); return false;
+		}
+		if(jecontact.value=="")
+		{	
+      alert("Enter JE Contact No.");
+			jecontact.focus(); return false;
+		}
+		return true;
+	}
+	
+}
+
+//-->
+</Script>
+<table width="100%" align="left"> 
+  <tr>  
+    <td height="30">  
+      <table border="0" cellspacing="0" cellpadding="0" width="96%" align="left">  	
+        <tr>  		
+          <td height="30" valign="middle"><b>Add Letter</b</td>  	
+        </tr>  
+      </table>  
+   </td>  
+  </tr>  
+  <tr>  
+   <td>  
+      <form name="zone" action="add_letter.php" method="post" onsubmit='return checkSignUpDetails();'>  
+        <table align="left" cellspacing="5" cellpadding="5" width="98%" border="0" align="center">       
+          <tr>    
+            <td width="110" >Daak Id:</td>    
+            <td align="left"><input type="text" name="daak_id" size="50"></td>   
+          </tr>
+          <tr>    
+            <td width="110" >Paatal Name:</td>    
+            <td align="left"><input type="text" name="paatalname" size="50"></td>   
+          </tr> 
+          <tr>    
+            <td width="110" >Clerk Name:</td>    
+            <td align="left"><input type="text" name="clerkname" size="50"></td>   
+          </tr>  
+          <tr>    
+            <td width="110" >letter No:</td>    
+            <td align="left"><input type="text" name="letterno" size="50"></td>   
+          </tr> 
+          <tr>    
+            <td width="110" >Subject:</td>    
+            <td align="left"><input type="text" name="l_subject" size="50"></td>   
+          </tr>
+          <tr>    
+            <td width="110" >Date:</td>    
+            <td align="left"><input type="text" name="l_date" size="20" id="demo1"><a href="javascript:NewCal('demo1','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></td>   
+          </tr>
+          <tr>    
+            <td width="110" >From:</td>    
+            <td align="left"><input type="text" name="l_from" size="50"></td>   
+          </tr>
+          <tr>    
+            <td width="110" >To:</td>    
+            <td align="left"><input type="text" name="l_to" size="50"></td>   
+          </tr>
+          <tr>    
+            <td width="110" >Marked To:</td>    
+            <td align="left"><input type="text" name="markedto" size="50"></td>   
+          </tr>
+          <tr>    
+            <td width="110" >Status:</td>    
+            <td align="left"><input type="text" name="l_status" size="50"></td>   
+          </tr>
+          <tr>    
+            <td width="110" >Action Taken:</td>    
+            <td align="left"><input type="text" name="l_action" size="50"></td>   
+          </tr>
+          <tr>    
+            <td width="110" >Not Answerable:</td>    
+            <td align="left"><input type="text" name="l_answer" size="50"></td>   
+          </tr>     
+          <tr>   
+           <td></td>   
+           <td>
+              <input type="submit" name="submit" value="submit" class="button">
+          </td>   
+          </tr>  
+        </table>  
+      </form> </td> 
+  </tr>
+</table>

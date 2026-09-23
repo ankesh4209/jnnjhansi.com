@@ -1,0 +1,131 @@
+@font-face {
+    font-family: 'kruti_dev_010regular';
+    src: url('kruti_dev_010-webfont.eot');
+    src: url('kruti_dev_010-webfont.eot?#iefix') format('embedded-opentype'),
+         url('kruti_dev_010-webfont.woff') format('woff'),
+         url('kruti_dev_010-webfont.ttf') format('truetype'),
+         url('kruti_dev_010-webfont.svg#kruti_dev_010regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+body{margin:0; font-family:Arial, Helvetica, sans-serif; font-size:12px; background:url(../images/backg.jpg) no-repeat top center;}
+#container{margin:0 auto; width:1020px;  }
+#wrapper{margin:0; float:left; width:100%; box-shadow:0px -1px 5px #909090; background: none repeat scroll 0 0 #FFFFFF; -webkit-box-shadow:0px -1px 5px #909090; -moz-box-shadow:0px -1px 5px #909090;}
+
+#logoarea{margin:0; padding:0; width:100%; float:left;}
+#logoarealeft{margin:1px 0 0 18px; padding:0; width:262px; float:left;}
+#logo{margin:0; padding:0; float:left; width:128px;}
+#like{margin:50px 0 0 0; padding:0; float:right; width:130px; font-size:18px;}
+#subname{margin:5px 0 0 0; padding:0; float:left; width:290px; text-align:center; font-size:15px; font-weight:bold;}
+#logoarearight{margin:0; padding:0; width:406px; float:right;}
+
+
+#navigation{margin:0px 0 0 0; padding:0; width:100%; float:left; background:#b80002;}
+#navigation ul{margin:0 ; padding:0; width:100%; float:left; position:relative;}
+#navigation ul ul{ display:none; width:150px; position:absolute; background:#b80002; top:33px;}
+#navigation ul ul li{ padding:0; background:none; width:100%;}
+#navigation ul ul li a{ padding:10px; width: 86%; line-height:normal;}
+#navigation ul li:hover ul{ display:block;}
+#navigation ul li{margin:0 ; padding:0; float:left; list-style:none; background:url(../images/devider.png) no-repeat 0 0; background-position:right;}
+#navigation ul li:last-child{ background:none;}
+#navigation ul li a{margin:0 ; float:left; color:#fff; line-height:37px; text-decoration:none; padding:0 35px;}
+#navigation ul li a:hover{ background:#630709;}
+.navigationcolor{background:#018fc4;}
+
+
+
+#main{margin:50px auto;  padding:0; width:1010px;}
+
+#mailleft{margin:0; padding:0; width:287px; float:left;}
+
+#iconone{margin:0; padding:0; width:287px; float:left; background:#630709; line-height:39px; color:#fff; font-size:18px;}
+#icononeimg{margin:5px 0 0 5px; padding:0; width:30px; float:left;}
+#icontext{margin:0; padding:0; width:240px; float:right;}
+
+
+
+
+
+#main_admin_content{ width:100%; padding:15px 0; float:left;}
+#main_admin_content h2{ text-align:center;}
+
+
+
+.department_selection{ background:#292424; padding:20px; border-radius:25px; width:70%; margin:0 auto; color:#fff; text-align:center;}
+
+.login{ border-radius:5px;
+    /*color: #FFFFFF;*/
+	background:#f1f1f1;
+    margin: 0 auto;
+    padding: 20px;
+    width: 40%; border:1px solid #ccc;}
+
+.registration{ border-radius:5px;
+    /*color: #FFFFFF;*/
+	background:#f1f1f1;
+    margin: 0 auto;
+    padding: 20px;
+    width: 90%; border:1px solid #ccc;}
+
+
+.pis_list table{ border:1px solid #ccc; border-collapse:collapse;}
+.pis_list table tr{border-bottom: 1px solid #CCCCCC;}
+.pis_list table tr th{background:#dedede; border-right: 1px solid #CCCCCC;}
+
+
+.pis_list table tr td{ border-right: 1px solid #CCCCCC;}
+.pis_list table tr td .view{background: none repeat scroll 0 0 #B80002;
+    border: 0 none;
+    border-radius: 11px 11px 11px 11px;
+    color: #FFFFFF;
+    padding: 4px;
+    width: 70px;}
+
+.pis_list table tr:nth-child(2n+1){background:#CCCFCC;}
+.pis_list table tr:hover{ background:#f3f3f3;}
+
+.pis_list table tr.header{ }
+
+.pagination{ margin-top:16px;}
+.pagination span{ padding:5px; border:1px solid #CCCCCC;}
+.pagination span:hover{ background:#B80002;  color:#fff;}
+.pagination span.current{ margin-left: 3px;}
+.pagination span.disabled{border:0px solid #CCCCCC;}
+.pagination a{ border:1px solid #CCCCCC; padding:5px; color:#000; text-decoration:none;}
+.pagination a:hover{ background:#B80002; color:#fff;}
+
+.reportheading{border:#c7c7c7 1px solid; font-size:14px;  padding:5px 2.5px;font-weight:bold;text-align:left;background:#F3F3F3;}
+.completerowindicator
+{border:#c7c7c7 1px solid; font-size:12px; width:15px;  padding:5px 2.5px; ;font-weight:normal;text-align:center;background:#71FF71;text-decoration:none;}
+.incompleterowindicator
+{border:#c7c7c7 1px solid; font-size:12px; width:15px;  padding:5px 2.5px; text-align:center;background:#FFFF84;text-decoration:none;}
+.notstartedrowindicator
+{border:#c7c7c7 1px solid; font-size:12px; width:15px;  padding:5px 2.5px; ;font-weight:normal;text-align:center;background:#FF5EAE;text-decoration:none;}
+.disputedrowindicator
+{border:#c7c7c7 1px solid; font-size:12px; width:15px;  padding:5px 2.5px; ;font-weight:normal;text-align:center;background:#996633;text-decoration:none;}
+.cancelledrowindicator
+{border:#c7c7c7 1px solid; font-size:12px; width:15px;  padding:5px 2.5px; ;font-weight:normal;text-align:center;background:#99CCFF;text-decoration:none;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

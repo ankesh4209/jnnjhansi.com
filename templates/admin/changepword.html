@@ -1,0 +1,60 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.news)
+	{	if(password.value=="")
+		{	alert("Enter New Password");
+			password.focus(); return false;
+		}
+		
+		if(cpassword.value=="")
+		{	alert("Enter Confirm Password");
+			cpassword.focus(); return false;
+		}
+		if(cpassword.value!=password.value)
+		{	alert("Confirm Password And Password Value Are Not Same");
+			cpassword.focus(); return false;
+		}
+		return true;
+	}
+}
+//-->
+</Script>
+<!-- MAIN TABLE STARTS HERE-->
+<table width="100%" align="left">
+  <tr>
+      <td><table width="100%" class="grayhead" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="grayheadleft">&nbsp;</td>
+          <td class="grayheadmid">Change Password</td>
+          <td class="grayheadright">&nbsp;</td>
+        </tr>
+      </table></td>
+    </tr>
+    <tr><td>__PROMPT__</td></tr>
+<tr><td>
+<form name="news" action="changepword.php" method="post" onsubmit='return checkSignUpDetails();'>
+<table align="left" cellspacing="5" cellpadding="5"  border="0">
+ <tr>
+  <td colspan="2">__MESSAGE__</td>
+ </tr>
+ <tr>
+  <td ><span style="color:red">*</span> New Password</td>
+  <td align="left"><input type="password" name="password" ></td>
+ </tr>
+ <tr>
+  <td  nowrap><span style="color:red">*</span> Confirm Password</td>
+  <td align="left"><input type="password" name="cpassword" ></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><input type="submit" name="submit" value="Change" class="button"></td>
+ </tr>
+</table>
+</form>
+</td></tr>
+</table>
+
+<!-- MAIN TABLE ENDS HERE-->
+
+

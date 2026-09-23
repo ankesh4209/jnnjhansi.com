@@ -1,0 +1,95 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.add_architect)
+	{	
+   if(ename.value=="")
+		{	
+      alert("Enter Architect Name");
+			ename.focus(); return false;
+		}
+	 if(address.value=="")
+		{	
+      alert("Enter Address");
+			address.focus(); return false;
+		}
+	 if(contact.value=="")
+		{	
+      alert("Enter Contact No");
+			contact.focus(); return false;
+		}
+	 if(validatePhoneNumber(contact.value))
+		{
+		  alert("Contact No. should be 10 digits");
+			contact.focus(); return false;
+    }
+    if(Licenseno.value=="")
+		{	
+      alert("Enter Licence No");
+			Licenseno.focus(); return false;
+		}
+		if(sdate.value=="")
+		{	
+      alert("Enter Start Date.");
+			sdate.focus(); return false;
+		}
+		if(edate.value=="")
+		{	
+      alert("Enter End Date.");
+			edate.focus(); return false;
+		}
+	
+		return true;
+	}
+	
+}
+
+//-->
+</Script>
+<table width="100%" align="left"> 
+  <tr>  
+    <td height="30">  
+      <table border="0" cellspacing="0" cellpadding="0" width="96%" align="left">  	
+        <tr>  		
+          <td height="30" valign="middle"><b>Add Department Records</b</td>  	
+        </tr>  
+      </table>  
+   </td>  
+  </tr>  
+  <tr>  
+   <td>  
+      <form name="add_architect" action="add_architect.php" method="post">  
+        <table align="left" cellspacing="5" cellpadding="5" width="98%" border="0" align="center">       
+          <tr>    
+            <td width="130" style='font-family:Kruti Dev 011;font-size:18px;'>foHkkx dk uke</td>    
+            <td align="left" >
+              <input type="text" name="dname" size="30" style='font-family:Kruti Dev 011;font-size:18px;'></td>   
+          </tr>
+          <tr>    
+            <td style='font-family:Kruti Dev 011;font-size:18px;'>vf/kdkjh dk in</td>    
+            <td align="left" >
+              <input type="text" name="off_des" size="30" style='font-family:Kruti Dev 011;font-size:18px;'></td>   
+          </tr> 
+          <tr>    
+            <td style='font-family:Kruti Dev 011;font-size:18px;'>vf/kdkjh dk uke</td>    
+            <td align="left">
+              <input type="text" name="off_name" size="30" style='font-family:Kruti Dev 011;font-size:18px;'></td>   
+          </tr>
+          <tr>    
+            <td style='font-family:Kruti Dev 011;font-size:18px;'>Qksu@eksokbZy ua0</td>    
+            <td align="left"><input type="text" name="contact" size="30"></td>   
+          </tr>
+          <tr>    
+            <td style='font-family:Kruti Dev 011;font-size:18px;'>Qksu@eksokbZy ua0</td>    
+            <td align="left"><input type="text" name="soff_contact" size="30"></td>   
+          </tr>      
+          <tr>   
+           <td></td>   
+           <td>
+              <input type="submit" name="submit" value="ADD" class="button">
+          </td>   
+          </tr>  
+        </table>  
+      </form> </td> 
+  </tr>
+</table>

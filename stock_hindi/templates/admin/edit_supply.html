@@ -1,0 +1,99 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.add_stocks)
+	{	
+     	
+	}
+	
+}
+
+
+function ShowItems(ItemTypeRef){
+       var ItemType=ItemTypeRef.value;
+	   var rowIndex= ItemTypeRef.parentNode.parentNode.rowIndex ;
+	   var divname='ItemId['+rowIndex+']';
+       var myRandom=parseInt(Math.random()*99999999);  // cache buster
+	   //alert("returnitems.pItemType="+ItemType+"&rand="+myRandom);
+       makeRequest(divname,"supplyitems.php?ItemType="+ItemType+"&rand="+myRandom); 
+}
+
+function addRow(tableID) {
+ 
+			var table = document.getElementById(tableID);
+ 
+			var rowCount = table.rows.length;
+			var row = table.insertRow(rowCount);
+ 
+			var colCount = table.rows[0].cells.length;
+ 
+			for(var i=0; i<colCount; i++) {
+ 
+				var newcell	= row.insertCell(i);
+ 
+				newcell.innerHTML = table.rows[0].cells[i].innerHTML;
+				//if(i==1)
+				//console.log(newcell.innerHTML);
+				//alert(newcell.childNodes);
+				switch(newcell.childNodes[0].type) {
+					case "text":
+						newcell.childNodes[0].value = "";
+							break;
+					case "checkbox":
+							newcell.childNodes[0].checked = false;
+							break;
+					case "select-one":
+							newcell.childNodes[0].selectedIndex = 0;
+							if(i==1){
+								newcell.childNodes[0].id='ItemId['+rowCount+']';
+							}
+							break;
+				}
+			}
+}
+</Script>
+<table width="100%" align="left"> 
+      <tr><td> 
+         <form name="add_stocks" action="edit_supply.php" method="post" onsubmit='return checkSignUpDetails();' enctype="multipart/form-data"> 
+         <table align="left" cellspacing="4" cellpadding="4" width="100%" border="0" align="center"> 
+		  <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:20px;">foHkkx</span> :</td>    
+            <td align="left">__departments__</td>   
+              
+          </tr>
+		   <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:20px;">lkexzh izkIr drkZ dk uke</span> :</td>    
+            <td align="left"><input type="text" name="ReceiverName" value='__ReceiverName__' size="25" style="font-family: 'kruti_dev_010regular';font-size:15px;"></td> 
+              
+          </tr>
+		 
+		  <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:20px;">lkexzh forj.k fnukad</span> :</td>    
+            <td align="left">
+              <input type="text" name="SupplyDate" value='__DistributionDate__' size="15" id="demo1" readonly><a href="javascript:NewCal('demo1','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></td>   
+          </tr>
+		   <tr><td colspan='2'>
+		 
+		 <table width="100%" border="0" cellspacing="2" cellpadding="0" >
+						   <tr><td width="30%"  style="font-family: 'kruti_dev_010regular';font-size:20px;">lkexzh dk izdkj</td><td width="40%" align='center' style="font-family: 'kruti_dev_010regular';font-size:20px;">lkexzh dk uke</td><td width="20%" style="font-family: 'kruti_dev_010regular';font-size:20px;">lkexzh ek=k</td>
+						   </tr>
+						    <tr><td colspan="5">
+								<table width="100%" border="0" cellspacing="2" cellpadding="0" id="dataTable">
+								__strRows__
+								</table>
+						   </tr></td>
+						   </table>
+		<div><input type="button" name="addmore" value="ADD MORE ITEMS" onclick="addRow('dataTable')"></div>
+		 </td></tr>
+
+		  
+		  <tr>   
+           <td></td>   
+           <td><input type='hidden' name='AddedDateTime' value='__AddedDateTime__'>
+              <input type="submit" name="submit" value="submit" class="button">
+           </td>   
+          </tr>  
+        </table>  
+      </form> 
+    </td></tr>
+  </table>

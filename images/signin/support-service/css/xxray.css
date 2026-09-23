@@ -1,0 +1,125 @@
+html, body {
+	margin:0;
+	padding:0;
+	background-color: #FAFAFA;
+	color: #555;
+		font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,sans-serif;
+
+}
+.xxray_1 {
+	height:50px;
+	width:100%;
+	background-color:#EDEDED ;
+	border-bottom: 1px solid #d7d7d7;
+	padding-top: 15px;
+}
+.xxray_2 {
+	margin:0 auto;
+	height:50px;
+	width: 990px;
+}
+.xxray_3 {
+	margin:0 auto;
+	height:500px;
+	width: 990px;
+}
+.xxray_4 {
+	margin:0 auto;
+	height:40px;
+	width: 990px;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 20px;
+}
+.xxray_51 {
+	width: 407px;
+	min-height:100px;
+	float: left;
+	display: inline-block;
+	margin-right: 20px;
+	border-radius: 10px;
+	border: 1px solid #009CDE;
+	background:#fff;
+	padding-top: 20px;
+	padding-left: 30px;
+	background-image: url("../M_images/authflow_illustrations.png");
+	background-repeat: no-repeat;
+	background-position: 365px 520px;
+}
+.xxray_52 {
+	width: 400px;
+	min-height:100px;
+	float: right;
+	display: inline-block;
+	border-radius: 10px;
+	border: 1px solid #ccc;
+	background:#fff;
+	padding-top: 20px;
+	padding-left: 30px;
+}
+.xxray_53 {
+	width: 990px;
+	min-height:100px;
+	display: inline-block;
+	border-top: 1px solid #ccc;
+	padding-top: 20px;
+	padding-left: 30px;
+	margin-top: 20px;
+	font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 10px;
+}
+h1 {
+	font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 1.5em;
+}
+.xxray_input {
+	background: none repeat 0 0 #FFF;
+	border: 1px solid #B3B3B3;
+	border-radius: 5px;
+	color: #333;
+	height: 42px;
+	line-height: 1.25em;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	text-indent: 10px;
+	transition: border-color 0.3s ease 0s;
+	font: 15px Arial, Helvetica, sans-serif;
+	width: 319px;
+	margin-bottom: 10px;
+}
+.xxray_submi {
+	border: 1px solid #B3B3B3;
+	margin: 0;
+	position: relative;
+	text-indent: 10px;
+	transition: border-color 0.3s ease 0s;
+	-webkit-appearance: none;
+	-moz-box-sizing: border-box;
+	background: none repeat 0 0 #0079C1;
+	border-radius: 5px;
+	border-color: #0079C1;
+	color: #FFF;
+	cursor: pointer;
+	display: inline-block;
+	font-family: arial,sans-serif;
+	font-size: 15px;
+	font-weight: bold;
+	line-height: 1.4545em;
+	margin-bottom: 20px;
+	text-align: center;
+	vertical-align: middle;
+	height: 45px;
+	width: 321px;
+
+}
+.xxray_submi:hover, .xxray_submi:focus {
+	background: none repeat 0 0 #0285D2;
+	color: #FFF;
+	text-decoration: none;
+}
+.merror {
+	border: 1px solid #9d2c36;
+	background: url("../M_images/error.png") no-repeat;
+	background-color: #FFF;
+	background-position: 287px 7px;
+}

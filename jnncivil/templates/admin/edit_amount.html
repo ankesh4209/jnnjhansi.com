@@ -1,0 +1,85 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.edit_items)
+	{	
+        if(ItemType.value=="")
+		{	
+            alert("Please select item type.");
+			ItemType.focus(); 
+            return false;
+		}
+		
+		if(ItemName.value=="")
+		{	
+            alert("Please enter item name.");
+			ItemName.focus(); 
+            return false;
+		}
+	}
+	
+}
+
+</Script>
+<script type="text/javascript">
+$(function () {
+$("#AddedDate").datepicker({
+changeMonth: true,
+changeYear: true,
+yearRange: '2012:2014'
+});
+});
+</script>
+
+<table width="100%" align="left"> 
+      <tr><td> 
+         <form name="add_items" action="edit_amount.php" method="post" onsubmit='return checkSignUpDetails();' > 
+         <table align="left" cellspacing="4" cellpadding="4" width="100%" border="0" align="center"> 
+                 <tr>
+     <td height="40">
+      <a href='#'><b>Edit Mad Amount Information</b></a>
+     </td>
+    </tr>
+		   <tr>    
+            <td ><span >Mad Name</span> :</td>    
+            <td align="left">
+              __madname__
+            </td>   
+          </tr>
+		  </tr>
+		    <tr>    
+            <td  width="220" ><span >Mad Information</span> :</td>    
+            <td align="left">
+              <input type="text" name="MadInfo" value='__MadInfo__' size="32" style='font-family: kruti_dev_010regular;font-size:15px;' ></td>   
+          </tr>
+
+		   <tr>    
+            <td  width="220" ><span >Mad Amount</span> :</td>    
+            <td align="left">
+              <input type="text" name="Amount" value='__Amount__' size="25" ></td>   
+          </tr>
+		  <tr>    
+            <td  width="220" ><span >Financial Year</span> :</td>    
+            <td align="left">
+              <select name='FinancialYear'>
+			  <option value=''>Select Financial Year</option>
+			  <option value='2012-2013' __F1__>2012-2013</option>
+			  <option value='2013-2014' __F2__>2013-2014</option>
+			  <option value='2013-2014' __F3__>2014-2015</option>
+			  <option value='2013-2014' __F4__>2015-2016</option>
+			  <option value='2013-2014' __F5__>2016-2017</option>
+			  </select>
+			  </td>   
+          </tr>
+		  <tr><td><span  >Estimate Date</span></td><td align='left'><span><input type="text" name="AddedDate" value='__AddedDate__' id="AddedDate" size='15' readonly> </td></tr>
+          <tr>   
+           <td></td>   
+           <td>
+		   <input type="hidden" name="AmtId" value="__AmtId__" >
+              <input type="submit" name="submit" value="submit" class="button">
+           </td>   
+          </tr>  
+        </table>  
+      </form> 
+    </td></tr>
+  </table>

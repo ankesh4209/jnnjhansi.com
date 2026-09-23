@@ -1,0 +1,83 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{  
+	with(window.document.edit_tender)
+	{	
+        if(pdf_file.value=="")
+		{	alert("Enter upload pdf file");
+			pdf_file.focus(); return false;
+		}
+
+		if(file_desc.value=="")
+		{	alert("Enter file description");
+			file_desc.focus(); return false;
+		}
+		if(tdate.value=="")
+		{	alert("Enter tender end date");
+			tdate.focus(); return false;
+		}
+		
+     }
+		return true;
+	}
+
+//-->
+</Script>
+
+<table width="100%" align="left">
+<form name="edit_tender" action="edit_tender.php" method="post" onsubmit='return checkSignUpDetails();' enctype="multipart/form-data">
+	<tr>
+      <td>
+		<table width="100%" class="grayhead" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			  <td class="grayheadleft">&nbsp;</td>
+			  <td class="grayheadmid">Edit Tender</td>
+			  <td class="grayheadright">&nbsp;</td>
+			</tr>
+		</table>
+	</td>
+    </tr>
+    <tr>
+	  <td><table width="100%"  border="0" cellspacing="5" cellpadding="5">
+	       <tr>
+		 <td align="center"  class="successmsg" colspan="2"><b>__PROMPT__</b></td>
+		 </tr>
+		<tr>
+			<td colspan="2"><span style="color:red">*</span> Required</td>
+		</tr>
+		 
+		 <tr>
+		  <td><span style="color:red">*</span> Upload pdf file </td>
+		  <td><INPUT NAME="pdf_file" TYPE="file">
+		</td>
+		  <tr>
+		  <td><span style="color:red">*</span>Description </td>
+		  <td><textarea NAME="file_desc" rows="8" cols="40">__p_description__</textarea>
+		</td>
+	<tr>
+		  <td valign="top"><span style="color:red">*</span>Tender End Date:</td>
+		  <td><input type="text" name="tdate" value="__tdate__" id="demo6"><a href="javascript:NewCal('demo6','ddmmyyyy')"><img src="../images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></td>
+		 </tr>
+		 <tr>
+		  <td>Status</td>
+		  <td><select name="status">
+		  <option value="1" __status__>Live</option>
+		  <option value="0" __status1__>Draft</option>
+		 </select>
+		</td>
+		 </tr>
+		 <tr>
+		  <td></td>
+		  <td>
+		  <input type="hidden" name="pdfId" value="__pdf_id__">
+		  <input type="submit" name="submit" value="Edit" class="button"></td>
+		 </tr>
+		 </table>
+		  </td></tr>
+		 </form>
+ </table>
+ 
+
+
+

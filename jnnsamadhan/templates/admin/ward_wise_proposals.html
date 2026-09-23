@@ -1,0 +1,95 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	
+  with(window.document.search)
+	{	
+    if(city.value=="")
+		{	
+      alert("Select City");
+			city.focus(); return false;
+		}
+		if(sdate.value=="")
+		{	
+      alert("Enter From Date.");
+			sdate.focus(); return false;
+		}
+		return true;
+	}
+	
+}
+//-->
+</Script>
+<br>
+<table border="0" cellpadding="1" cellspacing="1" align="left" width="100%">
+ <tr>
+  <td>
+  <form name="search" action="ward_wise_proposals.php" method="POST" onsubmit='return checkSignUpDetails();'>
+  <table border="0" cellpadding="4" cellspacing="4" align="left">
+   <tr>
+    <td>
+     Department :
+     <select name="nature">
+      <option value="">-- Select Department--</option> 
+      <option value="1000">All</option>
+      __c_nature__
+     </select>
+     &nbsp;&nbsp;
+     Ward :
+     __c_ward__
+	 </td>
+
+
+          
+     </tr>
+     <tr>
+	
+     <td>
+	 <!--  Complaint Mode:&nbsp;&nbsp;<select name="cmode" style="font-family:Kruti Dev 011;font-size:13px;" >
+				<option value=''>All</option>
+                <option value="uxj vk;qä eqykdkr"><span style="font-family:Kruti Dev 011;font-size:13px;">uxj vk;qä eqykdkr</span></option>
+                <option value="'kklu"><span style="font-family:Kruti Dev 011;font-size:13px;"> 'kklu</span></option>
+                <option value="vk;qä >k¡lh e.My"><span style="font-family:Kruti Dev 011;font-size:13px;">vk;qä >k¡lh e.My</span></option>
+                <option value="ftykf/kdkjh] >k¡lh"><span style="font-family:Kruti Dev 011;font-size:13px;">ftykf/kdkjh] >k¡lh</span></option>
+                <option value="eq[; eU=h"><span style="font-family:Kruti Dev 011;font-size:13px;">eq[; eU=h</span></option>
+
+                <option value="egkikSj"><span style="font-family:Kruti Dev 011;font-size:13px;">egkikSj</span></option>
+                <option value="Ikk”kZnx.k"><span style="font-family:Kruti Dev 011;font-size:13px;">Ikk”kZnx.k</span></option>
+           </select>  -->&nbsp;&nbsp;
+     From Date :<input id="demo3" name="sdate" type="text" size="10"><a href="javascript:NewCal('demo3','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+     &nbsp;&nbsp;&nbsp;&nbsp; To Date :<input id="demo4" name="edate" type="text" size="10"><a href="javascript:NewCal('demo4','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+     &nbsp;&nbsp;&nbsp;<input type="submit" name="search" value="Search" class="button">
+    </td>
+   </tr>
+  </table>
+</form>
+</td>
+</tr>
+<tr>
+<td>
+<table width="100%" align="left">
+  
+  <tr>
+  <td>
+  <table border="1" cellpadding="5" cellspacing="1" align="left" width="95%" class="tableList"> 
+  <tr><td height="35" valign="middle" colspan="7"><b>__officer_text__</b> &nbsp;&nbsp;&nbsp;<b>__Mode_text__</b> &nbsp;&nbsp;&nbsp;<b> __sdate_text__</b> &nbsp;&nbsp;&nbsp;<b> __edate_text__</b></td></tr>
+  <tr>
+  <th align="center" width='5%'>S.NO.</th>
+  <th align="center">P.NO.</th>
+   <th align="center"><span style="font-family:Kruti Dev 011;font-size:14px;">f'kdk;rdrkZ dk uke</span></th>
+   <th align="center"><span style="font-family:Kruti Dev 011;font-size:14px;">f'kdk;rdrkZ dk irk</span></th>
+   __corpname__
+   __ward__
+   <th align="center"><span style="font-family:Kruti Dev 011;font-size:14px;">VsyhQksu ua0</span></th>
+   <th align="center"><span style="font-family:Kruti Dev 011;font-size:14px;">f'kdk;r lkjka'k</span></th>
+   <th align="center"><span style="font-family:Kruti Dev 011;font-size:14px;">f'kdk;r dk ek?;e</span></th>   
+  </tr>
+   __complain_list__
+  </table>
+  </td>
+  </tr>
+
+</table>
+</td>
+</tr>
+</table>

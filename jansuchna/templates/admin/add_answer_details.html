@@ -1,0 +1,48 @@
+<table width="100%" align="left"> 
+   <form name="submit" action="add_answer.php" method="POST"> 
+    <tr>
+    <td height="50" valign="middle" colspan="2">
+     Search :&nbsp;&nbsp;<input type="text" name="search">
+     &nbsp;&nbsp;<input type="submit" name="search" value="Search">
+    </td>
+   </tr>
+   </form>
+   <form name="submit" action="add_answer.php" method="POST"> 
+   <tr>    
+    <td colspan="2"><span style='font-family:Kruti Dev 011;font-size:20px;'>jftLVªs’ku u0</span> : __regno__</td>     
+  </tr>
+  <tr>    
+    <td colspan="2"><span style='font-family:Kruti Dev 011;font-size:20px;'>vkosnd dk uke </span> :  <span style='font-family:Kruti Dev 011;font-size:20px;'>__name__ </span></td>    
+  </tr>
+  <tr>    
+    <td colspan="2">&nbsp;</td>    
+  </tr>
+    __questions__
+   <tr>    
+    <td  width="220">Date :</td>    
+    <td align="left">
+      <input type="text" name="ansdate" size="25" id="demo1" ><a href="javascript:NewCal('demo1','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+    </td>   
+  </tr>
+   <tr>    
+    <td >Status :</td>    
+    <td align="left">
+      <select name="status">
+       <option value="1" __select1__>Pending</option>
+       <option value="2" __select2__>Complete</option>
+      </select>
+    </td>   
+   </tr>
+   <tr>
+    <td colspan="2" height="10">&nbsp;</td>
+   </tr>
+   <tr>
+    <td></td>
+    <td>
+     <input type="hidden" name="reg_id" value="__id__">
+     <input type="submit" name="add" value="add">
+     <input type="button" name="Print" value="Print" onclick="window.open('print_answer.php?aid=__id__','windowname1','width=650, height=550,scrollbars=yes'); return false;">
+    </td>
+   </tr>
+   </form>
+  </table>

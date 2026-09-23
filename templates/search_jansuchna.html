@@ -1,0 +1,95 @@
+<Script language=javascript>
+
+function SearchDetails()
+{	with(window.document.search)
+	{	
+   if(regno.value=="" && phone.value=="" && rdate.value=="")
+		{	
+      alert("Please enter registration no OR phone no OR registration date");
+			regno.focus(); 
+      return false;
+		}
+		return true;
+	}
+	
+}
+
+
+</Script>
+
+
+<!--     <table width="100%" border="0" cellspacing="0" cellpadding="0" align="left">
+      <tr><td height='30' bgcolor="#C1C4C5">&nbsp;</td></tr>
+      <tr><td height='30' align="center" bgcolor="#C1C4C5"><span style="color:#ae2829">__message__</span></td></tr>
+      <tr>
+        <td align="center" bgcolor="#C1C4C5"> -->
+       <!--  <form name="login" method="POST" action="search_jansuchna.php" onsubmit='return checkSignUpDetails();'>
+        <table border="0" cellspacing="3" cellpadding="3">
+         <tr>
+          <td>Enter Registration No :</td>
+          <td><input type="text" name="regno"></td>
+         </tr>
+         <tr>
+          <td>OR</td>
+          <td></td>
+         </tr>
+         <tr>
+          <td>Phone No :</td>
+          <td><input type="text" name="phone"></td>
+         </tr>
+         <tr>
+          <td>OR</td>
+          <td></td>
+         </tr>
+         <tr>
+          <td>Registration Date :</td>
+          <td><input type="text" name="rdate"></td>
+         </tr>
+         <tr>
+          <td></td>
+          <td><input type="submit" name="submit" value="Search"></td>
+         </tr>
+        </table>
+        </form> -->
+       <!--  </td>
+        
+      </tr>
+    </table>
+    -->
+	<form name="search" action="search_jansuchna.php" method="POST" onsubmit='return SearchDetails();'>
+       <table width="680px" border="0" cellspacing="4" cellpadding="4">
+        <tr>
+			  	<td colspan="2" align="left" valign="top">
+					<h2 class="home_cont"><img src="images/content_header_img.png" alt="" align="absmiddle" />Jan Suchna Search</h2>
+					</td>
+			  </tr>
+        <tr>
+          <td>Enter Registration No :</td>
+          <td align="left"><input type="text" name="regno"></td>
+         </tr>
+         <tr>
+          <td>OR</td>
+          <td></td>
+         </tr>
+         <tr>
+          <td>Phone No :</td>
+          <td align="left"><input type="text" name="phone"></td>
+         </tr>
+         <tr>
+          <td>OR</td>
+          <td></td>
+         </tr>
+         <tr>
+          <td>Registration Date :</td>
+          <td align="left"><input type="text" name="rdate"></td>
+         </tr>
+         <tr>
+          <td></td>
+          <td align="left"><input type="submit" name="submit" value="Search"></td>
+         </tr>
+        
+       </table>
+       </form>
+     </td>
+        </tr>
+ </table>

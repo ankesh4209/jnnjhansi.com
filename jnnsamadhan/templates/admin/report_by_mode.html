@@ -1,0 +1,137 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	
+  with(window.document.search)
+	{	
+    if(city.value=="")
+		{	
+      alert("Select City");
+			city.focus(); return false;
+		}
+		if(sdate.value=="")
+		{	
+      alert("Enter From Date.");
+			sdate.focus(); return false;
+		}
+		return true;
+	}
+	
+}
+
+function ShowWards(Corporator){
+       var myRandom=parseInt(Math.random()*99999999);  // cache buster
+       makeRequest("WardId","returncompward.php?Corporator="+Corporator+"&rand="+myRandom); 
+}
+
+function Showcorporator(value)
+  {
+       var myRandom=parseInt(Math.random()*99999999);  // cache buster
+       makeRequest("corp_id","returncorporator.php?value="+value+"&rand="+myRandom); 
+	
+  }
+
+//-->
+</Script>
+<br>
+<table border="0" cellpadding="1" cellspacing="1" align="left" width="100%">
+ <tr>
+  <td>
+  <form name="search" action="report_by_mode.php" method="POST" onsubmit='return checkSignUpDetails();'>
+  <table border="1" cellpadding="4" cellspacing="4" align="left">
+   
+     <tr>
+	
+     <td>
+	  Complaint Mode:&nbsp;&nbsp;<select name="cmode" style="font-family:Kruti Dev 011;font-size:13px;" onchange="Showcorporator(this.value);">
+				<option value='All'>All</option>
+                <option value="uxj vk;qä eqykdkr"><span style="font-family:Kruti Dev 011;font-size:13px;">uxj vk;qä </span></option>
+                <option value="'kklu"><span style="font-family:Kruti Dev 011;font-size:13px;"> 'kklu</span></option>
+                <option value="vk;qä >k¡lh e.My"><span style="font-family:Kruti Dev 011;font-size:13px;">vk;qä >k¡lh e.My</span></option>
+                <option value="ftykf/kdkjh] >k¡lh"><span style="font-family:Kruti Dev 011;font-size:13px;">ftykf/kdkjh] >k¡lh</span></option>
+                <option value="eq[; eU=h"><span style="font-family:Kruti Dev 011;font-size:13px;">eq[; eU=h</span></option>
+				<option value="lkalnx.k"><span style="font-family:Kruti Dev 011;font-size:13px;">lkalnx.k</span></option>
+                <option value="fo/kk;dx.k"><span style="font-family:Kruti Dev 011;font-size:13px;">fo/kk;dx.k</span></option>
+                <!--<option value="e.Myk;qä"><span style="font-family:Kruti Dev 011;font-size:13px;">e.Myk;qä</span></option>-->
+                <option value="egkikSj"><span style="font-family:Kruti Dev 011;font-size:13px;">egkikSj</span></option>
+                <option value='Ikk”kZnx.k'><span style="font-family:Kruti Dev 011;font-size:13px;">Ikk”kZnx.k</span></option>
+           </select> &nbsp;&nbsp;&nbsp;&nbsp;
+	</td><td> From Date :<input id="demo3" name="sdate" type="text" size="10"><a href="javascript:NewCal('demo3','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+     &nbsp;&nbsp;&nbsp;&nbsp; To Date :<input id="demo4" name="edate" type="text" size="10"><a href="javascript:NewCal('demo4','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+     &nbsp;&nbsp;
+     
+     
+    </td>
+   </tr>
+    <tr>
+          <td>Corporator :
+          </td>
+          <td><div id='corp_id'>
+              <select  name="CorporatorId">
+                <option value="">Select corporator</option>
+                  __c_corporator__
+                </select>
+              </div></td>
+         </tr>
+        <tr>
+          <td>Ward Complain :
+          </td>
+          <td><div id='WardId'>
+              <select  name="WardId">
+                <option value="">Select Ward</option>
+                  __c_ward__
+                </select>
+              </div></td>
+         </tr>
+   <tr>
+    <td>
+     Department :
+     <select name="nature">
+      <option value="All">All</option>
+      __c_nature__
+     </select>
+     </td><td>
+	 Status :
+     <select name="status"> 
+      <option value="1000">All</option>
+      <option value="1">Complete</option>
+      <option value="0">Pending</option>
+     </select>
+     &nbsp;<input type="submit" name="search" value="Search" class="button">
+	 </td>
+
+
+          
+     </tr>
+  </table>
+</form>
+</td>
+</tr>
+<tr>
+<td>
+<table width="100%" align="left">
+  __PROMPT__
+  <tr>
+  <td>
+  <table border="1" cellpadding="5" cellspacing="1" align="left" width="95%" class="tableList"> 
+  <tr><td height="35" valign="middle" colspan="9"><b>__officer_text__</b> &nbsp;&nbsp;&nbsp;<b>__Mode_text__</b> &nbsp;&nbsp;&nbsp;<b> __sdate_text__</b> &nbsp;&nbsp;&nbsp;<b> __edate_text__</b></td></tr>
+  <tr>
+  <th align="center" width='5%'>S.NO.</th>
+  <th align="center">C.NO.</th>
+   <th align="center"><span style="font-family:Kruti Dev 011;font-size:14px;">f'kdk;rdrkZ dk uke</span></th>
+   <th align="center"><span style="font-family:Kruti Dev 011;font-size:14px;">f'kdk;rdrkZ dk irk</span></th>
+   __corpname__
+   __ward__
+   <th align="center"><span style="font-family:Kruti Dev 011;font-size:14px;">VsyhQksu ua0</span></th>
+   <th align="center"><span style="font-family:Kruti Dev 011;font-size:14px;">f'kdk;r lkjka'k</span></th>
+   <th align="center"><span style="font-family:Kruti Dev 011;font-size:14px;">f'kdk;r dk ek?;e</span></th>   
+  </tr>
+   __complain_list__
+  </table>
+  </td>
+  </tr>
+
+</table>
+</td>
+</tr>
+</table>

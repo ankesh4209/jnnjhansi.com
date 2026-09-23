@@ -1,0 +1,46 @@
+<table width="100%" align="left">
+<form name="edit_photo" action="edit_photo.php" method="post" enctype="multipart/form-data">
+	<tr>
+      <td>
+		<table width="100%" class="grayhead" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			  <td class="grayheadleft">&nbsp;</td>
+			  <td class="grayheadmid">Edit Photo</td>
+			  <td class="grayheadright">&nbsp;</td>
+			</tr>
+		</table>
+	</td>
+    </tr>
+	 <tr>
+		 <td align="center"  class="successmsg">__PROMPT__</td>
+		 </tr>
+    <tr>
+	  <td><table width="100%"  border="0" cellspacing="5" cellpadding="5">
+	      
+		<tr>
+			<td colspan="2"><span style="color:red">*</span> Required</td>
+		</tr>
+		 <tr>
+		  <td width="15%"> Upload Photo </td>
+		  <td><INPUT NAME="photo" TYPE="file"></td>
+		 </tr>
+		 
+		<tr>
+		  <td>&nbsp;&nbsp;&nbsp;Status</td>
+		  <td><select name="status">
+		  <option value="1" __status__>Live</option>
+		  <option value="0" __status1__>Draft</option>
+		 </select>
+		</td>
+		 </tr>
+		 <tr>
+		  <td><input type="hidden" name="pid" value="__pid__"></td>
+		  <td><input type="submit" name="submit" value="Update"></td>
+		 </tr>
+		 </table>
+		  </td></tr>
+		 </form>
+ </table>
+ 
+
+

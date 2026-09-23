@@ -1,0 +1,57 @@
+<Script language=javascript>
+
+function checkSignUpDetails()
+{	with(window.document.edit_officer_info)
+	{	
+ 
+		if(Firstname.value=="")
+		{	alert("Enter Firstname.");
+			Firstname.focus(); return false;
+		}
+		if(Lastname.value=="")
+		{	alert("Enter Lastname.");
+			Lastname.focus(); return false;
+		}
+		return true;
+	}
+}
+
+
+</Script>
+
+
+ <table width="100%" align="left" cellspacing="3" cellpadding="3" border="0">
+
+
+  <tr>
+      <td><table width="100%" class="grayhead" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="grayheadleft">&nbsp;</td>
+          <td class="grayheadmid">Edit Officer Info </td>
+          <td class="grayheadright">&nbsp;</td>
+        </tr>
+      </table></td>
+    </tr>
+
+  <tr><td>__PROMPT__</td></tr>
+
+<tr><td>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+ <form name="edit_officer_info" method="post" action="edit_officer_info.php" onsubmit='return checkSignUpDetails();' >
+					
+                    <tr><td align="left">First Name:</td><td align="left"><input type="text" name="Firstname" id="Firstname" size="40" value="__firstname__" /></td></tr>
+                    <tr><td align="left">Last Name:</td><td align="left"><input type="text" name="Lastname" id="Lastname" size="40" value="__lastname__" /></td></tr>
+                    <tr><td align="left">Email:</td><td align="left"><input type="text" name="Email" id="Email" size="40" value="__email__" /></td></tr>
+                    <tr><td align="left">Designation :</td><td align="left"><input type="text" name="Designation" id="Designation" size="40" value="__Designation__" /></td></tr>
+                    <tr><td align="left">Office No :</td><td align="left"><input type="text" name="OfficeNo" id="OfficeNo" size="40" value="__OfficeNo__" /></td></tr>
+                    <tr><td align="left">Residence No :</td><td align="left"><input type="text" name="ResNo" id="ResNo" size="40" value="__ResNo__" /></td></tr>
+ <tr>
+  <td><input type="hidden" name="oid" value="__oid__"></td>
+  <td><input type="submit" name="submit" value="Update"></td>
+ </tr>
+  </form >
+</table>
+</td>
+</tr>
+ </table>
+

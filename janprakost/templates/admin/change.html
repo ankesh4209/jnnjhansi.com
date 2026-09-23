@@ -1,0 +1,57 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.MemberLoginForm)
+	{	
+   if(cpassword.value=="")
+		{	
+      alert("Enter Current Password");
+			cpassword.focus(); return false;
+		}
+		if(newpassword.value=="")
+		{	
+      alert("Enter New Password");
+			newpassword.focus(); return false;
+		}
+		if(repassword.value=="")
+		{	
+      alert("Re Enter New Password");
+			repassword.focus(); return false;
+		}
+		if(repassword.value!=newpassword.value)
+		{	
+      alert("New Password and Re Enter New Password Should be Same.");
+			repassword.focus(); return false;
+		}
+		return true;
+	}
+}
+//-->
+</Script>
+<!-- MAIN TABLE STARTS HERE-->
+<FORM name="MemberLoginForm" action='change.php' onsubmit='return checkSignUpDetails();' method="post" target="_top">
+
+	<table border="0" cellspacing="4" cellpadding="5" width="60%" align="left">
+	 <tr>
+		<td class="red" align="center" colspan="2"><span style="color:red;font-weight:bold">__PROMPT__</span></td>
+	</tr>
+	<tr>
+	 <td width="200" align="right" class="labelsmall">Current Password:</td>
+	 <td ><input type="text" name="cpassword" class="site_text"></td>
+	</tr>
+	<tr >
+	 <td  valign="top" align="right" class="labelsmall">New Password:</td>
+	 <td ><input type="password"  name="newpassword" class="site_text"></td>
+	</tr>
+		<tr >
+	 <td  valign="top" align="right" class="labelsmall">Re Enter New Password:</td>
+	 <td ><input type="password"  name="repassword" class="site_text"></td>
+	</tr>
+	<tr>
+	<td class="blue_bg">&nbsp;</td>
+	<td class="blue_bg">&nbsp;<input type="submit" value="Submit" class="button"><input type=hidden name=Re value="__Re__" class='login_button'></td>
+	</tr>
+	</table>
+</FORM>
+<br>
+<br>

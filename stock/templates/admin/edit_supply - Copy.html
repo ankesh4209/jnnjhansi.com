@@ -1,0 +1,68 @@
+	<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.add_stocks)
+	{	
+     	
+	}
+	
+}
+
+
+function ShowItems(ItemType){
+       
+	   var myRandom=parseInt(Math.random()*99999999);  // cache buster
+	  // alert("returnitems.pItemType="+ItemType+"&rand="+myRandom);
+       makeRequest("Item","returnitems.php?ItemType="+ItemType+"&rand="+myRandom); 
+}
+</Script>
+<table width="100%" align="left"> 
+      <tr><td> 
+         <form name="add_stocks" action="edit_supply.php" method="post" onsubmit='return checkSignUpDetails();' enctype="multipart/form-data"> 
+         <table align="left" cellspacing="4" cellpadding="4" width="100%" border="0" align="center"> 
+           <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:20px;">foHkkx</span> :</td>    
+            <td align="left">__departments__</td>   
+              
+          </tr>
+		   <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:20px;">lkexzh izkIr drkZ dk uke</span> :</td>    
+            <td align="left"><input type="text" name="ReceiverName" value='__ReceiverName__' size="25" style="font-family: 'kruti_dev_010regular';font-size:15px;"></td> 
+              
+          </tr>
+		 
+		  <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:20px;">lkexzh forj.k fnukad</span> :</td>    
+            <td align="left">
+              <input type="text" name="SupplyDate" value='__DistributionDate__' size="15" id="demo1" readonly><a href="javascript:NewCal('demo1','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></td>   
+          </tr>
+		 
+		   <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:20px;">lkexzh dk uke</span> :</td>    
+            <td align="left">
+              <div id='Item'>
+              <!-- <select  name="ItemId" style="font-family:Kruti Dev 011;font-size:13px;">
+                <option value="">Select Item</option>
+                  __edit_items__
+                </select>
+ -->          
+			 __edit_items__
+				</div>
+          </tr>
+		  <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:20px;">lkexzh ntZ dj</span> :</td>    
+            <td align="left"><input type="text" name="Qty" value='__Qty__' size="10" ></td>  
+              
+          </tr>
+		  
+		  <tr>   
+           <td></td>   
+           <td>
+		      <input type='hidden' name='SupplyId' value='__sid__'>
+              <input type="submit" name="submit" value="submit" class="button">
+           </td>   
+          </tr>  
+        </table>  
+      </form> 
+    </td></tr>
+  </table>

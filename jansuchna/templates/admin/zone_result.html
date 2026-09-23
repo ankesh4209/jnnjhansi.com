@@ -1,0 +1,42 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="left" valign="top" class="text">Department Report</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>
+      <form name="search" action="" method="POST"> 
+      <table width="100%" border="0" cellspacing="4" cellpadding="4">
+        <tr>
+         <td>Department : <select name="department" style='font-family:Kruti Dev 011;font-size:18px;'><option value="1000">lHkh foHkkx</option>__dep_list__</select></td>
+         <td>Start Date : <input type="text" name="sdate" id="demo1" size="7"><a href="javascript:NewCal('demo1','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></td>
+         <td>End Date : <input type="text" name="edate" id="demo2" size="7"><a href="javascript:NewCal('demo2','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></td>
+         <td><input type="submit" name="submit" value="search" class="button"></td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="4" cellpadding="4">
+       <tr>
+        __report_message__
+       </tr>
+      </table>
+      <table width="100%" border="1" cellspacing="1" cellpadding="1">
+       <tr>
+        <td align='center' width='5%'><b>S.No.</b></td>
+        <td align='center'><b>Department</b></td>
+        <td align='center'><b>Reg. No.</b></td>
+        <td align='center'><b>Date</b></td>
+        <td align='center'><b>Name of App.</b></td>
+        <td align='center'><b>Contact No</b></td>
+        <td align='center'><b>Status</b></td>
+       </tr>
+        __total_result__
+       <tr>
+        <td colspan="6" align="right"><a href="javascript: void(0)" onclick="window.open('print_zone.php?zone=__department__&sdate=__sdate__&edate=__edate__','windowname1','width=650, height=550,scrollbars=yes'); return false;"><input type="button" name="click" value="Print" class="button"></a></td>
+       </tr>
+      </table>
+      </form>
+     </td>
+    </tr>
+  </table>

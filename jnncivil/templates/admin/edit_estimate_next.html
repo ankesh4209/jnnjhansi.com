@@ -1,0 +1,124 @@
+<table width="100%" align="left"> 
+      <tr><td> 
+         <form name="edit_estimate" action="edit_estimate_next.php" method="post" onsubmit='return checkSignUpDetails();' > 
+         <table align="left" cellspacing="4" cellpadding="4" width="100%" border="0" align="center"> 
+           <tr>
+     <td height="40" colspan='2'>
+      <a href='#'><b>Estimation Confirmation - Step 2</b></a>
+     </td>
+    </tr>
+		   <tr>    
+            <td width='20%'><span style="font-family: 'kruti_dev_010regular';font-size:15px;">en dk uke </span> :</td>    
+            <td align="left" style='font-family: kruti_dev_010regular;font-size:15px;'>
+              __madname__</td>   
+            </td>   
+          </tr>
+		  	   <tr>    
+            <td width='20%'><span style="font-family: 'kruti_dev_010regular';font-size:15px;">en dk fooj.k  </span> :</td>    
+            <td align="left" style='font-family: kruti_dev_010regular;font-size:15px;'>
+              __madinfoname__</td>   
+            </td>   
+          </tr>
+		  
+		  <tr>    
+            <td width='20%'><span style="font-family: 'kruti_dev_010regular';font-size:15px;">dk;Z dk uke</span> :</td>    
+            <td align="left" style='font-family: kruti_dev_010regular;font-size:15px;'>
+              __WorkName__</td>   
+            </td>   
+          </tr>
+		   <tr>    
+            <td width='20%'><span style="font-family: 'kruti_dev_010regular';font-size:15px;">okMZ Uka0</span>  :</td>    
+            <td align="left">
+              __WardNo__</td>   
+            </td>   
+          </tr>
+		  <tr>    
+            <td width='20%'><span style="font-family: 'kruti_dev_010regular';font-size:15px;">IkzLrkod</span> :</td>    
+            <td align="left" >
+              <span style="font-family: 'kruti_dev_010regular';font-size:15px;">__ProposerName__</span></td>   
+            </td>   
+          </tr>
+		   <tr>    
+            <td width='20%'><span style="font-family: 'kruti_dev_010regular';font-size:15px;">IkzLrkfor dk;Z frfFk</span> :</td>    
+            <td align="left">
+              __ProposedDate__</td>   
+            </td>   
+          </tr>
+		   <tr>    
+            <td   ><span > Name of area</span> :</td>    
+            <td align="left" style="font-family: 'kruti_dev_010regular';font-size:15px;">
+              __AreaName__</td>   
+          </tr>
+		 <tr>    
+            <td width='20%'><span >Estimate Created On Date</span> :</td>    
+            <td align="left">
+              __AddedDate__</td>   
+            </td>   
+          </tr>
+		  <tr>    
+            <td width='20%'><span >J.E.</span> :</td>    
+            <td align="left" style="font-family: 'kruti_dev_010regular';font-size:15px;">
+              __JEInfo__
+            </td>   
+          </tr>
+		  <tr>    
+            <td width='20%'><span >A.E.</span> :</td>    
+            <td align="left" style="font-family: 'kruti_dev_010regular';font-size:15px;">
+              __AEInfo__
+            </td>   
+          </tr>
+		  <tr>    
+            <td width='20%'><span >EXn.</span> :</td>    
+            <td align="left" style="font-family: 'kruti_dev_010regular';font-size:15px;">
+              __EXnInfo__
+            </td>   
+          </tr>
+		  <tr>    
+            <td width='20%'><span style="font-family: 'kruti_dev_010regular';font-size:15px;">vkx.ku</span> :</td>    
+            <td align="left">
+              __estimateamt__</td>   
+            </td>   
+          </tr>
+		 <!--  <tr><td>&nbsp;</td></tr>
+		  <tr><td colspan='2'>Selected Item and their amount:-</td></tr>
+		  <tr><td colspan='5'>
+		  <table border="0" cellpadding="5" cellspacing="1" align="center" class="tableList">
+		  <tr>
+		   <th width='5%' ><b>S. No.</b></th>
+		   <th width='5%' ><b>Item No.</b></th>
+		   <th ><b>Item Name</b></th>
+		   <th ><b>Unit</b></th>
+		   <th ><b>Rate<br>(Rs.)</b></th>
+		   <th ><b>Qty x Rate(Rs)</b></th>
+		   <th ><b>Sub Total</b></th>
+		   </tr>
+		  __RateList__
+		  </table>
+		  </td></tr> -->
+          <tr>   
+           <td></td>   
+           <td>
+			  <input type="hidden" name="MadId" value="__MadId__" >
+			  <input type="hidden" name="MadAmtId" value="__MadAmtId__" >
+			  <input type="hidden" name="WorkName" value="__WorkName__" >
+			  <input type="hidden" name="ItemQtys" value="__QtyRids__" >
+			  <input type="hidden" name="TotalAmount" value="__TotalAmount__" >
+			  <input type="hidden" name="JEEmployeeCode" value="__JEEmployeeCode__" >
+			  <input type="hidden" name="AEEmployeeCode" value="__AEEmployeeCode__" >
+			  <input type="hidden" name="EXnEmployeeCode" value="__EXnEmployeeCode__" >
+			  <input type="hidden" name="WardNo" value="__WardNo__" >
+			  <input type="hidden" name="ProposerName" value="__ProposerName__" >
+			  <input type="hidden" name="ProposedDate" value="__ProposedDate__" >
+               <input type="hidden" name="Image" value="__Image__" >
+			   
+			  <input type="hidden" name="AreaName" value="__AreaName__" >
+			  <input type="hidden" name="estimateamt" value="__estimateamt__" ><!--temporary-->
+			  <input type="hidden" name="AddedDate" value="__AddedDate__" >
+			  <input type='hidden' name='EstmtId' value='__EstmtId__'>
+              <input type="submit" name="submit" value="Update Estimate" class="button">&nbsp;<!-- <input type="submit" name="submit" value="Back" class="button" onclick='Javascript:history.go(-1);'> -->
+           </td>   
+          </tr>  
+        </table>  
+      </form> 
+    </td></tr>
+  </table>

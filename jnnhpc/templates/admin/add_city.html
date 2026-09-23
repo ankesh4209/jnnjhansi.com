@@ -1,0 +1,63 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	
+  with(window.document.addcity)
+	{	
+   if(city.value=="")
+		{	alert("Enter City Name");
+			city.focus(); return false;
+		}
+		return true;
+	}
+	
+}
+ function validatePhoneNumber(elementValue)
+ {
+  var phoneNumberPattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+  if(phoneNumberPattern.test(elementValue)==false){
+  return true;  
+ }else{ return false;}
+}
+
+function checknumber(str)
+{
+ 
+//  var alpha = /^([a-zA-Z0-9_-]+)$/;
+ var text = /^([a-zA-Z]+)$/;
+   if(text.test(str)==false){
+     return false;
+   }else{ return true;}
+}
+
+
+
+//-->
+</Script>
+<table width="100%" align="left"> 
+  <tr>  
+    <td height="30">  
+      <table border="0" cellspacing="0" cellpadding="0" width="96%" align="left">  	
+        <tr>  		
+          <td height="30" valign="middle"><b>Add City Record</b</td>  	
+        </tr>  
+      </table>  
+    </td>  
+  </tr>  
+  <tr>  <td>  
+  <form name="addcity" action="add_city.php" method="post" onsubmit='return checkSignUpDetails();'>  
+        <table align="left" cellspacing="5" cellpadding="5" width="98%" border="0" align="center">       
+          <tr>    
+            <td width="130" >City Name:</td>    
+            <td align="left"><input type="text" name="city" size="30"></td>   
+          </tr>     
+          <tr>   
+           <td></td>   
+           <td>
+            <input type="submit" name="submit" value="ADD" class="button">
+          </td>   
+          </tr>  
+        </table>  
+      </form> </td> 
+  </tr>
+</table>

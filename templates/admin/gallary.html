@@ -1,0 +1,122 @@
+<script language = javascript>
+<!--
+function selectAll()
+{	with(window.document.gallary)
+	{
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{	if (elements[i].type == 'checkbox')
+			{	elements[i].checked = true;
+			}
+		}		
+	}
+}
+
+function selectNone()
+{	with(window.document.gallary)
+	{	 
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{	
+			if (elements[i].type == 'checkbox')
+			{	elements[i].checked = false;
+			}
+		}		
+	}
+}
+
+function checkSelected()
+{	with(window.document.gallary)
+	{	totalChecked = 0; 
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{	
+			if (elements[i].type == 'checkbox')
+			{	if (elements[i].checked) 
+				{	totalChecked++;
+					break;
+				}
+			}
+		}		
+
+		if (totalChecked == 0)
+		{	alert("Select a items");
+			return false;
+		}
+
+		return true;
+	}
+}
+
+function confirmDelete()
+{	with(window.document.gallary)
+	{	if (checkSelected())
+		{	return confirm("The selected items will be deleted. Are you sure?");
+		}
+		else
+		{	return false;
+		}
+	}
+}
+
+//-->
+</script>
+<table width="100%" align="left">
+	  <form name="gallary" action="gallary.php" method="post">
+	 <tr>
+		  <td><table width="100%" class="grayhead" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			  <td class="grayheadleft">&nbsp;</td>
+			  <td class="grayheadmid">Photo Gallery</td>
+			  <td class="grayheadright">&nbsp;</td>
+			</tr>
+		  </table></td>
+		</tr>
+	 <tr>
+      <td height="40">Click here to <a href='add_photo.php'>Add Photo</a></td>
+    </tr>
+    		<tr>
+		 <td align="center"  bgcolor="#464682" style="text-decoration:none;color:#FFFFFF"><b>__PROMPT__</b></td>
+		</tr>
+		<tr>
+		<td ><table width="100%" border="0" cellspacing="0" cellpadding="3">
+		  <tr class="grayhdbg">
+			
+			<td width="10%" align="center">Select</td>
+			<td width="15%" align="center">S. No.</td>
+			<td width="25%" align="center">Photo</td>
+			<td width="25%" align="center">Status</td>
+			<td width="25%" align="center">Edit</td>
+		  </tr>
+		  __PRODUCT_LIST__
+		</table></td>
+	  </tr>
+ 
+ 
+	
+
+	  <tr>
+	  <td colspan="8" align="right">
+	  <input type="button" value="Select All" onclick="return selectAll();" class="button">
+	  <input type="button" value="Select None" onclick="return selectNone();"  class="button">
+	  <input type="submit" name="SUBMIT_DELETE" value="Delete Selected" onclick="return confirmDelete();"  class="button">
+	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	  <input type="submit" name="SUBMIT_CHANGE" value="Change Selected"  class="button">
+	  <select name="status">
+	   <option value="1">Live</option>
+	   <option value="0">Draft</option>
+	  </select>
+	  </td></tr>
+	  <tr>
+	  <td>
+	  <table align="center" width="95%" style="border-color:#FFFFFF">
+	   <tr><td align="right">__PREV_PAGE_LINK__&nbsp;&nbsp;&nbsp;Pages: __PAGE_NAVS__&nbsp;&nbsp;&nbsp; __NEXT_PAGE_LINK__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+	  </table> 
+	</form>
+	</td>
+	 </tr>
+ </table>
+ 
+
+
+

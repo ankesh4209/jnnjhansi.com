@@ -1,0 +1,55 @@
+<br><br>
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	
+  with(window.document.bulksms)
+	{	
+    if(subject.value=="")
+		{	
+      alert("Enter Subject.");
+			subject.focus(); return false;
+		}
+    if(message1.value=="")
+		{	
+      alert("Enter Message Text.");
+			message1.focus(); return false;
+		}
+		return true;
+	}
+	
+}
+//-->
+</Script>
+<table width="100%" align="left"> 
+ <tr>
+  <td>__PROPMT__</td>
+ </tr>
+  <tr>  
+    <td>  
+      <form name="bulksms" action="bulk_email.php" method="post" onsubmit='return checkSignUpDetails();'>  
+        <table align="left" cellspacing="5" cellpadding="5" width="98%" border="0" align="center"> 
+         <tr>
+          <td valign="top">To :</td>
+          <td>
+           <select name="group">
+              __groupname__
+             </select>
+          </td>
+         </tr>
+         <tr>
+          <td valign="top">Subject :</td>
+          <td><input type="text" name="subject" size="70"></td>
+         </tr>
+         <tr>
+          <td valign="top">Message :</td>
+          <td><textarea rows="5" cols="70" name="message1"></textarea></td>
+         </tr>
+         <tr>
+          <td valign="top"></td>
+          <td><input type="submit" name="submit" value="Submit" class="button"></td>
+         </tr>
+        </table>      
+    </td>   
+  </tr>
+</table>

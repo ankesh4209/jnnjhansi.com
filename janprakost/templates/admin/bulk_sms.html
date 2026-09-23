@@ -1,0 +1,62 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	
+  with(window.document.bulksms)
+	{	
+    if(message1.value=="")
+		{	
+      alert("Enter Message Text.");
+			message1.focus(); return false;
+		}
+		return true;
+	}
+	
+}
+//-->
+</Script>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+function textCounter(field,cntfield,maxlimit) {
+if (field.value.length > maxlimit) // if too long...trim it!
+field.value = field.value.substring(0, maxlimit);
+// otherwise, update 'characters left' counter
+else
+cntfield.value = maxlimit - field.value.length;
+}
+//  End -->
+</script>
+<br><br>
+<table width="100%" align="left"> 
+ <tr>
+  <td>__PROPMT__</td>
+ </tr>
+  <tr>  
+    <td>  
+      <form name="bulksms" action="bulk_sms.php" method="post" onsubmit='return checkSignUpDetails();'>  
+        <table align="left" cellspacing="5" cellpadding="5" width="98%" border="0" align="center"> 
+         <tr>
+          <td valign="top">To :</td>
+          <td>
+           <select name="group">
+               __groupname__
+             </select>
+          </td>
+         </tr>
+         <tr>
+          <td valign="top">Message :</td>
+          <td><textarea rows="5" cols="70" name="message1" 
+           onKeyDown="textCounter(document.bulksms.message1,document.bulksms.remLen1,160)"
+          onKeyUp="textCounter(document.bulksms.message1,document.bulksms.remLen1,160)" ></textarea>
+          <input readonly type="text" name="remLen1" size="3" maxlength="3" value="160">
+                             characters left</td>
+         </tr>
+         <tr>
+          <td valign="top"></td>
+          <td><input type="submit" name="submit" value="Submit" class="button"></td>
+         </tr>
+        </table>      
+    </td>   
+  </tr>
+</table>

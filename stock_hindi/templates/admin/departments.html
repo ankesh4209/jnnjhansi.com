@@ -1,0 +1,97 @@
+
+<script language = javascript>
+<!--
+function selectAll()
+{	with(window.document.nature)
+	{
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{	if (elements[i].type == 'checkbox')
+			{	elements[i].checked = true;
+			}
+		}		
+	}
+}
+
+function selectNone()
+{	with(window.document.nature)
+	{	 
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{	
+			if (elements[i].type == 'checkbox')
+			{	elements[i].checked = false;
+			}
+		}		
+	}
+}
+
+function checkSelected()
+{	with(window.document.nature)
+	{	totalChecked = 0; 
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{	
+			if (elements[i].type == 'checkbox')
+			{	if (elements[i].checked) 
+				{	totalChecked++;
+					break;
+				}
+			}
+		}		
+
+		if (totalChecked == 0)
+		{	alert("Select a items");
+			return false;
+		}
+
+		return true;
+	}
+}
+
+function confirmDelete()
+{	with(window.document.nature)
+	{	if (checkSelected())
+		{	return confirm("The selected items will be deleted. Are you sure?");
+		}
+		else
+		{	return false;
+		}
+	}
+}
+
+//-->
+</script>
+<table width="100%" align="left">
+ <tr>
+  <td height="10">
+  <form name="nature" action="departments.php" method="post">
+  
+ </td>
+  </tr>
+  <tr>
+  <td>
+  <div id='PrintArea' class='pis_list'  align='center'>
+  <table border="0" cellpadding="1" cellspacing="1" align="center"  class="tableList"> 
+  <tr>
+  <th width='10%'><b>S.no.</b></th>
+  <!--  <th width='10%'><b>Select</b></th> -->
+   <th align='center' style='padding-left:150px;'><b><span style="font-family: 'kruti_dev_010regular';font-size:20px;">foHkkx</span></b></th>
+  <!--  <th width='10%'><b>Edit</b></th> -->
+  </tr>
+  __NATURE_LIST__
+ </table>
+   </div>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  </div>
+</form>
+
+</td>
+ </tr>
+
+</table>
+
+

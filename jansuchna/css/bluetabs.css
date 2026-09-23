@@ -1,0 +1,86 @@
+.bluetabs{
+background: url(../img/gray.gif) repeat-x top left;
+height:48px;
+border:2px solid #FFFFFF;
+}
+
+.bluetabs ul{
+padding: 3px 0;
+margin-left: 0;
+margin-top: 1px;
+margin-bottom: 0;
+margin-right:0;
+font: bold 12px Verdana;
+list-style-type: none;
+text-align: left; /*set to left, center, or right to align the menu as desired*/
+}
+
+.bluetabs li{
+display: inline;
+padding:0;
+margin:0;
+}
+
+.bluetabs li a{
+text-decoration: none;
+padding: 16px 18px 16px 18px;
+border-right: 1px solid #C6C4C5;
+color: #2d2b2b;
+line-height:40px;
+margin:0;
+}
+
+
+.bluetabs li a:hover{
+text-decoration:none;
+background: url(../img/red.gif) repeat-x top left;
+color:#FFFFFF;
+}
+
+.bluetabs li.selected{
+}
+
+.bluetabs li.selected a{ /*selected main tab style */
+background: url(../img/red.gif) repeat-x top left; /*THEME CHANGE HERE*/
+color:#FFFFFF;
+}
+
+.bluetabs li.selected a:hover{ /*selected main tab style */
+text-decoration: none;
+}
+
+/* ######### Style for Drop Down Menu ######### */
+
+.dropmenudiv_b{
+position:absolute;
+top: 0;
+border: 1px solid #918d8d; /*THEME CHANGE HERE*/
+border-width: 0 1px;
+font:normal 12px Verdana;
+line-height:18px;
+z-index:100;
+background-color: white;
+width: 200px;
+visibility: hidden;
+}
+
+
+.dropmenudiv_b a{
+width: auto;
+display: block;
+text-indent: 5px;
+border: 0 solid #918d8d; /*THEME CHANGE HERE*/
+border-bottom-width: 1px;
+padding: 2px 0;
+text-decoration: none;
+color: black;
+}
+
+* html .dropmenudiv_b a{ /*IE only hack*/
+width: 100%;
+}
+
+.dropmenudiv_b a:hover{ /*THEME CHANGE HERE*/
+background-color: #CC0000;
+color:#FFFFFF;
+}

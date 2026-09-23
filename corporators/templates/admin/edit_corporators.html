@@ -1,0 +1,321 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.add_corporator)
+	{	
+     	
+	}
+	
+}
+
+</Script>
+<table width="100%" align="left"> 
+      <tr>  
+    <td height="30">  
+      <table border="0" cellspacing="0" cellpadding="0" width="100%" align="left">  	
+        <tr>  		
+          <td height="30" valign="middle"><b>Edit Corporator</b></td>  	
+        </tr>  
+      </table>  </td>  
+  
+	  <tr><td> 
+         <form name="edit_corporators" action="edit_corporators.php" method="post" onsubmit='return checkSignUpDetails();' enctype="multipart/form-data"> 
+         <table align="left" cellspacing="4" cellpadding="4" width="100%" border="0" align="center"> 
+           <tr>    
+            <td ><span style="font-family: 'kruti_dev_010regular';font-size:15px;"> ik’kZn dk izdkj</span> :</td>    
+            <td align="left">
+              <select name="Corporator" style="font-family: 'kruti_dev_010regular';font-size:15px;">
+               <option value=""> ik’kZn pqus</option>
+               __corporator__
+              </select>
+            </td>   
+          </tr>
+		   <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">ik’kZn dk uke</span> :</td>    
+            <td align="left">
+              <input type="text" name="CorporatorName" value="__CorporatorName__" size="25" style="font-family: 'kruti_dev_010regular';font-size:15px;"></td>   
+          </tr>
+		  <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;" >QksVks viyksfMx</span> :</td>    
+            <td align="left">
+              <input type="file" name="CorporatorPhoto" size='10'>&nbsp;__CorporatorPhoto__</td>
+		  
+          </tr>
+		  <tr>    
+            <td  width="220" ><span  style="font-family: 'kruti_dev_010regular';font-size:15px;">ekufp= viyksfMax</span> :</td>    
+            <td align="left">
+              <input type="file" name="WardMap" size='10'>&nbsp;__WardMap__</td>
+		  
+          </tr>
+		  <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">firk@ifr dk uke
+</span> :</td>    
+            <td align="left">
+              <select name='RelationTag'><option value='S/O' __SO__>S/O</option><option value='D/O' __DO__>D/O</option><option value='W/O' __WO__>W/O</option></select>&nbsp;<input type="text" name="FatherName" value="__FatherName__" size="25" style="font-family: 'kruti_dev_010regular';font-size:15px;"></td>   
+          </tr>
+		  <tr>    
+            <td  width="220" style="font-family: 'kruti_dev_010regular';font-size:15px;">tUe frfFk</td>    
+            <td align="left">
+              <input type="text" name="Dob" size="15" id="demo1" value="__Dob__" ><a href="javascript:NewCal('demo1','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></td>   
+          </tr>
+		  <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">fyax</span> :</td>    
+            <td align="left">
+			<select name='Sex' style="font-family: 'kruti_dev_010regular';font-size:20px;"><option value="iq#’k" __male__>iq#’k </option><option value='efgyk' __female__>efgyk</option></select>
+			</td> 
+              
+          </tr>
+		  <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">LFkkbZ irk</span> :</td>    
+            <td align="left">
+              <textarea name="PermanentAddress" rows='3' cols='35' style="font-family: 'kruti_dev_010regular';font-size:15px;">__PermanentAddress__</textarea></td>   
+          </tr>
+          <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">orZeku irk</span> :</td>    
+            <td align="left">
+              <textarea name="PresentAddress" rows='3' cols='35' style="font-family: 'kruti_dev_010regular';font-size:15px;">__PresentAddress__</textarea></td>   
+          </tr>
+		  <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">“kS{kf.kd ;ksX;rk</span> :</td>    
+            <td align="left">
+              <textarea name="EduQualifications" rows='3'  cols='35' style="font-family: 'kruti_dev_010regular';font-size:15px;">__EduQualifications__</textarea></td>   
+          </tr>
+		  <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">oSokfgd fLFkfr</span> :</td>    
+            <td align="left"><input type="text" name="MaritialStatus" value="__MaritialStatus__" size="25" style="font-family: 'kruti_dev_010regular';font-size:15px;"></td>   
+              
+          </tr>
+		  <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">iq=ksa dh la[;k</span> :</td>    
+            <td align="left"><input type="text" name="NoOfSons" value="__NoOfSons__" size="25" ></td>  
+              
+          </tr>
+		  <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">iqf=;ksa dh la[;k</span> :</td>    
+            <td align="left"><input type="text" name="NoOfDaughters" value="__NoOfDaughters__" size="25" ></td>   
+          </tr>
+          <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">O;kolk;@ukSdjh</span> :</td>    
+            <td align="left"><input type="text" name="Profession" value="__Profession__" size="25" style="font-family: 'kruti_dev_010regular';font-size:15px;"></td>   
+          </tr>
+
+		  <tr>    
+            <td ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">vkj{k.k oxZ</span> :</td>    
+            <td align="left">
+              <select name="Category" style="font-family: 'kruti_dev_010regular';font-size:20px;"><option value=''>tkfr pqus</option><option value='lkekU;' __C_G__>lkekU;</option><option value='fiNMk oxZ' __C_O__>fiNMk oxZ</option><option value='vuqlwfpr tkfr' __C_SC__>vuqlwfpr tkfr</option><option value='vuqlwfpr tutkfr' __C_ST__>vuqlwfpr tutkfr</option> </select>
+            </td>   
+          </tr>
+          <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">tkfr</span> :</td>    
+            <td align="left"><input type="text" name="Cast" value="__Cast__" size="25" style="font-family: 'kruti_dev_010regular';font-size:15px;"></td>   
+          </tr>
+		  <tr>    
+            <td  width="220" ><span >Positions Held</span> :</td>    
+            <td align="left"><input type="text" name="PositionsHeld" value="__PositionsHeld__" size="25" style="font-family: 'kruti_dev_010regular';font-size:15px;"></td>  
+          </tr>
+		  <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">dk;kZy; uEcj</span> :</td>    
+            <td align="left"><input type="text" name="OfficeNo" value="__OfficeNo__" size="25" ></td> 
+          </tr>
+		  <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">eksckby uEcj</span> :</td>    
+            <td align="left"><input type="text" name="MobileNo" value="__MobileNo__" size="25" ></td> 
+          </tr>
+		  <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">bZ&esy</span> :</td>    
+            <td align="left"><input type="text" name="Email" value="__Email__" size="25" ></td>  
+          </tr>
+		  
+		  <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">ikVhZ dk uke</span> :</td>    
+            <td align="left"><input type="text" name="PartyName" value="__PartyName__" size="25" style="font-family: 'kruti_dev_010regular';font-size:15px;"></td>  
+          </tr>
+		  <!-- <tr>    
+            <td  width="220" ><span >Designation</span> :</td>    
+            <td align="left"><input type="text" name="Designation" value="__Designation__" size="25" style="font-family: 'kruti_dev_010regular';font-size:15px;"></td>  
+			</tr> -->
+		  <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">okMZ uEcj</span> :</td>    
+            <td align="left"><input type="text" name="WardNo" value="__WardNo__" size="25" ></td>   
+          </tr>
+		  <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">okMZ dk uke</span> :</td>    
+            <td align="left"><input type="text" name="WardName" value="__WardName__" size="25" style="font-family: 'kruti_dev_010regular';font-size:15px;"></td>   
+          </tr>
+		  <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">eksgYyk </span> :</td>    
+            <td align="left"><textarea rows='3' cols='35' name="Mohalla" style="font-family: 'kruti_dev_010regular';font-size:15px;">__Mohalla__</textarea></td>  
+          </tr>
+		  
+		   <tr  style="width:200px;"><td><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >okMZ dh lhek,a  </span>:</td><td  align='left'>
+            <table width="50%" style="width:200px;">
+			<tr style="width:200px;">
+			<td></td>
+			<td></td>
+			<td align="left">
+              <textarea name="north" rows='3' cols='10' style="font-family: 'kruti_dev_010regular';font-size:15px;" placeholder="mRrj   ">__north__</textarea></td>  
+			<td></td>
+			</tr>
+			
+			<tr>
+			<td>&nbsp</td>
+			<td>
+	   <textarea name="west" rows='3' cols='10' style="font-family: 'kruti_dev_010regular';font-size:15px;" placeholder="if”pe     ">__west__</textarea>
+			
+			
+			</td>
+			<td align="center"><img src="../img/direction.gif"/></td>  
+			<td>
+	 <textarea name="east" rows='3' cols='10' style="font-family: 'kruti_dev_010regular';font-size:15px;" placeholder="iwjc    ">__east__</textarea>
+			
+			</td>
+			</tr>
+			
+				<tr>
+			<td></td>
+			<td></td>
+			<td align="left">
+              <textarea name="south" rows='3' cols='10' style="font-family: 'kruti_dev_010regular';font-size:15px;" placeholder="nf{k.k   ">__south__</textarea></td>  
+			<td></td>
+			</tr>
+			
+			</table>
+			</td>
+          </tr>
+		  
+		  <tr>    
+            <td  width="220"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">“kiFk xzg.k dh frfFk </span>:</td>    
+            <td align="left">
+              <input type="text" name="job_start_date" size="15" id="demo2" value="__job_start_date__" >
+			  <a href="javascript:NewCal('demo2','ddmmyyyy')">
+			  <img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date">
+			  </a>
+		   </td>   
+          </tr>
+		  
+		  
+		  <tr>    
+            <td  width="220"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">Lknu dh izFke  cSBd dh  frfFk  </span>:</td>    
+            <td align="left">
+              <input type="text" name="first_meeting_date" size="15" id="demo3" value="__first_meeting_date__" >
+			  <a href="javascript:NewCal('demo3','ddmmyyyy')">
+			  <img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date">
+			  </a>
+		   </td>   
+          </tr>
+		  
+		  <tr>    
+            <td  width="220"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">Dk;Zdky lekfIr frfFk </span>: </td>    
+            <td align="left">
+              <input type="text" name="job_end_date" size="15" id="demo4" value="__job_end_date__" >
+			  <a href="javascript:NewCal('demo4','ddmmyyyy')">
+			  <img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date">
+			  </a>
+		   </td>   
+          </tr>
+		  
+		  
+		   <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">okMZ dh tula[;</span> :</td>    
+            <td align="left">		
+	<input type="text" name="ward_population" value="__ward_population__"  size="11" maxlength="11" >
+			</td> 
+              
+          </tr>
+		  
+		  
+		   <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">vuqlwfpr tkfr dh tula[;k</span> :</td>    
+            <td align="left">
+			<input type="text" name="sc_population" value="__sc_population__"  size="11" maxlength="11" >
+			</td> 
+              
+          </tr>
+		  
+		  
+		  
+		   <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">vuqlwfpr tutkfr dh tula[;k</span> :</td>    
+            <td align="left">
+			<input type="text" name="sc_other_population" value="__sc_other_population__"  size="11" maxlength="11" >
+			</td> 
+              
+          </tr>
+		  
+		    <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">fiNMk oxZ dh tula[;</span> :</td>    
+            <td align="left">
+			<input type="text" name="obc_population" value="__obc_population__"  size="11" maxlength="11" >
+			</td> 
+              
+          </tr>
+		  
+		  
+		  
+		  
+		     <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">iwoZ esa ;fn  ik’kZn jgk gks rks vof/k</span> :</td>    
+            <td align="left">
+			
+			 <textarea name="previous_record_as_corporator" rows='3' cols='35' style="font-family: 'kruti_dev_010regular';font-size:15px;">__previous_record_as_corporator__</textarea>
+			
+			</td> 
+              
+          </tr>
+		  
+		  
+		  		     <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">{ks= ds fodkl dk;kZsa dk fooj.k   </span> :</td>    
+            <td align="left">
+			
+		  <textarea name="other_events" rows='3'  cols='35' style="font-family: 'kruti_dev_010regular';font-size:15px;">__other_events__</textarea>
+			
+			</td> 
+              
+          </tr>
+		  
+		  
+		  
+		   <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">lQkbZ ,oa [kk| fujh{kd dk uke</span> :</td>    
+            <td align="left">
+			<input type="text" name="cleaner_inspector_name" value="__cleaner_inspector_name__"  size="25" style="font-family: 'kruti_dev_010regular';font-size:15px;">
+			</td> 
+              
+          </tr>
+		  
+		    <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">eksckbZy uEcj </span> :</td>    
+            <td align="left">
+			<input type="text" name="cleaner_inspector_mobno" value="__cleaner_inspector_mobno__"  size="11" maxlength="11" >
+			</td> 
+              
+          </tr>
+		  
+		  
+		     <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">	goynkj dk uke</span> :</td>    
+            <td align="left">
+			<input type="text" name="hawaldar_name" value="__hawaldar_name__"  size="25" style="font-family: 'kruti_dev_010regular';font-size:15px;">
+			</td> 
+              
+          </tr>
+		  
+		    <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">eksckbZy uEcj </span> :</td>    
+            <td align="left">
+			<input type="text" name="hawaldar_mobno" value="__hawaldar_mobno__"  size="11" maxlength="11" >
+			</td> 
+              
+          </tr>
+          <tr>   
+           <td></td>   
+           <td>
+              <input type='hidden' name='CorporatorId' value='__id__'>
+			  <input type="submit" name="submit" value="submit" class="button">
+           </td>   
+          </tr>  
+        </table>  
+      </form> 
+    </td></tr>
+  </table>

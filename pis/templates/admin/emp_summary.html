@@ -1,0 +1,42 @@
+<h2 ><u>Department Wise Employees Summary</u></h2>
+
+<form name="page" action="emp_summary.php" method="get">	
+<table><tr><td>Select Department <select  name="Department" >
+                <option value="All">All</option>
+                  __list_dept__
+                </select>
+				</td><td><input type='submit' value='Submit'></td></tr></table>
+
+<div>__PROMPT__</div>
+<table id="rounded-corner">
+    <thead>
+    	<tr>
+        	<th bgcolor="#666666" class="rounded-company" scope="col">Department Name</th>
+            <th bgcolor="#666666" class="" scope="col">Total No <br>Of Employee</th>
+			<th bgcolor="#666666" class="" scope="col">Caste</th>
+            <th bgcolor="#666666" class="" scope="col">Central Seva</th>
+		    <th bgcolor="#666666" class="" scope="col">Non Central seva</th>
+            <th bgcolor="#666666" class="rounded-q4" scope="col">mandal up Seva</th>
+            <th bgcolor="#666666" class="rounded-q4" scope="col">Nideshalaya <br>Karmachari</th>
+        </tr>
+    </thead>
+        <tfoot>
+    	<tr>
+        	<td colspan="5" class="rounded-foot-left">&nbsp;</em></td>
+        	<td class="rounded-foot-right">&nbsp;</td>
+			<td class="rounded-foot-right">&nbsp;</td>
+
+        </tr>
+    </tfoot>
+    <tbody>
+    
+        __PRODUCT_LIST__
+    	    
+        
+    </tbody>
+
+</table>
+<div class="pagination">
+  <span class="disabled">__PREV_PAGE_LINK__</span>__PAGE_NAVS__&nbsp;__NEXT_PAGE_LINK__
+</div> 
+</form>

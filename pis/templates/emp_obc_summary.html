@@ -1,0 +1,56 @@
+<script>
+function ShowDepts(SingleDept){
+       var myRandom=parseInt(Math.random()*99999999);  // cache buster
+	   //alert("returnitems.pItemType="+ItemType+"&rand="+myRandom);
+       makeRequest(divname,"returndepatments.php?ItemType="+ItemType+"&rand="+myRandom); 
+}
+
+function SubmitFrm(){
+	document.frmReport.submit();
+}
+
+</script>
+<h2> Department wise OBC Employees Summary </h2>
+      <div class="department_selection">
+      	<label>Select Department :</label>
+        <form name='frmReport' action='emp_obc_summary.php' method='get'>
+		<div class="radios">
+       	 <table cellspacing='0' cellpadding='0' width='100%' border='0'><tr style='line-height:40px;'><td  style='padding-right:10px;' width='55%' align='right'>
+        	  
+        	    <input type="radio" name="Dept" value="All" id="DeptAll" onclick='javascript:SubmitFrm()' __radioAll__/>
+        	    All
+        	    <input type="radio" name="Dept" value="Single" id="DeptSingle" onclick='javascript:SubmitFrm()' __radioSingle__/>
+        	    Single
+			    </td><td align='left'><div >__list_dept__</div></td>
+               </tr></table> 
+        </div>
+		<input name="showreport" type="submit" value="Show Report" />&nbsp;<input name="print" type="button" value="Print Report" onclick="printSelection(document.getElementById('PrintArea'));return false"/>
+      </form>
+	  </div><br>
+	  <div id='PrintArea' class='pis_list'> 
+	  <table width='98%' border='1' cellspacing='0' cellpadding='5' align='center' >
+    <thead>
+    	<tr>
+        	<th   style='font-family: kruti_dev_010regular;font-size:20PX;'>foHkkx</th>
+            <th  >Total No <br>of Employee</th>
+			<th   style='font-family: kruti_dev_010regular;font-size:20PX;'>Js.kh</th>
+            <th   style='font-family: kruti_dev_010regular;font-size:20PX;'>dsUnzhf;r lsok</th>
+		    <th   style='font-family: kruti_dev_010regular;font-size:20PX;'>vdsUnzhf;r lsok</th>
+            <th   style='font-family: kruti_dev_010regular;font-size:20PX;'>e.My milaoxZ</th>
+            <th   scope="col" style='font-family: kruti_dev_010regular;font-size:20PX;'>funs'kky; <br>deZpkjh</th>
+            <th   style='font-family: kruti_dev_010regular;font-size:20PX;'>LFkkbZ</th>
+            <th   style='font-family: kruti_dev_010regular;font-size:20PX;'>vLFkkbZ</th>
+        </tr>
+    </thead>
+        
+    <tbody>
+    
+        __PRODUCT_LIST__
+    	    
+        
+    </tbody>
+
+</table></div>
+<div class="pagination" align='center'>
+  <span class="disabled">__PREV_PAGE_LINK__</span>__PAGE_NAVS__&nbsp;__NEXT_PAGE_LINK__
+</div> 

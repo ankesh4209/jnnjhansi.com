@@ -1,0 +1,40 @@
+<table width="100%" align="left"> 
+  <tr>  
+    <td height="30">  
+      <table border="0" cellspacing="0" cellpadding="0" width="96%" align="left">  	
+        <tr>  		
+          <td height="30" valign="middle"><b>Edit Corporator Recoard
+              </b</td>  	
+        </tr>  
+      </table>  </td>  
+  </tr>  
+  <tr>  <td>  
+      <form name="editcorporator" action="edit_corporator.php" method="post" onsubmit='return checkSignUpDetails();'>  
+        <table align="left" cellspacing="5" cellpadding="5" width="98%" border="0" align="center">       
+          <tr>    
+            <td width="170" >Ward No:</td>    
+            <td align="left">
+             <select name="wardno">
+              <option value=''>----select-----</option>
+              __wardnolist__
+             </select>
+            </td>    
+          </tr>
+          <tr>    
+            <td width="110" >Corporator  Name:</td>    
+            <td align="left"><input type="text" name="name" value="__name__"size="30"></td>   
+          </tr> 
+           <tr>    
+            <td width="110" >Address:</td>    
+            <td align="left"><input type="text" name="address" value="__address__"size="30"></td>   
+          </tr>
+          <tr>   
+            <td><input type="hidden" name="scid" value="__cid__"></td>  
+           <td>
+              <input type="submit" name="submit" value="submit" class="button">
+          </td>   
+          </tr>  
+        </table>  
+      </form> </td> 
+  </tr>
+</table>

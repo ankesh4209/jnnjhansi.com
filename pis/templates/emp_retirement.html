@@ -1,0 +1,65 @@
+<script>
+function ShowDepts(SingleDept){
+       var myRandom=parseInt(Math.random()*99999999);  // cache buster
+	   //alert("returnitems.pItemType="+ItemType+"&rand="+myRandom);
+       makeRequest(divname,"returndepatments.php?ItemType="+ItemType+"&rand="+myRandom); 
+}
+
+function SubmitFrm(){
+	document.frmReport.submit();
+}
+
+</script>
+<h2> List of Empoyee retired/or retiring in Month... Year... </h2>
+      <div class="department_selection">
+      	
+        <form name='frmReport' action='emp_retirement.php' method='get'>
+		<div class="radios">
+       	 <table cellspacing='0' cellpadding='0' width='100%' border='0'><tr style='line-height:40px;'><td  style='padding-right:10px;' width='55%' align='right'>
+        	  
+        	 <label>Select Department :</label>   <input type="radio" name="Dept" value="All" id="DeptAll" onclick='javascript:SubmitFrm()' __radioAll__/>
+        	    All
+        	    <input type="radio" name="Dept" value="Single" id="DeptSingle" onclick='javascript:SubmitFrm()' __radioSingle__/>
+        	    Single
+			    </td><td align='left'><div >__list_dept__</div></td>
+               </tr></table> 
+        </div>
+		<div class="radios">
+       	 <table cellspacing='0' cellpadding='0' width='100%' border='0'><tr style='line-height:40px;'><td  style='padding-right:10px;' width='55%' align='right'>
+        	  
+        	   <label>Select Retire :</label> <input type="radio" name="Retirement" value="N" id="Retire" onclick='javascript:SubmitFrm()' __Retire__/>
+        	    Retired
+        	    <input type="radio" name="Retirement" value="Y" id="RetireIn" onclick='javascript:SubmitFrm()' __RetireIn__/>
+        	    Retire In
+			    </td><td align='left'><div >
+				
+				__MonthList__
+
+
+</div></td><td align='left'><div >__year_list__</div></td>
+               </tr></table> 
+        </div>
+		<input name="showreport" type="submit" value="Show Report" />&nbsp;<input name="print" type="button" value="Print Report" onclick="printSelection(document.getElementById('PrintArea'));return false"/>
+      </form>
+	  </div><br>
+	  <div id='PrintArea'> 
+	  <table width='98%' border='1' cellspacing='0' cellpadding='5' align='center'>
+    <thead>
+    	<tr>
+        	<th  style='font-family: kruti_dev_010regular;font-size:20PX;background:#dedede;' >Ø0la0</th>
+            <th   colspan='2' style='font-family: kruti_dev_010regular;font-size:20PX;background:#dedede;' >deZpkjh fooj.k</th>
+            
+        </tr>
+    </thead>
+        
+    <tbody>
+		  __strdept__
+        __PRODUCT_LIST__
+    	    
+        
+    </tbody>
+
+</table></div>
+<div class="pagination" align='center'>
+  <span class="disabled">__PREV_PAGE_LINK__</span>__PAGE_NAVS__&nbsp;__NEXT_PAGE_LINK__
+</div> 

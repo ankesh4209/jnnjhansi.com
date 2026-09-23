@@ -1,0 +1,125 @@
+<script language = javascript>
+<!--
+function selectAll()
+{	with(window.document.tender_info)
+	{
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{	if (elements[i].type == 'checkbox')
+			{	elements[i].checked = true;
+			}
+		}
+	}
+}
+
+function selectNone()
+{	with(window.document.tender_info)
+	{
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{
+			if (elements[i].type == 'checkbox')
+			{	elements[i].checked = false;
+			}
+		}
+	}
+}
+
+function checkSelected()
+{	with(window.document.tender_info)
+	{	totalChecked = 0;
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{
+			if (elements[i].type == 'checkbox')
+			{	if (elements[i].checked)
+				{	totalChecked++;
+					break;
+				}
+			}
+		}
+
+		if (totalChecked == 0)
+		{	alert("Select a items");
+			return false;
+		}
+
+		return true;
+	}
+}
+
+function confirmDelete()
+{	with(window.document.tender_info)
+	{	if (checkSelected())
+		{	return confirm("The selected items will be deleted. Are you sure?");
+		}
+		else
+		{	return false;
+		}
+	}
+}
+
+function openPopup(file)
+{	
+  window.open (file,"mywindow","width=650,height=800,scrollbars=yes"); 
+}
+
+
+//-->
+</script>
+<table width="100%" align="left" cellspacing="1" cellpadding="1">
+
+  <form name="tender_info" action="notice_info.php" method="post">
+  <tr>
+      <td><table width="100%" class="grayhead" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="grayheadleft">&nbsp;</td>
+          <td class="grayheadmid">Smart City</td>
+          <td class="grayheadright">&nbsp;</td>
+        </tr>
+      </table></td>
+    </tr>
+ <tr>
+     <td height="40"></td>
+    </tr>
+  <tr><td>__PROMPT__</td></tr>
+  <tr>
+    <td ><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr class="grayhdbg">
+       <td width="1%" align="center">&nbsp;</td>
+		<!--<td width="4%" align="center">Select</td>
+        <td width="10%" align="center">Notice Id</td>-->
+        <td width="20%" align="center">Name</td>
+        <td width="30%" align="center">Address</td>
+        <td width="20%" align="center">Mobile</td>
+        <td width="20%" align="center">&nbsp;</td>
+       
+      </tr>
+	  __PRODUCT_LIST__
+    </table></td>
+  </tr>
+
+  
+
+  <tr>
+  <td colspan="8" align="right">
+  <input type="button" value="Select All" onclick="return selectAll();" class="button">
+  <input type="button" value="Select None" onclick="return selectNone();"  class="button">
+  <input type="submit" name="SUBMIT_DELETE" value="Delete Selected" onclick="return confirmDelete();"  class="button">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <input type="submit" name="SUBMIT_CHANGE" value="Change Selected"  class="button">
+  <select name="Status">
+   <option value="1">Active</option>
+   <option value="0">Inactive</option>
+  </select>
+  </td></tr>
+
+  <tr>
+  <td>
+  <table align="center" width="95%" style="border-color:#FFFFFF">
+   <tr><td align="right">__PREV_PAGE_LINK__&nbsp;&nbsp;&nbsp;__pages__ __PAGE_NAVS__&nbsp;&nbsp;&nbsp; __NEXT_PAGE_LINK__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+  </table>
+</form>
+</td>
+ </tr>
+ </table>

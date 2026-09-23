@@ -1,0 +1,54 @@
+<Script language=javascript>
+function checkSignUpDetails()
+{	
+   if(document.edit_education.EmployeeCode.value=="")
+	{	alert("Enter employee code.");
+		document.edit_education.EmployeeCode.focus(); 
+		return false;
+	}
+
+	
+
+}
+
+
+</Script>
+<script language="javascript" type="text/javascript">
+ </script>
+<h2 style="font-family: 'kruti_dev_010regular';font-size:20px;font-weight:bold;">'kSf{kd ;ksX;rk</h2>
+<table width="100%" align="left" border='0'>
+<form name="edit_education" action="edit_education.php" method="post" onsubmit='return checkSignUpDetails();' enctype="multipart/form-data">
+	<tr>
+	  <td><table width="100%"  border='1' cellspacing="0" cellpadding="5">
+	      <tr>
+		 <td align="center"  class="successmsg" colspan='2'><b>__PROMPT__</b></td>
+		 </tr>  
+		  <!-- <tr>
+		 <td align="left"  class="successmsg" colspan='2' style="font-family: 'kruti_dev_010regular';font-size:20px;" ><b>O;fDrxr lwpuk</b></td>
+		 </tr> -->
+		 <tr>
+		  <td  ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >deZpkjh dksM uEcj</span><span style='padding-left:78px;'><input type="text" name="EmployeeCode" size='23' value='__EmployeeCode__'> </td>
+		  </tr>
+		   <tr>
+		  <td  ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >'kSf{kd ;ksX;rk</span><span style='padding-left:110px;'><input type="text" name="Education" size='25' style="font-family: 'kruti_dev_010regular';font-size:20px;" value='__Education__'> </td></tr>
+		  <tr>
+		  <td  ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >o’kZ</span><span style='padding-left:170px;'><input type="text" name="Year" size='10' value='__Year__'> </td>
+		 </tr>
+		 <tr>
+		  <td  ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >cksMZ@;wfuoflVh</span><span style='padding-left:98px;'><input type="text" name="University" size='25' style="font-family: 'kruti_dev_010regular';font-size:20px;" value='__University__'> </td>
+		 </tr>
+		 <tr>
+		  <td  ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >vU; fooj.k </span><span style='padding-left:120px;'><textarea rows='5' cols='40' name="OtherEduInfo" style="font-family: 'kruti_dev_010regular';font-size:20px;">__OtherEduInfo__</textarea> </td>
+		 </tr>
+		
+		 <tr>
+		  <td colspan='2' align='center'><input type="submit" name="submit" value="Update" class="button">&nbsp;<input type="button" name="cancel" value="Cancel" onclick='javascript:history.go(-1);'></td>
+		 </tr> 
+		 </table>
+		  </td></tr>
+		 </form>
+ </table>
+ 
+
+
+

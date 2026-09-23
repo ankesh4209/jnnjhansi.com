@@ -1,0 +1,65 @@
+<Script language=javascript>
+<!--
+
+function openPopup(file)
+{	
+  window.open (file,"mywindow","scrollbars=yes,width=650,height=800"); 
+}
+//-->
+</Script>
+<table width="100%" align="left"> 
+  <tr>  
+    <td height="30">  
+      <table border="0" cellspacing="0" cellpadding="0" width="96%" align="left">  	
+        <tr>  		
+          <td height="30" valign="middle"><b>Complaint Details</b</td>  	
+        </tr>  
+      </table>  </td>  
+  </tr>  
+  <tr>  <td>  
+      <form name="complaintview" action="complaintview.php" method="post" onsubmit='return checkSignUpDetails();'>  
+        <table align="left" cellspacing="5" cellpadding="5" width="98%" border="0" align="center">       
+          <tr >    
+            <td width="200" >Complainant No:</td>    
+            <td align="left">__cid__</td>
+          </tr> 
+          <tr>    
+            <td >Complainant Name:</td>    
+            <td align="left" style="font-family:Kruti Dev 011;font-size:15px;">__cname__ </td>
+          </tr>   
+          <tr >    
+            <td >Address:</td>    
+            <td align="left" style="font-family:Kruti Dev 011;font-size:15px;">__caddress__</td>
+          </tr>  
+           
+          <tr>    
+            <td >Details :</td>    
+            <td align="left" style="font-family:Kruti Dev 011;font-size:15px;">__cdetail__</td>
+          </tr> 
+          __cmodetype__
+          <tr>
+            <td  >Officer:</td>  
+            <td align="left">__conofficer__</td> 
+          </tr>
+           <tr>
+            <td  >Complaint Date :</td>  
+            <td align="left">__cdate__ &nbsp;&nbsp;__ctime__</td>
+          </tr>
+           <tr>
+            <td >Complaint Category:</td>  
+            <td align="left">__ccategory__</td> 
+          </tr>
+          <tr>
+            <td >Target Date:</td>  
+            <td align="left">__tdate__</td> 
+          </tr>
+          
+          __disposal_text__
+          <tr>
+            <td  >&nbsp;</td>  
+            <td align="left"><input type="button" name="button" value="Print" class="button" Onclick="openPopup('print.php?id=__cid__&dis=1');"></td> 
+          </tr>
+        </table>  
+      </form> </td> 
+  </tr>
+</table>

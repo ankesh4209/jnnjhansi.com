@@ -1,0 +1,50 @@
+<script>
+function ShowDepts(SingleDept){
+       var myRandom=parseInt(Math.random()*99999999);  // cache buster
+	   //alert("returnitems.pItemType="+ItemType+"&rand="+myRandom);
+       makeRequest(divname,"returndepatments.php?ItemType="+ItemType+"&rand="+myRandom); 
+}
+
+function SubmitFrm(){
+	document.frmReport.submit();
+}
+
+</script>
+<h2> Department wise Employees Information </h2>
+      <div class="department_selection">
+      	<label>Select Department :</label>
+        <form name='frmReport' action='emp_info.php' method='get'>
+		<div class="radios">
+       	 <table cellspacing='0' cellpadding='0' width='100%' border='0'><tr style='line-height:40px;'><td  style='padding-right:10px;' width='55%' align='right'>
+        	  
+        	    <input type="radio" name="Dept" value="All" id="DeptAll" onclick='javascript:SubmitFrm()' __radioAll__/>
+        	    All
+        	    <input type="radio" name="Dept" value="Single" id="DeptSingle" onclick='javascript:SubmitFrm()' __radioSingle__/>
+        	    Single
+			    </td><td align='left'><div >__list_dept__</div></td>
+               </tr></table> 
+        </div>
+		<input name="showreport" type="submit" value="Show Report" />&nbsp;<input name="print" type="button" value="Print Report" onclick="printSelection(document.getElementById('PrintArea'));return false"/>
+      </form>
+	  </div><br>
+	  <div id='PrintArea'> 
+	  <table width='98%' border='1' cellspacing='0' cellpadding='5' align='center'>
+    <thead>
+    	<tr>
+        	<th  style='font-family: kruti_dev_010regular;font-size:20PX;background:#7FAAFF' >Ø0la0</th>
+            <th   colspan='2' style='font-family: kruti_dev_010regular;font-size:20PX;background:#7FAAFF' >deZpkjh fooj.k</th>
+            
+        </tr>
+    </thead>
+        
+    <tbody>
+		  __strdept__
+        __PRODUCT_LIST__
+    	    
+        
+    </tbody>
+
+</table></div>
+<div class="pagination" align='center'>
+  <span class="disabled">__PREV_PAGE_LINK__</span>__PAGE_NAVS__&nbsp;__NEXT_PAGE_LINK__
+</div> 

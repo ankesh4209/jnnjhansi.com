@@ -1,0 +1,46 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.MemberLoginForm)
+	{	
+    if(username.value=="")
+		{	alert("Enter Username");
+			username.focus(); return false;
+		}
+		if(password.value=="")
+		{	alert("Enter Password");
+			password.focus(); return false;
+		}
+		return true;
+	}
+}
+//-->
+
+function openPopup(file)
+{	
+  window.open (file,"mywindow","scrollbars=1,width=650,height=800"); 
+}
+
+</Script>
+
+<form name="search" action="search.php" method="POST">
+ <table width="680px" border="0" cellspacing="4" cellpadding="4">
+  <tr>
+  	<td colspan="5" align="left" valign="top">
+		<h2 class="home_cont"><img src="images/content_header_img.png" alt="" align="absmiddle" />Jan Pratinidhi/Shasan Sandarbh Search</h2>
+		</td>
+  </tr>
+   <tr>
+     <td>Complaint No</td>
+     <td>Complainant Name</td>
+     <td>Complaint Date</td>
+     <td>Complaint Status</td>
+     <td>View</td>
+    </tr>
+   __complain_detail__
+ </table>
+ </form>
+</td>
+        </tr>
+ </table>
+          

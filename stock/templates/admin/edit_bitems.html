@@ -1,0 +1,69 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.add_items)
+	{	
+        if(ItemType.value=="")
+		{	
+            alert("Please select item type.");
+			ItemType.focus(); 
+            return false;
+		}
+		
+		if(ItemName.value=="")
+		{	
+            alert("Please enter item name.");
+			ItemName.focus(); 
+            return false;
+		}
+	}
+	
+}
+function ShowItems(ItemTypeRef){ 
+       var ItemType=ItemTypeRef.value;
+	   var rowIndex= ItemTypeRef.parentNode.parentNode.rowIndex ;
+	   var divname='ItemId['+rowIndex+']';
+       var myRandom=parseInt(Math.random()*99999999);  // cache buster
+	   //alert("returnitems.pItemType="+ItemType+"&rand="+myRandom);
+       makeRequest("itm","returnitems.php?ItemType="+ItemType+"&rand="+myRandom); 
+}
+
+</Script>
+<table width="100%" align="left"> 
+      <tr><td> 
+         <form name="add_items" action="edit_bitems.php" method="post" onsubmit='return checkSignUpDetails();' > 
+         <table align="left" cellspacing="4" cellpadding="4" width="100%" border="0" align="center"> 
+           <tr>    
+            <td ><span style="font-family: 'kruti_dev_010regular';font-size:20px;">lkexzhq dk izdkj</span> :</td>    
+            <td align="left">
+              <!-- <select name="ItemType">
+               <option value="">Select Item Type</option>
+               <option value='Stationary'>Stationary</option>
+               <option value='Hardware'>Hardware</option>
+              </select> -->
+			  __category__
+            </td>   
+          </tr>
+		   <tr>    
+            <td ><span style="font-family: 'kruti_dev_010regular';font-size:20px;">lkexzhq</span> :</td>    
+            <td align="left">
+              <div id='itm'>__edit_items__</div>
+            </td>   
+          </tr>
+		   <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:20px;">lkexzh ek=k</span> :</td>    
+            <td align="left">
+              <input type="text" name="B_Qty" size="5" value="__B_Qty__"></td>   
+          </tr>
+		  
+          <tr>   
+           <td></td>   
+           <td>
+		      <input type="hidden" name="cid" value="__cid__" > 
+              <input type="submit" name="submit" value="submit" class="button">
+           </td>   
+          </tr>  
+        </table>  
+      </form> 
+    </td></tr>
+  </table>

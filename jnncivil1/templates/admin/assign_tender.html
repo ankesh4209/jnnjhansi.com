@@ -1,0 +1,98 @@
+<Script language=javascript>
+
+$(function () {
+$("#WorkStartDate").datepicker({
+changeMonth: true,
+changeYear: true,
+yearRange: '2011:2020'
+});
+});
+
+$(function () {
+$("#WorkEndDate").datepicker({
+changeMonth: true,
+changeYear: true,
+yearRange: '2011:2020'
+});
+});
+
+</Script>
+<table width="100%" align="left" border='0'> 
+       <tr>
+     <td height="40" colspan='2'>
+      <a href='#'><b>Bidding Information </b></a>
+     </td>
+    </tr>
+	  <tr><td colspan='2'>
+	  __strBiddingList__
+	  </td></tr>
+	   <tr>
+     <td height="40" colspan='2'>
+      &nbsp;
+     </td>
+    </tr>
+	   <tr><td> 
+         <form name="add_mad" action="assign_tender.php" method="post" onsubmit='return checkSignUpDetails();' > 
+         <table align="left" cellspacing="4" cellpadding="4" width="100%" border="0" align="center"> 
+            <tr>
+     <td height="20" colspan='2'>
+      <a href='#'><b>Tender Information</b></a>
+     </td>
+    </tr>
+		   <tr>    
+            <td  width="120" ><span>WorkName</span> :</td>    
+            <td align="left">
+              <span style="font-family: kruti_dev_010regular;font-size:15px;">__WorkName__</span></td>   
+          </tr>
+		  <tr>    
+            <td  width="120" ><span>Ward No</span> :</td>    
+            <td align="left">
+              <span style="font-family: kruti_dev_010regular;font-size:15px;">__WardNo__</span></td>   
+          </tr>
+		  <tr>    
+            <td  width="120" ><span>Area Name</span> :</td>    
+            <td align="left">
+              <span style="font-family: kruti_dev_010regular;font-size:15px;">__AreaName__</span></td>   
+          </tr>
+		  <tr>    
+            <td  width="120" ><span>Estimated Amount</span> :</td>    
+            <td align="left">
+              <span >__EstimatedAmount__</span></td>   
+          </tr>
+		  <tr>    
+            <td  width="180" ><span> Rate</span> :</td>    
+            <td align="left">
+              <span >__MinRate__</span></td>   
+          </tr>
+		  <tr>    
+            <td  width="180" ><span>Bid Amount</span> :</td>    
+            <td align="left">
+              <span >__amount__</span></td>   
+          </tr>
+		  <tr>    
+            <td  width="180" ><span>Contractor Name</span> :</td>    
+            <td align="left">
+              <span style="font-family: kruti_dev_010regular;font-size:15px;">__ContractorName__</span></td>   
+          </tr>
+		  
+		  <tr><td>Work Order No</td>
+		  <td><input type='text' name='WorkOrderNo' value='' ></td>
+		  </tr>
+		  <tr><td  ><span  >Work Start Date</span>:</td><td align='left'><span><input type="text" name="WorkStartDate" id="WorkStartDate"   size='15' readonly> </td></tr>
+		  <tr><td  ><span  >Work End Date</span>:</td><td align='left'><span><input type="text" name="WorkEndDate" id="WorkEndDate"   size='15' readonly> </td></tr>
+          <tr>    
+            <td  width="180" ><span>Comments</span> :</td>    
+            <td align="left">
+              <textarea style="font-family: kruti_dev_010regular;font-size:15px;" rows='4' cols='35' name='FinalComments'></textarea></td>   
+          </tr>
+		  
+		  <tr>   
+           <td></td>   
+           <td>
+              <input type="submit" name="submit" value="Approve" class="button">&nbsp;<input type="button" name="Cancel" value="Back" class="button" onclick='javascript:history.go(-1);'><input type="hidden" name="TenderBidId" value="__TenderBidId__" ><input type="hidden" name="TenderId" value="__TenderId__" ><input type="hidden" name="EstmtId" value="__EstmtId__" >
+           </td>   
+          </tr>  
+        </table>  
+      </form> 
+    </td></tr> 
+  </table>

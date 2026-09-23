@@ -1,0 +1,93 @@
+<table width="100%" align="left"> 
+  <tr>  
+    <td height="30">  
+      <table border="0" cellspacing="0" cellpadding="0" width="96%" align="left">  	
+        <tr>  		
+          <td height="30" valign="middle"><b>Edit Complainant Record
+              </b></td>  	
+        </tr>  
+      </table>  </td>  
+    </tr>  
+    <tr><td>  
+      <form name="editcomplainant" action="edit_complainant.php" method="post" onsubmit='return checkSignUpDetails();'>  
+        <table align="left" cellspacing="5" cellpadding="5" width="98%" border="0" align="center">       
+          <tr>    
+            <td width="140" >Registered No:</td>    
+            <td align="left"><input type="text" name="regno" size="10" value="__regno__"></td>   
+          </tr>
+          <tr>
+          <td width="110" valign="top">Complaint Date :</td>
+          <td align="left">
+          <input id="demo1" name="cdate" value="__cdate__" type="text" size="10"><a href="javascript:NewCal('demo1','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+          &nbsp;&nbsp;&nbsp;
+          Complaint Time :&nbsp;&nbsp;<input type="text" name="ctime" value="__ctime__" size="10">
+          &nbsp;&nbsp;&nbsp;
+          Complaint Mode: &nbsp;&nbsp;<select name="cmode">
+           <option value="Newspaper" __select4__>Newspaper</option>
+           <option value="Fax" __select5__>Fax</option>
+          </select> 
+          </td>
+          </tr>
+          <tr><td>
+          Complaint Category :</td> 
+          <td><select name="category">
+           <option value="A" __select1__>A</option>
+           <option value="B" __select2__>B</option>
+           <option value="C" __select3__>C</option>
+          </select> 
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         Marked to Officer:&nbsp;&nbsp;
+         <select  name="officer">
+          <option>Select Officer</option>
+            __more_officer__
+          </select>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         Target Date:&nbsp;&nbsp;<input id="demo3" name="tdate"  value="__tdate__" type="text" size="10"><a href="javascript:NewCal('demo3','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+        </td>
+        </tr>
+         
+          <tr>    
+            <td width="110" >Complainant  Name:</td>    
+            <td align="left"><input type="text" name="cname" value="__cname__" size="50"></td>   
+          </tr>
+          <tr>    
+            <td width="110" valign="top">Address:</td>    
+            <td align="left"><textarea name="address"  rows="3" cols="40">__address__</textarea>   
+          </tr> 
+          <tr>    
+            <td width="110" >Mobile/Telephones:</td>    
+            <td align="left"><input type="text" name="contact" value="__contact__" size="30"></td>   
+          </tr>
+           <tr>    
+            <td width="110" >Newspaper Name:</td>    
+            <td align="left"><input type="text" name="newspname" value="__newspname__" size="30">   
+             &nbsp;&nbsp;&nbsp;
+             Newspaper Date:<input id="demo2" name="ndate" value="__ndate__" type="text" size="10"><a href="javascript:NewCal('demo2','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+            </td>
+          </tr>  
+          <tr>
+           <td valign="top">Complaint Summary :</td>
+           <td>
+            <textarea name="summary" rows="6" cols="50">__summary__</textarea>
+           </td>
+          </tr>
+          <tr>    
+            <td width="110" >Old Complaint no if any :</td>    
+            <td align="left"><input type="text" name="oldcno" value="__oldcno__" size="10"></td>   
+          </tr>
+          <tr>
+           <td valign="top">Remark :</td>
+           <td>
+            <textarea name="remark" rows="6" cols="50">__remark__</textarea>
+           </td>
+          </tr>
+          <tr>   
+            <td><input type="hidden" name="cid" value="__cid__"></td>  
+           <td>
+              <input type="submit" name="submit" value="Update" class="button">
+          </td>   
+          </tr>  
+        </table>  
+      </form> </td> 
+  </tr>
+</table>

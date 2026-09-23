@@ -1,0 +1,64 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.MemberLoginForm)
+	{	if(username.value=="")
+		{	alert("Enter Username");
+			username.focus(); return false;
+		}
+		
+		if(password.value=="")
+		{	alert("Enter Password");
+			password.focus(); return false;
+		}
+		return true;
+	}
+}
+//-->
+</Script>
+
+<Script language=javascript>
+<!--
+function SearchDetails()
+{	with(window.document.search)
+	{	
+		if(cno.value=="" && contactno.value=="" && tdate.value=="")
+		{	
+      alert("Please enter Complaint No or Contact No or Date");
+			cno.focus(); return false;
+		}
+		return true;
+	}
+}
+//-->
+</Script>
+
+      <form name="search" action="search_jnnhpc.php" method="POST" onsubmit='return SearchDetails();'>
+       <table width="680px" border="0" cellspacing="4" cellpadding="4">
+        <tr>
+			  	<td colspan="2" align="left" valign="top">
+					<h2 class="home_cont"><img src="images/content_header_img.png" alt="" align="absmiddle" />Jan Pratinidhi/Shasan Sandarbh Search</h2>
+					</td>
+			  </tr>
+        <tr> 
+         <td >Complaint No :</td>
+         <td align="left"><input type="text" name="cno"></td>
+        </tr>
+        <tr> 
+         <td>Contact No :</td>
+         <td align="left"><input type="text" name="contactno"></td>
+        </tr>
+        <tr> 
+         <td>Date :</td>
+         <td align="left"><input id="demo3" name="tdate" type="text" size="10"><a href="javascript:NewCal('demo3','ddmmyyyy')"><img src="images/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></td>
+        </tr>
+        <tr>
+         <td></td>
+         <td align="left"><input type="submit" name="submit" value="Search"></td>
+        </tr>
+       </table>
+       </form>
+     </td>
+        </tr>
+ </table>
+          

@@ -1,0 +1,1 @@
+<div id="footer_logo"><img src="images/logo_footer.png" width="40" height="38"/></div>

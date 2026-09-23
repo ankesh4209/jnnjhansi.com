@@ -1,0 +1,62 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.addward)
+	{	
+        if(wardno.value=="")
+		{	alert("Please enter ward no.");
+			wardno.focus(); return false;
+		}
+		return true;
+	}
+	
+}
+
+function checknumber(str)
+{
+ 
+//  var alpha = /^([a-zA-Z0-9_-]+)$/;
+ var text = /^([a-zA-Z]+)$/;
+   if(text.test(str)==false){
+     return false;
+   }else{ return true;}
+}
+
+
+
+//-->
+</Script>
+<table width="100%" align="left"> 
+  <tr>  
+    <td height="30">  
+      <table border="0" cellspacing="0" cellpadding="0" width="96%" align="left">  	
+        <tr>  		
+          <td height="30" valign="middle"><b>Add Ward Records
+              </b</td>  	
+        </tr>  
+      </table>  </td>  
+  </tr>  
+  <tr>  <td>  
+      <form name="addward" action="add_ward.php" method="post" onsubmit='return checkSignUpDetails();'>  
+        <table align="left" cellspacing="5" cellpadding="5" width="98%" border="0" align="center">       
+          <tr>    
+            <td width="110" >Ward No:</td>    
+            <td align="left">
+              <input type="text" name="wardno" size="30"></td>   
+          </tr>
+       
+           
+         
+          
+       
+                        
+          <tr>   
+           <td></td>   
+           <td>
+              <input type="submit" name="submit" value="submit" class="button">
+          </td>   
+          </tr>  
+        </table>  
+      </form> </td> 
+  </tr>
+</table>

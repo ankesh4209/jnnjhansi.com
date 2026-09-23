@@ -1,0 +1,92 @@
+<script language = javascript>
+<!--
+function selectAll()
+{	with(window.document.page)
+	{
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{	if (elements[i].type == 'checkbox')
+			{	elements[i].checked = true;
+			}
+		}		
+	}
+}
+
+function selectNone()
+{	with(window.document.page)
+	{	 
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{	
+			if (elements[i].type == 'checkbox')
+			{	elements[i].checked = false;
+			}
+		}		
+	}
+}
+
+function checkSelected()
+{	with(window.document.page)
+	{	totalChecked = 0; 
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{	
+			if (elements[i].type == 'checkbox')
+			{	if (elements[i].checked) 
+				{	totalChecked++;
+					break;
+				}
+			}
+		}		
+
+		if (totalChecked == 0)
+		{	alert("Select a items");
+			return false;
+		}
+
+		return true;
+	}
+}
+
+function confirmDelete()
+{	with(window.document.page)
+	{	if (checkSelected())
+		{	return confirm("The selected items will be deleted. Are you sure?");
+		}
+		else
+		{	return false;
+		}
+	}
+}
+
+//-->
+</script>
+<table width="100%" align="left">
+ <tr>
+  <td height="50" valign="middle"><b>25 Days Letters</b></td>
+ </tr>
+ <form name="submit" action="letters15.php" method="POST">
+ <tr>
+  <td height="50" valign="middle">
+   Search :&nbsp;&nbsp;<input type="text" name="search" id="demo1"> &nbsp;<a href="javascript:NewCal('demo1','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+   &nbsp;&nbsp;<input type="submit" name="submit" value="Search"></td>
+ </tr>
+ </form>
+ <tr>
+  <td height="40">
+  <form name="page" action="automation.php" method="post">
+  <table border="0" cellpadding="5" cellspacing="1" align="center"  class="tableList">
+  <tr>
+   <th><b>S.No</b></th>
+   <th><b>Reg.No</b></th>
+   <th><b>Name</b></th>
+   <th><b>App. Address</b></th>
+   <th><b>Contact no</b></th>
+   <th><b>Print</b></th>
+  </tr>
+  __PRODUCT_LIST__
+  </table>
+  </form>
+ </td>
+  </tr>
+</table>

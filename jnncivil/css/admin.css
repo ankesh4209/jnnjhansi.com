@@ -1,0 +1,177 @@
+@font-face {
+    font-family: 'kruti_dev_010regular';
+    src: url('kruti_dev_010-webfont.eot');
+    src: url('kruti_dev_010-webfont.eot?#iefix') format('embedded-opentype'),
+         url('kruti_dev_010-webfont.woff') format('woff'),
+         url('kruti_dev_010-webfont.ttf') format('truetype'),
+         url('kruti_dev_010-webfont.svg#kruti_dev_010regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+body{margin:0;font-size:12px;font-family:Verdana;}
+.pad{padding:10px 0;}
+.menu{background:url(../adm_img/bg.jpg) no-repeat; width:241px;
+height:570px; padding-top:8px;} 
+.menu a{font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; font-weight:normal; line-height:32px; padding-left:50px; color:#FFFFFF; text-decoration:none;}
+.menu a:hover{color:#ffffff; font-size:14px; font-weight:bold;}
+.leftaa{padding-left:8px;}
+.leftaa-bg{background:url(../adm_img/bg-new1.gif) repeat-y; width:711px;}
+.side{padding:0 20px;}
+.text{font-family:Arial, Helvetica, sans-serif; font-size:20px; font-weight:normal; border-bottom:1px dotted #707679; padding-bottom:10px; padding-top:5px;}
+.footer{background:url(../adm_img/footer.gif) no-repeat ; height:41px; line-height:41px; text-align:center; font-weight:bold; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px;}
+
+
+
+th{font-weight:bold;}
+th select{font-weight:normal;}
+a{text-decoration:none; padding:0;}
+a:hover{color:#096EC3;	text-decoration:none;}
+.prompt{		color:#ff0000;		text-decoration:none;}
+/**************Outer table Structure**************/
+#outerDiv{width:994px;border:0px solid red;overflow:hidden;text-align:left;height:100%;}
+/**************Header Structure***menu***********/
+#header{overflow:hidden;text-align:left;border-bottom:3px solid #79c24c;height:98px;
+background-color:#ffffff;}
+/***************Logo Class**************/
+.paddinglogo{margin-top:15px;margin-left:15px;}
+/***************Footer Structure******************/
+#footer{border-top:3px solid #79c24c;text-align:center;height:20px;}
+/***************Middle Content Structure**********************/
+#middlecontent{height:300px;}
+.centercontent{padding:0px 0px 10px 6px;text-align:left;}
+/********************Page Headings**************/
+.mainheadingpadding{padding-bottom:20px;text-align:left;}
+.headingofpage{color:#C38E59;font-size:18px;}
+/*****************************************/
+.welcomemessage{border-bottom:1px solid gray;
+margin-bottom:5px;padding-top:4px;font-size:13px;color:#111A46;font-weight:bold;
+text-align:right;height:25px;}
+.bordertop{border-top:1px solid gray;}
+.tableborders{background-color:#5f9a3b;width:99%;}
+.tablebordersbottomrow{border-right:1px solid #ACA9A6;border-left:1px solid #ACA9A6;
+border-bottom:1px solid #ACA9A6;}
+.tableborders .ltTR{background-color:#FFFFFF;}
+.tableborders .ltrTR{background-color:#EFEEEC;}
+.tableborders th{background-color:#;text-align:left;color:#FFFFFF;}
+.centerborder{border-left:1px dotted gray;}
+.searchbox{text-align:right;padding-top:15px;padding-bottom:5px;}	
+.searchbox form{padding:0;margin:0;}	
+.centerbar{background:url(../adm_img/centerbar.gif) repeat-y center;}
+.quicklinks td{font-size:13px;font-weight:bold;font-family:Verdana;line-height:22px;
+text-decoration:underline;}
+.quicklinks a:link,.quicklinks a:active,.quicklinks a:visited,.quicklinks a:hover
+{font-size:12px;font-weight:normal;font-family:Verdana;text-decoration:none;
+}
+
+/****************Form Classes***********************/
+.formDiv{text-align:center;width:95%;float:right;}
+.formclass{margin:0;text-align:center;overflow:hidden;}
+.formclass label,.formclass input,.formclass textarea,.formclass select
+{	display: block;	float: left;	margin-bottom: 10px;}
+.formclass label
+{	text-align: left;	padding-right: 2px;	padding-left: 2px;	color:#2C2C2C;}
+.formclass label
+{	margin-top:3px;	margin-right:2px;	margin-left:2px;}
+.formclass input,.formclass textarea,.formclass select{	color:#2C2C2C;}
+.formclass .labelmedium {	width: 120px;}
+.formclass .labelmediumbig {	width: 142px;}
+.formclass .labelmediumsmall {	width: 112px;}
+.formclass .labelsmall {	width: 90px;}
+.formclass .bigtextfield{	width: 220px;}
+.formclass .biggesttextfield{	width: 320px;}
+.formclass .normaltextfiled{	width: 153px;}
+.formclass .selectcategory{	width: 153px;}
+.formclass br {
+	clear: left;
+}
+.loginformwidth
+{
+width:280px;
+}
+.formclass .button,.button
+{
+	border:1px solid #232a1a;
+	color:#ffffff;
+	background:#1e760f;
+	margin-right:4px;
+	padding:3px 3px 3px 3px;
+}
+
+.formouterDiv
+{
+width:99%;clear:both;
+border:0px solid red;
+overflow:hidden;
+}
+
+.formleftDiv
+{
+width:100%;float:left;text-align:left;border-right:0px dotted gray;
+}
+
+
+
+.formRightDiv
+{width:48%;float:right;text-align:left;
+}
+
+.navigationlinks
+{
+padding-top:5px;padding-bottom:5px;text-align:right;
+}
+
+.navigationlinks a.active:link,.navigationlinks a.active:visited,.navigationlinks a.active:active,.navigationlinks a.active:hover
+{
+text-decoration:none;
+border:1px solid gray;
+padding:0px 2px 0px 2px;
+background-color:#E9E7E7;
+color:#000000;
+font-weight:bold;
+}
+
+.navigationlinks a:link,.navigationlinks a:visited,.navigationlinks a:active,.navigationlinks a:hover
+{
+text-decoration:none;
+border:1px solid gray;
+padding:0px 2px 0px 2px;
+background-color:#ffffff;
+color:#000000;
+}
+
+.navigationlinks a.normalclass:link,.navigationlinks a.normalclass:visited,.navigationlinks a.normalclass:active,.navigationlinks a.normalclass:hover
+{
+text-decoration:none;
+border:0px solid gray;
+color:#000000;
+text-decoration:none;
+}
+
+a.logoutlink:link,a.logoutlink:active,a.logoutlink:visited,a.logoutlink:hover
+{
+font-size:12px;
+font-weight:normal;
+text-decoration:none;
+}
+/****************Menu Classes**********/
+.tblBorder{background-color:#000000;}
+
+
+
+.tableList
+{width:100%;background:#cccccc}
+
+.tableList th{background:#eeeeee;text-align:left;}
+.tableList td{background:#ffffff;}
+
+.tableForm{margin-left:50px;}
+.inpText,
+{width:200px;}
+.select
+{width:100px;}
+.txtArea{width:200px;height:50px;}
+.tandc{width:390px;}
+.menu11 {border-bottom:1px solid #FFFFFF; padding:0;}
+.menu11 a{text-decoration:none; line-height:40px; height:40px; padding-left:10px; color:#330099; background-color:#CCCCFF; font-weight:bold; width:200px; }
+.menu11 a:hover{color:#000000; background-color:#e93146; width:220px;}

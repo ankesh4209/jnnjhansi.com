@@ -1,0 +1,72 @@
+/* CSS Document */
+
+body { 
+	font: 12px arial; 
+	color: #333333;
+	background:#c0c0c0 url(../images/headerbg.png) repeat-x top left;
+	margin: 0px; 
+	padding: 0px;
+	}
+
+
+a { 
+	outline: none; 
+	color: #000; 
+	}
+a:hover { 
+	text-decoration: none; 
+	}
+
+.headerbg
+{
+height:105px;
+
+}
+
+.headerbg .topdate
+{
+	color:#fff;
+	line-height:30px;
+	padding-right:25px;
+}
+
+.logo{ padding-top:26px;}
+
+.bodybg{ padding:8px; background-color:#FFFFFF;}
+
+.bodybg .leftpanel{ width:262px; background-color:#f5f5f5; height:600px;}
+.bodybg .grayhead{ border-bottom:1px dashed #b8b8b8; padding-bottom:1px; margin-bottom:8px;}
+.bodybg .grayheadleft{ background:url(../images/grayhd_left.png) no-repeat; width:9px; height:27px;}
+.bodybg .grayheadright{ background:url(../images/grayhd_right.png) no-repeat; width:9px; height:27px;}
+.bodybg .grayheadmid{ background:url(../images/grayhd_topbg.png) repeat-x; height:27px; font:bold 14px/27px Georgia;}
+
+.bodybg .grayhdbg{background:#828282; height:25px; font:bold 11px/25px arial; color:#fff;}
+.bodybg .catagoryrow{ padding:7px 0px; font:normal 12px arial; border-bottom:1px solid #dedede;}
+.bodybg .pagingrow{ background:#eaeaea; padding:7px 0px;}
+.bodybg .pagingrow .prev{ background:#3f3f3f; padding:3px 7px; color:white; text-align:center; width:60px; display:block; cursor:pointer;}
+.bodybg .pagingrow .next{ background:#3f3f3f; padding:3px 7px; color:white; text-align:center;  width:60px; cursor:pointer;}
+
+.edit{ 
+	outline: none; 
+	color: #1d63c2; 
+	}
+.edit:hover { 
+	text-decoration: none; 
+	}
+	
+.delete{ 
+	outline: none; 
+	color: #e30000; 
+	}
+.delete:hover { 
+	text-decoration: none; 
+	}
+.leftab_off{ background:url(../images/lefttab.png) top right no-repeat; width:253px; height:35px; text-align:right;
+			 padding-right:14px; font:bold 13px/35px arial; color:#fff; cursor:pointer; }
+.leftab_off a { width:253px; height:35px; text-align:right;
+			 padding-right:14px; font:bold 13px/35px arial; color:#fff; cursor:pointer; }
+.leftab_on{ background:url(../images/lefttab_selected.png) top right no-repeat; width:253px; height:35px; text-align:right;
+			 padding-right:14px; font:bold 13px/35px arial; color:#3f3f3f; cursor:pointer; }
+.leftab_on a { width:253px; height:35px; text-align:right;
+			 padding-right:14px; font:bold 13px/35px arial; color:#3f3f3f; cursor:pointer; }
+.footerbg{ background:url(../images/footerbg.png) repeat-x; height:32px; text-align:center; color:#fff;}

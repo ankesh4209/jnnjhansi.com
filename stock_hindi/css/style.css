@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'kruti_dev_010regular';
+    src: url('kruti_dev_010-webfont.eot');
+    src: url('kruti_dev_010-webfont.eot?#iefix') format('embedded-opentype'),
+         url('kruti_dev_010-webfont.woff') format('woff'),
+         url('kruti_dev_010-webfont.ttf') format('truetype'),
+         url('kruti_dev_010-webfont.svg#kruti_dev_010regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+body{margin:0; font-family:Arial, Helvetica, sans-serif; font-size:12px; background:url(../images/backg.jpg) no-repeat top center;}
+#container{margin:0 auto; width:1020px;  }
+#wrapper{margin:0; float:left; width:100%; box-shadow:0px -1px 5px #909090; background: none repeat scroll 0 0 #FFFFFF; -webkit-box-shadow:0px -1px 5px #909090; -moz-box-shadow:0px -1px 5px #909090;}
+
+#logoarea{margin:0; padding:0; width:100%; float:left;}
+#logoarealeft{margin:1px 0 0 18px; padding:0; width:262px; float:left;}
+#logo{margin:0; padding:0; float:left; width:128px;}
+#like{margin:50px 0 0 0; padding:0; float:right; width:130px; font-size:18px;}
+#subname{margin:5px 0 0 0; padding:0; float:left; width:290px; text-align:center; font-size:15px; font-weight:bold;}
+#logoarearight{margin:0; padding:0; width:406px; float:right;}
+
+
+#navigation{margin:0px 0 0 0; padding:0; width:100%; float:left; background:#b80002;}
+#navigation ul{margin:0 ; padding:0; width:100%; float:left; position:relative;}
+#navigation ul ul{ display:none; width:150px; position:absolute; background:#b80002; top:33px;}
+#navigation ul ul li{ padding:0; background:none; width:100%;}
+#navigation ul ul li a{ padding:10px; width: 86%; line-height:normal;}
+#navigation ul li:hover ul{ display:block;}
+#navigation ul li{margin:0 ; padding:0; float:left; list-style:none; background:url(../images/devider.png) no-repeat 0 0; background-position:right;}
+#navigation ul li:last-child{ background:none;}
+#navigation ul li a{margin:0 ; float:left; color:#fff; line-height:37px; text-decoration:none; padding:0 35px;}
+#navigation ul li a:hover{ background:#630709;}
+.navigationcolor{background:#018fc4;}
+
+
+
+#main{margin:50px auto;  padding:0; width:1010px;}
+
+#mailleft{margin:0; padding:0; width:287px; float:left;}
+
+#iconone{margin:0; padding:0; width:287px; float:left; background:#630709; line-height:39px; color:#fff; font-size:18px;}
+#icononeimg{margin:5px 0 0 5px; padding:0; width:30px; float:left;}
+#icontext{margin:0; padding:0; width:240px; float:right;}
+
+
+
+
+
+#main_admin_content{ width:100%; padding:15px 0; float:left;}
+#main_admin_content h2{ text-align:center;}
+
+
+
+.department_selection{ background:#292424; padding:20px; border-radius:25px; width:50%; margin:0 auto; color:#fff; text-align:center;}
+
+.login{ border-radius:5px;
+    /*color: #FFFFFF;*/
+	background:#f1f1f1;
+    margin: 0 auto;
+    padding: 20px;
+    width: 40%; border:1px solid #ccc;}
+

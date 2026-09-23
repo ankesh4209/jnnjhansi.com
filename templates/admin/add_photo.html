@@ -1,0 +1,56 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	
+}
+//-->
+</Script>
+
+<table width="100%" align="left">
+<form name="add_photo" action="add_photo.php" method="post" enctype="multipart/form-data">
+	<tr>
+      <td>
+		<table width="100%" class="grayhead" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			  <td class="grayheadleft">&nbsp;</td>
+			  <td class="grayheadmid">Add Photo</td>
+			  <td class="grayheadright">&nbsp;</td>
+			</tr>
+		</table>
+	</td>
+    </tr>
+	 <tr>
+		 <td align="center"  class="successmsg">__PROMPT__</td>
+		 </tr>
+    <tr>
+	  <td><table width="100%"  border="0" cellspacing="5" cellpadding="5">
+	      
+		<tr>
+			<td colspan="2"><span style="color:red">*</span> Required</td>
+		</tr>
+		<tr>
+		  <td width="15%"><span style="color:red">*</span> Upload Photo </td>
+		  <td><INPUT NAME="photo" TYPE="file">
+		</td>
+		 </tr>
+		  
+		<tr>
+		  <td>&nbsp;&nbsp;&nbsp;Status</td>
+		  <td><select name="status">
+		  <option value="1">Live</option>
+		  <option value="0">Draft</option>
+		 </select>
+		</td>
+		 </tr>
+		 <tr>
+		  <td></td>
+		  <td><input type="submit" name="submit" value="Add photo" class="button"></td>
+		 </tr>
+		 </table>
+		  </td></tr>
+		 </form>
+ </table>
+ 
+
+
+

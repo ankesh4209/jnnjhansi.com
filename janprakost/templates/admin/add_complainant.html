@@ -1,0 +1,312 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	
+  with(window.document.addcomplainant)
+	{	
+    if(cmode.value=="")
+		{	
+      alert("Select Complainant Mode");
+			cmode.focus(); return false;
+		}
+		if(cname.value=="")
+		{	
+      alert("Enter Complainant Name");
+			cname.focus(); return false;
+		}
+		if(cnature.value=="")
+		{	
+      alert("Select Nature of Complaint");
+			cnature.focus(); return false;
+		}
+		if(summary.value=="")
+		{	
+      alert("Enter Complaint Summary");
+			summary.focus(); return false;
+		}
+		if(officer.value=="")
+		{	alert("Selct Officer");
+			officer.focus(); return false;
+		}
+		
+		return true;
+	}
+	
+}
+//-->
+</Script>
+
+<Script language=javascript>
+<!--
+
+ function validatePhoneNumber(elementValue)
+ {
+  var phoneNumberPattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+  if(phoneNumberPattern.test(elementValue)==false){
+  return true;  
+ }else{ return false;}
+}
+
+function checknumber(str)
+{
+ 
+//  var alpha = /^([a-zA-Z0-9_-]+)$/;
+ var text = /^([a-zA-Z]+)$/;
+   if(text.test(str)==false){
+     return false;
+   }else{ return true;}
+}
+
+ function Showofficer(id)
+  {
+    var myRandom=parseInt(Math.random()*99999999);  // cache buster
+    makeRequest("cid","returnofficer.php?id="+id+"&rand="+myRandom);
+  }
+ 
+ function ShowDate(id)
+  {
+    var myRandom=parseInt(Math.random()*99999999);  // cache buster
+    makeRequest("did","returndate.php?id="+id+"&rand="+myRandom);
+  }
+
+ function ShowTelephoen(id)
+  {
+    if(id=="Phone")
+    {
+     document.getElementById("PhoneTable").style.display ="";
+    }
+    else
+    {
+     document.getElementById("PhoneTable").style.display ="none";
+    }
+   
+   if(id=="Fax")
+    {
+     document.getElementById("PhoneTable1").style.display ="";
+    }
+    else
+    {
+     document.getElementById("PhoneTable1").style.display ="none";
+    }
+    
+    if(id=="Newspaper")
+    {
+     document.getElementById("PhoneTable2").style.display ="";
+    }
+    else
+    {
+     document.getElementById("PhoneTable2").style.display ="none";
+    }
+    
+    if(id=="Television")
+    {
+     document.getElementById("PhoneTable3").style.display ="";
+    }
+    else
+    {
+     document.getElementById("PhoneTable3").style.display ="none";
+    }
+    
+    if(id=="Tehsil Diwas")
+    {
+     document.getElementById("PhoneTable4").style.display ="";
+    }
+    else
+    {
+     document.getElementById("PhoneTable4").style.display ="none";
+    }
+   
+   if(id=="JJSK")
+    {
+     document.getElementById("PhoneTable5").style.display ="";
+    }
+    else
+    {
+     document.getElementById("PhoneTable5").style.display ="none";
+    }
+    
+  }
+//-->
+</Script>
+<table width="100%" align="left"> 
+  <tr>  
+    <td>  
+      <form name="addcomplainant" action="add_complainant.php" method="post" onsubmit='return checkSignUpDetails();'>  
+        <table align="left" cellspacing="5" cellpadding="5" width="98%" border="0" align="center">    
+          
+		  <tr>
+           <td  colspan="2" align="center" style="color:red;font-weight:bold;">__message__</td>
+          </tr>
+		  <tr>
+           <td width="150"><b>Complaint No <br>(<span style="font-family:Kruti Dev 011;font-size:13px;">f'kdk;r la[;k</span>):</b></td>
+           <td> <input type="text" name="compno"></td>
+          </tr>
+          <tr> 
+           <td><b> Complaint Date<br>(<span style="font-family:Kruti Dev 011;font-size:13px;">f'kdk;r dh frfFk</span>) :</b></td>
+           <td> <input type="text" name="cdate" id="demo6"><a href="javascript:NewCal('demo6','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></td>
+          </tr>
+          <tr>
+          <td width="150" valign="top">Complaint Mode:<span style="color:red;">*</span>
+          <br>(<span style="font-family:Kruti Dev 011;font-size:13px;">f'kdk;r dk ek?;e</span>)
+          </td>
+          <td align="left">
+           <select name="cmode" onchange="ShowTelephoen(this.value);">
+            <option value="">-- select mode--</option>
+            <option value="Phone">Phone</option>
+            <option value="Fax">Fax</option>
+           <option value="Newspaper">Newspaper</option>
+           <option value="Television">Television</option>
+           <option value="Tehsil Diwas">Tehsil Diwas</option>
+           <option value="JJSK">JJSK</option>
+           <option value="Other">Other</option>
+          </select> 
+          </td>
+          </tr>
+          <tr id="PhoneTable" style="display:none">    
+            <td>Mobile/Telephones:<span style="color:red;">*</span></td>    
+            <td align="left"><input type="text" name="contact" size="30"></td>   
+          </tr>
+          <tr id="PhoneTable1" style="display:none">    
+            <td >Fax :<span style="color:red;">*</span></td>    
+            <td align="left"><input type="text" name="fax" size="30"></td>   
+          </tr>
+          <tr id="PhoneTable2" style="display:none">    
+            <td  >Newspaper :<span style="color:red;">*</span></td>    
+            <td align="left"><input type="text" name="newspaper" size="30">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Newspaper Date :<span style="color:red;">*</span> <input id="demo1" name="news_date" type="text" size="10" ><a href="javascript:NewCal('demo1','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+            </td>   
+          </tr>
+          <tr id="PhoneTable3" style="display:none">    
+            <td >Television Name :<span style="color:red;">*</span></td>    
+            <td align="left"><input type="text" name="television" size="30">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Television Date : <span style="color:red;">*</span><input id="demo2" name="tel_date" type="text" size="10" ><a href="javascript:NewCal('demo2','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+            </td>   
+          </tr>
+          <tr id="PhoneTable4" style="display:none">    
+            <td >Tehsil Diwas :<span style="color:red;">*</span></td>    
+            <td align="left"><input type="text" name="tehsil" size="30">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>   
+          </tr>
+          <tr id="PhoneTable5" style="display:none">    
+            <td >JJSK :<span style="color:red;">*</span></td>    
+            <td align="left"><input type="text" name="lokvani" size="30">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>   
+          </tr>
+          <tr>    
+            <td >Additional Phone:
+             <br>(<span style="font-family:Kruti Dev 011;font-size:13px;">vfrfjDr VsyhQksu ua0</span>) 
+            </td>    
+            <td align="left"><input type="text" name="add_phone"></td>   
+          </tr>
+          
+          <tr>    
+            <td  >Complainant  Name:<span style="color:red;">*</span>
+             <br>(<span style="font-family:Kruti Dev 011;font-size:13px;">f'kdk;rdrkZ dk uke</span>)
+            </td>    
+            <td align="left"><input type="text" name="cname" style="font-family:Kruti Dev 011;font-size:15px;"></td>   
+          </tr>
+          
+          <tr>    
+            <td  valign="top">Address:
+             <br>(<span style="font-family:Kruti Dev 011;font-size:13px;">f'kdk;rdrkZ dk irk</span>)
+            </td>    
+            <td align="left"> 
+              <textarea name="address" rows="3" cols="40" style="font-family:Kruti Dev 011;font-size:20px;"></textarea>
+            </td>  
+          </tr>
+          
+          <!--<tr>    
+            <td width="110" >City :<span style="color:red;">*</span></td>    
+            <td align="left">
+             <select name="city" >
+              __city__
+             </select>
+            </td>   
+          </tr>-->
+          
+          <tr>
+           <td valign="top">Complaint Summary :<span style="color:red;">*</span>
+            <br>(<span style="font-family:Kruti Dev 011;font-size:13px;">f'kdk;r lkjka'k</span>)
+           </td>
+           <td>
+            <textarea name="summary" rows="6" cols="40" style="font-family:Kruti Dev 011;font-size:20px;"></textarea>
+           </td>
+          </tr>
+          
+          <!--<tr>    
+            <td >Nature of Complaint:<span style="color:red;">*</span></td>    
+            <td align="left">
+             <select name="cnature">
+              <option value="">Select Nature of Complaint</option>
+              __nature__
+             </select>
+            </td>   
+          </tr>-->
+          
+          <tr><td>
+          Complaint Category :<span style="color:red;">*</span>
+          <br>(<span style="font-family:Kruti Dev 011;font-size:13px;">f'kdk;r dh Js.kh</span>)
+          </td> 
+          <td>
+          <select name="category" style="font-family:Kruti Dev 011;font-size:15px;">
+           <option value="">-- f'kdk;r dh Js.kh pqus --</option>
+           <option value="A">,&amp;vfrvko';d</option>
+           <option value="B">ch&amp;vko';d</option>
+           <option value="C">lh&amp;lkekU;</option>
+          </select> 
+          <!--
+        Target Date:&nbsp;&nbsp;<input id="demo3" name="tdate" type="text" size="10"><a href="javascript:NewCal('demo3','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+         -->
+         &nbsp;&nbsp;&nbsp;&nbsp;
+        </td>
+        </tr>
+        
+        <tr>
+         <td align="left">Target Date :</td>
+         <td align="left"><input type="text" name="tdate" id="demo5"><a href="javascript:NewCal('demo5','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></td>
+        </tr>
+         <tr>
+           <td>Department:<span style="color:red;">*</span>
+            <br>(<span style="font-family:Kruti Dev 011;font-size:13px;">foHkkx</span>)
+           </td>
+           <td>
+              <select  name="department" onchange="Showofficer(this.value);">
+                <option value="">Select Department</option>
+                  __nature__
+                </select>
+            </td>
+         </tr>
+         <tr>
+          <td>Officer :<span style="color:red;">*</span>
+           <br>(<span style="font-family:Kruti Dev 011;font-size:13px;">vf?kdkjh</span>)
+          </td>
+          <td><div id='cid'>
+              <select  name="c_officer">
+                <option value="">Select Officer</option>
+                  __c_officer__
+                </select>
+              </div></td>
+         </tr>
+          
+          
+          <tr>    
+            <td >Old Complaint no if any :
+             <br>(<span style="font-family:Kruti Dev 011;font-size:13px;">iwoZ f'kdk;r la[;k</span>)
+            </td>    
+            <td align="left"><input type="text" name="oldcno" size="10"></td>   
+          </tr>
+          <tr>   
+           <td></td>   
+           <td>
+              <input type="submit" name="submit" value="SAVE & SEND" class="button" onclick = "if (! confirm('Are you sure want to add complaint. if you want to edit complain details click on cancel button.')) return false;">
+          </td>   
+          </tr>  
+        </table>  
+      </form>
+    </td> 
+  </tr>
+</table>

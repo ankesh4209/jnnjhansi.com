@@ -1,0 +1,78 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{  
+	with(window.document.add_work_info)
+	{	
+        if(Work_Name.value=="")
+		{	alert("Enter work name");
+			Work_Name.focus(); return false;
+		}
+		 if(Work_Photo.value=="")
+		{	alert("Upload work picture.");
+			Work_Photo.focus(); return false;
+		}
+		
+		
+     }
+		return true;
+	}
+
+//-->
+</Script>
+
+<table width="100%" align="left">
+<form name="add_work_info" action="add_work.php" method="post" onsubmit='return checkSignUpDetails();' enctype="multipart/form-data">
+	<tr>
+      <td>
+		<table width="100%" class="grayhead" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			  <td class="grayheadleft">&nbsp;</td>
+			  <td class="grayheadmid">Add Good Work</td>
+			  <td class="grayheadright">&nbsp;</td>
+			</tr>
+		</table>
+	</td>
+    </tr>
+    <tr>
+	  <td><table width="100%"  border="0" cellspacing="5" cellpadding="5">
+	       <tr>
+		 <td align="center" colspan="2"  class="successmsg"><b>__PROMPT__</b></td>
+		 </tr>
+		<tr>
+			<td colspan="2"><span style="color:red">*</span> Required</td>
+		</tr>
+		  <tr>
+		  <td colspan=""><span style="color:red">*</span>Work Name</td>
+		  <td><input type="text" name="Work_Name" value=""></td>
+		 </tr> 
+		 <tr>
+		  <td><span style="color:red">*</span> Upload Picture </td>
+		  <td><INPUT NAME="Work_Photo" TYPE="file">
+		</td>
+		  
+		 <tr>
+		  <td valign="top"> Description:</td>
+		  <td> __TINY_HTML_EDITOR__</td>
+		 </tr>
+
+		 <tr>
+		  <td>Status</td>
+		  <td><select name="status">
+		  <option value="1">Live</option>
+		  <option value="0">Draft</option>
+		 </select>
+		</td>
+		 </tr>
+		 <tr>
+		  <td></td>
+		  <td><input type="submit" name="submit" value="Add" class="button"></td>
+		 </tr>
+		 </table>
+		  </td></tr>
+		 </form>
+ </table>
+ 
+
+
+

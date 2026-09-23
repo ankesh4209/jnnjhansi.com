@@ -1,0 +1,126 @@
+
+<script language = javascript>
+<!--
+function selectAll()
+{	with(window.document.complainant)
+	{
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{	if (elements[i].type == 'checkbox')
+			{	elements[i].checked = true;
+			}
+		}		
+	}
+}
+
+function selectNone()
+{	with(window.document.complainant)
+	{	 
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{	
+			if (elements[i].type == 'checkbox')
+			{	elements[i].checked = false;
+			}
+		}		
+	}
+}
+
+function checkSelected()
+{	with(window.document.complainant)
+	{	totalChecked = 0; 
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{	
+			if (elements[i].type == 'checkbox')
+			{	if (elements[i].checked) 
+				{	totalChecked++;
+					break;
+				}
+			}
+		}		
+
+		if (totalChecked == 0)
+		{	alert("Select a items");
+			return false;
+		}
+
+		return true;
+	}
+}
+
+function confirmDelete()
+{	with(window.document.complainant)
+	{	if (checkSelected())
+		{	return confirm("The selected items will be deleted. Are you sure?");
+		}
+		else
+		{	return false;
+		}
+	}
+}
+
+function openPopup(file)
+{	
+  window.open (file,"mywindow","width=650,height=800,scrollbars=yes"); 
+}
+//-->
+</script>
+<br>
+<form name="search" action="disposed_comp.php" method="GET">
+<table border="0" cellpadding="1" cellspacing="1" align="left">
+ <tr>
+  <td>
+   Enter Complain No. <input type="text" name="s_comp" size="5">
+   &nbsp;&nbsp;&nbsp;From Date :<input id="demo3" name="sdate" type="text" size="10"><a href="javascript:NewCal('demo3','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+   &nbsp;&nbsp;&nbsp;&nbsp; To Date :<input id="demo4" name="edate" type="text" size="10"><a href="javascript:NewCal('demo4','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+   &nbsp;&nbsp;&nbsp;
+   <!--  Category : <select name="category">
+                 <option value="">---select---</option> 
+                 <option value="A">A</option> 
+                 <option value="B">B</option> 
+                 <option value="C">C</option> 
+                </select>  -->
+   &nbsp;&nbsp;&nbsp;<input type="submit" name="search" value="Search" class="button">
+  </td>
+ </tr>
+</table>
+</form>
+<br><br>
+<form name="complainant" action="disposed_comp.php" method="post">
+<br>
+<table width="100%" align="left">
+  __PROMPT__
+  <tr>
+  <td>
+  <table border="0" cellpadding="1" cellspacing="1" align="center"  class="tableList"> 
+  <tr>
+  <th align="center"><b>S.no.</b></th>
+   <th align="center"><b>X</b></th>
+   <th align="center"><b>Complainant Name</b></th>
+   <th align="center"><b>Address</b></th>
+   <th align="center"><b>Contact No</b></th>
+   <th align="center"><b>Complainant No</b></th>   
+   <th align="center"><b>Details</b></th>            
+   <!--<th><b>Edit</b></th>-->
+  </tr>
+  __NEWS_LIST__
+  <tr>
+  <td colspan="9" align="left" height="30">
+  <input type="button" value="Select All" onclick="return selectAll();" class="button">
+  <input type="button" value="Select None" onclick="return selectNone();" class="button">
+  <input type="submit" name="SUBMIT_DELETE" value="Delete Selected" onclick="return confirmDelete();" class="button">
+  <input type="button" value="Print" class="button" onclick="openPopup('printreport1.php?s_comp=__search__&sdate=__sdate__&edate=__edate__&category=__category__');">
+  </td></tr>
+  </table>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <table align="center" width="95%" style="border-color:#FFFFFF">
+   <tr><td align="right">__PREV_PAGE_LINK__&nbsp;&nbsp;&nbsp;Pages: __PAGE_NAVS__&nbsp;&nbsp;&nbsp; __NEXT_PAGE_LINK__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+  </table> 
+</form>
+</td>
+ </tr>
+</table>

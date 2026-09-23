@@ -1,0 +1,44 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.MemberLoginForm)
+	{	if(name.value=="")
+		{	alert("Enter Username");
+			name.focus(); return false;
+		}
+		
+		if(password.value=="")
+		{	alert("Enter Password");
+			password.focus(); return false;
+		}
+		return true;
+	}
+}
+//-->
+</Script>
+<!-- MAIN TABLE STARTS HERE-->
+<FORM name="MemberLoginForm" action='index.php' onsubmit='return checkSignUpDetails();' method="post" target="_top">
+
+	<table border="0" cellspacing="0" cellpadding="5" width="60%" align="center" height="300">
+	  
+	  <tr><td colspan="2"  height="30" align="center"><b>Sign in here...</b></td></tr>
+	 <tr>
+		<td class="red" align="center" colspan="2" height="20"><span style="color:red;font-weight:bold">__PROMPT__</span></td>
+	</tr>
+	<tr>
+	 <td width="280" align="right" class="labelsmall" height="40">Username:</td>
+	 <td ><input type="text" name="username" size="25"></td>
+	</tr>
+	<tr >
+	 <td align="right" class="labelsmall" height="40">Password:</td>
+	 <td ><input type="password"  name="password" size="26"></td>
+	</tr>
+	<tr>
+	<td class="blue_bg" valign="top">&nbsp;</td>
+	<td class="blue_bg" valign="top">&nbsp;<input type="submit" value="Submit" class="button"></td>
+	
+	</tr>
+	</table>
+</FORM>
+<br>
+<br>

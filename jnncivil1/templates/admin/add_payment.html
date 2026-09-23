@@ -1,0 +1,74 @@
+<script type="text/javascript">
+$(function () {
+$("#PayDate").datepicker({
+changeMonth: true,
+changeYear: true,
+yearRange: '2010:2020'
+});
+});
+
+$(function () {
+$("#CheckDate").datepicker({
+changeMonth: true,
+changeYear: true,
+yearRange: '2010:2020'
+});
+});
+</script>
+
+<table width="100%" align="left"> 
+      <tr><td> 
+         <form name="add_items" action="add_payment.php" method="post" onsubmit='return checkSignUpDetails();' > 
+         <table align="left" cellspacing="4" cellpadding="4" width="100%" border="0" align="center"> 
+           <tr>
+     <td height="40">
+      <a href='#'><b>Enter Payment Information</b></a>
+     </td>
+    </tr>
+		   <tr>    
+            <td ><span >Select Work Order No</span> :</td>    
+            <td align="left">
+              __WorkOrders__
+            </td>   
+          </tr>
+		    <tr>    
+            <td  width="220" ><span >Amount</span> :</td>    
+            <td align="left">
+              <input type="text" name="Amount" size="15" ></td>   
+          </tr>
+		   <tr>    
+            <td  width="220" ><span >Installment</span> :</td>    
+            <td align="left">
+              <input type="text" name="Installment" size="25" style="font-family: 'kruti_dev_010regular';font-size:15px;"></td>   
+          </tr>
+		  <tr><td  ><span  >Pay Date</span>:</td><td align='left'><span><input type="text" name="PayDate" id="PayDate"   size='15' readonly> </td></tr>
+		  <tr>    
+            <td  width="220" ><span >Check No</span> :</td>    
+            <td align="left">
+              <input type="text" name="CheckNo" size="15" ></td>   
+          </tr>
+		  <tr><td  ><span  >Check Date</span></td><td align='left'><span><input type="text" name="CheckDate" id="CheckDate"   size='15' readonly> </td></tr>
+          <tr>
+		  <tr><td>Comments:</td><td><textarea rows='4' name='Comments' cols='35' style="font-family: 'kruti_dev_010regular';font-size:15px;"></textarea></td></tr>
+		  <tr><td>Work Status:</td>
+		  <td>
+			<select name='Status'>
+			<option value='' >Select Status</option>
+			<option value='Not Started'>Not Started</option>
+			<option value='Pending'>Pending</option>
+			<option value='In Progress'>In Progress</option>
+			<option value='Cancelled'>Cancelled</option>
+			<option value='Disputed'>Disputed</option>
+			<option value='Completed'>Completed</option>
+			</select>
+		  </td></tr>
+
+           <td></td>   
+           <td>
+              <input type="submit" name="submit" value="submit" class="button">
+           </td>   
+          </tr>  
+        </table>  
+      </form> 
+    </td></tr>
+  </table>

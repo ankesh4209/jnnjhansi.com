@@ -1,0 +1,65 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.add_items)
+	{	
+        if(ItemName.value=="")
+		{	
+            alert("Please enter item name.");
+			ItemName.focus(); 
+            return false;
+		}
+
+		if(Unit.value=="")
+		{	
+            alert("Please enter item unit.");
+			Unit.focus(); 
+            return false;
+		}
+
+		if(Rate.value=="")
+		{	
+            alert("Please enter item Rate.");
+			Rate.focus(); 
+            return false;
+		}
+
+	}
+	
+}
+
+</Script>
+<table width="100%" align="left"> 
+      <tr><td> 
+         <form name="add_items" action="add_item.php" method="post" onsubmit='return checkSignUpDetails();' > 
+         <table align="left" cellspacing="4" cellpadding="4" width="100%" border="0" align="center"> 
+            <td height="40">
+      <a href='#'><b>Add Item Information</b></a>
+     </td>
+    </tr>
+		   <tr>    
+            <td  width="220" ><span >Item Name</span> :</td>    
+            <td align="left">
+              <textarea type="text" name="ItemName" rows='3' cols='40'></textarea></td>   
+          </tr>
+		  <tr>    
+            <td  width="220" ><span >Unit</span> :</td>    
+            <td align="left">
+              <input type="text" name="Unit" value="" size="25" ></td>   
+          </tr>
+		  <tr>    
+            <td  width="220" ><span >Rate</span> :</td>    
+            <td align="left">
+              <input type="text" name="Rate" value="" size="25" ></td>   
+          </tr>
+          <tr>   
+           <td></td>   
+           <td>
+		      
+              <input type="submit" name="submit" value="submit" class="button">
+           </td>   
+          </tr>  
+        </table>  
+      </form> 
+    </td></tr>
+  </table>

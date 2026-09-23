@@ -1,0 +1,67 @@
+
+<!-- <script type="text/javascript" src="tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+    tinyMCE.init({
+        mode : "textareas",
+        theme : "simple"
+    });
+</script> -->
+
+<script language="javascript" type="text/javascript">
+<!--
+function showcategory(val)
+  { 
+  		makeRequest("category","getcategary.php?id="+val);
+  }
+ //-->
+ </script>
+
+<table width="100%" align="left">
+<form name="editpage" action="edit_page.php" method="post" onsubmit='return checkSignUpDetails();' enctype="multipart/form-data">
+	<tr>
+      <td>
+		<table width="100%" class="grayhead" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			  <td class="grayheadleft">&nbsp;</td>
+			  <td class="grayheadmid">Edit Page</td>
+			  <td class="grayheadright">&nbsp;</td>
+			</tr>
+		</table>
+	</td>
+    </tr>
+    <tr>
+	  <td><table width="100%"  border="0" cellspacing="5" cellpadding="5">
+	       <tr>
+		 <td align="center"  class="successmsg"><b>__PROMPT__</b></td>
+		 </tr>
+		<tr>
+			<td colspan="2"><span style="color:red">*</span> Required</td>
+		</tr>
+		 <tr>
+		  <td> Name: </td>
+		  <td><input type="text" name="p_name" value="__pname__"></td>
+		 </tr>
+		 <tr>
+		  <td valign="top"><span style="color:red">*</span>Page Text:</td>
+		  <td> __TINY_HTML_EDITOR__</td>
+		 </tr>
+
+		  <tr>
+			  <td>Status</td>
+			  <td><select name="status">
+			  <option value="1" __status__>Live</option>
+			  <option value="0" __status1__>Draft</option>
+			 </select>
+			</td>
+			 </tr>
+			 <tr>
+			  <td><input type="hidden" name="pid" value="__pid__"></td>
+			  <td><input type="submit" name="submit" value="Update"></td>
+			 </tr>
+		
+		 </table>
+		  </td></tr>
+		 </form>
+ </table>
+ 
+

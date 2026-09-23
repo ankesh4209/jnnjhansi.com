@@ -1,0 +1,54 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.add_items)
+	{	
+        if(ItemType.value=="")
+		{	
+            alert("Please select item type.");
+			ItemType.focus(); 
+            return false;
+		}
+		
+		if(ItemName.value=="")
+		{	
+            alert("Please enter item name.");
+			ItemName.focus(); 
+            return false;
+		}
+	}
+	
+}
+
+</Script>
+<table width="100%" align="left"> 
+      <tr><td> 
+         <form name="add_items" action="add_items.php" method="post" onsubmit='return checkSignUpDetails();' > 
+         <table align="left" cellspacing="4" cellpadding="4" width="100%" border="0" align="center"> 
+           <tr>    
+            <td ><span style="font-family: 'kruti_dev_010regular';font-size:20px;">lkexzhq dk izdkj</span> :</td>    
+            <td align="left">
+              <!-- <select name="ItemType">
+               <option value="">Select Item Type</option>
+               <option value='Stationary'>Stationary</option>
+               <option value='Hardware'>Hardware</option>
+              </select> -->
+			  __category__
+            </td>   
+          </tr>
+		   <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">oLr Ukke</span> :</td>    
+            <td align="left">
+              <input type="text" name="ItemName" size="25" style="font-family: 'kruti_dev_010regular';font-size:15px;"></td>   
+          </tr>
+		  
+          <tr>   
+           <td></td>   
+           <td>
+              <input type="submit" name="submit" value="submit" class="button">
+           </td>   
+          </tr>  
+        </table>  
+      </form> 
+    </td></tr>
+  </table>

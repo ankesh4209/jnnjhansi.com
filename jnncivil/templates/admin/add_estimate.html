@@ -1,0 +1,148 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.add_estimate)
+	{	
+        if(MadId.value=="")
+		{	
+            alert("Please select mad name.");
+			MadId.focus(); 
+            return false;
+		}
+		
+		if(WorkName.value=="")
+		{	
+            alert("Please enter work name.");
+			WorkName.focus(); 
+            return false;
+		}
+	}
+	
+}
+function ShowMadInfo(value)
+  {
+    
+	   var myRandom=parseInt(Math.random()*99999999);  // cache buster
+       makeRequest("mad_info","returnmadinfo.php?value="+value+"&rand="+myRandom); 
+	
+  
+  }
+
+</Script>
+<script type="text/javascript">
+$(function () {
+$("#AddedDate").datepicker({
+changeMonth: true,
+changeYear: true,
+yearRange: '2012:2020'
+});
+});
+$(function () {
+$("#ProposedDate").datepicker({
+changeMonth: true,
+changeYear: true,
+yearRange: '2012:2020'
+});
+});
+</script>
+
+<table width="100%" align="left"> 
+      <tr><td> 
+         <form name="add_estimate" action="add_estimate_next.php" method="post" onsubmit='return checkSignUpDetails();' > 
+         <table align="left" cellspacing="4" cellpadding="4" width="100%" border="0" align="center"> 
+           <tr>
+     <td height="40" colspan='2'>
+      <a href='#'><b>Enter Estimation Information - Step 1</b></a>
+     </td>
+    </tr>
+		   <tr>    
+            <td width='20%'><span style="font-family: 'kruti_dev_010regular';font-size:15px;">en dk uke </span> :</td>    
+            <td align="left">
+              __madname__
+            </td>   
+          </tr>
+		  <tr>    
+            <td width='20%'><span style="font-family: 'kruti_dev_010regular';font-size:15px;">en dk fooj.k </span> :</td>    
+            <td align="left"><div id='mad_info'>
+              <select style="font-family: 'kruti_dev_010regular';font-size:15px;" name='MadAmtId'><option value=''>pqus</option></select></div>
+            </td>   
+          </tr>
+		   <tr>    
+            <td   ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">dk;Z dk uke</span> :</td>    
+            <td align="left">
+              <textarea name='WorkName' rows='3' cols='40' style="font-family: 'kruti_dev_010regular';font-size:15px;"></textarea></td>   
+          </tr>
+		  <tr>    
+            <td width='20%'><span style="font-family: 'kruti_dev_010regular';font-size:15px;">okMZ Uka0</span> :</td>    
+            <td align="left">
+              <input type="text" name="WardNo" size="5" ></td>   
+            </td>   
+          </tr>
+		  <tr>    
+            <td   ><span style="font-family: 'kruti_dev_010regular';font-size:15px;"> IkzLrkod</span> :</td>    
+            <td align="left">
+              <input type="text" name="ProposerName" size="50" style="font-family: 'kruti_dev_010regular';font-size:15px;"></td>   
+          </tr>
+		  		  <tr><td  ><span  style="font-family: 'kruti_dev_010regular';font-size:15px;">IkzLrkfor dk;Z frfFk</span>&nbsp;:</td><td align='left'><span><input type="text" name="ProposedDate" id="ProposedDate"   size='15' readonly></td></tr>
+		   <tr>    
+            <td   ><span > Name of area</span> :</td>    
+            <td align="left">
+              <input type="text" name="AreaName" size="50" style="font-family: 'kruti_dev_010regular';font-size:15px;"></td>   
+          </tr>
+		  <tr>    
+            <td width='20%'><span style="font-family: 'kruti_dev_010regular';font-size:15px;">voj vfHk;Urk </span> :</td>    
+            <td align="left">
+              __JEofficers__
+            </td>   
+          </tr>
+		  <tr>    
+            <td width='20%'><span style="font-family: 'kruti_dev_010regular';font-size:15px;">Lkgk;d vfHk;Urk </span> :</td>    
+            <td align="left">
+              __AEofficers__
+            </td>   
+          </tr>
+		  <tr>    
+            <td width='20%'><span style="font-family: 'kruti_dev_010regular';font-size:15px;">vf/k'kklh vfHk;Urk</span> :</td>    
+            <td align="left">
+              __EXnofficers__
+            </td>   
+          </tr>
+		  <tr>    
+            <td width='20%'><span style="font-family: 'kruti_dev_010regular';font-size:15px;">eq[; vfHk;Urk</span> :</td>    
+            <td align="left">
+              __CEofficers__
+            </td>   
+          </tr>
+		  <tr>    
+            <td width='20%'><span style="font-family: 'kruti_dev_010regular';font-size:15px;">vkx.ku</span> :</td>    
+            <td align="left">
+              <input type="text" name="estimateamt" size="10" ></td>   
+            </td>   
+          </tr>
+		  <tr><td  ><span  style="font-family: 'kruti_dev_010regular';font-size:15px;">vkx.ku frfFk</span></td><td align='left'><span><input type="text" name="AddedDate" id="AddedDate"   size='15' readonly></td></tr>
+		  <tr><td>&nbsp;</td></tr>
+		  
+		  <!-- <tr><td colspan='2'><b>Select Item and enter quantity from rate list:-</b></td></tr>
+		  <tr><td colspan='5'>
+		  <table border="0" cellpadding="5" cellspacing="1" align="center" class="tableList">
+		  <tr>
+		   <th width='5%' ><b>Item No.</b></th>
+		   <th width='5%' ><b>Select</b></th>
+		   <th ><b>Item Name</b></th>
+		   <th ><b>Unit</b></th>
+		   <th ><b>Rate<br>(Rs.)</b></th>
+		   <th ><b>Qty</b></th>
+		   </tr>
+		  __RateList__
+		  </table>
+		  </td></tr> -->
+          <tr>   
+           <td></td>   
+           <td>
+              <input type="submit" name="submit" value="Next" class="button">
+           </td>   
+          </tr>  
+        </table>  
+      </form> 
+    </td></tr>
+  </table>

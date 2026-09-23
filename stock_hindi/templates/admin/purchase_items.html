@@ -1,0 +1,123 @@
+<script language = javascript>
+<!--
+function selectAll()
+{	with(window.document.page)
+	{
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{	if (elements[i].type == 'checkbox')
+			{	elements[i].checked = true;
+			}
+		}		
+	}
+}
+
+function selectNone()
+{	with(window.document.page)
+	{	 
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{	
+			if (elements[i].type == 'checkbox')
+			{	elements[i].checked = false;
+			}
+		}		
+	}
+}
+
+function checkSelected()
+{	with(window.document.page)
+	{	totalChecked = 0; 
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{	
+			if (elements[i].type == 'checkbox')
+			{	if (elements[i].checked) 
+				{	totalChecked++;
+					break;
+				}
+			}
+		}		
+
+		if (totalChecked == 0)
+		{	alert("Select a items");
+			return false;
+		}
+
+		return true;
+	}
+}
+
+function confirmDelete()
+{	with(window.document.page)
+	{	if (checkSelected())
+		{	return confirm("The selected items will be deleted. Are you sure?");
+		}
+		else
+		{	return false;
+		}
+	}
+}
+
+//-->
+</script>
+<table width="100%" align="left">
+ <tr>
+  <td height="10">
+  
+  <table border="0" cellpadding="0" cellspacing="0" align="left" width="100%"> 
+    <tr>
+     <td height="40">
+       <a href='#'><b>Total Purchase Item List</b></a>
+     </td>
+    </tr>
+   <!-- <tr>
+		 <td align="center"  class="successmsg" colspan='2'><b>__PROMPT__</b></td>
+		 </tr>  
+    -->   <tr>
+     <form name="page1" action="purchase_items.php" method="GET">
+     <td height="40">
+       __category__
+     </td><td>Start Date : <input type="text" name="sdate" value='__sdate__' id="demo1" size="7"><a href="javascript:NewCal('demo1','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></td>
+         <td>End Date : <input type="text" name="edate" value='__edate__' id="demo2" size="7"><a href="javascript:NewCal('demo2','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></td>
+         <td><input type="submit" name="submit" value="Submit" class="button"></td>
+     </form>
+    </tr>
+     
+  
+  </table>
+  </td>
+  </tr>
+ <tr>
+  <td height="40">
+  <form name="page" action="items.php" method="post">
+  <table border="0" cellpadding="5" cellspacing="1" align="center"  class="tableList">
+  <tr>
+   <th width='5%' style="font-family: 'kruti_dev_010regular';font-size:20px;"><b>Øekad la[;k</b></th>
+   <th style="font-family: 'kruti_dev_010regular';font-size:20px;"><b>lkexzh dk uke</b></th>
+   <th style="font-family: 'kruti_dev_010regular';font-size:20px;"><b>lkexzh dk izdkj</b></th>
+   <th style="font-family: 'kruti_dev_010regular';font-size:20px;"><b>[kjhn fnukad</b></th>
+   <th style="font-family: 'kruti_dev_010regular';font-size:20px;"><b>QeZ dk uke</b></th>
+   <th><b>Total</b></th></th>
+  </tr>
+  __PRODUCT_LIST__
+  <!-- <tr><td colspan="9" align="right">
+  <input type="button" value="Select All" onclick="return selectAll();" class="button">
+  <input type="button" value="Select None" onclick="return selectNone();"  class="button">
+  <input type="submit" name="SUBMIT_DELETE" value="Delete Selected" onclick="return confirmDelete();"  class="button">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ 
+  </td></tr> -->
+  </table>
+  </form>
+ </td>
+  </tr>
+   <tr>
+  <td>
+  <table align="center" width="95%" style="border-color:#FFFFFF">
+   <tr><td align="right">__PREV_PAGE_LINK__&nbsp;&nbsp;&nbsp;Pages: __PAGE_NAVS__&nbsp;&nbsp;&nbsp; __NEXT_PAGE_LINK__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+  </table> 
+
+</td>
+ </tr> 
+</table>

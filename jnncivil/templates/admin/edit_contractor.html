@@ -1,0 +1,42 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.edit_items)
+	{	
+        if(ContractorName.value=="")
+		{	
+            alert("Please enter contractor name.");
+			ContractorName.focus(); 
+            return false;
+		}
+
+	}
+	
+}
+
+</Script>
+<table width="100%" align="left"> 
+      <tr><td> 
+         <form name="edit_items" action="edit_contractor.php" method="post" onsubmit='return checkSignUpDetails();' > 
+         <table align="left" cellspacing="4" cellpadding="4" width="100%" border="0" align="center"> 
+            <td height="40">
+      <a href='#'><b>Edit Contractor Information</b></a>
+     </td>
+    </tr>
+		   <tr>    
+            <td  width="220" ><span >Contractor Name</span> :</td>    
+            <td align="left">
+              <input type="text" name="ContractorName" value="__ContractorName__" size="25" style="font-family: 'kruti_dev_010regular';font-size:15px;"></td>   
+          </tr>
+		  
+          <tr>   
+           <td></td>   
+           <td>
+		      <input type='hidden' name='ContractorId' value='__ContractorId__'>
+              <input type="submit" name="submit" value="submit" class="button">
+           </td>   
+          </tr>  
+        </table>  
+      </form> 
+    </td></tr>
+  </table>

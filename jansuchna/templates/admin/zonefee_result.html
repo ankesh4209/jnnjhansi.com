@@ -1,0 +1,77 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.search)
+	{	
+   if(feetype.value=="")
+		{	
+      alert("Please Select Fee Type.");
+			feetype.focus(); 
+      return false;
+		}
+		if(sdate.value=="")
+		{	
+      alert("Please Select Start Date.");
+			sdate.focus(); 
+      return false;
+		}
+		if(edate.value=="")
+		{	
+      alert("Please Select End Date.");
+			edate.focus(); 
+      return false;
+		}
+	 return true;
+	}
+}
+//-->
+</Script>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="left" valign="top" class="text">Fee Report</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>
+      <form name="search" action="" method="POST" onsubmit='return checkSignUpDetails();'> 
+      <table width="100%" border="0" cellspacing="5" cellpadding="5">
+        <tr>
+         <td>Fee Type: <select name="feetype">__fee_list__</select>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Zone : <select name="zone"><option value="1000">All</option>__zone_list__</select></td>
+        </tr>
+        <tr>
+         <td>Start Date: <input type="text" name="sdate" id="demo1" size="7"><a href="javascript:NewCal('demo1','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End Date: <input type="text" name="edate" id="demo2" size="7"><a href="javascript:NewCal('demo2','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="submit" value="search" class="button"></td>
+        </tr>
+      </table>
+     </td>
+     </tr>
+     <tr>
+     <td>
+      <table width="100%" border="0" cellspacing="4" cellpadding="4">
+       <tr>
+        __report_message__
+       </tr>
+      </table>
+      </td>
+      </tr>
+      <tr>
+      <td>
+      <table width="100%" border="1" cellspacing="1" cellpadding="1">
+       <tr>
+        <td align='center'><b>Zone</b></td>
+        <td align='center'><b>Fee</b></td>
+       </tr>
+       __total_result__
+       __grand_total__
+       <tr>
+        <td colspan="9" align="right"><a href="javascript: void(0)" onclick="window.open('print_feereport.php?feetype=__feetype__&sdate=__sdate__&edate=__edate__','windowname1','width=650, height=550,scrollbars=yes'); return false;"><input type="button" name="click" value="Print" class="button"></a></td>
+       </tr>
+      </table>
+      </form>
+     </td>
+    </tr>
+  </table>

@@ -1,0 +1,118 @@
+<script language = javascript>
+<!--
+function selectAll()
+{	with(window.document.page)
+	{
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{	if (elements[i].type == 'checkbox')
+			{	elements[i].checked = true;
+			}
+		}		
+	}
+}
+
+function selectNone()
+{	with(window.document.page)
+	{	 
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{	
+			if (elements[i].type == 'checkbox')
+			{	elements[i].checked = false;
+			}
+		}		
+	}
+}
+
+function checkSelected()
+{	with(window.document.page)
+	{	totalChecked = 0; 
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{	
+			if (elements[i].type == 'checkbox')
+			{	if (elements[i].checked) 
+				{	totalChecked++;
+					break;
+				}
+			}
+		}		
+
+		if (totalChecked == 0)
+		{	alert("Select a items");
+			return false;
+		}
+
+		return true;
+	}
+}
+
+function confirmDelete()
+{	with(window.document.page)
+	{	if (checkSelected())
+		{	return confirm("The selected items will be deleted. Are you sure?");
+		}
+		else
+		{	return false;
+		}
+	}
+}
+
+//-->
+</script>
+<h2 style="font-family: 'kruti_dev_010regular';font-size:20px;font-weight:bold;">larku fooj.k</h2>
+<span><a href='add_child.php'>Add Child Details</a><span>
+<form name="page" action="childrens.php" method="get">	
+<table><tr><td><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >deZpkjh dksM uEcj</span>&nbsp;<span style='padding-left:60px;'>:<input type="text" name="EmployeeCode" size='15' value='__EmployeeCode__'></td><td><input type='submit' name='search' value='Search'></td></tr></table>
+
+<div>__PROMPT__</div>
+<table id="rounded-corner">
+    <thead>
+    	<tr>
+        	<th bgcolor="#666666" class="rounded-company" scope="col">S.No.</th>
+            <th bgcolor="#666666" class="" scope="col">Select</th>
+			<th bgcolor="#666666" class="" scope="col" style="font-family: 'kruti_dev_010regular';font-size:20px;">deZpkjh dksM</th>
+			<th bgcolor="#666666" class="" scope="col" style="font-family: 'kruti_dev_010regular';font-size:20px;">larku dk uke</th>
+			<th bgcolor="#666666" class="" scope="col" style="font-family: 'kruti_dev_010regular';font-size:20px;">fyax</th>
+			<th bgcolor="#666666" class="" scope="col" style="font-family: 'kruti_dev_010regular';font-size:20px;">tUe frfFk</th>
+			<th bgcolor="#666666" class="" scope="col">Edit</th>
+            <th bgcolor="#666666" class="rounded-q4" scope="col">Status</th>
+        </tr>
+    </thead>
+        <tfoot>
+    	<tr>
+        	<td colspan="7" class="rounded-foot-left">&nbsp;</em></td>
+        	<td class="rounded-foot-right">&nbsp;</td>
+
+        </tr>
+    </tfoot>
+    <tbody>
+    
+        __PRODUCT_LIST__
+    	    
+        
+    </tbody>
+
+</table>
+<div style='float:right;'>
+<table cellspacing='0' cellpadding='0' border='0' >
+<tr>
+	  <td  align="right">
+	  <input type="button" value="Select All" onclick="return selectAll();" class="button">
+	  <input type="button" value="Select None" onclick="return selectNone();"  class="button">
+	  <input type="submit" name="SUBMIT_DELETE" value="Delete Selected" onclick="return confirmDelete();"  class="button">
+	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	   <input type="submit" name="SUBMIT_CHANGE" value="Change Selected"  class="button">
+	  <select name="Status">
+	   <option value="1">Active</option>
+	   <option value="0">Inactive</option>
+	  </select> 
+	  </td></tr>
+	  <tr>
+</table>
+</div>
+<div class="pagination">
+  <span class="disabled">__PREV_PAGE_LINK__</span>__PAGE_NAVS__&nbsp;__NEXT_PAGE_LINK__
+</div> 
+</form>

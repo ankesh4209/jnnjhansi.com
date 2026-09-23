@@ -1,0 +1,38 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.add_items)
+	{	
+        
+		
+		if(CategoryName.value=="")
+		{	
+            alert("Please enter item category name.");
+			CategoryName.focus(); 
+            return false;
+		}
+	}
+	
+}
+
+</Script>
+<table width="100%" align="left"> 
+      <tr><td> 
+         <form name="add_items" action="add_category.php" method="post" onsubmit='return checkSignUpDetails();' > 
+         <table align="left" cellspacing="4" cellpadding="4" width="100%" border="0" align="center"> 
+           <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">lkexzh dk izdkj</span> :</td>    
+            <td align="left">
+              <input type="text" name="CategoryName" size="25" ></td>   
+          </tr>
+		  
+          <tr>   
+           <td></td>   
+           <td>
+              <input type="submit" name="submit" value="submit" class="button">
+           </td>   
+          </tr>  
+        </table>  
+      </form> 
+    </td></tr>
+  </table>

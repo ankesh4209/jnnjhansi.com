@@ -1,0 +1,155 @@
+
+<script language = javascript>
+<!--
+function selectAll()
+{	with(window.document.officer)
+	{
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{	if (elements[i].type == 'checkbox')
+			{	elements[i].checked = true;
+			}
+		}		
+	}
+}
+
+function selectNone()
+{	with(window.document.officer)
+	{	 
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{	
+			if (elements[i].type == 'checkbox')
+			{	elements[i].checked = false;
+			}
+		}		
+	}
+}
+
+function checkSelected()
+{	with(window.document.officer)
+	{	totalChecked = 0; 
+		totalElements = elements.length;
+		for(i = 0; i < totalElements; i++)
+		{	
+			if (elements[i].type == 'checkbox')
+			{	if (elements[i].checked) 
+				{	totalChecked++;
+					break;
+				}
+			}
+		}		
+
+		if (totalChecked == 0)
+		{	alert("Select a items");
+			return false;
+		}
+
+		return true;
+	}
+}
+
+function confirmDelete()
+{	with(window.document.officer)
+	{	if (checkSelected())
+		{	return confirm("The selected items will be deleted. Are you sure?");
+		}
+		else
+		{	return false;
+		}
+	}
+}
+
+//-->
+</script>
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	
+  with(window.document.add)
+	{	
+    if(group_add.value=="")
+		{	
+      alert("Select Group");
+			group_add.focus(); return false;
+		}
+		if(officer.value=="")
+		{	
+      alert("Select Officer.");
+			officer.focus(); return false;
+		}
+		return true;
+	}
+	
+}
+//-->
+</Script>
+
+<br><br>
+
+<table width="100%" align="left" border="0">
+<tr>
+  <form name="add" action="group_member.php" method="POST" onsubmit='return checkSignUpDetails();'>
+  <td>
+   Officers Group : <select name="group_add">
+               <option value="">-- select --</option>
+               __groupname__
+             </select>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Officer Name : 
+               <select name="officer">
+               <option value="">-- select --</option>
+               __con_officer__
+             </select>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="submit" name="submit" value="ADD" class="button">
+  </td>
+  </form>
+ </tr>
+ <tr>
+  <td height="30">
+  <form name="officer" action="group_member.php" method="post">
+  <table border="0" cellpadding="0" cellspacing="1" align="left" width="100%"> 
+    <tr>
+     <td align="center"  bgcolor="#464682" style="text-decoration:none;color:#FFFFFF"><b>__PROMPT__</b></td>
+    </tr>
+  </table>
+ </td>
+  </tr>
+  <tr>
+  <td>
+  <table border="0" cellpadding="1" cellspacing="1" align="center"  class="tableList"> 
+  <tr>
+  <th><b>S.no.</b></th>
+   <th><b>X</b></th>
+   <th><b>Officer Name</b></th>
+   <th><b>Group</b></th>
+   <th><b>Contact No</b></th>
+  </tr>
+  __NEWS_LIST__
+  <tr>
+  <td colspan="8" align="left" height="30">
+  <input type="button" value="Select All" onclick="return selectAll();" class="button">
+  <input type="button" value="Select None" onclick="return selectNone();" class="button">
+  <input type="submit" name="SUBMIT_DELETE" value="Delete Selected" onclick="return confirmDelete();" class="button">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Search Officers Group : <select name="group">
+               <option value="">-- select --</option>
+               __groupname__
+             </select>
+        &nbsp;<input type="submit" name="SEARCH_GROUP" value="Search Group" class="button">
+  </td></tr>
+  </table>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <table align="center" width="95%" style="border-color:#FFFFFF">
+   <tr><td align="right">__PREV_PAGE_LINK__&nbsp;&nbsp;&nbsp;Pages: __PAGE_NAVS__&nbsp;&nbsp;&nbsp; __NEXT_PAGE_LINK__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+  </table> 
+</form>
+</td>
+ </tr>
+</table>

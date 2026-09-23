@@ -1,0 +1,204 @@
+<Script language=javascript>
+function checkSignUpDetails()
+{	
+   if(document.edit_servicedetails.EmployeeCode.value=="")
+	{	alert("Enter employee code.");
+		document.edit_servicedetails.EmployeeCode.focus(); 
+		return false;
+	}
+
+	
+
+}
+
+function ShowPosts(value)
+  {
+    
+	   var myRandom=parseInt(Math.random()*99999999);  // cache buster
+       makeRequest("post_id","returnposts.php?value="+value+"&rand="+myRandom); 
+	
+  
+  }
+
+
+</Script>
+<script type="text/javascript">
+$(function () {
+$("#JoinningDate").datepicker({
+changeMonth: true,
+changeYear: true,
+yearRange: '1935:2020'
+});
+});
+$(function () {
+$("#ServiceStartDate").datepicker({
+changeMonth: true,
+changeYear: true,
+yearRange: '1935:2020'
+});
+});
+$(function () {
+$("#vinimitiDate").datepicker({
+changeMonth: true,
+changeYear: true,
+yearRange: '1935:2020'
+});
+});
+$(function () {
+$("#PermanentDate").datepicker({
+changeMonth: true,
+changeYear: true,
+yearRange: '1935:2020'
+});
+});
+$(function () {
+$("#GPFStartDate").datepicker({
+changeMonth: true,
+changeYear: true,
+yearRange: '1935:2020'
+});
+});
+$(function () {
+$("#DateOfRetirement").datepicker({
+changeMonth: true,
+changeYear: true,
+yearRange: '1935:2020'
+});
+});
+$(function () {
+$("#PensionStartDate").datepicker({
+changeMonth: true,
+changeYear: true,
+yearRange: '1935:2020'
+});
+});
+</script>
+<h2 style="font-family: 'kruti_dev_010regular';font-size:20px;font-weight:bold;">lsok lEcU/kh fooj.k</h2>
+<table width="100%" align="left" border='0'>
+<form name="edit_servicedetails" action="edit_servicedetails.php" method="post" onsubmit='return checkSignUpDetails();' enctype="multipart/form-data">
+	<tr>
+	  <td><table width="100%"  border='1' cellspacing="0" cellpadding="5">
+	     <tr>
+		 <td align="center"  class="successmsg" colspan='2' style='color:#FF0000;'><b>__PROMPT__</b></td>
+		 </tr> 
+		 
+		 <tr>
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >deZpkjh dksM uEcj</span><span style='padding-left:98px;'><input type="text" name="EmployeeCode" size='23' value='__EmployeeCode__'> </td>
+		  <td width='50%' style="font-family: 'kruti_dev_010regular';font-size:20px;">lsok dk izdkj &nbsp;<span style='padding-left:120px;'><select name="JobType" style="font-family: kruti_dev_010regular;font-size:20px;"><option value='' >lsok dk izdkj pqus</option><option value="funs'kky; deZpkjh" __JT_NK__>funs'kky; deZpkjh</option><option value='e.My milaoxZ' __JT_MUS__>e.My milaoxZ</option><option value='dsUnzhf;r lsok' __JT_CS__>dsUnzhf;r lsok</option><option value='vdsUnzhf;r lsok' __JT_NCS__>vdsUnzhf;r lsok</option>
+		  <option value='LFkkbZ' __JT_P__>LFkkbZ</option><option value='vLFkkbZ' __JT_NP__>vLFkkbZ</option> </select></td>
+
+		 </tr>
+		 <tr>
+		 
+		<td width='50%' style="font-family: kruti_dev_010regular;font-size:20px;">vkj{k.k Js.kh &nbsp;<span style='padding-left:65px;'><select name="ReservedCategory" style="font-family: kruti_dev_010regular;font-size:20px;"><option value=''>vkj{k.k Js.kh pqus</option><option value='HkwriwoZ lSfud' __RC_PS__>HkwriwoZ lSfud</option><option value='Efgyk' __RC_M__>Efgyk</option><option value='LorU=rk laxzke lsukuh ds vkfJr' __RC_SSP__>LorU=rk laxzke lsukuh ds vkfJr</option><option value='LiksZVl dksVk' __RC_S__>LiksZVl dksVk</option> <option value='fodykax' __RC_H__>fodykax</option></select></td>
+		<td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >fu;qfDr  dh frfFk</span><span style='padding-left:117px;'><input type="text" name="JoinningDate" id="JoinningDate"   size='15' value='__JoinningDate__'> </td>
+		 </tr>
+		 <tr>
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >lsok izkjEHk dh frfFk</span><span style='padding-left:95px;'><input type="text" name="ServiceStartDate" id="ServiceStartDate" value="__ServiceStartDate__"> </td>
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >fu;qfDr izkf/kdkjh</span><span style='padding-left:115px;'><input type="text" name="JoinningOfficer" size='20' style="font-family: 'kruti_dev_010regular';font-size:20px;" value="__JoinningOfficer__"> </td>
+		 </tr>
+		 <tr>
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >fu;qfDr vkns’k la0@frfFk</span><span style='padding-left:50px;'><input type="text" name="JoinningOrderNo" size='20' style="font-family: 'kruti_dev_010regular';font-size:20px;" value="__JoinningOrderNo__"> </td>
+		 <td width='50%' >
+		  <span style="font-family: 'kruti_dev_010regular';font-size:20px;" >T;sBrk dzekad</span><span style='padding-left:140px;'><input type="text" name="SeniorityNo" size='20' style="font-family: 'kruti_dev_010regular';font-size:20px;" value="__SeniorityNo__">
+		  </td>
+		 </tr>
+		 <tr>
+		  
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >fofu;fefrdj.k frfFk@vkns’k</span><span style='padding-left:28px;'><input type="text" name="vinimitiDate" id="vinimitiDate"    size='20' value="__vinimitiDate__"></td>
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >foHkkx</span>&nbsp;&nbsp;<span style='padding-left:180px;'>
+		  <select  name="Department" style="font-family: 'kruti_dev_010regular';font-size:20px;">
+                <option value="">vuqHkkx pqus </option>
+                  __list_dept__
+                </select>
+		  </td>
+		 </tr>
+		 <tr>
+		  
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >LFkkbZdj.k  in</span><span style='padding-left:140px;'><input type="text" name="PermanentPost" size='20' style="font-family: 'kruti_dev_010regular';font-size:20px;" value="__PermanentPost__"> </td>
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >LFkkbZdj.k frfFk@vkns’k	</span><span style='padding-left:55px;'><input type="text" name="PermanentDate" id="PermanentDate"   size='15' value="__PermanentDate__"> </td>
+		 </tr>
+		 <tr>
+		  
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >fu;qfDr laoxZ</span>
+		  <span style='padding-left:140px;'>
+		      <select  name="samvarg" style='font-family: kruti_dev_010regular;font-size:20px;'>
+                <option value="">laoxZ pqus</option>
+                  __samvarg_list__
+                </select>
+               </span>
+		  
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >deZpkjh izd`fr</span><span style='padding-left:135px;'><input type="text" name="EmployeeNature" size='20' style="font-family: 'kruti_dev_010regular';font-size:20px;" value="__EmployeeNature__"> </td>
+		 </tr>
+		 <tr>
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >funs'kky; deZpkjh</span><span style='padding-left:110px;'><input type="text" name="nidesalaya" size='20' style="font-family: 'kruti_dev_010regular';font-size:20px;" value="__nidesalaya__">
+		  </td>
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >Js.kh</span><span style='padding-left:200px;'>
+		  <select name="shreni" style="font-family: kruti_dev_010regular;font-size:20px;" ><option value=''>Js.kh pqus</option><option value='1' __shreni1__>Js.kh&1</option><option value='2' __shreni2__>Js.kh&2</option><option value='3' __shreni3__>Js.kh&3</option><option value='4' __shreni4__>Js.kh&4</option></select> </td>
+		  
+		 </tr>
+		
+		<tr><td colspan='2'><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >fu;qfDr  in</span><span style='padding-left:150px;'>
+		      <select  name="JoinningPost" style='font-family: kruti_dev_010regular;font-size:20px;'>
+                <option value="">inuke pqus</option>
+                  __catposts__
+                </select>
+               </span>
+			  </td></tr>
+		 <tr>
+		  <td width='50%' style="font-family: 'kruti_dev_010regular';font-size:20px;">D;k fons'k lsok esa gSsa &nbsp;<input type="radio" name="ForeignService" value='gk' __FN_Y__>gk&nbsp;<input type="radio" name="ForeignService" value='ugha' __FS_N__>ugha </td>
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >oxZ ¼rduhdh deZpkjh ds fy;s½</span><input type="text" name="TechnicalCat" size='20' style="font-family: 'kruti_dev_010regular';font-size:20px;" value='__TechnicalCat__'> </td>
+		 </tr>
+		<tr>
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >osrueku</span>
+		  <span style='padding-left:170px;'>
+		  <select name="E_Salary" style="font-family: 'kruti_dev_010regular';font-size:20px;"><option value='' >osrueku pqus</option><option value='5200-20200' __sal_5__>5200&20200</option><option value='9300-34800' __sal_9__>9300&34800</option><option value='15600-39100' __sal_15__>15600&39100</option></select>
+		  </td>
+		   <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >xzsM i</span>
+		  <span style='padding-left:190px;'>
+		  <select name="GradePay" style="font-family: 'kruti_dev_010regular';font-size:20px;"><option value='' >xzsM i pqus</option>
+		  __grade_pay__
+		  </select>
+		  </td>
+		 </tr>
+		 <tr>
+		 <tr>
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >orZeku ewy osru</span><span style='padding-left:120px;'><input type="text" name="CurrentBasicPay" size='20' value="__CurrentBasicPay__"> </td>
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >osru o`f) dk ekg</span><span style='padding-left:115px;'><input type="text" name="PayIncreamentMonth" size='20' style="font-family: 'kruti_dev_010regular';font-size:20px;" value="__PayIncreamentMonth__"> </td>
+		 </tr> 
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >th0ih0,Q0 [kkrk la0</span><span style='padding-left:85px;'><input type="text" name="GPF" size='20' value="__GPF__"> </td>
+		 <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >cSad dk uke</span>
+		  <span style='padding-left:135px;'>
+		  <select name="BankName" style="font-family: 'kruti_dev_010regular';font-size:20px;"><option value='' >cSad dk uke pqus</option><option value=";wfu;u cSad vkWQ bf.M;k" __UBI__>;wfu;u cSad vkWQ bf.M;k</option><option value="iatkc us'kuy cSad" __PNB__>iatkc us'kuy cSad</option></select>
+		  </td> 
+		<!-- <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >cSad dk uke</span>
+		  <span style='padding-left:100px;'><input type="text" name="BankName" size='25' style="font-family: 'kruti_dev_010regular';font-size:20px;"></span>
+		 </tr> -->
+		  
+		
+		 
+		 <tr>
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >cSad [kkrk la0</span><span style='padding-left:140px;'><input type="text" name="BankACNo" size='20' value="__BankACNo__"> </td>
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >vk;dj LFkkbZ [kkrk la0</span><span style='padding-left:80px;'><input type="text" name="PAN" size='20' value="__PAN__"> </td>
+		</tr>  
+		 <tr>
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >th0ih0,Q0 izkjEHk frfFk</span><span style='padding-left:70px;'><input type="text" name="GPFStartDate" id="GPFStartDate"    size='15' value="__GPFStartDate__"> </td>
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >lsokfuo`Rr gksus dh frfFk</span><span style='padding-left:78px;'><input type="text" name="DateOfRetirement" id="DateOfRetirement"    size='15' value="__DateOfRetirement__"></td>
+		 </tr>
+		 <tr>
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >iSa'ku vdkmaV u0</span><span style='padding-left:120px;'><input type="text" name="PensionACNo" size='20' value="__PensionACNo__"> </td>
+		  
+		  <td width='50%' ><span style="font-family: 'kruti_dev_010regular';font-size:20px;" >iSa'ku çkjEÒ frfFk</span><span style='padding-left:105px;'><input type="text" name="PensionStartDate" id="PensionStartDate"    size='15' value="__PensionStartDate__"> </td>
+		 </tr>
+		 
+		 <tr>
+		  <td colspan='2' align='center'><input type="submit" name="submit" value="Update" class="button">&nbsp;<input type="button" name="cancel" value="Cancel" onclick='javascript:history.go(-1);'></td>
+		 </tr> 
+		 </table>
+		  </td></tr>
+		 </form>
+ </table>
+ 
+
+
+

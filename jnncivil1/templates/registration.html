@@ -1,0 +1,659 @@
+<script>
+function checkFormData(){
+   if(document.registration.ContractorName.value==''){
+     alert('Please enter contractor name.');
+     document.registration.ContractorName.focus();
+	 return false;
+   }
+   if(document.registration.Phone.value==''){
+     alert('Please enter phone no.');
+     document.registration.Phone.focus();
+	 return false;
+   }
+   if(document.registration.Email.value==''){
+     alert('Please enter email Id.');
+     document.registration.Email.focus();
+	 return false;
+   }
+}
+</script>
+ <form name="registration" method="post" action="registration.php" enctype="multipart/form-data" onsubmit='return checkFormData()';>
+		<table width="100%" border="0" cellspacing="5" cellpadding="5">
+          <tr>
+            <td colspan="4" align="center"><span style="font-family: 'kruti_dev_010regular';font-size:25px;font-weight:bold;">>k¡lh uxj fuxe] >k¡lh</span></td>
+          </tr>
+		  <tr>
+            <td colspan="4" align="center"><span style="font-family: 'kruti_dev_010regular';font-size:25px;font-weight:bold;">flfoy dk;Z gsrq </span></td>
+          </tr>
+		  <tr>
+            <td colspan="4" align="center"><span style="font-family: 'kruti_dev_010regular';font-size:20px;font-weight:bold;"><input type='hidden' name='rdo_Registrationtype' value='Registration' >iathdj.k&nbsp;<!-- <!-- <input type='radio' name='rdo_Registrationtype' value='Renewal' >&nbsp; uohuhdj.k gsrq 	o’kZ --> <select name="panjikaranyear" style="width:90px;">
+	<option value="2008-2009">2008-2009</option>
+	<option value="2009-2010">2009-2010</option>
+	<option value="2010-2011">2010-2011</option>
+	<option value="2011-2012">2011-2012</option>
+	<option selected="selected" value="2012-2013">2012-2013</option>
+	<option value="2013-2014">2013-2014</option>
+	<option value="2014-2015">2014-2015</option>
+	<option value="2015-2016">2015-2016</option>
+	<option value="2016-2017">2016-2017</option>
+	<option value="2017-2018">2017-2018</option>
+
+</select>
+ ds fy;s</span></td>
+          </tr>
+		  <tr>
+            <td colspan="4" align="center" style='color:red;'>__PROMPT__</td>
+          </tr>
+		  <tr>
+            <td colspan="4" align="center"><span style="font-family: 'kruti_dev_010regular';font-size:25px;font-weight:bold;">vkosnu i=</span></td>
+          </tr>
+          <tr>
+            <td width="15%">&nbsp;</td>
+            <td width="1%">&nbsp;</td>
+            <td width="35%">&nbsp;</td>
+            <td width="20%">&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="right"></td>
+            <td>&nbsp;</td>
+            <td><label for="textfield"><b>1.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">vkosnd dk uke@QeZ dk uke</span></label>
+            <input type="text" name="ContractorName" id="ContractorName" value='__ContractorName__' style="font-family: 'kruti_dev_010regular';font-size:15px;"size='50'/></td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		   <tr>
+		     <td>&nbsp;</td><td>&nbsp;</td>
+              <td colspan='2'><table>
+			      <tr>
+				    <td align="right"><label for="textfield"><b>2.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">irk</span></label></td>
+                    <td>&nbsp;</td>
+                    <td>
+                        <textarea rows='4' cols='30' name="pata" id="pata" style="font-family: 'kruti_dev_010regular';font-size:15px;">__pata__</textarea></td>
+                    <td>&nbsp;</td>
+					<td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">Qksu ua0</span></td>
+                    <td>&nbsp;</td>
+                    <td><label for="textfield"></label>
+                        <input type='text' name="Phone" value='__Phone__'id="Phone" /></td>
+                    <td>&nbsp;</td>
+					<td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">bZ&esy</span></td>
+                    <td>&nbsp;</td>
+                    <td><label for="textfield"></label>
+                        <input type='text' name="Email" id="Email" value='__Email__'/></td>
+                    <td>&nbsp;</td>
+
+					</tr>
+			  </table></td>
+			
+          </tr>
+		  <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  
+		  <tr>
+		      <td>&nbsp;</td><td>&nbsp;</td>
+              <td colspan='2'><table>
+			      <tr>
+				    <td align="right"><b>3.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">jk’Vªh;rk</span></td>
+                    <td>&nbsp;</td>
+                    <td><label for="textfield"></label>
+                        <input type='text' name="rastriyata" id="rastriyata" value="__rastriyata__" style="font-family: 'kruti_dev_010regular';font-size:15px;"/></td>
+                    <td>&nbsp;</td>
+					<td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">tkfr</span></td>
+                    <td>&nbsp;</td>
+                    <td><label for="textfield"></label>
+                        <input type='text' name="jati" id="jati" value="__jati__" style="font-family: 'kruti_dev_010regular';font-size:15px;"/></td>
+                    <td>&nbsp;</td>
+					<td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">/keZ</span></td>
+                    <td>&nbsp;</td>
+                    <td><label for="textfield"></label>
+                        <input type='text' name="dharm" id="dharm" value="__dharm__" style="font-family: 'kruti_dev_010regular';font-size:15px;"/></td>
+                    <td>&nbsp;</td>
+
+					</tr>
+			  </table></td>
+		  </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="right"></td>
+            <td>&nbsp;</td>
+            <td><b>4.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span><label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">LokfeRo@ikVZujf”ki&MhM ¼”kiFk i= layXu djsa½</span></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">¼</span><input type='radio' name='rdo_shapathpatra' value='yes'><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">layXu gS</span>&nbsp;&nbsp;<input type='radio' name='rdo_shapathpatra' value='no' checked><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">ugha g½</span>&nbsp;<input type='file' name='shapathpatra'></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><b>A.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">izksijkbVj dk uke</span>&nbsp;<input type="text" name="propwriter" value="__propwriter__" style="font-family: 'kruti_dev_010regular';font-size:15px;"/></td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><b>B.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">izksijkbVj dk LFkk;h irk ¼Qksu ua0 lfgr½</span>&nbsp;<textarea rows='3' cols='35' name="propwritersthaipata" style="font-family: 'kruti_dev_010regular';font-size:15px;"/>__propwritersthaipata__</textarea></td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left" colspan='2'><b>C.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">izksijkbVj dk i= O;ogkj dk irk ¼Qksu ua0 lfgr½</span>&nbsp;<textarea rows='3' cols='35' name="propwriterpatrapata" style="font-family: 'kruti_dev_010regular';font-size:15px;"/>__propwriterpatrapata__</textarea></td>
+            
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><b>D.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">ikVZulZ ds uke o irs ¼Qksu ua0 lfgr½</span>&nbsp;<textarea rows='3' cols='35' name="propwriterpartner" style="font-family: 'kruti_dev_010regular';font-size:15px;"/>__propwriterpartner__</textarea></td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><b>5.</b>&nbsp;&nbsp;<label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">gSfl;r izek.k i= ¼ftykf/kdkjh }kjk iznRr izek.k&i= layXu djsa½</span></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">¼</span><input type='radio' name='rdo_hashiyatpramanpatra' value='yes'><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">layXu gS</span>&nbsp;&nbsp;<input type='radio' name='rdo_hashiyatpramanpatra' value='no' checked><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">ugha g½</span>&nbsp;<input type='file' name='hashiyatpramanpatra'></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><b>A.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">gSfl;r dh /kujkf”k ¼:i;k esa½</span>&nbsp;<input type="text" name="hashiyatkirashi" value='__hashiyatkirashi__'/></td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><b>B.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">gSfl;r ds vuqlkj Js.kh</span>&nbsp;
+			<select name='hashiyatkishreni'><option value='E'>E</option><option value='D'>D</option><option value='C'>C</option><option value='B'>B</option><option value='A'>A</option></select>
+			</td>
+            <td>&nbsp;</td>
+          </tr>
+           <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><b>6.</b>&nbsp;<label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">uohure pfj= izek.k i= ¼ftykf/kdkjh }kjk iznRr izek.k i= layXu djsa½</span></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">¼</span><input type='radio' name='rdo_newcharitrapramanpatra' value='yes'><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">layXu gS</span>&nbsp;&nbsp;<input type='radio' name='rdo_newcharitrapramanpatra' value='no' checked><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">ugha g½</span>&nbsp;<input type='file' name='newcharitrapramanpatra'></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><input type='radio' name='rdo_howoldnewcharitrapramanpatra' value='6' checked><b>6</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">ekg iqjkuk</span>&nbsp;&nbsp;<input type='radio' name='rdo_howoldnewcharitrapramanpatra' value='12'><b>1</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">o’kZ iqjkuk</span>&nbsp;&nbsp;<input type='radio' name='rdo_howoldnewcharitrapramanpatra' value='24'><b>2</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">o’kZ iqjkuk</span>&nbsp;&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">¼mDr esa dksbZ ,d pfj= izek.k i= izLrqr djuk vfuok;Z gS½</span></td>
+            <td>&nbsp;</td>
+          </tr>
+		   <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><b>7.</b>&nbsp;<label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">vk;dj foHkkx ls fiNys o’kZ Dys;jsal lfVZfQdsV ¼vkbZ0Vh0lh0½</span></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">¼</span><input type='radio' name='rdo_itccirtificate' value='yes'><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">layXu gS</span>&nbsp;&nbsp;<input type='radio' name='rdo_itccirtificate' value='no' checked><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">ugha g½</span>&nbsp;<input type='file' name='itccirtificate'></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><b>A.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">isu dkMZ ua0</span>&nbsp;<input type="text" name="pancardno" value='__pancardno__'/></td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><b>B.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">vk;dj fjVuZ dh /kujkf”k ¼:i;k esa½</span>&nbsp;<input type="text" name="aaykarreturnrashi" value='__aaykarreturnrashi__'/></td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><b>C.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">vk;dj fjVuZ dh izkfIr fnukad</span>&nbsp;<input type="text" name="aaykarreturndate"  value='__aaykarreturndate__' placehoder='DD/MM/YYYY'/></td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">¼isu dkMZ dh Nk;kizfr o izek.k i= layXu djuk vfuok;Z gSA½</span></td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><b>8.</b>&nbsp;<label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">QeZ dk dksbZ ikVZuj vFkok mlds fudV dk dksbZ fj”rsnkj uxj fuxe] >k¡lh uxj fuxe] >k¡lh esa dk;Zjr gS vFkok ugha bl vk”k; dk “kiFk i= nsuk vfuok;Z gSA</span></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">¼</span><input type='radio' name='rdo_firmristedar' value='yes'><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">layXu gS</span>&nbsp;&nbsp;<input type='radio' name='rdo_firmristedar' value='no' checked><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">ugha g½</span>&nbsp;<input type='file' name='firmristedar'></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><b>A.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">dk;Zjr fj”rsnkj dk uke</span>&nbsp;<input type="text" name="ristedarname" value="__ristedarname__" style="font-family: 'kruti_dev_010regular';font-size:15px;"/></td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><b>B.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">dk;Zjr fj”rsnkj dk inuke</span>&nbsp;<input type="text" name="ristedarpadname" value="__ristedarpadname__" style="font-family: 'kruti_dev_010regular';font-size:15px;"/></td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><b>C.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">dk;Zjr fj”rsnkj dk irk ¼Qksu ua0 lfgr½</span>&nbsp;<textarea rows='3' cols='30' name="ristedarpata" style="font-family: 'kruti_dev_010regular';font-size:15px;">__ristedarpata__</textarea></td>
+            <td>&nbsp;</td>
+          </tr>
+		 
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><b>9.</b>&nbsp;<label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">QeZ vFkok mldk dksbZ ikVZuj ds fo:) dh x;h dk;Zokgh dk fooj.k</span></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td colspan='2'><label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">¼</span><input type='radio' name='rdo_firmagainstkarywahi' value='yes'><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">layXu gS</span>&nbsp;&nbsp;<input type='radio' name='rdo_firmagainstkarywahi' value='no' checked><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">ugha g½</span>&nbsp;<input type='file' name='firmagainstkarywahi'></label>
+            &nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left" colspan='2'><b>A.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">dkyh lwph ds lEcU/k esa QeZ@ikVZuj dk uke</span>&nbsp;<input type="text" name="kalisuchifirmname" value="__kalisuchifirmname__" style="font-family: 'kruti_dev_010regular';font-size:15px;"/>&nbsp;&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">foHkkx dk uke</span>&nbsp;<input type="text" name="kalisuchifirmvibhag" value="__kalisuchifirmvibhag__" style="font-family: 'kruti_dev_010regular';font-size:15px;"/></td>
+            
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">dk;Zokgh dk dkj.k</span>&nbsp;<textarea rows='3' cols='40' name="kalisuchikaran"  style="font-family: 'kruti_dev_010regular';font-size:15px;"/>__kalisuchikaran__</textarea></td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left" colspan='2'><b>B.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">fMckj fd;s tkus ds lEcU/k esa QeZ@ikVZuj dk uke</span>&nbsp;<input type="text" name="dibarfirmname" value="__dibarfirmname__" style="font-family: 'kruti_dev_010regular';font-size:15px;"/>&nbsp;&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">foHkkx dk uke</span>&nbsp;<input type="text" name="dibarfirmvibhag" value="__dibarfirmvibhag__" style="font-family: 'kruti_dev_010regular';font-size:15px;"/></td>
+            
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">dk;Zokgh dk dkj.k</span>&nbsp;<textarea rows='3' cols='40' name="dibarkaran"  style="font-family: 'kruti_dev_010regular';font-size:15px;"/>__dibarkaran__</textarea></td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left" colspan='2'><b>C.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">;fn vFkZn.M vfHk;ksftr gqvk gS rks QeZ@ikVZuj dk uke</span>&nbsp;<input type="text" name="arthdandfirmname" value="__arthdandfirmname__" style="font-family: 'kruti_dev_010regular';font-size:15px;"/>&nbsp;&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">foHkkx dk uke</span>&nbsp;<input type="text" name="arthdandfirmvibhag" value="__arthdandfirmvibhag__" style="font-family: 'kruti_dev_010regular';font-size:15px;"/></td>
+            
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">dk;Zokgh dk dkj.k</span>&nbsp;<textarea rows='3' cols='40' name="arthdandkaran"  style="font-family: 'kruti_dev_010regular';font-size:15px;"/>__arthdandkaran__</textarea></td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">¼mDr ds izek.k i= layXu djuk vfuok;Z gS ;fn ,slh fLFkfr ugha gS rks “kiFk i= nsuk vfuok;Z gksxk½</span></td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><b>10.</b>&nbsp;<label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">QeZ ds nks bathfu;j dk fooj.k</span></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td colspan='2'><b>1.</b>&nbsp;<label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">uke</span><input type='text' name='firmEngName1' value="__firmEngName1__" style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">irk</span><input type='text' name='firmEngPata1' value="__firmEngPata1__" style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">Qksu ua0</span><input type='text' name='firmEngPhone1' value='__firmEngPhone1__'>&nbsp;&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">bZ&esy vkbZ0Mh0</span><input type='text' name='firmEngEmail1' value='__firmEngEmail1__'>&nbsp;&nbsp;</label>
+            &nbsp;</td>
+            
+          </tr>
+		  <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td colspan='2'><b>2.</b>&nbsp;<label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">uke</span><input type='text' name='firmEngName2' value="__firmEngName2__" style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">irk</span><input type='text' name='firmEngPata2' value="__firmEngPata2__" style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">Qksu ua0</span><input type='text' name='firmEngPhone2' value='__firmEngPhone2__'>&nbsp;&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">bZ&esy vkbZ0Mh0</span><input type='text' name='firmEngEmail2' value='__firmEngEmail2__'>&nbsp;&nbsp;</label>
+            &nbsp;</td>
+            
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><b>11.</b>&nbsp;<label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">QeZ ds dk;Z bathfu;j@LVkQ dk fooj.k</span></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">¼</span><input type='radio' name='rdo_fu_stoff' value='yes'><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">layXu gS</span>&nbsp;&nbsp;<input type='radio' name='rdo_fu_stoff' value='no' checked><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">ugha g½</span>&nbsp;<input type='file' name='fu_stoff'></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left" colspan='2'><b>A.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">dk;Zjr lgk;d vfHk;Urk dh la[;k</span>&nbsp;<input type="text" name="sahayakno" value='__sahayakno__'/>&nbsp;&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">voj vfHk;Urk dh la[;k</span>&nbsp;<input type="text" name="ourno" value='__ourno__'></td>
+           
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left" colspan='2'><b>B.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">dk;Zjr lqijokbtj dh la[;k</span>&nbsp;<input type="text" name="supervisorno" value='__supervisorno__'/>&nbsp;&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">esV dh la[;k</span>&nbsp;<input type="text" name="metno" value='__metno__'/></td>
+            </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left" colspan='2'><b>C.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">vU; rduhdh LVkQ</span>&nbsp;<input type="text" name="anyano" value='__anyano__'/>&nbsp;&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">csynkjksa dh la[;k</span>&nbsp;<input type="text" name="ourno" value='__ourno__'/></td>
+            
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><span style="font-family:kruti_dev_010regular;font-size:15px;font-weight:bold;">¼bathfu;j LVkQ dk vgZrk izek.k i= o fu;qfDr izek.k&i= layXu djsa½</span></td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		   <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><b>12.</b>&nbsp;<label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">xr rhu foRrh; o’kkZsa esa fd;s x;s fuekZ.k@fuekZ.k@fodkl dk;kZsa dh lR;kfir lwph</span></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td colspan='2'><label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">¼</span><input type='radio' name='rdo_vikashkarya' value='yes'><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">layXu gS</span>&nbsp;&nbsp;<input type='radio' name='rdo_vikashkarya' value='no' checked><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">ugha g½</span>&nbsp;<input type='file' name='vikashkarya'></label>
+            &nbsp;</td>
+            </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td colspan='2' align="left"><b>A.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">ljdkjh foHkkx dk uke fMohtu dk fooj.k</span>&nbsp;<input type="text" name="sarkarivibhagvivaran" value="__sarkarivibhagvivaran__" style="font-family: 'kruti_dev_010regular';font-size:15px;"/>&nbsp;&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">rFkk /kujkf”k ¼:i;k esa½</span>&nbsp;<input type="text" name="sarkarivibhagrashi" value="__sarkarivibhagrashi__"/></td>
+            
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left" colspan='2'><b>B.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">ekU;rk izkIr laLFkk dk uke fMohtu dk fooj.k</span>&nbsp;<input type="text" name="manyatasansthavivaran" value="__manyatasansthavivaran__" style="font-family: 'kruti_dev_010regular';font-size:15px;"/>&nbsp;&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">rFkk /kujkf”k ¼:i;k esa½</span>&nbsp;<input type="text" name="manyatasanstharashi" value="__manyatasanstharashi__"/></td>
+            
+          </tr>
+		  <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><b>13.</b>&nbsp;<label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">vuqHko izek.k&i= ¼;fn dks gks rks layXu djsa½</span></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">¼</span><input type='radio' name='rdo_anubhavpramarpatra' value='yes'><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">layXu gS</span>&nbsp;&nbsp;<input type='radio' name='rdo_anubhavpramarpatra' value='no' checked><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">ugha g½</span>&nbsp;<input type='file' name='anubhavpramarpatra'></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		   <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><b>14.</b>&nbsp;<label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">ekfQ;k xfrfof/k;ksa ij jksd yxkus ls lEcfU/kr “kklukns”k o’kZ 2007 ds vuq:i okafNr “kiFk&i= layXu djuk vfuok;Z gS</span></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">¼</span><input type='radio' name='rdo_mafiyashapathpatra' value='yes'><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">layXu gS</span>&nbsp;&nbsp;<input type='radio' name='rdo_mafiyashapathpatra' value='no' checked><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">ugha g½</span>&nbsp;<input type='file' name='mafiyashapathpatra'></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr> 
+          <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><b>1.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">eqdnek ua0</span>&nbsp;<input type="text" name="mukadma" value="__mukadma__" style="font-family: 'kruti_dev_010regular';font-size:15px;"/>&nbsp;&nbsp;2.<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">/kkjk;s</span>&nbsp;<input type="text" name="dhara" value="__dhara__"/></td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><b>3.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">Fkkuk</span>&nbsp;<input type="text" name="thana" value="__thana__" style="font-family: 'kruti_dev_010regular';font-size:15px;"/>&nbsp;&nbsp;4.<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">tuin</span>&nbsp;<input type="text" name="janpad" value="__janpad__" style="font-family: 'kruti_dev_010regular';font-size:15px;"/></td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><b>5.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">U;k;y; tgka eqdnek py jgk gS</span>&nbsp;<input type="text" name="nyayalay" value="__nyayalay__" style="font-family: 'kruti_dev_010regular';font-size:15px;"/></td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><b>6.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">izkIr ltk dk fooj.k</span>&nbsp;<textarea rows='3' cols='40' name="sajavivaran"  style="font-family: 'kruti_dev_010regular';font-size:15px;"/>__sajavivaran__</textarea></td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="left"><b>7.</b>&nbsp;<span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">tsy esa fu:) jgus dh vof/k</span>&nbsp;<input type="text" name="sajaavadhi" value="__sajaavadhi__"/></td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		   <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><b>15.</b>&nbsp;<label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">iathdj.k izi= ds ewY; dh jlhn dh izfr layXu djuk vfuok;Z gSA</span></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">¼</span><input type='radio' name='rdo_panjikaranrashid' value='yes'><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">layXu gS</span>&nbsp;&nbsp;<input type='radio' name='rdo_panjikaranrashid' value='no' checked><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">ugha g½</span>&nbsp;<input type='file' name='panjikaranrashid'></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>  
+		  <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">eSus@geus iathdj.k uohudj.k gsrq fu/kkZfjr fu;eksa o “krksZa tks fd lkFk eSa layXu gS dks /;kuiwoZd i<+ fy;k gS rFkk vkosnu i= esa fn;k x;k fooj.k iw.kZr;k lgh gS] blesa dksbZ Hkh RkF; fNik;k ugh x;k gSA ;fn dksbZ rF; xyr ik;k x;k rks esjk iathdj.k foHkkx fujLr dj ldrk gSA bl ij eq>s dksbZ vkifRr ugh gksxhA eSa@ge lHkh fu;eksa o “krksZa dk ikyu djus ds fy;s lg’kZ lger gwaA</span></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		   <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">ikliksVZ lkbZt QksVk</span>&nbsp;<input type='file' name='photo'></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right"><span style="font-family: 'kruti_dev_010regular';font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td><label for="textfield"><span style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;">uewuk gLrk{kj</span>&nbsp;<input type='file' name='signature'></label>
+            &nbsp;</td>
+            <td>&nbsp;</td>
+          </tr> 
+		  <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td align="right"><span style="font-family:kruti_dev_010regular;font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td>
+            &nbsp;</td>
+            <td><label for="textfield"><span style="font-family:kruti_dev_010regular;font-size:15px;font-weight:bold;">uke</span>&nbsp;<input type='text' name='name' value="__name__" style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;"></label></td>
+          </tr>
+		  <tr>
+            <td align="right"><span style="font-family:kruti_dev_010regular;font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td>
+            &nbsp;</td>
+            <td><label for="textfield"><span style="font-family:kruti_dev_010regular;font-size:15px;font-weight:bold;">irk</span>&nbsp;<input type='text' name='address' value="__address__" style="font-family: 'kruti_dev_010regular';font-size:15px;font-weight:bold;"></label></td>
+          </tr>
+		  <tr>
+            <td align="right"><span style="font-family:kruti_dev_010regular;font-size:15px;">&nbsp;</span></td>
+            <td>&nbsp;</td>
+            <td>
+            &nbsp;</td>
+            <td><label for="textfield"><span style="font-family:kruti_dev_010regular;font-size:15px;font-weight:bold;">fnukad</span>&nbsp;<input type='text' name='date' value="__date__" placeholder='DD/MM/YYYY'></label></td>
+          </tr>
+		  <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+		  <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align='center'><input type='submit' name='submit' value='Submit'></td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+		</form>

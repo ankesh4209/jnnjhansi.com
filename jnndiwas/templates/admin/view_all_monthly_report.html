@@ -1,0 +1,73 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	
+  with(window.document.search)
+	{	
+   
+		if(sdate.value=="")
+		{	
+      alert("Enter From Date.");
+			sdate.focus(); return false;
+		}
+		return true;
+	}
+	
+}
+//-->
+</Script>
+<br>
+<table border="0" cellpadding="1" cellspacing="1" align="left" width="100%">
+ <tr>
+  <td>
+  <form name="search" action="monthly_reports.php" method="POST" onsubmit='return checkSignUpDetails();'>
+  <table border="0" cellpadding="4" cellspacing="4" align="left">
+   <tr>
+    <td>
+     Department :
+     <select name="nature">
+      <option value="">-- Select Department--</option> 
+      <option value="1000">All</option> 
+      __c_nature__
+     </select>
+    
+     
+	 </td>
+  </tr>
+     <tr>
+	<td>
+	From Date :<input id="demo3" name="sdate" type="text" size="10"><a href="javascript:NewCal('demo3','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+     &nbsp;&nbsp;&nbsp;&nbsp; To Date :<input id="demo4" name="edate" type="text" size="10"><a href="javascript:NewCal('demo4','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+     &nbsp;&nbsp;&nbsp;<input type="submit" name="search" value="Search" class="button">
+     
+     
+    </td>
+   </tr>
+  </table>
+</form>
+</td>
+</tr>
+<tr>
+<td>
+<table width="100%" align="left">
+  __PROMPT__
+  <tr>
+  <td>
+  <table border="1" cellpadding="2" cellspacing="2" align="left" width="95%"> 
+  <tr><td height="35" valign="middle" colspan="6"><b>__officer_text__</b> &nbsp;&nbsp;&nbsp;<b> __sdate_text__</b> &nbsp;&nbsp;&nbsp;<b> __edate_text__</b></td></tr>
+   <tr>
+ 
+   <th align="center"><span style="font-size:14px;">Department</span></th>
+   <th align="center"><span style="font-size:14px;">Total</span></th>
+   <th align="center"><span style="font-size:14px;">Pending</span></th>
+   <th align="center"><span style="font-size:14px;">Disposed</span></th>
+     </tr> 
+   __complain_list__
+  </table>
+  </td>
+  </tr>
+
+</table>
+</td>
+</tr>
+</table>

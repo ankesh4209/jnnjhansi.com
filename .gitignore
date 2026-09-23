@@ -1,0 +1,34 @@
+# Database Dumps (Do not push 60MB+ database dumps with sensitive credentials to GitHub)
+*.sql
+*.sql.gz
+mysql-backup-*/
+
+# Heavy PDF Archives (2.1+ GB of scanned documents/receipts that exceed GitHub limits)
+docs/
+jnncivil/payment/
+templates/common/*.pdf
+
+# Obsolete Flash Files
+*.swf
+
+# Temporary, Logs and Server Garbage
+error_log
+*/error_log
+.htaccess.lock*
+.htaccess.phpupgrader*
+php.ini.*
+500.shtml
+*.lnk
+yui
+mailer.txt
+states.php
+.smileys/
+
+# Backup and Duplicate Files
+*.bak
+*old.php
+*old.css
+*before.php
+index061013.php
+citizen_charter221113.php
+citizen_charter22222.php

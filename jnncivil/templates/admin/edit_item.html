@@ -1,0 +1,65 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.edit_items)
+	{	
+        if(ItemName.value=="")
+		{	
+            alert("Please enter item name.");
+			ItemName.focus(); 
+            return false;
+		}
+
+		if(Unit.value=="")
+		{	
+            alert("Please enter item unit.");
+			Unit.focus(); 
+            return false;
+		}
+
+		if(Rate.value=="")
+		{	
+            alert("Please enter item Rate.");
+			Rate.focus(); 
+            return false;
+		}
+
+	}
+	
+}
+
+</Script>
+<table width="100%" align="left"> 
+      <tr><td> 
+         <form name="edit_items" action="edit_item.php" method="post" onsubmit='return checkSignUpDetails();' > 
+         <table align="left" cellspacing="4" cellpadding="4" width="100%" border="0" align="center"> 
+            <td height="40">
+      <a href='#'><b>Edit Item Information</b></a>
+     </td>
+    </tr>
+		   <tr>    
+            <td  width="220" ><span >Item Name</span> :</td>    
+            <td align="left">
+              <textarea type="text" name="ItemName" rows='3' cols='40'>__ItemName__</textarea></td>   
+          </tr>
+		  <tr>    
+            <td  width="220" ><span >Unit</span> :</td>    
+            <td align="left">
+              <input type="text" name="Unit" value="__Unit__" size="25" ></td>   
+          </tr>
+		  <tr>    
+            <td  width="220" ><span >Rate</span> :</td>    
+            <td align="left">
+              <input type="text" name="Rate" value="__Rate__" size="25" ></td>   
+          </tr>
+          <tr>   
+           <td></td>   
+           <td>
+		      <input type='hidden' name='RateId' value='__RateId__'>
+              <input type="submit" name="submit" value="submit" class="button">&nbsp;<input type="button" name="cancel" value="Cancel" class="button" onclick="javascript:history.go(-1);">
+           </td>   
+          </tr>  
+        </table>  
+      </form> 
+    </td></tr>
+  </table>

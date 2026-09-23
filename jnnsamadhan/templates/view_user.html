@@ -1,0 +1,131 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.MemberLoginForm)
+	{	if(username.value=="")
+		{	alert("Enter Username");
+			username.focus(); return false;
+		}
+		
+		if(password.value=="")
+		{	alert("Enter Password");
+			password.focus(); return false;
+		}
+		return true;
+	}
+}
+//-->
+</Script>
+
+<Script language=javascript>
+<!--
+function SearchDetails()
+{	with(window.document.search)
+	{	
+		if(cno.value=="" && contactno.value=="" && tdate.value=="")
+		{	
+      alert("Please enter Complaint No or Contact No or Date");
+			cno.focus(); return false;
+		}
+		return true;
+	}
+}
+//-->
+</Script>
+<tr>
+            <td align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="202" align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <!--<tr>
+                    <td align="left" valign="top" class="bor"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td colspan="2" class="red">Site Search</td>
+                        </tr>
+                      <tr>
+                        <td colspan="2" class="pad">
+                        <form action="search.php" method="GET">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td width="81%"><input type="text" name="comp" class="in"/></td>
+                            <td width="19%">&nbsp;</td>
+                            <td width="19%"><input type="submit" value="go !" class="go" /></td>
+                          </tr>
+                        </table>
+                        </form>
+                        </td>
+                        </tr>
+                      
+                      
+                    </table></td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                  </tr>-->
+                  <tr>
+                    <td class="bor"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td class="red">Login for Administrator/ Operator</td>
+                      </tr>
+                      <tr>
+                        <td align="left" valign="top" class="pad1">
+                        <form name="MemberLoginForm" action="admin/index.php" method="POST" onsubmit='return checkSignUpDetails();'>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td class="black">User Name</td>
+                          </tr>
+                          <tr>
+                            <td><input type="text" name="username" class="in"/></td>
+                          </tr>
+                          <tr>
+                            <td class="black">Password</td>
+                          </tr>
+                          <tr>
+                            <td><input type="password" name="password" class="in"/></td>
+                          </tr>
+                          <tr>
+                            <td><input type="submit" name="submit" value="submit" class="sub" /></td>
+                          </tr>
+                        </table>
+                        </form>
+                        </td>
+                      </tr>
+                    </table></td>
+                  </tr>
+                </table></td>
+                <td align="left" valign="top" class="left"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td align="left" valign="top">
+                    <form name="search" action="search.php" method="POST" onsubmit='return SearchDetails();'>
+                     <table width="100%" border="0" cellspacing="3" cellpadding="3" bgcolor="#FFFFFF">
+                      <tr> 
+                       <td width="160">Complainant Name :</td>
+                       <td><input type="text" name="cname"></td>
+                      </tr>
+                      <tr> 
+                       <td>Complaint No :</td>
+                       <td><input type="text" name="cno"></td>
+                      </tr>
+                      <tr> 
+                       <td>Contact No :</td>
+                       <td><input type="text" name="contactno"></td>
+                      </tr>
+                      <tr> 
+                       <td>Date :</td>
+                       <td><input id="demo3" name="tdate" type="text" size="10"><a href="javascript:NewCal('demo3','ddmmyyyy')"><img src="imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a></td>
+                      </tr>
+                      <tr>
+                       <td></td>
+                       <td><input type="submit" name="submit" value="Search"></td>
+                      </tr>
+                     </table>
+                     </form>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                  </tr>
+                </table></td>
+              </tr>
+            </table></td>
+          </tr>
+          

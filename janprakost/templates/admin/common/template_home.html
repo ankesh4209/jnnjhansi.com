@@ -1,0 +1,254 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="hi">
+<head>
+<title></title>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1" />
+<meta http-equiv="Content-Language" content="en">
+  <link type="text/css" rel="stylesheet" href="../css/style-sheet.css" />
+  <link type="text/css" rel="stylesheet" href="../css/admin.css" />
+  <link type="text/css" rel="stylesheet" href="../css/datepickercontrol.css" />
+
+  <script src="../js/tabcontent.js" type="text/javascript" language="javascript"></script>
+  <script src="../js/datetimepicker.js" type="text/javascript" language="javascript"></script>
+<script src="../js/ajax.js" type="text/javascript" language="javascript"></script>
+
+
+<style>
+body{margin:5px 5px 5px 5px;padding:0px;background-color: #810300;}
+li, ul, td, input, textarea, select,Div,th{	font-family:Verdana,Arial, Helvetica, sans-serif;
+	font-size: 11px;color:#000000;text-decoration:none;}
+th{font-weight:bold;}
+th select{font-weight:normal;}
+a:link, a:active, a:visited{color:#096EC3;text-decoration:underline;}
+a:hover{color:#096EC3;	text-decoration:none;}
+.prompt{		color:#ff0000;		text-decoration:none;}
+/**************Outer table Structure**************/
+#outerDiv{width:994px;border:0px solid red;overflow:hidden;text-align:left;height:100%;}
+/**************Header Structure**************/
+#header{overflow:hidden;text-align:left;border-bottom:3px solid #79c24c;height:98px;
+background-color:#ffffff;}
+/***************Logo Class**************/
+.paddinglogo{margin-top:15px;margin-left:15px;}
+/***************Footer Structure******************/
+#footer{border-top:3px solid #79c24c;text-align:center;height:20px;}
+/***************Middle Content Structure**********************/
+#middlecontent{height:300px;}
+.centercontent{padding:0px 0px 10px 6px;text-align:left;}
+/********************Page Headings**************/
+.mainheadingpadding{padding-bottom:20px;text-align:left;}
+.headingofpage{color:#C38E59;font-size:18px;}
+/*****************************************/
+.welcomemessage{border-bottom:1px solid gray;
+margin-bottom:5px;padding-top:4px;font-size:13px;color:#111A46;font-weight:bold;
+text-align:right;height:25px;}
+.bordertop{border-top:1px solid gray;}
+.tableborders{background-color:#5f9a3b;width:99%;}
+.tablebordersbottomrow{border-right:1px solid #ACA9A6;border-left:1px solid #ACA9A6;
+border-bottom:1px solid #ACA9A6;}
+.tableborders .ltTR{background-color:#FFFFFF;}
+.tableborders .ltrTR{background-color:#EFEEEC;}
+.tableborders th{background-color:#;text-align:left;color:#FFFFFF;}
+.centerborder{border-left:1px dotted gray;}
+.searchbox{text-align:right;padding-top:15px;padding-bottom:5px;}	
+.searchbox form{padding:0;margin:0;}	
+.centerbar{background:url(../images/centerbar.gif) repeat-y center;}
+.quicklinks td{font-size:13px;font-weight:bold;font-family:Verdana;line-height:22px;
+text-decoration:underline;}
+.quicklinks a:link,.quicklinks a:active,.quicklinks a:visited,.quicklinks a:hover
+{font-size:12px;font-weight:normal;font-family:Verdana;text-decoration:none;
+}
+
+/****************Form Classes***********************/
+.formDiv{text-align:center;width:95%;float:right;}
+.formclass{margin:0;text-align:center;overflow:hidden;}
+.formclass label,.formclass input,.formclass textarea,.formclass select
+{	display: block;	float: left;	margin-bottom: 10px;}
+.formclass label
+{	text-align: left;	padding-right: 2px;	padding-left: 2px;	color:#2C2C2C;}
+.formclass label
+{	margin-top:3px;	margin-right:2px;	margin-left:2px;}
+.formclass input,.formclass textarea,.formclass select{	color:#2C2C2C;}
+.formclass .labelmedium {	width: 120px;}
+.formclass .labelmediumbig {	width: 142px;}
+.formclass .labelmediumsmall {	width: 112px;}
+.formclass .labelsmall {	width: 90px;}
+.formclass .bigtextfield{	width: 220px;}
+.formclass .biggesttextfield{	width: 320px;}
+.formclass .normaltextfiled{	width: 153px;}
+.formclass .selectcategory{	width: 153px;}
+.formclass br {
+	clear: left;
+}
+.loginformwidth
+{
+width:280px;
+}
+.formclass .button,.button
+{
+	border:1px solid #AA6A2B;
+	color:#000000;
+	background:#c3ae93;
+	margin-right:4px;
+	padding:0px 2px 0px 2px;
+}
+
+.formouterDiv
+{
+width:99%;clear:both;
+border:0px solid red;
+overflow:hidden;
+}
+
+.formleftDiv
+{
+width:100%;float:left;text-align:left;border-right:0px dotted gray;
+}
+
+
+
+.formRightDiv
+{width:48%;float:right;text-align:left;
+}
+
+.navigationlinks
+{
+padding-top:5px;padding-bottom:5px;text-align:right;
+}
+
+.navigationlinks a.active:link,.navigationlinks a.active:visited,.navigationlinks a.active:active,.navigationlinks a.active:hover
+{
+text-decoration:none;
+border:1px solid gray;
+padding:0px 2px 0px 2px;
+background-color:#E9E7E7;
+color:#000000;
+font-weight:bold;
+}
+
+.navigationlinks a:link,.navigationlinks a:visited,.navigationlinks a:active,.navigationlinks a:hover
+{
+text-decoration:none;
+border:1px solid gray;
+padding:0px 2px 0px 2px;
+background-color:#ffffff;
+color:#000000;
+}
+
+.navigationlinks a.normalclass:link,.navigationlinks a.normalclass:visited,.navigationlinks a.normalclass:active,.navigationlinks a.normalclass:hover
+{
+text-decoration:none;
+border:0px solid gray;
+color:#000000;
+text-decoration:none;
+}
+
+a.logoutlink:link,a.logoutlink:active,a.logoutlink:visited,a.logoutlink:hover
+{
+font-size:12px;
+font-weight:normal;
+text-decoration:none;
+}
+/****************Menu Classes**********/
+.menu a:link,.menu a:active,.menu a:visited,.menu a:hover
+{
+text-decoration:none;
+font-size:12px;
+color:#ffffff;
+font-weight:bold;
+}
+
+.menu
+{
+width:23%;background-color:#5d9a39;padding-left:5px;padding-right:5px;
+}
+
+.menu ul
+{
+padding:0;margin:0;
+}
+
+.menu ul li
+{
+padding-top:6px;list-style-type:none;color:#ffffff;font-size:13px;font-weight:bold;
+}
+
+.submenu
+{
+padding:0;margin:0;
+
+}
+
+.submenu li
+{
+margin-left:5px;
+
+}
+.submenu a:link,.submenu a:active,.submenu a:visited
+{
+text-decoration:none;
+font-size:11px;
+color:#d2d8ea;
+font-weight:normal;
+}
+.submenu a:hover
+{
+text-decoration:underline;
+font-size:11px;
+color:#d2d8ea;
+font-weight:normal;
+}
+.tblBorder{background-color:#000000;}
+
+
+
+.tableList
+{width:100%;background:#cccccc}
+
+.tableList th{background:#eeeeee;text-align:center;}
+.tableList td{background:#ffffff;}
+
+.tableForm{margin-left:50px;}
+.inpText,
+{width:200px;}
+.select
+{width:100px;}
+.txtArea{width:200px;height:50px;}
+.tandc{width:390px;}
+
+</style>
+
+</head>
+<body>
+
+<!--  top bar   -->
+<table width="100%" border="0">
+<tr>
+ <td>
+  __TOPBAR__
+ </td>
+</tr>
+<!-- middle part --->
+<tr>
+ <td>
+<table border="0" cellspacing="0" cellpadding="0" width="100%" align="center" >
+<tr>
+	<td width="220" valign="top" class="bg">
+   __LEFTBAR__
+  </td>
+  
+	<td valign="top" bgcolor="#FFFFCC" style="padding:0px 20px 0px 20px;">
+   __PAGE_CONTENTS__
+  </td>
+</tr>
+</table>
+</td>
+</tr>
+
+<!-- bottom bar  -->
+<tr>
+ <td>
+ __BOTTOMBAR__
+ </td>
+</tr>
+</table>
+</body>
+</html>

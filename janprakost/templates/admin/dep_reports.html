@@ -1,0 +1,97 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	
+  with(window.document.search)
+	{	
+    if(city.value=="")
+		{	
+      alert("Select City");
+			city.focus(); return false;
+		}
+		if(sdate.value=="")
+		{	
+      alert("Enter From Date.");
+			sdate.focus(); return false;
+		}
+		return true;
+	}
+	
+}
+//-->
+</Script>
+<br>
+<table border="0" cellpadding="1" cellspacing="1" align="left" width="100%">
+ <tr>
+  <td>
+  <form name="search" action="dep_reports.php" method="POST" onsubmit='return checkSignUpDetails();'>
+  <table border="0" cellpadding="4" cellspacing="4" align="left">
+   <tr>
+    <td>
+     Department :
+     <select name="nature">
+      <option value="">-- Select Department--</option> 
+      <option value="1000">All</option>
+      __c_nature__
+     </select>
+     &nbsp;&nbsp;
+     Status :
+     <select name="status"> 
+      <option value="1000">All</option>
+      <option value="1">Complete</option>
+      <option value="0">Pending</option>
+     </select>
+     
+	 </td>
+
+
+          
+     </tr>
+     <tr>
+	
+     <td>
+	  Complaint Mode:&nbsp;&nbsp;<select name="cmode">
+            <option value="">-- select mode--</option>
+            <option value="Phone">Phone</option>
+            <option value="Fax">Fax</option>
+           <option value="Newspaper">Newspaper</option>
+           <option value="Television">Television</option>
+           <option value="Tehsil Diwas">Tehsil Diwas</option>
+           <option value="JJSK">JJSK</option>
+           <option value="Other">Other</option>
+          </select>  &nbsp;&nbsp;
+     From Date :<input id="demo3" name="sdate" type="text" size="10"><a href="javascript:NewCal('demo3','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+     &nbsp;&nbsp;&nbsp;&nbsp; To Date :<input id="demo4" name="edate" type="text" size="10"><a href="javascript:NewCal('demo4','ddmmyyyy')"><img src="../imges/cal.gif" width="16" height="16" border="0" alt="Pick a date"></a>
+     &nbsp;&nbsp;&nbsp;<input type="submit" name="search" value="Search" class="button">
+    </td>
+   </tr>
+  </table>
+</form>
+</td>
+</tr>
+<tr>
+<td>
+<table width="100%" align="left">
+  __PROMPT__
+  <tr>
+  <td>
+  <table border="1" cellpadding="2" cellspacing="2" align="left" width="95%"> 
+  <tr><td height="35" valign="middle" colspan="7"><b>__officer_text__</b> &nbsp;&nbsp;&nbsp;<b> __sdate_text__</b> &nbsp;&nbsp;&nbsp;<b> __edate_text__</b></td></tr>
+  <tr>
+  <th align="center" width='5%'>S.NO.</th>
+  <th align="center" width='5%'>COMP.NO.</th>
+   <th align="center"><span style="font-family:Kruti Dev 011;font-size:14px;">f'kdk;rdrkZ dk uke</span></th>
+   <th align="center"><span style="font-family:Kruti Dev 011;font-size:14px;">f'kdk;rdrkZ dk irk</span></th>
+   <th align="center"><span style="font-family:Kruti Dev 011;font-size:14px;">VsyhQksu ua0</span></th>
+   <th align="center"><span style="font-family:Kruti Dev 011;font-size:14px;">f'kdk;r lkjka'k</span></th>
+   <th align="center"><span style="font-family:Kruti Dev 011;font-size:14px;">f'kdk;r dk ek?;e</span></th>   
+  </tr>
+   __complain_list__
+  </table>
+  </td>
+  </tr>
+
+</table>
+</td>
+</tr>
+</table>

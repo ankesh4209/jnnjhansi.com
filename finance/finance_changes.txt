@@ -1,0 +1,36 @@
+
+
+
+
+
+DKS : Create master for  work description and show in addmaddata page + addpayamt(after mad name) to save....
+      add one more filed after mad amt... interest amount
+
+
+4) pay amount page addpayamt page
+------------------
+
+  add a drop-down for work description (kis work ke liye)
+
+  dhekedaar ke naam change to => (firm /company name ) Lebel only 
+
+
+  jaama rashi it should => bugtaan amount 
+
+  paid date - bhugtaan date
+
+
+
+
+4) Interest  field should be added  
+
+==========================================================
+5) total amount = amount in bank + interest amount
+
+
+6) mad name and bank name combination should be unique. 
+
+
+
+
+

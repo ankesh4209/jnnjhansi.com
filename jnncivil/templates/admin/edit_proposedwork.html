@@ -1,0 +1,101 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.edit_proposedwork)
+	{	
+        if(WardNo.value=="")
+		{	
+            alert("Please enter ward no.");
+			WardNo.focus(); 
+            return false;
+		}
+		
+		if(WorkName.value=="")
+		{	
+            alert("Please enter work name.");
+			WorkName.focus(); 
+            return false;
+		}
+	}
+	
+}
+
+</Script>
+<script type="text/javascript">
+$(function () {
+$("#AddedDate").datepicker({
+changeMonth: true,
+changeYear: true,
+yearRange: '2012:2014'
+});
+});
+</script>
+
+<table width="100%" align="left"> 
+      <tr><td> 
+         <form name="edit_proposedwork" action="edit_proposedwork.php" method="post" onsubmit='return checkSignUpDetails();' > 
+         <table align="left" cellspacing="4" cellpadding="4" width="100%" border="0" align="center"> 
+           <tr>
+     <td height="40" colspan='2'>
+      <a href='#'><b>Edit Proposed Work Information</b></a>
+     </td>
+    </tr>
+		   
+		  <tr>    
+            <td width='20%'><span style="font-family: 'kruti_dev_010regular';font-size:15px;">okMZ Uka0</span> :</td>    
+            <td align="left">
+              <input type="text" name="WardNo" value='__WardNo__' size="5" ></td>   
+            </td>   
+          </tr>
+		   <tr>    
+            <td   ><span style="font-family: 'kruti_dev_010regular';font-size:15px;"> IkzLrkod</span> :</td>    
+            <td align="left">
+              <input type="text" name="ProposerName" size="50" value='__ProposerName__' style="font-family: 'kruti_dev_010regular';font-size:15px;"></td>   
+          </tr>
+		   <tr>    
+            <td   ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">dk;Z dk uke</span> :</td>    
+            <td align="left">
+              <textarea name='WorkName' rows='3' cols='40' style="font-family: 'kruti_dev_010regular';font-size:15px;">__WorkName__</textarea></td>   
+          </tr>
+		   <tr>    
+            <td   ><span style="font-family: 'kruti_dev_010regular';font-size:15px;"> vkx.ku /kuakd</span> :</td>    
+            <td align="left">
+              <input type="text" name="EstimatedAmount" size="5" value='__EstimatedAmount__'></td>   
+          </tr>
+		  <tr>    
+            <td width='20%'><span style="font-family: 'kruti_dev_010regular';font-size:15px;">voj vfHk;Urk </span> :</td>    
+            <td align="left">
+              __JEofficers__
+            </td>   
+          </tr>
+		  <tr>    
+            <td width='20%'><span style="font-family: 'kruti_dev_010regular';font-size:15px;">Lkgk;d vfHk;Urk </span> :</td>    
+            <td align="left">
+              __AEofficers__
+            </td>   
+          </tr>
+		  <tr>    
+            <td width='20%'><span style="font-family: 'kruti_dev_010regular';font-size:15px;">vf/k'kklh vfHk;Urk</span> :</td>    
+            <td align="left">
+              __EXnofficers__
+            </td>   
+          </tr>
+		  <tr>    
+            <td width='20%'><span style="font-family: 'kruti_dev_010regular';font-size:15px;">eq[; vfHk;Urk</span> :</td>    
+            <td align="left">
+              __CEofficers__
+            </td>   
+          </tr>
+		  <tr><td  ><span  style="font-family: 'kruti_dev_010regular';font-size:15px;">IkzLrkfor dk;Z frfFk</span>&nbsp;:</td><td align='left'><span><input type="text" name="AddedDate" id="AddedDate"  value='__ProposedWorkDate__' size='15' readonly></td></tr>
+		  <tr><td>&nbsp;</td></tr>
+		  
+		  <tr>   
+           <td></td>   
+           <td><input type='hidden' name='ProposedId' value='__ProposedId__'>
+              <input type="submit" name="submit" value="Submit Proposed Work" class="button">
+           </td>   
+          </tr>  
+        </table>  
+      </form> 
+    </td></tr>
+  </table>

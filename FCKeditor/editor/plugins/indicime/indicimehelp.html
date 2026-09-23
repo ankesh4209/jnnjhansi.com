@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta content="noindex, nofollow" name="robots" />
+	<script src="../../dialog/common/fck_dialog_common.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+var dialog	= window.parent ;
+var oEditor = dialog.InnerDialogLoaded() ;
+var dialogArguments = dialog.Args() ;
+var script = oEditor.FCKToolbarItems.GetItem('indicime')._Combo.Label.toLowerCase();
+if (script=="&nbsp;")
+	script = 'english';
+dialog.AddTab( 'Typing Help', 'Typing Help' ) ;
+dialog.AddTab( 'About', 'About' ) ;
+
+function OnDialogTabChange( tabCode )
+{
+	ShowE( 'divType', ( tabCode == 'Typing Help' ) ) ;
+	ShowE( 'divAbout', ( tabCode == 'About' ) ) ;
+}
+
+function OnLoad()
+{
+	oEditor.FCKLanguageManager.TranslatePage( document ) ;
+	dialog.SetSelectedTab( 'Typing Help' ) ;
+}
+</script>
+</head>
+<body onload="OnLoad()" style="overflow: hidden">
+	<div id="divType" style="display: none">
+		<table cellspacing="3" cellpadding="2" width="100%" border="0">
+			<tr>
+				<td>
+					<label for="txtFindFind" fcklang="DlgIndicIMEDescription">
+						This plugin is used for typing easily into Indian language. It follows 'The way you speak, the way you write' rule. Following image shows which character will be shown by pressing which corresponding English letter. Example for various combination of letters are given only for first Indic language character but it is true for each alphabet. Use <b>F12</b> to toggle between Indian language and English</label>
+					<img src="" alt="Indic char map" id="indicmap"/>
+					<script language="javascript">
+						document.getElementById("indicmap").src = oEditor.FCKConfig.PluginsPath + 'indicime/img/' + script + 'charmap.png'
+					</script>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div id="divAbout" style="display:none">
+		<table cellspacing="3" cellpadding="2" width="100%" border="0">
+			<tr>
+				<td>
+					<label fcklang="DlgIndicIMEAboutDescription">
+						<p>Version: 2.5.1</p><p>FCKEditor Supported Version: 2.x, 3.x</p><p>IndicIME plugin is a platform independent web based Indian language typing utility derived from <a href="http://www.vishalon.net/IndicResources/PramukhLib.aspx" target="_blank">PramukhLib</a> javascript library. Currently it supports Bengali(Assamese, Bengali, Manipuri), Devanagari(Hindi, Marathi, Nepali, Sanskrit), Gujarati, Gurmukhi(Punjabi), Kannada, Malaylam, Oriya, Tamil and Telugu script. It is developed by <b><a href="http://www.vishalon.net" target="_blank">Vishal Monpara</a></b>. Please visit the website to get latest version of this plugin as well as other Indian language resources.</p><p>For detailed instruction on typing, please visit <a href="http://www.vishalon.net/IndicResources/TypingTips.aspx"  target="_blank">Indian Language Typing Tips</a></p><p>Copyright &copy; Vishal Monpara</p></label>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

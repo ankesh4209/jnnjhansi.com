@@ -1,0 +1,55 @@
+<Script language=javascript>
+
+</Script>
+<script type="text/javascript">
+$(function () {
+$("#AddedDate").datepicker({
+changeMonth: true,
+changeYear: true,
+yearRange: '2012:2020'
+});
+});
+</script>
+
+<table width="100%" align="left"> 
+      <tr><td> 
+         <form name="add_items" action="add_tender.php" method="post" onsubmit='return checkSignUpDetails();' > 
+         <table align="left" cellspacing="4" cellpadding="4" width="100%" border="0" align="center"> 
+           <tr>
+     <td height="40">
+      <a href='#'><b>Enter Tender Information</b></a>
+     </td>
+    </tr>
+		   <tr>    
+            <td ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">dk;Z dk uke</span> :</td>    
+            <td align="left">
+              __Workname__
+            </td>   
+          </tr>
+		    <tr>    
+            <td  width="220" ><span style="font-family: 'kruti_dev_010regular';font-size:15px;">Bsdsnkj dk uke </span> :</td>    
+            <td align="left">
+              __ContractorList__</td>   
+          </tr>
+		  <tr>    
+            <td  width="220" ><span >Rate (%)</span> :</td>    
+            <td align="left">
+              <input type="text" name="Rate" size="25"  ></td>   
+          </tr>
+		   <tr>    
+            <td  width="220" ><span >Sanctioned Amount</span> :</td>    
+            <td align="left">
+              <input type="text" name="Amount" size="25" ></td>   
+          </tr>
+		  
+		  <tr><td  ><span  >Tender Sanctioned Date</span>:</td><td align='left'><span><input type="text" name="AddedDate" id="AddedDate"   size='15' readonly> </td></tr>
+          <tr>   
+           <td></td>   
+           <td>
+              <input type="submit" name="submit" value="submit" class="button">
+           </td>   
+          </tr>  
+        </table>  
+      </form> 
+    </td></tr>
+  </table>

@@ -1,0 +1,121 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	
+  with(window.document.addofficer)
+	{	
+   if(offcode.value=="")
+		{	alert("Enter Officer Code");
+			offcode.focus(); return false;
+		}
+		if(offdesi.value=="")
+		{	alert("Enter Officer Designation");
+			offdesi.focus(); return false;
+		}
+		if(department.value=="")
+		{	
+      alert("Enter Department");
+			department.focus(); return false;
+		}
+		if(offname.value=="")
+		{	
+      alert("Enter Officer Name");
+			offname.focus(); return false;
+		}
+		 if(address.value=="")
+		{	alert("Enter Address");
+			address.focus(); return false;
+		}
+		
+		 if(contact.value=="")
+		{	alert("Enter Contact No");
+			contact.focus(); return false;
+		}
+			//if(validatePhoneNumber(contact.value))
+		//{
+		  //alert("Contact No. should be 10 digits");
+			//contact.focus(); return false;
+    //}
+
+		return true;
+	}
+	
+}
+ function validatePhoneNumber(elementValue)
+ {
+  var phoneNumberPattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+  if(phoneNumberPattern.test(elementValue)==false){
+  return true;  
+ }else{ return false;}
+}
+
+function checknumber(str)
+{
+ 
+//  var alpha = /^([a-zA-Z0-9_-]+)$/;
+ var text = /^([a-zA-Z]+)$/;
+   if(text.test(str)==false){
+     return false;
+   }else{ return true;}
+}
+
+
+
+//-->
+</Script>
+<table width="100%" align="left"> 
+  <tr>  
+    <td height="30">  
+      <table border="0" cellspacing="0" cellpadding="0" width="96%" align="left">  	
+        <tr>  		
+          <td height="30" valign="middle"><b>Add Officer Record
+              </b</td>  	
+        </tr>  
+      </table>  </td>  
+  </tr>  
+  <tr>  <td>  
+      <form name="addofficer" action="add_conofficer.php" method="post" onsubmit='return checkSignUpDetails();'>  
+        <table align="left" cellspacing="5" cellpadding="5" width="98%" border="0" align="center">       
+          <tr>    
+            <td width="170" >Department <br>(<span style="font-family:Kruti Dev 011;font-size:13px;">foHkkx</span>):</td>    
+            <td align="left">
+             <select name="s_officer">
+              <option>----select-----</option>
+              __s_officerlist__
+             </select>
+            </td>    
+          </tr>
+          <tr>    
+            <td width="130" >Officer Code<br>(<span style="font-family:Kruti Dev 011;font-size:13px;">vf?kdkjh dksM</span>):</td>    
+            <td align="left"><input type="text" name="offcode" size="30"></td>   
+          </tr>
+          <tr>    
+            <td width="170" >Officer  Designation <br>(<span style="font-family:Kruti Dev 011;font-size:13px;">vf?kdkjh dk in</span>):</td>    
+            <td align="left"><input type="text" name="offdesi" size="30"></td>   
+          </tr>
+          <tr>    
+            <td width="110" >Officer  Name <br>(<span style="font-family:Kruti Dev 011;font-size:13px;">vf?kdkjh dk uke</span>):</td>    
+            <td align="left"><input type="text" name="offname" size="30"></td>   
+          </tr>
+          <tr>    
+            <td width="110" >Address <br>(<span style="font-family:Kruti Dev 011;font-size:13px;">vf?kdkjh dk irk</span>):</td>    
+            <td align="left"><input type="text" name="address" size="30"></td>   
+          </tr> 
+          <tr>    
+            <td width="110" >Email:</td>    
+            <td align="left"><input type="text" name="email" size="30"></td>   
+          </tr>
+          <tr>    
+            <td width="110" valign="top">Mobile No <br>(<span style="font-family:Kruti Dev 011;font-size:13px;">eksckbZy ua0</span>):</td>    
+            <td align="left"><input type="text" name="contact" size="30"></td>   
+          </tr>        
+          <tr>   
+           <td></td>   
+           <td>
+              <input type="submit" name="submit" value="submit" class="button">
+          </td>   
+          </tr>  
+        </table>  
+      </form> </td> 
+  </tr>
+</table>
