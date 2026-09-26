@@ -17,14 +17,7 @@ $cid=$_GET['cid'];
 $query="select * from municipal_comm where Comm_Id='$cid'";
 $db->query($query);
 $rows = $db->fetch_array();
-if($_SERVER['SERVER_NAME']=='localhost')
-  {
-	  $c_image="<img src='/jnnweb/c_images/".$rows['Comm_Photo']."' width='302' height='177'>";
-  }
-  else
-  {
-		$c_image="<img src='/c_images/thumbs/".$rows['Comm_Photo']."' width='302' height='177'>";
-  }
+$c_image="<img src='c_images/thumbs/".$rows['Comm_Photo']."' style='max-width:100%; height:auto; border-radius:8px;'>";
 
 $Comm_Name=$rows['Comm_Name'];
 $Comm_Desc=$rows['Comm_Desc'];

@@ -39,15 +39,7 @@ function Getpagecontent($db)
 			while($rows = $db->fetch_array())
 			{
 			 
-			    if($_SERVER['SERVER_NAME']=='localhost')
-				{
-			   $pagecontent.="<td width='30%' align='center'> <li><a href='/jnnweb
-			   /pic/thumb/thumb_".$rows['photo_name']."' title='gallery' ><img src='/jnnweb/pic/thumb/".$rows['photo_name']."' ></a></li></td>";
-				}
-				else
-				{
-					$pagecontent.="<td width='30%' align='center'> <li><a href='/pic/thumb/thumb_".$rows['photo_name']."' title='gallery' ><img src='/pic/thumb/".$rows['photo_name']."' ></a></li></td>";
-				}
+			    $pagecontent.="<td width='30%' align='center'> <li><a href='pic/thumb/thumb_".$rows['photo_name']."' title='gallery' ><img src='pic/thumb/".$rows['photo_name']."' style='max-width:180px; height:120px; object-fit:cover; border-radius:8px;' ></a></li></td>";
 			   $i++;
 			   if($i==4)
 				{

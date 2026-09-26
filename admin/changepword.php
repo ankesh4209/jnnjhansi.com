@@ -20,10 +20,14 @@ include("../phplib/data.constant.php");
 $db=new DbConnect($DB_HOST, $DB_USERNAME, $DB_PASSWORD, $DB_NAME, $DB_REPORT_ERROR, $DB_PERSISTENT_CONN);
 $db->open() or die($db->error());
 
-if($_POST["submit"]!='')
+if(isset($_POST["submit"]) && $_POST["submit"]!='')
  {
     changepassword($db);
-    $MESSAGE="Password Change Sucessfully.";
+    $MESSAGE = "<div class='admin-alert alert-success'>✅ Password has been changed successfully!</div>";
+ }
+else
+ {
+    $MESSAGE = "";
  }
 
 $class1="leftab_off";
@@ -41,7 +45,7 @@ $TEMPLATE		= ReadTemplate("../$TEMPLATE_DIR/admin/common/template_home.html");
 $BOTTOMBAR		= ReadTemplate("../$TEMPLATE_DIR/admin/common/bottombar.html");
 $TOPBAR      = ReadTemplate("../$TEMPLATE_DIR/admin/common/topbar.html");
 
-ReplaceContent(Array("TOPBAR", "BOTTOMBAR", "PAGE_CONTENTS", "TEMPLATE"));
+ReplaceContent(Array("TOPBAR", "BOTTOMBAR", "PAGE_CONTENTS", "TEMPLATE", "MESSAGE"));
 print $TEMPLATE;
 flush();
 
@@ -51,7 +55,7 @@ function changepassword($db)
 
   $password=md5($_POST['password']);
 	$query="update login set password ='$password' where l_id ='1'";
-	mysql_query($query);
+	$db->query($query);
 	
 }
 

@@ -83,11 +83,11 @@ function ViewTenders($db)
 			
 		 if($page > 0)
 			{	$prevpage=$page - $MAX;
-				$PREV_PAGE_LINK="<<a href='notice.php?page=$prevpage&max=$MAX&$next_links' >Prev</a>";
+				$PREV_PAGE_LINK="<<a href='e_newsletter.php?page=$prevpage&max=$MAX&$next_links' >Prev</a>";
 			}
 			
 			if($TOTAL_RECORDSET > $lastrow)
-			{	$NEXT_PAGE_LINK="<a href='notice.php?page=$lastrow&max=$MAX&$next_links' >Next></a>";
+			{	$NEXT_PAGE_LINK="<a href='e_newsletter.php?page=$lastrow&max=$MAX&$next_links' >Next></a>";
 			}
 							
 			$PAGE_NAVS="";
@@ -100,7 +100,7 @@ function ViewTenders($db)
 				}
 				else
 				{	
-          $PAGE_NAVS.=" <a href='notice.php?page=$i&max=$MAX&left_id=1&$next_links' >$toPrint</a> |";
+          $PAGE_NAVS.=" <a href='e_newsletter.php?page=$i&max=$MAX&left_id=1&$next_links' >$toPrint</a> |";
 				}
 				$TOTAL_PAGES=$toPrint;
 			}

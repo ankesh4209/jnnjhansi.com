@@ -1,50 +1,24 @@
-  
-    <!-- Arquivos utilizados pelo jQuery lightBox plugin -->
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/jquery.lightbox-0.5.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/jquery.lightbox-0.5.css" media="screen" />
-    <!-- / fim dos arquivos utilizados pelo jQuery lightBox plugin -->
-    
-    <!-- Ativando o jQuery lightBox plugin -->
-    <script type="text/javascript">
-    $(function() {
-        $('#gallery a').lightBox();
-    });
-    </script>
-   	<style type="text/css">
-	/* jQuery lightBox plugin - Gallery style */
-	#gallery {
-		background-color: #444;
-		padding: 10px;
-		width: 520px;
-	}
-	#gallery ul { list-style: none; }
-	#gallery ul li { display: inline; }
-	#gallery ul img {
-		border: 5px solid #3e3e3e;
-		border-width: 5px 5px 20px;
-	}
-	#gallery ul a:hover img {
-		border: 5px solid #fff;
-		border-width: 5px 5px 20px;
-		color: #fff;
-	}
-	#gallery ul a:hover { color: #fff; }
-	</style>
-<table width="680px" border="0" cellspacing="0" cellpadding="0">
-			  <tr>
-			  	<td colspan="2" align="left" valign="top">
-					<h2 class="home_cont"><img src="images/content_header_img.png" alt="" align="absmiddle" />
-					Photo Gallery</h2>
-					<p>&nbsp;</p>
-					<div id="gallery">
-					<ul>
-						
-						__pagecontent__
-					</ul>
-					</td>
-			  </tr>
-			</table>
-		  </td>
-        </tr>
- </table>
+<div>
+  <div style="margin-bottom: 24px;">
+    <h2 style="font-size: 24px; font-weight: 800; color: var(--primary); margin: 0 0 6px 0;">
+      Photo Gallery
+    </h2>
+    <p style="color: var(--text-muted); font-size: 14px; margin: 0;">
+      Glimpses of Jhansi city heritage, municipal development projects, civic events, and smart city works.
+    </p>
+  </div>
+
+  <div id="gallery" style="background:#FFFFFF; padding:0; width:100%;">
+    <style>
+      #gallery table { width: 100% !important; border-collapse: separate; border-spacing: 14px; }
+      #gallery td { vertical-align: middle; background: #FAFCFE; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px; transition: var(--transition); }
+      #gallery td:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: #BFDBFE; }
+      #gallery img { border: none !important; border-radius: var(--radius-sm); margin: 0 auto; }
+      #gallery ul { list-style: none; margin: 0; padding: 0; }
+      #gallery li { display: block; margin: 0; padding: 0; }
+    </style>
+    <ul>
+      __pagecontent__
+    </ul>
+  </div>
+</div>

@@ -1,12 +1,56 @@
-<table width="680px" border="0" cellspacing="0" cellpadding="0">
-			  <tr>
-			  	<td colspan="2" align="left" valign="top">
-					<h2 class="home_cont"><img src="images/content_header_img.png" alt="" align="absmiddle" />
-					Feedback</h2>
-					__pagecontent__
-					</td>
-			  </tr>
-			</table>
-		  </td>
-        </tr>
- </table>
+<div>
+  <div style="margin-bottom: 24px;">
+    <h2 style="font-size: 24px; font-weight: 800; color: var(--primary); margin: 0 0 6px 0;">
+      Citizen Feedback &amp; Suggestions
+    </h2>
+    <p style="color: var(--text-muted); font-size: 14px; margin: 0;">
+      Your suggestions help Jhansi Nagar Nigam enhance municipal operations, road development, and civic amenities.
+    </p>
+  </div>
+
+  <div style="background: #FAFCFE; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 28px; max-width: 640px;">
+    <form action="" method="post" onsubmit="alert('Thank you for your valuable feedback! Your submission has been recorded.'); return false;">
+      <div class="portal-form-group">
+        <label class="portal-form-label">Full Name</label>
+        <input type="text" name="name" class="portal-form-input" placeholder="Enter your full name" required>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div class="portal-form-group">
+          <label class="portal-form-label">Mobile Number</label>
+          <input type="tel" name="mobile" class="portal-form-input" placeholder="10-digit mobile number" required>
+        </div>
+        <div class="portal-form-group">
+          <label class="portal-form-label">Email Address</label>
+          <input type="email" name="email" class="portal-form-input" placeholder="yourname@domain.com">
+        </div>
+      </div>
+
+      <div class="portal-form-group">
+        <label class="portal-form-label">Feedback Category</label>
+        <select name="category" class="portal-form-input">
+          <option value="sanitation">Sanitation &amp; Garbage Collection</option>
+          <option value="roads">Roads &amp; Civil Works</option>
+          <option value="lighting">Street Lighting (मार्ग प्रकाश)</option>
+          <option value="tax">Property Tax &amp; Revenue</option>
+          <option value="parks">Parks &amp; City Beautification</option>
+          <option value="general">General Suggestion</option>
+        </select>
+      </div>
+
+      <div class="portal-form-group">
+        <label class="portal-form-label">Your Suggestion / Feedback</label>
+        <textarea name="feedback" class="portal-form-textarea" rows="4" placeholder="Please describe your suggestion or feedback in detail..." required></textarea>
+      </div>
+
+      <button type="submit" class="btn-portal-submit">
+        <span>Submit Feedback</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+      </button>
+    </form>
+  </div>
+
+  <div style="margin-top: 20px;">
+    __pagecontent__
+  </div>
+</div>

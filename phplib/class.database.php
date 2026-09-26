@@ -46,6 +46,15 @@ Class DbConnect
 		 	print "Cannot select Database: ". $this->database;
 		 	return false; 
 		 } 
+
+		 // Auto-populate global site settings across all portal pages
+		 $sq = @mysqli_query($this->conn, "SELECT setting_key, setting_value FROM site_settings");
+		 if ($sq) {
+		 	while ($srow = @mysqli_fetch_assoc($sq)) {
+		 		$GLOBALS[$srow['setting_key']] = $srow['setting_value'];
+		 	}
+		 }
+
 		return true; 
 	}  
 	
@@ -112,5 +121,13 @@ Class DbConnect
 	function insert_id() {
 		return(@mysqli_insert_id($this->conn)); 
 	} 
+
+	/* Escape String for SQL safety */
+	function escape_string($str) {
+		if ($this->conn) {
+			return mysqli_real_escape_string($this->conn, $str);
+		}
+		return addslashes($str);
+	}
 } 
 ?>

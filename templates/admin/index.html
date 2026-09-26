@@ -1,44 +1,49 @@
-       <table width="100%" border="0" cellspacing="0" cellpadding="0"  align="center" height="400">
-              <tr valign="top">
-                <td>
-                <form name="login" action="index.php" method="POST" onload="document.login.uname.value.focus();">
-                 <table width="60%" border="0" cellspacing="4" cellpadding="4" valign="top" align="center">
-                 <tr>
-                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                 </tr>
-                  <tr>
-                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                 </tr>
-                 
-                 
-                 
-                    <tr>
-                      <td align="center" colspan="2"><b>Admin Login</b></td>
-                    </tr>
-                     <tr>
-                      <td align="center" colspan="2">__PROMPT__</td>
-                    </tr>
-                    <tr>
-                      <td width="36%" align="right">USER NAME:</td>
-                      <td width="64%" ><input type="text" name="uname" />
-                      </td>
-                    </tr>
-                    
-                    <tr>
-                      <td align="right">PASSWORD:</td>
-                      <td><input type="password" name="password" /></td>
-                    </tr>
-                   
-                    <tr>
-                       <td></td>
-                       <td><input type="submit" name="submit" value="submit" /></td>
-                    </tr>
-                   
-                    
-                </table></td>
-              </tr>
-              </form>
-            </table>
-            
+<div class="admin-login-card">
+  <!-- Brand Emblem -->
+  <div style="text-align: center; margin-bottom: 20px;">
+    <div style="width: 80px; height: 80px; background: #FFFFFF; border-radius: 50%; padding: 4px; box-shadow: 0 4px 14px rgba(0,0,0,0.15); display: inline-block;">
+      <img src="../images/logo.png" alt="Jhansi Nagar Nigam" width="72" height="72" style="border-radius: 50%;" />
+    </div>
+  </div>
+
+  <h1 class="login-title">झाँसी नगर निगम</h1>
+  <div style="font-size: 13px; font-weight: 700; color: #F47721; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">
+    Jhansi Nagar Nigam
+  </div>
+  <p class="login-subtitle">
+    Administrative Control &amp; Portal Management
+  </p>
+
+  <!-- Login Error Prompt if any -->
+  <div style="color: #DC2626; font-size: 13px; font-weight: bold; margin-bottom: 15px; text-align: center;">
+    __PROMPT__
+  </div>
+
+  <form name="login" action="index.php" method="POST">
+    <div class="login-field-group">
+      <label class="login-field-label">Username</label>
+      <div style="position: relative;">
+        <input type="text" name="uname" class="login-input" placeholder="Enter administrator username" required autofocus autocomplete="username" />
+      </div>
+    </div>
+
+    <div class="login-field-group" style="margin-bottom: 24px;">
+      <label class="login-field-label">Password</label>
+      <div style="position: relative;">
+        <input type="password" name="password" class="login-input" placeholder="Enter admin password" required autocomplete="current-password" />
+      </div>
+    </div>
+
+    <button type="submit" name="submit" value="submit" class="btn-login-submit" style="background: #F47721; color: #FFFFFF; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;">
+      <span>Sign In to Admin Portal</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </button>
+  </form>
+
+  <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #E2E8F0; display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+    <a href="../index.php" style="color: #64748B; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
+      &larr; Back to Main Website
+    </a>
+    <span style="color: #94A3B8;">Secure SSL Login</span>
+  </div>
+</div>

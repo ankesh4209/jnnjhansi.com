@@ -1,0 +1,29 @@
+<tr bgcolor="#FFFFFF" onmouseover="this.style.backgroundColor='#F3F4F6'" onmouseout="this.style.backgroundColor='#FFFFFF'" style="border-bottom: 1px solid #E5E7EB;">
+  <td align="center">
+    <input type="checkbox" name="sid[]" value="__service_id__" />
+  </td>
+  <td align="left">
+    <strong style="color: #12365A;">__service_title__</strong><br>
+    <a href="__service_link__" target="_blank" style="color: #64748B; font-size: 11px;">__service_link__</a>
+  </td>
+  <td align="center" style="font-size: 11px;">
+    <span style="background: #E2E8F0; padding: 2px 6px; border-radius: 3px; font-weight: 600;">__service_category__</span>
+  </td>
+  <td align="left" style="font-size: 12px; color: #4B5563;">
+    __service_subtitle__
+  </td>
+  <td align="center">
+    __service_home__
+  </td>
+  <td align="center">
+    __service_sort__
+  </td>
+  <td align="center">
+    __service_status__
+  </td>
+  <td align="center">
+    <a href="edit_service.php?sid=__service_id__" style="color: #0284C7; font-weight: bold; text-decoration: none;">[Edit]</a>
+    &nbsp;|&nbsp;
+    <a href="services_info.php?action=del&del_id=__service_id__" onclick="return confirm('Are you sure you want to delete this service?');" style="color: #DC2626; font-weight: bold; text-decoration: none;">[Delete]</a>
+  </td>
+</tr>

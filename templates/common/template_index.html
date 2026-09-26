@@ -1,35 +1,60 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jhansi Nagar Nigam - Official Portal | झाँसी नगर निगम</title>
 
-<title>Jhansi Nagar Nigam</title>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/scripts.js"></script>
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<link href="css/slide.css" rel="stylesheet" type="text/css" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <link href="css/portal.css" rel="stylesheet" type="text/css" />
+
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/portal.js"></script>
 </head>
 
 <body>
 <div id="container">
 <div id="wrapper">
-__TOPBAR__
 
+  <!-- TOP UTILITY & NAVIGATION BAR -->
+  __TOPBAR__
 
-<div id="main">
-	
-	<table CELLSPACING='0' CELLPADDING='0' BORDER='0'>
-	<tr><td width='200'>__PAGE_CONTENTS__</td>
-	<td VALIGN='TOP'>__RIGHTBAR__</td>
-	</tr></table>
-	
-</div>
+  <!-- INNER PAGE TITLE & BREADCRUMB BANNER -->
+  <section class="inner-page-banner">
+    <div class="portal-container">
+      <div class="inner-banner-inner">
+        <div>
+          <h1 class="page-banner-title" id="innerBannerTitle">__pagetitle__</h1>
+          <p class="page-banner-subtitle" id="innerBannerSubtitle">Civic Services &amp; Information at Your Fingertips</p>
+        </div>
+        <nav class="portal-breadcrumb" aria-label="Breadcrumb">
+          <a href="index.php">Home</a>
+          <span class="breadcrumb-separator">&rsaquo;</span>
+          <span class="breadcrumb-active" id="innerBreadcrumbActive">__pagetitle__</span>
+        </nav>
+      </div>
+    </div>
+  </section>
 
+  <!-- INNER PAGE CONTENT & SIDEBAR LAYOUT -->
+  <div class="portal-container">
+    <div class="inner-page-layout">
+      <!-- Main Content Area -->
+      <main class="inner-main-card">
+        __PAGE_CONTENTS__
+      </main>
 
-__BOTTOMBAR__
+      <!-- Sidebar Area -->
+      __RIGHTBAR__
+    </div>
+  </div>
+
+  <!-- PROFESSIONAL MULTI-COLUMN FOOTER -->
+  __BOTTOMBAR__
+
 </div>
 </div>
 </body>
 </html>
-
-
-

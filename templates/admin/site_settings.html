@@ -1,0 +1,404 @@
+<style>
+.settings-section-card {
+  background: #ffffff;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.settings-header {
+  background: #12365A;
+  color: #ffffff;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px 5px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.settings-body {
+  padding: 16px;
+}
+.form-group-row {
+  display: flex;
+  margin-bottom: 12px;
+  align-items: flex-start;
+}
+.form-group-label {
+  width: 220px;
+  font-weight: bold;
+  font-size: 12px;
+  color: #333333;
+  padding-top: 6px;
+  flex-shrink: 0;
+}
+.form-group-field {
+  flex: 1;
+}
+.settings-input {
+  width: 95%;
+  padding: 7px 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+.settings-textarea {
+  width: 95%;
+  padding: 7px 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+.settings-help {
+  font-size: 11px;
+  color: #777777;
+  margin-top: 4px;
+}
+.btn-save-settings {
+  background: #F47721;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn-save-settings:hover {
+  background: #d86414;
+}
+.current-file-badge {
+  display: inline-block;
+  background: #f0f4f8;
+  border: 1px solid #cfe2ff;
+  color: #084298;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+      <table width="100%" class="grayhead" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="grayheadleft">&nbsp;</td>
+          <td class="grayheadmid">Website Content, Banners &amp; Settings Management</td>
+          <td class="grayheadright">&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="padding: 10px 0;">
+      __PROMPT__
+      
+      <form action="site_settings.php" method="post" enctype="multipart/form-data">
+        
+        <!-- 1. HERO BANNER & HEADINGS -->
+        <div class="settings-section-card">
+          <div class="settings-header">
+            <span>🚩 1. Homepage Hero Banner &amp; Headings</span>
+          </div>
+          <div class="settings-body">
+            <div class="form-group-row">
+              <div class="form-group-label">Hero Tagline Badge:</div>
+              <div class="form-group-field">
+                <input type="text" name="settings[hero_tagline]" value="__hero_tagline__" class="settings-input" />
+                <div class="settings-help">Appears inside the small badge above the main title.</div>
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group-label">Hero Main Title (Hindi/English):</div>
+              <div class="form-group-field">
+                <textarea name="settings[hero_title]" rows="3" class="settings-textarea">__hero_title_RAW__</textarea>
+                <div class="settings-help">Main prominent headline on homepage. HTML like &lt;br&gt; is allowed for line breaks.</div>
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group-label">Hero Subtitle:</div>
+              <div class="form-group-field">
+                <input type="text" name="settings[hero_subtitle]" value="__hero_subtitle__" class="settings-input" />
+                <div class="settings-help">Secondary subtitle under the main headline.</div>
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group-label">Hero Banner Image:</div>
+              <div class="form-group-field">
+                <div class="current-file-badge">Current File: __hero_banner_image__</div><br />
+                <input type="file" name="hero_banner_file" accept="image/*" />
+                <div class="settings-help">Upload a new image to replace the hero banner (Recommended: 1920x800 px).</div>
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group-label">Hero Quote Badge Label:</div>
+              <div class="form-group-field">
+                <input type="text" name="settings[hero_quote_badge]" value="__hero_quote_badge__" class="settings-input" />
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group-label">Hero Quote Verse:</div>
+              <div class="form-group-field">
+                <textarea name="settings[hero_quote_verse]" rows="2" class="settings-textarea">__hero_quote_verse_RAW__</textarea>
+                <div class="settings-help">Inspirational poem / verse displayed in the hero banner.</div>
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group-label">Hero Quote Author:</div>
+              <div class="form-group-field">
+                <input type="text" name="settings[hero_quote_author]" value="__hero_quote_author__" class="settings-input" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. LIVE NEWS TICKER -->
+        <div class="settings-section-card">
+          <div class="settings-header">
+            <span>📢 2. Live News Ticker Text</span>
+          </div>
+          <div class="settings-body">
+            <div class="form-group-row">
+              <div class="form-group-label">News Ticker Message:</div>
+              <div class="form-group-field">
+                <textarea name="settings[ticker_text]" rows="2" class="settings-textarea">__ticker_text_RAW__</textarea>
+                <div class="settings-help">Scrolling announcement ticker shown across the top of all pages.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. STATISTICS COUNTERS -->
+        <div class="settings-section-card">
+          <div class="settings-header">
+            <span>📊 3. Homepage Statistics Counters</span>
+          </div>
+          <div class="settings-body">
+            <table width="100%" cellpadding="6" cellspacing="0" border="0">
+              <tr bgcolor="#f0f4f8">
+                <td width="20%"><b>Counter Position</b></td>
+                <td width="35%"><b>Value / Number (e.g. 4.25 L+)</b></td>
+                <td width="45%"><b>Label Description</b></td>
+              </tr>
+              <tr>
+                <td><b>Stat 1 (Citizens)</b></td>
+                <td><input type="text" name="settings[stat_1_count]" value="__stat_1_count__" class="settings-input" /></td>
+                <td><input type="text" name="settings[stat_1_label]" value="__stat_1_label__" class="settings-input" /></td>
+              </tr>
+              <tr>
+                <td><b>Stat 2 (Properties/Tax)</b></td>
+                <td><input type="text" name="settings[stat_2_count]" value="__stat_2_count__" class="settings-input" /></td>
+                <td><input type="text" name="settings[stat_2_label]" value="__stat_2_label__" class="settings-input" /></td>
+              </tr>
+              <tr>
+                <td><b>Stat 3 (Coverage/Efficiency)</b></td>
+                <td><input type="text" name="settings[stat_3_count]" value="__stat_3_count__" class="settings-input" /></td>
+                <td><input type="text" name="settings[stat_3_label]" value="__stat_3_label__" class="settings-input" /></td>
+              </tr>
+              <tr>
+                <td><b>Stat 4 (Wards/Projects)</b></td>
+                <td><input type="text" name="settings[stat_4_count]" value="__stat_4_count__" class="settings-input" /></td>
+                <td><input type="text" name="settings[stat_4_label]" value="__stat_4_label__" class="settings-input" /></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- 4. LEADERSHIP & MAYOR MESSAGE -->
+        <div class="settings-section-card">
+          <div class="settings-header">
+            <span>🏛️ 4. Leadership &amp; Mayor's Committed Message</span>
+          </div>
+          <div class="settings-body">
+            <div class="form-group-row">
+              <div class="form-group-label">Quote Title / Motto:</div>
+              <div class="form-group-field">
+                <input type="text" name="settings[mayor_quote_title]" value="__mayor_quote_title__" class="settings-input" />
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group-label">Leadership Commitment Text:</div>
+              <div class="form-group-field">
+                <textarea name="settings[mayor_quote_subtitle]" rows="2" class="settings-textarea">__mayor_quote_subtitle_RAW__</textarea>
+                <div class="settings-help">Displayed prominently above Mayor and Commissioner photo profiles. (Individual photos and bios can also be edited in the Mayers and Commissioners menus).</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. SWACHH JHANSI MISSION HIGHLIGHT BANNER -->
+        <div class="settings-section-card">
+          <div class="settings-header">
+            <span>🌿 5. Swachh Bharat / Swachh Jhansi Highlight Banner</span>
+          </div>
+          <div class="settings-body">
+            <div class="form-group-row">
+              <div class="form-group-label">Mission Badge:</div>
+              <div class="form-group-field">
+                <input type="text" name="settings[swachh_badge]" value="__swachh_badge__" class="settings-input" />
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group-label">Mission Heading:</div>
+              <div class="form-group-field">
+                <input type="text" name="settings[swachh_title]" value="__swachh_title__" class="settings-input" />
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group-label">Mission Description:</div>
+              <div class="form-group-field">
+                <textarea name="settings[swachh_desc]" rows="3" class="settings-textarea">__swachh_desc_RAW__</textarea>
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group-label">Button Text:</div>
+              <div class="form-group-field">
+                <input type="text" name="settings[swachh_btn_text]" value="__swachh_btn_text__" class="settings-input" />
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group-label">Button Destination URL:</div>
+              <div class="form-group-field">
+                <input type="text" name="settings[swachh_btn_url]" value="__swachh_btn_url__" class="settings-input" />
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group-label">Banner Image:</div>
+              <div class="form-group-field">
+                <div class="current-file-badge">Current File: __swachh_banner_image__</div><br />
+                <input type="file" name="swachh_banner_file" accept="image/*" />
+                <div class="settings-help">Upload a new image for the Swachh Jhansi banner card.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. CONTACT DETAILS & HELPLINES -->
+        <div class="settings-section-card">
+          <div class="settings-header">
+            <span>📞 6. Contact Details &amp; Helplines (Header, Footer &amp; Contact Page)</span>
+          </div>
+          <div class="settings-body">
+            <div class="form-group-row">
+              <div class="form-group-label">Citizen Helpline Phone (Toll-Free):</div>
+              <div class="form-group-field">
+                <input type="text" name="settings[contact_helpline]" value="__contact_helpline__" class="settings-input" />
+                <div class="settings-help">Displayed in the header badge, footer, and contact page.</div>
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group-label">Secondary Toll-Free Number:</div>
+              <div class="form-group-field">
+                <input type="text" name="settings[contact_tollfree]" value="__contact_tollfree__" class="settings-input" />
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group-label">Commissioner Office Phone:</div>
+              <div class="form-group-field">
+                <input type="text" name="settings[contact_commissioner_office]" value="__contact_commissioner_office__" class="settings-input" />
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group-label">Official Email:</div>
+              <div class="form-group-field">
+                <input type="text" name="settings[contact_email]" value="__contact_email__" class="settings-input" />
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group-label">Alternate Email:</div>
+              <div class="form-group-field">
+                <input type="text" name="settings[contact_alt_email]" value="__contact_alt_email__" class="settings-input" />
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group-label">Headquarters Office Address:</div>
+              <div class="form-group-field">
+                <textarea name="settings[contact_address]" rows="2" class="settings-textarea">__contact_address_RAW__</textarea>
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group-label">Office Working Hours:</div>
+              <div class="form-group-field">
+                <input type="text" name="settings[contact_office_hours]" value="__contact_office_hours__" class="settings-input" />
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group-label">Google Maps Embed URL:</div>
+              <div class="form-group-field">
+                <textarea name="settings[contact_map_embed]" rows="2" class="settings-textarea">__contact_map_embed_RAW__</textarea>
+                <div class="settings-help">Map URL for the contact page and homepage map widget.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. SOCIAL LINKS -->
+        <div class="settings-section-card">
+          <div class="settings-header">
+            <span>🌐 7. Social Media &amp; Portal Links</span>
+          </div>
+          <div class="settings-body">
+            <div class="form-group-row">
+              <div class="form-group-label">Facebook Page URL:</div>
+              <div class="form-group-field">
+                <input type="text" name="settings[social_facebook]" value="__social_facebook__" class="settings-input" />
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group-label">Twitter / X Profile URL:</div>
+              <div class="form-group-field">
+                <input type="text" name="settings[social_twitter]" value="__social_twitter__" class="settings-input" />
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group-label">Smart City Jhansi Portal:</div>
+              <div class="form-group-field">
+                <input type="text" name="settings[social_smartcity]" value="__social_smartcity__" class="settings-input" />
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group-label">Webmail Portal URL:</div>
+              <div class="form-group-field">
+                <input type="text" name="settings[social_webmail]" value="__social_webmail__" class="settings-input" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin: 25px 0 40px 0;">
+          <input type="submit" name="submit_settings" value="💾 Save &amp; Update All Website Settings" class="btn-save-settings" />
+        </div>
+
+      </form>
+    </td>
+  </tr>
+</table>

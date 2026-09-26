@@ -1,5 +1,194 @@
-<table border="0" cellpadding="5" cellspacing="5" align="center" width="100%" > 
-  <tr>
-   <td align="center" height="100" valign="left"   ><h2>Welcome</h2></td>
-  </tr>
-</table>
+<div style="margin-bottom: 24px;">
+  <!-- Welcome Greeting Banner -->
+  <div style="background: linear-gradient(135deg, #12365A 0%, #1E4976 100%); border-radius: 10px; padding: 24px 28px; color: #FFFFFF; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 14px rgba(18, 54, 90, 0.12); flex-wrap: wrap; gap: 16px;">
+    <div>
+      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+        <span style="background: #F47721; color: #FFFFFF; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Admin Control Center</span>
+        <span style="color: #FFAA70; font-size: 12px; font-weight: 600;">Jhansi Nagar Nigam Portal</span>
+      </div>
+      <h1 style="font-size: 22px; font-weight: 800; margin: 0 0 6px 0; color: #FFFFFF;">
+        Welcome to Administrative Dashboard
+      </h1>
+      <p style="font-size: 13.5px; color: #CBD5E1; margin: 0; max-width: 650px;">
+        Manage all public website content, hero banners, citizen services, procurement tenders, circulars, and departmental information in real-time.
+      </p>
+    </div>
+
+    <div>
+      <a href="../index.php" target="_blank" style="background: #F47721; color: #FFFFFF; padding: 10px 18px; border-radius: 6px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); transition: background 0.2s;">
+        <span>🌐 View Live Website</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Dashboard Stats Bar -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 28px;">
+  <!-- Stat 1 -->
+  <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 8px; padding: 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+    <div style="width: 44px; height: 44px; border-radius: 8px; background: #EFF6FF; color: #0284C7; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+      ⚙️
+    </div>
+    <div>
+      <div style="font-size: 12px; font-weight: 600; color: #64748B;">Portal Settings</div>
+      <div style="font-size: 18px; font-weight: 800; color: #12365A;">Active &bull; Live</div>
+    </div>
+  </div>
+
+  <!-- Stat 2 -->
+  <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 8px; padding: 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+    <div style="width: 44px; height: 44px; border-radius: 8px; background: #FEF3C7; color: #D97706; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+      🏛️
+    </div>
+    <div>
+      <div style="font-size: 12px; font-weight: 600; color: #64748B;">Citizen Services</div>
+      <div style="font-size: 18px; font-weight: 800; color: #12365A;">Dynamic CMS</div>
+    </div>
+  </div>
+
+  <!-- Stat 3 -->
+  <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 8px; padding: 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+    <div style="width: 44px; height: 44px; border-radius: 8px; background: #ECFDF5; color: #059669; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+      📑
+    </div>
+    <div>
+      <div style="font-size: 12px; font-weight: 600; color: #64748B;">e-Tenders &amp; NIT</div>
+      <div style="font-size: 18px; font-weight: 800; color: #12365A;">PDF Portal</div>
+    </div>
+  </div>
+
+  <!-- Stat 4 -->
+  <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 8px; padding: 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+    <div style="width: 44px; height: 44px; border-radius: 8px; background: #FAF5FF; color: #7C3AED; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+      📢
+    </div>
+    <div>
+      <div style="font-size: 12px; font-weight: 600; color: #64748B;">Public Notices</div>
+      <div style="font-size: 18px; font-weight: 800; color: #12365A;">Live News Ticker</div>
+    </div>
+  </div>
+</div>
+
+<!-- Quick Shortcuts Grid -->
+<div style="margin-bottom: 20px;">
+  <h2 style="font-size: 16px; font-weight: 800; color: #12365A; margin: 0 0 14px 0; display: flex; align-items: center; gap: 8px;">
+    <span>⚡ Quick Portal Management Modules</span>
+  </h2>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
+    
+    <!-- 1. Website Settings -->
+    <a href="site_settings.php" style="background: #FAFCFE; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; transition: all 0.2s ease; border-left: 4px solid #F47721;">
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+        <span style="font-size: 22px;">⚙️</span>
+        <strong style="font-size: 15px; color: #12365A;">Website Settings &amp; Banners</strong>
+      </div>
+      <p style="font-size: 12.5px; color: #64748B; margin: 0 0 14px 0; line-height: 1.4;">
+        Manage hero titles, upload banner images, update statistics, Swachh Bharat mission, helpline &amp; contact info.
+      </p>
+      <div style="margin-top: auto; font-size: 12px; font-weight: 700; color: #F47721;">
+        Configure Settings &rarr;
+      </div>
+    </a>
+
+    <!-- 2. Citizen Services -->
+    <a href="services_info.php" style="background: #FAFCFE; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; transition: all 0.2s ease; border-left: 4px solid #0284C7;">
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+        <span style="font-size: 22px;">🏛️</span>
+        <strong style="font-size: 15px; color: #12365A;">Citizen Services</strong>
+      </div>
+      <p style="font-size: 12.5px; color: #64748B; margin: 0 0 14px 0; line-height: 1.4;">
+        Add, edit, reorder, or toggle quick access cards on the homepage and the full civic services directory.
+      </p>
+      <div style="margin-top: auto; font-size: 12px; font-weight: 700; color: #0284C7;">
+        Manage Services &rarr;
+      </div>
+    </a>
+
+    <!-- 3. Tenders & NIT -->
+    <a href="tender_info.php" style="background: #FAFCFE; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; transition: all 0.2s ease; border-left: 4px solid #10B981;">
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+        <span style="font-size: 22px;">📑</span>
+        <strong style="font-size: 15px; color: #12365A;">Tenders &amp; NIT Documents</strong>
+      </div>
+      <p style="font-size: 12.5px; color: #64748B; margin: 0 0 14px 0; line-height: 1.4;">
+        Upload new tender notices, civil procurement PDFs, and manage archive status on the live site.
+      </p>
+      <div style="margin-top: auto; font-size: 12px; font-weight: 700; color: #10B981;">
+        Manage Tenders &rarr;
+      </div>
+    </a>
+
+    <!-- 4. Notice & Orders -->
+    <a href="notice_info.php" style="background: #FAFCFE; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; transition: all 0.2s ease; border-left: 4px solid #8B5CF6;">
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+        <span style="font-size: 22px;">📢</span>
+        <strong style="font-size: 15px; color: #12365A;">Public Notices &amp; News</strong>
+      </div>
+      <p style="font-size: 12.5px; color: #64748B; margin: 0 0 14px 0; line-height: 1.4;">
+        Publish official orders and public alerts. Announcements automatically stream in the live ticker bar.
+      </p>
+      <div style="margin-top: auto; font-size: 12px; font-weight: 700; color: #8B5CF6;">
+        Manage Notices &rarr;
+      </div>
+    </a>
+
+    <!-- 5. Mayor & Leadership -->
+    <a href="mayer_info.php" style="background: #FAFCFE; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; transition: all 0.2s ease; border-left: 4px solid #F59E0B;">
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+        <span style="font-size: 22px;">👤</span>
+        <strong style="font-size: 15px; color: #12365A;">Leadership Profiles</strong>
+      </div>
+      <p style="font-size: 12.5px; color: #64748B; margin: 0 0 14px 0; line-height: 1.4;">
+        Update the Mayor and Municipal Commissioner photos, biography, and inspirational message.
+      </p>
+      <div style="margin-top: auto; font-size: 12px; font-weight: 700; color: #F59E0B;">
+        Update Profiles &rarr;
+      </div>
+    </a>
+
+    <!-- 6. CMS Pages -->
+    <a href="page.php" style="background: #FAFCFE; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; transition: all 0.2s ease; border-left: 4px solid #EC4899;">
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+        <span style="font-size: 22px;">📄</span>
+        <strong style="font-size: 15px; color: #12365A;">CMS Page Content</strong>
+      </div>
+      <p style="font-size: 12.5px; color: #64748B; margin: 0 0 14px 0; line-height: 1.4;">
+        Edit About Us, Citizen Charter, Nagar Vikas Vibhag, History, and static page text directly.
+      </p>
+      <div style="margin-top: auto; font-size: 12px; font-weight: 700; color: #EC4899;">
+        Manage CMS Pages &rarr;
+      </div>
+    </a>
+
+    <!-- 7. Photo Gallery -->
+    <a href="gallary.php" style="background: #FAFCFE; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; transition: all 0.2s ease; border-left: 4px solid #6366F1;">
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+        <span style="font-size: 22px;">🖼️</span>
+        <strong style="font-size: 15px; color: #12365A;">Photo Gallery</strong>
+      </div>
+      <p style="font-size: 12.5px; color: #64748B; margin: 0 0 14px 0; line-height: 1.4;">
+        Upload and organize images of city landmarks, heritage sites, and municipal events.
+      </p>
+      <div style="margin-top: auto; font-size: 12px; font-weight: 700; color: #6366F1;">
+        Manage Gallery &rarr;
+      </div>
+    </a>
+
+    <!-- 8. Administration Officers -->
+    <a href="officers_info.php" style="background: #FAFCFE; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; transition: all 0.2s ease; border-left: 4px solid #14B8A6;">
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+        <span style="font-size: 22px;">👥</span>
+        <strong style="font-size: 15px; color: #12365A;">Administration Officers</strong>
+      </div>
+      <p style="font-size: 12.5px; color: #64748B; margin: 0 0 14px 0; line-height: 1.4;">
+        Manage departmental officers list, designations, office phone extensions, and email IDs.
+      </p>
+      <div style="margin-top: auto; font-size: 12px; font-weight: 700; color: #14B8A6;">
+        Manage Officers &rarr;
+      </div>
+    </a>
+
+  </div>
+</div>

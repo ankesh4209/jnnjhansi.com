@@ -1,65 +1,53 @@
-<script type="text/javascript">
-  function validateForm() {
-    var name = document.forms["smart_city"]["name"].value;
-    var mobile = document.forms["smart_city"]["mobile"].value;
-    var address = document.forms["smart_city"]["address"].value;
-    if (name == "") {
-        alert("Please enter name.");
-        return false;
-    }
-    if (mobile == "") {
-        alert("Please enter mobile.");
-        return false;
-    }
-    if (address == "") {
-        alert("Please enter address.");
-        return false;
-    }
-  }
-</script>
-<table width="680px" border="0" cellspacing="0" cellpadding="0">
-			  <tr>
-			  	<td colspan="2" align="left" valign="top">
-					<h2 class="home_cont"><img src="images/content_header_img.png" alt="" align="absmiddle" />
-					SMART CITY LINK</h2>
-					<p>&nbsp;</p>
-					<br>	<br>
-					&nbsp;&nbsp;<a href="http://smartcities.gov.in/" target="_blank"><b>http://smartcities.gov.in/</b></a>
-					<br>	<br>
-					&nbsp;&nbsp;<a href="http://smartcityjhansi.com/" target="_blank"><b>http://smartcityjhansi.com/</b></a>
-					<br>	<br>
-          <!--<form action="" method="post" name="smart_city" onsubmit="return validateForm()">
-					<table width="100%" border="0" cellspacing="10" cellpadding="10" align="center">
-						<tr> 
-							  <td align="center" colspan="2"><strong>__msg__</strong></td>
-						</tr>
-            <tr> 
-							  <td align="center" colspan="2"><strong>Register For Smart City</strong></td>
-						</tr>
-						<tr> 
-							  <td align="right" width="40%">Name : </td>
-							  <td align="center" width="60%"><input type="text" name="name"></td>
-						</tr>
-            <tr> 
-							  <td align="right" valign="top" width="40%">Address : </td>
-							  <td align="center" width="60%"><textarea name="address" rows="4" cols="22"></textarea></td>
-						</tr>
-            <tr> 
-							  <td align="right" width="40%">Mobile No. </td>
-							  <td align="center" width="60%"><input type="text" name="mobile"></td>
-						</tr>
-						<tr> 
-							  <td align="center" width="40%"></td>
-							  <td align="center" width="60%"><input type="submit" name="submit" value="submit"></td>
-						</tr>
-             <tr> 
-							  <td align="center" colspan="2"><a href="smartcity_login.php">Click Here</a> to login.</td>
-						</tr>
-					</table>
-          </form>-->
-					</td>
-			  </tr>
-			</table>
-		  </td>
-        </tr>
- </table>
+<div>
+  <div style="margin-bottom: 24px;">
+    <h2 style="font-size: 24px; font-weight: 800; color: var(--primary); margin: 0 0 6px 0;">
+      Jhansi Smart City Limited (JSCL)
+    </h2>
+    <p style="color: var(--text-muted); font-size: 14px; margin: 0;">
+      Smart governance, intelligent traffic management, automated urban monitoring, and citizen apps.
+    </p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 30px;">
+    <div style="background: #FAFCFE; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 24px;">
+      <h3 style="font-size: 17px; font-weight: 800; color: var(--primary); margin: 0 0 10px 0;">
+        Smart City Jhansi Official Portal
+      </h3>
+      <p style="font-size: 13px; color: var(--text-body); line-height: 1.6; margin: 0 0 16px 0;">
+        Explore ongoing Smart City mission projects, integrated command and control centre (ICCC), smart roads, and public surveillance.
+      </p>
+      <a href="https://smartcityjhansi.com/" target="_blank" class="btn-action-view" style="background: var(--primary);">
+        Visit JSCL Website &rarr;
+      </a>
+    </div>
+
+    <div style="background: #FAFCFE; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 24px;">
+      <h3 style="font-size: 17px; font-weight: 800; color: var(--primary); margin: 0 0 10px 0;">
+        National Smart Cities Mission
+      </h3>
+      <p style="font-size: 13px; color: var(--text-body); line-height: 1.6; margin: 0 0 16px 0;">
+        Ministry of Housing and Urban Affairs (MoHUA), Government of India Smart Cities portal and mission guidelines.
+      </p>
+      <a href="http://smartcities.gov.in/" target="_blank" class="btn-action-view" style="background: var(--accent);">
+        Visit MoHUA Portal &rarr;
+      </a>
+    </div>
+
+    <div style="background: #FAFCFE; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 24px;">
+      <h3 style="font-size: 17px; font-weight: 800; color: var(--primary); margin: 0 0 10px 0;">
+        Jhansi Smart City Mobile Apps
+      </h3>
+      <p style="font-size: 13px; color: var(--text-body); line-height: 1.6; margin: 0 0 16px 0;">
+        Download the official mobile application on Android and iOS for live civic alerts and complaints.
+      </p>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <a href="https://play.google.com/store/apps/details?id=com.jscl.jhansiSmartCityProject" target="_blank" class="btn-action-view" style="background: #059669; font-size: 11px;">
+          Android App &rarr;
+        </a>
+        <a href="https://apps.apple.com/kh/app/jhansi-smart-city-app/id1573385207" target="_blank" class="btn-action-view" style="background: #0284C7; font-size: 11px;">
+          iOS App &rarr;
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

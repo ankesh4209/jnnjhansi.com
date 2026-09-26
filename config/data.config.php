@@ -13,8 +13,11 @@
 // <MENTION HERE DIRS/FILES NAME WHICH MUST HAVE WRITEABLE BY WEBSERVER>
 
 
-       $HOST_NAME                        = $_SERVER['SERVER_NAME'];
-       $DOCUMENT_ROOT                    = $_SERVER['DOCUMENT_ROOT'];
+       if (!headers_sent()) {
+           header('Content-Type: text/html; charset=utf-8');
+       }
+       $HOST_NAME                        = isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : 'localhost';
+       $DOCUMENT_ROOT                    = isset($_SERVER['DOCUMENT_ROOT']) ? $_SERVER['DOCUMENT_ROOT'] : '';
 
         //--------------------------------------------------------------
         // DATABASE PARAMETERS

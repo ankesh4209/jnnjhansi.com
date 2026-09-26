@@ -1,3 +1,14 @@
+<script type="text/javascript">
+function checkSignUpDetails() {
+    var f = document.forms["editpage"];
+    if(!f || !f.p_name.value.trim()) {
+        alert("Please enter Page Name");
+        if(f && f.p_name) f.p_name.focus();
+        return false;
+    }
+    return true;
+}
+</script>
 
 <!-- <script type="text/javascript" src="tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript">

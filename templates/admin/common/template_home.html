@@ -1,64 +1,307 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title></title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<link type="text/css" rel="stylesheet" href="../css/admin.css" />
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-<meta name="Generator" content="EditPlus" />
-<meta name="Author" content="" />
-<meta name="Keywords" content="">
-<meta name="Description" content="" />
-<link href="../css/admin_style.css" rel="stylesheet" type="text/css" />
-  <script src="../js/datetimepicker.js" type="text/javascript" language="javascript"></script>
-   
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jhansi Nagar Nigam - Administrative Portal | झाँसी नगर निगम</title>
+  
+  <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+  <link href="../css/admin_style.css?v=2.5" rel="stylesheet" type="text/css" />
+  <link href="/jnnjhansi/css/admin_style.css?v=2.5" rel="stylesheet" type="text/css" />
+  <script src="../js/datetimepicker.js" type="text/javascript"></script>
+  <style>
+    /* Critical admin layout styles */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 0; min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-size: 13.5px; line-height: 1.5; color: #1E293B; background-color: #F4F6F9;
+    }
+    .admin-header {
+      position: fixed; top: 0; left: 0; right: 0; height: 64px;
+      background: linear-gradient(135deg, #12365A 0%, #0D2640 100%);
+      border-bottom: 3px solid #F47721; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between; padding: 0 20px;
+    }
+    .admin-layout-wrapper {
+      display: flex; min-height: calc(100vh - 64px); margin-top: 64px; position: relative;
+    }
+    .admin-sidebar {
+      width: 260px; flex-shrink: 0; background: #FFFFFF; border-right: 1px solid #E2E8F0;
+      position: sticky; top: 64px; height: calc(100vh - 64px); overflow-y: auto; z-index: 995;
+    }
+    .admin-main {
+      flex: 1; min-width: 0; display: flex; flex-direction: column; background: #F4F6F9;
+    }
+    .admin-content-inner { flex: 1; padding: 24px; max-width: 100%; }
+    .admin-card-container {
+      background: #FFFFFF; border-radius: 12px; border: 1px solid #E2E8F0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05); padding: 24px; margin-bottom: 24px;
+    }
+  </style>
 </head>
 <body>
-<table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
 
-  __TOPBAR__
-  <tr>
-    <td class="bodybg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td valign="top" class="leftpanel"><table width="100%" border="0" align="right" cellpadding="0" cellspacing="0">
-          <tr>
-            <td height="13">&nbsp;</td>
-          </tr>
-          <tr><td class="__class1__"><a href="tender_info.php">Tenders</a></td></tr>
-          <tr><td height="4"></td></tr>
-          <tr><td class="__class8__"><a href="notice_info.php">Notice</a></td></tr>
-          <tr><td height="4"></td></tr>
-          <tr><td class="__class2__"><a href="mayer_info.php" >mayers</a></td></tr>
-		      <tr><td height="4"></td></tr>
-          <tr><td class="__class3__"><a href="commissioner_info.php" >Commissioners</a></td></tr>
-          <tr><td height="4"></td></tr>
-		      <tr><td class="__class4__"><a href="page.php" >CMS</a></td></tr>
-          <tr><td height="4"></td></tr>
-		      <tr><td class="__class9__"><a href="works.php" >Good Work</a></td></tr>
-          <tr><td height="4"></td></tr>
-          <tr><td class="__class10__"><a href="smartcity_info.php" >Smart City</a></td></tr>
-          <tr><td height="4"></td></tr>
-          <tr><td class="__class11__"><a href="smartcity_campagin.php" >Smart City Campagin</a></td></tr>
-          <tr><td height="4"></td></tr> 
-		      <tr><td class="__class5__"><a href="gallary.php" >Photo Gallery</a></td></tr>
-          <tr><td height="4"></td></tr>
-		      <tr><td class="__class6__"><a href="officers_info.php" >Administration</a></td></tr>
-          <tr><td height="4"></td></tr>
-          <tr><td class="__class7__"><a href="changepword.php">Change Password</a></td></tr>
-		      <tr><td height="4"></td></tr>
-          <tr><td class="leftab_off"><a href="logout.php">Logout</td></tr>
-          <tr>
-            <td>&nbsp;</td>
-          </tr>
-        </table></td>
-        <td width="10">&nbsp;</td>
-        <td valign="top">
+<!-- FIXED RESPONSIVE HEADER -->
+__TOPBAR__
+
+<!-- MOBILE OVERLAY BACKDROP -->
+<div class="admin-sidebar-backdrop" id="sidebarBackdrop"></div>
+
+<!-- MAIN LAYOUT WRAPPER -->
+<div class="admin-layout-wrapper">
+  
+  <!-- FIXED / COLLAPSIBLE SIDEBAR -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="sidebar-nav-header">
+      Navigation Menu
+    </div>
+
+    <ul class="sidebar-menu-list" id="sidebarMenuList">
+      <!-- 0. Dashboard -->
+      <li class="sidebar-menu-item">
+        <a href="welcome.php" class="sidebar-link" data-route="welcome">
+          <span class="sidebar-icon">📊</span>
+          <span class="sidebar-label">Dashboard Overview</span>
+        </a>
+      </li>
+
+      <!-- 1. Website Settings & Banners -->
+      <li class="sidebar-menu-item">
+        <a href="site_settings.php" class="sidebar-link" data-route="site_settings">
+          <span class="sidebar-icon">⚙️</span>
+          <span class="sidebar-label">Website Settings &amp; Banners</span>
+        </a>
+      </li>
+
+      <!-- 2. Citizen Services -->
+      <li class="sidebar-menu-item">
+        <a href="services_info.php" class="sidebar-link" data-route="service">
+          <span class="sidebar-icon">🏛️</span>
+          <span class="sidebar-label">Citizen Services</span>
+        </a>
+      </li>
+
+      <!-- 3. Tenders & NIT -->
+      <li class="sidebar-menu-item">
+        <a href="tender_info.php" class="sidebar-link" data-route="tender">
+          <span class="sidebar-icon">📑</span>
+          <span class="sidebar-label">Tenders &amp; NIT</span>
+        </a>
+      </li>
+
+      <!-- 4. Notices & Circulars -->
+      <li class="sidebar-menu-item">
+        <a href="notice_info.php" class="sidebar-link" data-route="notice">
+          <span class="sidebar-icon">📢</span>
+          <span class="sidebar-label">Notices &amp; Orders</span>
+        </a>
+      </li>
+
+      <!-- 5. Mayor Profile -->
+      <li class="sidebar-menu-item">
+        <a href="mayer_info.php" class="sidebar-link" data-route="mayer">
+          <span class="sidebar-icon">👤</span>
+          <span class="sidebar-label">Mayor Profile</span>
+        </a>
+      </li>
+
+      <!-- 6. Commissioners -->
+      <li class="sidebar-menu-item">
+        <a href="commissioner_info.php" class="sidebar-link" data-route="commissioner">
+          <span class="sidebar-icon">👔</span>
+          <span class="sidebar-label">Commissioners</span>
+        </a>
+      </li>
+
+      <!-- 7. CMS Pages -->
+      <li class="sidebar-menu-item">
+        <a href="page.php" class="sidebar-link" data-route="page">
+          <span class="sidebar-icon">📄</span>
+          <span class="sidebar-label">CMS Pages</span>
+        </a>
+      </li>
+
+      <!-- 8. Good Works -->
+      <li class="sidebar-menu-item">
+        <a href="works.php" class="sidebar-link" data-route="work">
+          <span class="sidebar-icon">⭐</span>
+          <span class="sidebar-label">City Good Works</span>
+        </a>
+      </li>
+
+      <!-- 9. Smart City Projects -->
+      <li class="sidebar-menu-item">
+        <a href="smartcity_info.php" class="sidebar-link" data-route="smartcity_info">
+          <span class="sidebar-icon">🏙️</span>
+          <span class="sidebar-label">Smart City Projects</span>
+        </a>
+      </li>
+
+      <!-- 10. Smart City Campaign -->
+      <li class="sidebar-menu-item">
+        <a href="smartcity_campagin.php" class="sidebar-link" data-route="smartcity_campagin">
+          <span class="sidebar-icon">🎯</span>
+          <span class="sidebar-label">Smart City Campaign</span>
+        </a>
+      </li>
+
+      <!-- 11. Photo Gallery -->
+      <li class="sidebar-menu-item">
+        <a href="gallary.php" class="sidebar-link" data-route="gallary|photo">
+          <span class="sidebar-icon">🖼️</span>
+          <span class="sidebar-label">Photo Gallery</span>
+        </a>
+      </li>
+
+      <!-- 12. Administration Officers -->
+      <li class="sidebar-menu-item">
+        <a href="officers_info.php" class="sidebar-link" data-route="officer">
+          <span class="sidebar-icon">👥</span>
+          <span class="sidebar-label">Administration Officers</span>
+        </a>
+      </li>
+
+      <!-- 13. Change Password -->
+      <li class="sidebar-menu-item">
+        <a href="changepword.php" class="sidebar-link" data-route="changepword">
+          <span class="sidebar-icon">🔒</span>
+          <span class="sidebar-label">Change Password</span>
+        </a>
+      </li>
+
+      <!-- 14. Logout -->
+      <li class="sidebar-menu-item" style="margin-top: 10px;">
+        <a href="logout.php" class="sidebar-link" style="color: #DC2626 !important;">
+          <span class="sidebar-icon">🚪</span>
+          <span class="sidebar-label">Sign Out</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="sidebar-version-badge">
+      <div style="font-size: 11px; font-weight: 800; color: #12365A;">JNN Control Suite v2.0</div>
+      <div style="font-size: 10.5px; color: #64748B; margin-top: 3px;">Status: Online &bull; MySQL</div>
+    </div>
+  </aside>
+
+  <!-- MAIN SCROLLABLE CONTENT AREA -->
+  <main class="admin-main" id="adminMainContent">
+    <div class="admin-content-inner">
+      <div class="admin-card-container">
         __PAGE_CONTENTS__
-        </td>
-          </tr>
-        </table></td>
-  </tr>
-  __BOTTOMBAR__
-</table>
+      </div>
+    </div>
+
+    <!-- ADMIN FOOTER -->
+    __BOTTOMBAR__
+  </main>
+
+</div>
+
+<!-- INTERACTIVE SCRIPTS: SIDEBAR TOGGLE, ACTIVE STATE, RESPONSIVE TABLES -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var toggleBtn = document.getElementById('sidebarToggleBtn');
+  var backdrop = document.getElementById('sidebarBackdrop');
+  var body = document.body;
+
+  // Restore collapsed desktop sidebar state from localStorage
+  if (window.innerWidth > 992 && localStorage.getItem('admin_sidebar_collapsed') === 'true') {
+    body.classList.add('sidebar-collapsed');
+  }
+
+  // Toggle Sidebar
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (window.innerWidth <= 992) {
+        // Mobile / Tablet Drawer
+        body.classList.toggle('sidebar-open');
+        backdrop.classList.toggle('active');
+      } else {
+        // Desktop Collapse / Expand
+        body.classList.toggle('sidebar-collapsed');
+        var isCollapsed = body.classList.contains('sidebar-collapsed');
+        localStorage.setItem('admin_sidebar_collapsed', isCollapsed ? 'true' : 'false');
+      }
+    });
+  }
+
+  // Close Drawer on Backdrop Click
+  if (backdrop) {
+    backdrop.addEventListener('click', function() {
+      body.classList.remove('sidebar-open');
+      backdrop.classList.remove('active');
+    });
+  }
+
+  // Automatic Active Menu State Matching based on current URL (matching most specific route first)
+  var currentPath = window.location.pathname.toLowerCase();
+  var menuLinks = Array.from(document.querySelectorAll('.sidebar-link'));
+  var matched = false;
+
+  // Sort routes so longer patterns match first (e.g. smartcity_campagin before smartcity_info)
+  menuLinks.sort(function(a, b) {
+    var rA = a.getAttribute('data-route') || '';
+    var rB = b.getAttribute('data-route') || '';
+    return rB.length - rA.length;
+  });
+
+  for (var k = 0; k < menuLinks.length; k++) {
+    var link = menuLinks[k];
+    var route = link.getAttribute('data-route');
+    if (route) {
+      var patterns = route.split('|');
+      for (var i = 0; i < patterns.length; i++) {
+        var p = patterns[i].trim().toLowerCase();
+        if (p && currentPath.indexOf(p) !== -1) {
+          link.classList.add('active');
+          link.parentElement.classList.add('active');
+          matched = true;
+          break;
+        }
+      }
+      if (matched) break;
+    }
+  }
+
+  // Default to Dashboard if nothing matched
+  if (!matched && (currentPath.indexOf('welcome') !== -1 || currentPath.endsWith('/admin/'))) {
+    var defaultLink = document.querySelector('.sidebar-link[data-route="welcome"]');
+    if (defaultLink) {
+      defaultLink.classList.add('active');
+      if (defaultLink.parentElement) defaultLink.parentElement.classList.add('active');
+    }
+  }
+
+  // Modernize legacy "Click here to Add..." text into clean action toolbar
+  var addLinks = document.querySelectorAll('.admin-card-container a[href^="add_"]');
+  addLinks.forEach(function(link) {
+    var parentTd = link.closest('td');
+    if (parentTd && parentTd.textContent.indexOf('Click here to') !== -1) {
+      var btnText = link.textContent.trim();
+      parentTd.innerHTML = '<div style="margin: 6px 0 16px 0;"><a href="' + link.getAttribute('href') + '" class="btn-add-action">➕ ' + btnText + '</a></div>';
+    }
+  });
+
+  // Wrap all data tables inside responsive scroll wrappers so mobile view never breaks
+  var dataTables = document.querySelectorAll('.admin-card-container table');
+  dataTables.forEach(function(table) {
+    if (table.querySelector('.grayhdbg') || table.classList.contains('catagoryrow')) {
+      table.classList.add('admin-data-table');
+      if (!table.parentElement.classList.contains('table-responsive')) {
+        var wrapper = document.createElement('div');
+        wrapper.className = 'table-responsive';
+        table.parentNode.insertBefore(wrapper, table);
+        wrapper.appendChild(table);
+      }
+    }
+  });
+
+});
+</script>
+
 </body>
 </html>

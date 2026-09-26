@@ -1,22 +1,38 @@
-<table width="680px" border="0" cellspacing="0" cellpadding="0">
-			  <tr>
-			  	<td colspan="2" align="left" valign="top">
-					<h2 class="home_cont"><img src="images/content_header_img.png" alt="" align="absmiddle" />
-					Notice</h2>
-					<p>&nbsp;</p>
-					<table width="100%" border="1" cellspacing="0" cellpadding="0" align="center">
-						<tr> 
-							  <td align="center" width="10%"><strong>Sr.No</strong></td>
-							  <td align="center" width="60%"><strong>Notice</strong></td>
-							  <td align="center" width="12%"><strong>Date</strong></td>
-							  <td align="center" width="18%"><strong>Download's</strong></td>
-						</tr>
-						__PRODUCT_LIST__
-						
-					</table>
-					</td>
-			  </tr>
-			</table>
-		  </td>
+<div class="filterable-section">
+  <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:20px;">
+    <div>
+      <h2 style="font-size:22px; font-weight:800; color:var(--primary); margin:0 0 4px 0;">
+        Public Notices &amp; Announcements
+      </h2>
+      <p style="color:var(--text-muted); font-size:13px; margin:0;">
+        Official circulars, public notices, press releases, and gazette orders from Jhansi Nagar Nigam.
+      </p>
+    </div>
+
+    <div>
+      <input type="text" id="noticeSearchInput" class="portal-form-input" placeholder="Search notices..." style="padding:7px 14px; font-size:13px; width:240px;" onkeyup="var filter = this.value.toUpperCase(); var rows = document.querySelectorAll('.notice-table-row'); rows.forEach(function(r){ r.style.display = r.innerText.toUpperCase().indexOf(filter) > -1 ? '' : 'none'; });">
+    </div>
+  </div>
+
+  <div style="overflow-x:auto;">
+    <table class="portal-table">
+      <thead>
+        <tr> 
+          <th style="width:7%; text-align:center;">S.No.</th>
+          <th style="width:63%;">Notice Subject &amp; Details</th>
+          <th style="width:15%; text-align:center;">Date</th>
+          <th style="width:15%; text-align:center;">Document</th>
         </tr>
- </table>
+      </thead>
+      <tbody>
+        __PRODUCT_LIST__
+      </tbody>
+    </table>
+  </div>
+
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-top:24px; padding-top:14px; border-top:1px solid var(--border-color); font-size:13px;">
+    <div>__PREV_PAGE_LINK__</div>
+    <div style="font-weight:600; color:var(--primary);">__PAGE_NAVS__</div>
+    <div>__NEXT_PAGE_LINK__</div>
+  </div>
+</div>

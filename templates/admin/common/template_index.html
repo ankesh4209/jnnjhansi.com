@@ -1,37 +1,136 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title></title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-  <link type="text/css" rel="stylesheet" href="../css/js_jab_style.css" />
-  <link type="text/css" rel="stylesheet" href="../css/admin.css" />
-  <link type="text/css" rel="stylesheet" href="../css/datepickercontrol.css" />
-  <script src="../js/tabcontent.js" type="text/javascript" language="javascript"></script>
-  <script src="../js/datetimepicker.js" type="text/javascript" language="javascript"></script>
-<script src="../js/ajax.js" type="text/javascript" language="javascript"></script>
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-<meta name="Generator" content="EditPlus" />
-<meta name="Author" content="" />
-<meta name="Keywords" content="">
-<meta name="Description" content="" />
-<link href="../css/admin_style.css" rel="stylesheet" type="text/css" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login - Jhansi Nagar Nigam | झाँसी नगर निगम</title>
+  
+  <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+  <link href="../css/admin_style.css?v=2.5" rel="stylesheet" type="text/css" />
+  
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(135deg, #0A1F35 0%, #12365A 50%, #1A446C 100%) !important;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: #1E293B;
+    }
+
+    .admin-login-wrapper {
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .admin-login-card {
+      background: #FFFFFF !important;
+      border-radius: 16px !important;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35) !important;
+      padding: 38px 32px !important;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .login-title {
+      font-size: 24px !important;
+      font-weight: 800 !important;
+      color: #12365A !important;
+      margin: 0 0 4px 0 !important;
+      line-height: 1.2;
+    }
+
+    .login-subtitle {
+      font-size: 13px !important;
+      color: #64748B !important;
+      margin: 0 0 22px 0 !important;
+    }
+
+    .login-field-group {
+      margin-bottom: 16px !important;
+      text-align: left;
+    }
+
+    .login-field-label {
+      display: block !important;
+      font-size: 12.5px !important;
+      font-weight: 700 !important;
+      color: #334155 !important;
+      margin-bottom: 6px !important;
+    }
+
+    .login-input {
+      width: 100% !important;
+      box-sizing: border-box !important;
+      padding: 12px 14px !important;
+      border: 1.5px solid #CBD5E1 !important;
+      border-radius: 8px !important;
+      font-size: 14px !important;
+      color: #1E293B !important;
+      background: #F8FAFC !important;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .login-input:focus {
+      border-color: #12365A !important;
+      background: #FFFFFF !important;
+      box-shadow: 0 0 0 3px rgba(18, 54, 90, 0.15) !important;
+    }
+
+    .btn-login-submit {
+      width: 100% !important;
+      box-sizing: border-box !important;
+      padding: 13px 20px !important;
+      background: #F47721 !important;
+      color: #FFFFFF !important;
+      font-size: 14.5px !important;
+      font-weight: 700 !important;
+      border: none !important;
+      border-radius: 8px !important;
+      cursor: pointer !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 8px !important;
+      box-shadow: 0 4px 12px rgba(244, 119, 33, 0.35) !important;
+      transition: all 0.2s ease;
+    }
+
+    .btn-login-submit:hover {
+      background: #D86414 !important;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(244, 119, 33, 0.45) !important;
+    }
+
+    .login-error-alert {
+      background: #FEE2E2 !important;
+      color: #DC2626 !important;
+      border: 1px solid #FECACA !important;
+      padding: 10px 14px !important;
+      border-radius: 6px !important;
+      font-size: 13px !important;
+      font-weight: 600 !important;
+      margin-bottom: 16px !important;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-<table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
-  
-  __TOPBAR__
-  <tr>
-    <td class="bodybg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td width="10">&nbsp;</td>
-        <td valign="top">
-        __PAGE_CONTENTS__
-        </td>
-          </tr>
-        </table>
-      </td>
-  </tr>
-  __BOTTOMBAR__
-</table>
+
+<div class="admin-login-wrapper">
+  __PAGE_CONTENTS__
+</div>
+
 </body>
 </html>

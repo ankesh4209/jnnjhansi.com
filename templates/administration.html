@@ -1,23 +1,34 @@
-<table width="680px" border="0" cellspacing="0" cellpadding="0">
-			  <tr>
-			  	<td colspan="2" align="left" valign="top">
-					<h2 class="home_cont"><img src="images/content_header_img.png" alt="" align="absmiddle" />
-					Administration</h2>
-					<p>&nbsp;</p>
-					<table width="100%" border="1" cellspacing="0" cellpadding="0" align="left">
-						<tr> 
-							  <td align="center" width="25%"><strong>Name</strong></td>
-							  <td align="center" width="25%"><strong>Designation</strong></td>
-							  <td align="center" width="25%"><strong>Email</strong></td>
-							  <td align="center" width="10%"><strong>Office No</strong></td>
-							  <td align="center" width="15%"><strong>Res. No</strong></td>
-						</tr>
-						__PRODUCT_LIST__
-						
-					</table>
-					</td>
-			  </tr>
-			</table>
-		  </td>
+<div>
+  <div style="margin-bottom: 24px;">
+    <h2 style="font-size: 24px; font-weight: 800; color: var(--primary); margin: 0 0 6px 0;">
+      Administrative Directory &amp; Key Officers
+    </h2>
+    <p style="color: var(--text-muted); font-size: 14px; margin: 0;">
+      Official administrative officers, contact details, and department heads of Jhansi Municipal Corporation.
+    </p>
+  </div>
+
+  <div style="overflow-x:auto;">
+    <table class="portal-table">
+      <thead>
+        <tr> 
+          <th style="width:25%;">Officer Name</th>
+          <th style="width:25%;">Designation</th>
+          <th style="width:25%;">Email Address</th>
+          <th style="width:12%; text-align:center;">Office No</th>
+          <th style="width:13%; text-align:center;">Residence No</th>
         </tr>
- </table>
+      </thead>
+      <tbody>
+        __PRODUCT_LIST__
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-top:24px; padding-top:14px; border-top:1px solid var(--border-color); font-size:13px;">
+    <div>__PREV_PAGE_LINK__</div>
+    <div style="font-weight:600; color:var(--primary);">__PAGE_NAVS__</div>
+    <div>__NEXT_PAGE_LINK__</div>
+  </div>
+</div>

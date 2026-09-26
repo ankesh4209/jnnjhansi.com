@@ -1,0 +1,82 @@
+<script language="javascript">
+function selectAll() {
+  var frm = document.services_form;
+  for (var i = 0; i < frm.elements.length; i++) {
+    if (frm.elements[i].type == 'checkbox') frm.elements[i].checked = true;
+  }
+}
+function selectNone() {
+  var frm = document.services_form;
+  for (var i = 0; i < frm.elements.length; i++) {
+    if (frm.elements[i].type == 'checkbox') frm.elements[i].checked = false;
+  }
+}
+function checkSelected() {
+  var frm = document.services_form;
+  for (var i = 0; i < frm.elements.length; i++) {
+    if (frm.elements[i].type == 'checkbox' && frm.elements[i].checked) return true;
+  }
+  alert("Please select at least one item.");
+  return false;
+}
+function confirmDelete() {
+  if (checkSelected()) {
+    return confirm("The selected services will be deleted. Are you sure?");
+  }
+  return false;
+}
+</script>
+
+<table width="100%" align="left" border="0" cellpadding="0" cellspacing="0">
+  <form name="services_form" action="services_info.php" method="post">
+    <tr>
+      <td>
+        <table width="100%" class="grayhead" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="grayheadleft">&nbsp;</td>
+            <td class="grayheadmid">Manage Citizen Services (Homepage Quick Access &amp; Services Directory)</td>
+            <td class="grayheadright">&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="40" style="font-size: 13px;">
+        <span style="background: #12365A; padding: 6px 14px; border-radius: 4px; display: inline-block; margin-bottom: 8px;">
+          <a href="add_service.php" style="color: #ffffff; text-decoration: none; font-weight: bold;">+ Add New Citizen Service</a>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">__PROMPT__</td>
+    </tr>
+    <tr>
+      <td>
+        <table width="100%" border="0" cellspacing="0" cellpadding="4" style="border: 1px solid #dcdcdc;">
+          <tr class="grayhdbg" style="background: #12365A; color: #ffffff;">
+            <td width="4%" align="center">Select</td>
+            <td width="20%" align="left"><b>Service Title</b></td>
+            <td width="12%" align="center"><b>Category</b></td>
+            <td width="24%" align="left"><b>Subtitle / Description</b></td>
+            <td width="10%" align="center"><b>Show on Home</b></td>
+            <td width="8%" align="center"><b>Order</b></td>
+            <td width="8%" align="center"><b>Status</b></td>
+            <td width="14%" align="center"><b>Action</b></td>
+          </tr>
+          __SERVICES_LIST__
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="12"></td>
+    </tr>
+    <tr>
+      <td align="right">
+        <input type="button" value="Select All" onclick="selectAll()" style="padding: 4px 8px; cursor: pointer;" />
+        <input type="button" value="Select None" onclick="selectNone()" style="padding: 4px 8px; cursor: pointer;" />
+        <input type="submit" name="SUBMIT_CHANGE" value="Toggle Status" style="padding: 4px 8px; cursor: pointer;" />
+        <input type="submit" name="SUBMIT_DELETE" value="Delete Selected" onclick="return confirmDelete();" style="padding: 4px 8px; background: #dc3545; color: #fff; border: 1px solid #dc3545; cursor: pointer;" />
+      </td>
+    </tr>
+  </form>
+</table>

@@ -1,22 +1,62 @@
-<table width="680px" border="0" cellspacing="0" cellpadding="0">
-			  <tr>
-			  	<td colspan="2" align="left" valign="top">
-					<h2 class="home_cont"><img src="images/content_header_img.png" alt="" align="absmiddle" />
-					Tenders</h2>
-					<p>&nbsp;</p>
-					<table width="100%" border="1" cellspacing="0" cellpadding="0" align="center">
-						<tr> 
-							  <td align="center" width="10%"><strong>Sr.No</strong></td>
-							  <td align="center" width="60%"><strong>Tender</strong></td>
-							  <td align="center" width="12%"><strong>Last Date</strong></td>
-							  <td align="center" width="18%"><strong>Download's</strong></td>
-						</tr>
-						__PRODUCT_LIST__
-						
-					</table>
-					</td>
-			  </tr>
-			</table>
-		  </td>
+<div class="filterable-section">
+  <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:20px;">
+    <div>
+      <h2 style="font-size:22px; font-weight:800; color:var(--primary); margin:0 0 4px 0;">
+        e-Tender Notifications &amp; NIT
+      </h2>
+      <p style="color:var(--text-muted); font-size:13px; margin:0;">
+        Transparent and competitive tendering process for Jhansi Municipal Corporation.
+      </p>
+    </div>
+
+    <!-- Quick Tender Portal Links -->
+    <div style="display:flex; gap:10px;">
+      <a href="https://jnnjhansi.procure247.com/TenderPay/x-login" target="_blank" class="btn-action-view" style="background:var(--accent);">
+        e-Tender Fee / EMD &rarr;
+      </a>
+      <a href="https://etender.up.nic.in" target="_blank" class="btn-action-view">
+        UP e-Procure Portal &rarr;
+      </a>
+    </div>
+  </div>
+
+  <!-- Filter & Search Controls (Matching Screenshot Panel 4) -->
+  <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; margin-bottom:16px; background:#F8FAFC; padding:12px 16px; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+    <div class="filter-tabs-bar" style="margin-bottom:0;">
+      <button type="button" class="filter-tab-btn active" data-filter="all">All</button>
+      <button type="button" class="filter-tab-btn" data-filter="open">Open</button>
+      <button type="button" class="filter-tab-btn" data-filter="closed">Closed</button>
+      <button type="button" class="filter-tab-btn" data-filter="upcoming">Upcoming</button>
+    </div>
+
+    <div style="display:flex; gap:8px;">
+      <input type="text" id="tenderSearchInput" class="portal-form-input" placeholder="Search tenders..." style="padding:6px 14px; font-size:13px; width:220px;" onkeyup="var filter = this.value.toUpperCase(); var rows = document.querySelectorAll('.tender-table-row'); rows.forEach(function(r){ r.style.display = r.innerText.toUpperCase().indexOf(filter) > -1 ? '' : 'none'; });">
+      <button type="button" class="btn-action-view" style="padding:6px 14px;">Search</button>
+    </div>
+  </div>
+
+  <!-- Responsive Tender Table -->
+  <div style="overflow-x:auto;">
+    <table class="portal-table">
+      <thead>
+        <tr> 
+          <th style="width:7%; text-align:center;">S.No.</th>
+          <th style="width:58%;">Tender Title &amp; Details</th>
+          <th style="width:15%; text-align:center;">Notice Date</th>
+          <th style="width:10%; text-align:center;">Status</th>
+          <th style="width:10%; text-align:center;">Action</th>
         </tr>
- </table>
+      </thead>
+      <tbody>
+        __PRODUCT_LIST__
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-top:24px; padding-top:14px; border-top:1px solid var(--border-color); font-size:13px;">
+    <div>__PREV_PAGE_LINK__</div>
+    <div style="font-weight:600; color:var(--primary);">__PAGE_NAVS__</div>
+    <div>__NEXT_PAGE_LINK__</div>
+  </div>
+</div>

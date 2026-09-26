@@ -37,7 +37,7 @@ function ReplaceContent($VarList) {
 
 		${$VarList[$i]} = preg_replace_callback("/__(\w+)__/",
 		function ($matches) {		
-			return $GLOBALS[$matches[1]];
+			return isset($GLOBALS[$matches[1]]) ? $GLOBALS[$matches[1]] : '';
 		} ,
 		${$VarList[$i]}
 	);

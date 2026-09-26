@@ -1,95 +1,174 @@
-	
-    
-    <div id="topnav">www.jnnjhansi.com  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.facebook.com/CleanJhansi" target=_blank><img src="images/facebook_icon.png" width="25" height="25" /></a></div>
-	<div id="logoarea">
-		<div id="logoarealeft">
-			<div id="logo"><a href="index.php"><img src="images/logo.png" width="126" height="126" /></a></div>
-			<div id="like"><img src="images/logoname.png" width="288" height="25" />
-				<div id="subname">Welcome to Nagar Nigam Official website</div>
-			</div>
-		</div>
-		<div id="logoarearight"><img src="images/img-right.png" width="406" height="127" /></div>
-	</div>
+<!-- 1. SLIM TOP UTILITY BAR -->
+<div class="top-utility-bar">
+  <div class="portal-container">
+    <div class="top-utility-inner">
+      <div class="govt-identity">
+        <span class="govt-tricolor"></span>
+        <span>उत्तर प्रदेश सरकार | Government of Uttar Pradesh</span>
+      </div>
+      <div class="utility-actions">
+        <div class="utility-links">
+          <a href="faq.php" onclick="if(!window.location.href.includes('faq.php')) { window.location.href='aboutus.php'; return false; }">FAQ</a>
+          <a href="contactus.php">Help</a>
+          <a href="sitemap.php">Sitemap</a>
+        </div>
+        <div class="utility-divider"></div>
+        <div class="font-resizer">
+          <button class="font-btn" id="fontDecrease" title="Decrease Font Size">A-</button>
+          <button class="font-btn active" id="fontNormal" title="Normal Font Size">A</button>
+          <button class="font-btn" id="fontIncrease" title="Increase Font Size">A+</button>
+        </div>
+        <button class="lang-btn" onclick="alert('द्विभाषी पोर्टल: झाँसी नगर निगम (Jhansi Nagar Nigam)');">हिन्दी / English</button>
+        <a href="http://webmail.jnnjhansi.com" target="_blank" class="btn-utility-login">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+          <span>Login</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- 2. MAIN BRAND HEADER -->
+<header class="main-portal-header">
+  <div class="portal-container">
+    <div class="main-header-inner">
+      <a href="index.php" class="brand-wrapper">
+        <div class="brand-emblem">
+          <img src="images/logo.png" alt="Jhansi Nagar Nigam Emblem" width="68" height="68" />
+        </div>
+        <div class="brand-titles">
+          <span class="brand-title-hi">झाँसी नगर निगम</span>
+          <span class="brand-title-en">JHANSI NAGAR NIGAM</span>
+          <span class="brand-tagline">स्वच्छ शहर, समृद्ध झाँसी</span>
+        </div>
+      </a>
 
-	<div id="navigation">
-	<ul>
-	<li><a href="index.php">Home</a></li>                                                                              
-  <!--<li><a href="smart_city.php">Smart City</a></li>-->
-   <!--<li><a href="http://amrut.gov.in/" target="_blank">AMRUT</a></li>-->
-	 <!--<li><a href="e_newsletter.php">e-News Letter</a></li>-->
-  <li><a href="finance_docs.php">Finance</a></li>
-  <li><a href="https://smartcityjhansi.com/" target="_blank">JSCL</a></li>
-	<!--<li><a href="aboutus.php">About us</a></li>-->
-<li><a href="https://play.google.com/store/apps/details?id=com.jscl.jhansiSmartCityProject" target='_new'>JSCL App</a></li>	
-<li><a href="https://apps.apple.com/kh/app/jhansi-smart-city-app/id1573385207" target='_new'>JSCL IOS App</a></li>	
-<li><a href="http://jansunwai.up.nic.in" target='_new'>Public Grievance</a></li>
-	 <!--<li><a href="sbm.php">SBM</a></li>-->
-	  <li><a href="notices.php">Notices</a></li>
-	<li><a href="contactus.php">Contact us</a></li>
-	</ul>
-	</div>
-	<div id="navigation1">
-		<ul>
-		    <li><a href="http://upulbots.in/" target="_blank">Apply OTS</a></li>
-		    <li><a href="https://jnnnoc.in/" target="_blank">Apply NOC</a></li>
-	    	<li><a href="http://www.jhansipropertytax.com/" target="_blank">Property Tax</a></li>
-	    	<!--<li><a href="https://jdjsjhansi.gov.in/" target="_blank">Pay Your Water Bill/Tax</a></li>-->	
-	<li><a href="https://dc.crsorgi.gov.in/crs/" target="_blank">Birth / Death Registration</a></li>
-	<!--<li><a href="https://e-nagarsewaup.gov.in/ulbappsmain/home" target="_blank">e-NagarSewa Services</a></li>-->
-		
-	 <li><a href="tenders.php">Tenders Notification</a></li>
-	<li><a href="https://jnnjhansi.procure247.com/TenderPay/x-login" target="_blank">e-Tender Fee/EMD </a></li>
-	<li><a href="https://etender.up.nic.in" target='_new'>e-Tender</a></li>
-		<!--<li><a href="http://www.jnnjhansi.com/corporators/index.php" target='_new'>Mayers/Corporators</a></li> 
-	
-	<!--<li><a href="http://www.jnnjhansi.com/docs/DemandCollectionbooks.pdf" target='_new'>Demand Collection Book</a></li>-->
-	<!--<li><a href="http://www.jnnjhansi.com/jnncivil/index.php" target='_new'">Civil Works</a></li>-->
-			
-	<!--<li><a href="http://www.jnnjhansi.com/contractors/registration.php" target="_new">Contractor Registration / Renewal</a></li>-->
-	<!--<li><a href="http://www.jnnjhansi.com/pis/index.php" target='_new'>PIS</a></li>
-	
-        
-	<!--<li><a href="http://www.jnnjhansi.com/stock/login.php" target='_new'>Stock</a></li>-->
-
-	</ul>
-	</div>
-
-	<div id="sliderarea">
-		<!-- <img src="images/slider.jpg"/> -->
-			<div id="header"><div class="wrap">
-             <div id="slide-holder">
-          <div id="slider">
-              <a href=""><img id="slide-img-9" src="img/9.png" class="slide" style="width:1020px; height:297px;" alt=""/></a>
-              <!-- <a href=""><img id="slide-img-1" src="img/1.jpg" class="slide" style="width:1020px; height:297px;" alt=""/></a> -->
-               <!--<a href=""><img id="slide-img-2" src="img/2.jpg" class="slide" style="width:1020px; height:297px;" alt=""/></a>-->
-               <!--<a href=""><img id="slide-img-3" src="img/3.jpg" class="slide" style="width:1020px; height:297px;" alt=""/></a>-->
-              <a href=""><img id="slide-img-4" src="img/4.jpg" class="slide" style="width:1020px; height:297px;" alt=""/></a>
-              <a href=""><img id="slide-img-5" src="img/5.jpg" class="slide" style="width:1020px; height:297px;" alt=""/></a>
-              <a href=""><img id="slide-img-6" src="img/6.jpg" class="slide" style="width:1020px; height:297px;" alt=""/></a>
-          	  <a href=""><img id="slide-img-7" src="img/7.jpg" class="slide" style="width:1020px; height:297px;" alt=""/></a> 
-          	  <a href=""><img id="slide-img-8" src="img/8.jpg" class="slide" style="width:1020px; height:297px;" alt=""/></a> 
-              <!--<div id="slide-controls">
-               
-               <p id="slide-nav"></p>
-              </div>-->
+      <div class="header-right-widgets">
+        <div class="helpline-badge">
+          <div class="helpline-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
           </div>
-          	
-          	<!--content featured gallery here -->
-             </div>
-             <script type="text/javascript">
-              if(!window.slider) var slider={};slider.data=[{"id":"slide-img-9","client":"nature beauty","desc":"nature beauty photography"},{"id":"slide-img-2","client":"nature beauty","desc":"add your description here"},{"id":"slide-img-3","client":"nature beauty","desc":"add your description here"},{"id":"slide-img-4","client":"nature beauty","desc":"add your description here"},{"id":"slide-img-5","client":"nature beauty","desc":"add your description here"},{"id":"slide-img-6","client":"nature beauty","desc":"add your description here"},{"id":"slide-img-7","client":"nature beauty","desc":"add your description here"},{"id":"slide-img-8","client":"nature beauty","desc":"add your description here"}];
-             </script>
-            </div></div>
-		
-	</div>
-	<div id="navigation2">
-	<div id="navi2base"><div id="navi2baseleft">Latest News</div><div id="navi2baseleftbg"></div></div>
-	
-	<ul>
-	<marquee scrolldelay="150" truespeed behavior="scroll"  onmouseover="this.stop();" onmouseout="this.start();">
-	<li><b style="color:#e41212;">__notice_view__</b></li>
-	</marquee>
-	</ul>
-	
-	</div>
+          <div class="helpline-info">
+            <span class="helpline-label">Toll Free Helpline</span>
+            <span class="helpline-number">__contact_helpline__</span>
+          </div>
+        </div>
+
+        <button class="btn-accessibility-toggle" id="accessibilityToggle" title="Accessibility Options">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/><circle cx="12" cy="12" r="4"/></svg>
+        </button>
+
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Navigation">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- 3. HORIZONTAL NAVIGATION BAR -->
+<nav class="portal-nav-bar">
+  <div class="portal-container">
+    <div class="nav-bar-inner">
+      <ul class="nav-menu-list" id="navMenuList">
+        <li class="nav-item">
+          <a href="index.php" class="nav-link">Home</a>
+        </li>
+
+        <li class="nav-item has-dropdown">
+          <a href="aboutus.php" class="nav-link">
+            <span>About Us</span>
+            <span class="nav-arrow">&#9662;</span>
+          </a>
+          <ul class="nav-dropdown">
+            <li><a href="aboutus.php" class="dropdown-link">Overview & SBM</a></li>
+            <li><a href="jhansi_history.php" class="dropdown-link">History of Jhansi</a></li>
+            <li><a href="administration.php" class="dropdown-link">Administration & Officers</a></li>
+            <li><a href="departments.php" class="dropdown-link">Departments</a></li>
+            <li><a href="citizen_charter.php" class="dropdown-link">Citizen Charter</a></li>
+            <li><a href="stastistics.php" class="dropdown-link">Statistics</a></li>
+            <li><a href="house_resolution.php" class="dropdown-link">House Resolutions</a></li>
+            <li><a href="gallery.php" class="dropdown-link">Photo Gallery</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item has-dropdown">
+          <a href="services.php" class="nav-link">
+            <span>Services</span>
+            <span class="nav-arrow">&#9662;</span>
+          </a>
+          <ul class="nav-dropdown">
+            <li><a href="services.php" class="dropdown-link">All Civic Services</a></li>
+            <li><a href="http://www.jhansipropertytax.com/" target="_blank" class="dropdown-link">Property Tax (Pay Online)</a></li>
+            <li><a href="http://upulbots.in/" target="_blank" class="dropdown-link">Apply OTS Scheme</a></li>
+            <li><a href="https://jnnnoc.in/" target="_blank" class="dropdown-link">Apply Online NOC</a></li>
+            <li><a href="https://dc.crsorgi.gov.in/crs/" target="_blank" class="dropdown-link">Birth & Death Registration</a></li>
+            <li><a href="https://smartcityjhansi.com/" target="_blank" class="dropdown-link">Jhansi Smart City (JSCL)</a></li>
+            <li><a href="downloads.php" class="dropdown-link">Ward & GIS Tax Maps</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a href="finance_docs.php" class="nav-link">Finance</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="http://jansunwai.up.nic.in" target="_blank" class="nav-link">Public Grievance</a>
+        </li>
+
+        <li class="nav-item has-dropdown">
+          <a href="tenders.php" class="nav-link">
+            <span>e-Tender</span>
+            <span class="nav-arrow">&#9662;</span>
+          </a>
+          <ul class="nav-dropdown">
+            <li><a href="tenders.php" class="dropdown-link">Tenders Notification</a></li>
+            <li><a href="https://jnnjhansi.procure247.com/TenderPay/x-login" target="_blank" class="dropdown-link">e-Tender Fee / EMD</a></li>
+            <li><a href="https://etender.up.nic.in" target="_blank" class="dropdown-link">UP Govt e-Procurement</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a href="notices.php" class="nav-link">Notices</a>
+        </li>
+
+        <li class="nav-item has-dropdown">
+          <a href="gallery.php" class="nav-link">
+            <span>Media</span>
+            <span class="nav-arrow">&#9662;</span>
+          </a>
+          <ul class="nav-dropdown">
+            <li><a href="gallery.php" class="dropdown-link">Photo Gallery</a></li>
+            <li><a href="docs/Calendar2026.pdf" target="_blank" class="dropdown-link">Holidays & Calendar 2026</a></li>
+            <li><a href="docs/Jhansi Heat Wave.pdf" target="_blank" class="dropdown-link">Jhansi City Heat Plan</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a href="contactus.php" class="nav-link">Contact Us</a>
+        </li>
+      </ul>
+
+      <button class="nav-search-trigger" onclick="var el = document.getElementById('portalSearchInput') || document.querySelector('.hero-search-input'); if(el) { el.focus(); el.scrollIntoView({behavior:'smooth', block:'center'}); } else { window.location.href='notices.php'; }" title="Search Portal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- 4. LATEST NEWS TICKER BAR -->
+<div class="news-ticker-bar">
+  <div class="portal-container">
+    <div class="ticker-inner">
+      <div class="ticker-badge">
+        <span class="ticker-pulse"></span>
+        <span>Latest News</span>
+      </div>
+      <div class="ticker-content">
+        <marquee scrolldelay="120" truespeed behavior="scroll" onmouseover="this.stop();" onmouseout="this.start();">
+          __notice_view__
+        </marquee>
+      </div>
+    </div>
+  </div>
+</div>

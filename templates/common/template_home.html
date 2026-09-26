@@ -1,92 +1,279 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jhansi Nagar Nigam - Official Portal | झाँसी नगर निगम</title>
+  
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <link href="css/portal.css" rel="stylesheet" type="text/css" />
 
-<title>Jhansi Nagar Nigam</title>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/scripts.js"></script>
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<link href="css/slide.css" rel="stylesheet" type="text/css" />
-
-
-
-<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
-    <script type="text/javascript" src="js/jquery.nivo.slider.js"></script>
-    <script type="text/javascript">
-    jQuery(window).load(function() {
-        jQuery('#slider').nivoSlider({
-			animSpeed:1000,
-			effect: 'random',
-			prevText: '', // Prev directionNav text
-        	nextText: '' // Next directionNav text			
-		});
-    });
-    </script>
-    <link rel="stylesheet" href="css/nivo-slider.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="css/default/default.css" type="text/css" media="screen" />
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/portal.js"></script>
 </head>
 
 <body>
 <div id="container">
 <div id="wrapper">
-__TOPBAR__
 
-<div id="main">
-<div id="mailleft">
-	<div id="iconone"><div id="icononeimg"><img src="images/icon-one.png" width="27" height="27" /></div><div id="icontext"> Notice Board</div>	</div>
-	<marquee direction='up' height='600' scrolldelay="150" behavior="scroll"  onmouseover="this.stop();" onmouseout="this.start();">
-	__Work_view__
-	</marquee>
+  <!-- TOP UTILITY & NAVIGATION BAR -->
+  __TOPBAR__
 
-	<div id="navbox">Photo Gallery <span><a href="gallery.php">View All</a></span></div>
+  <!-- HOMEPAGE HERO BANNER SECTION -->
+  <section class="hero-banner-section" style="background: linear-gradient(135deg, rgba(10, 31, 53, 0.92) 0%, rgba(18, 54, 90, 0.85) 60%, rgba(20, 60, 100, 0.70) 100%), url('__hero_banner_image__') center/cover no-repeat;">
+    <div class="portal-container">
+      <div class="hero-banner-inner">
+        <!-- Left Column: Hero Text & Search Bar -->
+        <div class="hero-left-col">
+          <div class="hero-tagline-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+            <span>__hero_tagline__</span>
+          </div>
 
-	<div id="pic"><img src="images/5.jpg" width="283" height="171" /></div>
+          <h1 class="hero-main-heading">
+            __hero_title__
+          </h1>
 
-	</div>
+          <div class="hero-sub-text">
+            __hero_subtitle__
+          </div>
 
-<div id="mailmiddiltop">
-	<div id="boxone">
-	<div id="boxmi">__Mayer_Image__</div>
-	<div id="boxte">Mayor <span> __Mayer_Name__ </span></div>
+          <!-- Prominent Search Bar -->
+          <div class="hero-search-wrapper">
+            <input type="text" id="portalSearchInput" class="hero-search-input" placeholder="Search services, forms, tenders, notices..." aria-label="Search">
+            <button type="button" class="hero-search-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <span>Search</span>
+            </button>
+          </div>
 
-	</div>
-	<div id="boxtwo">
-	<div id="boxmi">__Commissioner_Image__</div>
-	<div id="boxte">Municipal Commissioner<span>__Comm_Name__</span></div>
-	</div>
+          <div class="hero-quick-tags">
+            <span>Quick:</span>
+            <a href="http://www.jhansipropertytax.com/" target="_blank">Property Tax</a>
+            <a href="https://dc.crsorgi.gov.in/crs/" target="_blank">Birth Certificate</a>
+            <a href="tenders.php">Tenders</a>
+            <a href="http://upulbots.in/" target="_blank">OTS Scheme</a>
+            <a href="https://jnnnoc.in/" target="_blank">Apply NOC</a>
+          </div>
+        </div>
 
-
-<div id="mailmiddilsecond">
-	<div id="mailmiddilleft">
-	<div id="icontwo"><div id="icononeimg"><img src="images/icon-two.png" width="20" height="25" style="margin:3px 0 0 5px" /></div><div id="icontexttwo">Latest Tenders</div>	</div>
-	<img src="images/mark.png" width="25" height="22" style="margin:5px 0 5px 0" />
-	<marquee direction='up' style="text-transform: uppercase"  scrollamount="6" height='290' scrolldelay="150" truespeed behavior="scroll"  onmouseover="this.stop();" onmouseout="this.start();">
-	<ul>
-	  __tender_view__
-	</ul>
-	</marquee>
-    
-    <div class="google_map" style="border-top: 6px #fff solid;">
-    <h1 style="background: #000; color: #fff; margin: 0; font-size: 15px; padding: 6px 12px;font-weight: normal;">Map</h1>
-    	<iframe width="360" height="365" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.in/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=jhansi+nagar+nigam&amp;aq=&amp;sll=25.444121,78.567604&amp;sspn=0.168342,0.338173&amp;g=jhansi&amp;ie=UTF8&amp;hq=nagar+nigam&amp;hnear=Jhansi,+Uttar+Pradesh&amp;t=m&amp;cid=13682369725505538264&amp;ll=25.46141,78.572073&amp;spn=0.027123,0.030899&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe><br /><small><a href="https://maps.google.co.in/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=jhansi+nagar+nigam&amp;aq=&amp;sll=25.444121,78.567604&amp;sspn=0.168342,0.338173&amp;g=jhansi&amp;ie=UTF8&amp;hq=nagar+nigam&amp;hnear=Jhansi,+Uttar+Pradesh&amp;t=m&amp;cid=13682369725505538264&amp;ll=25.46141,78.572073&amp;spn=0.027123,0.030899&amp;z=14&amp;iwloc=A" style="color:#0000FF;text-align:left">View Larger Map</a></small>
+        <!-- Right Column: Rani Lakshmibai Hero Quote Badge -->
+        <div class="hero-right-col">
+          <div class="hero-quote-card">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+              <span style="font-size:18px;">🚩</span>
+              <span style="font-size:12px; font-weight:700; color:#FFAA70; text-transform:uppercase; letter-spacing:1px;">__hero_quote_badge__</span>
+            </div>
+            <div class="quote-verse">
+              __hero_quote_verse__
+            </div>
+            <span class="quote-author">__hero_quote_author__</span>
+          </div>
+        </div>
+      </div>
     </div>
-    
-	</div>
+  </section>
 
-__RIGHTBAR__
+  <!-- QUICK ACCESS FLOATING SERVICE CARDS (DYNAMIC FROM ADMIN) -->
+  <section class="quick-access-section">
+    <div class="portal-container">
+      <div class="quick-access-grid">
+        __home_services__
+      </div>
+    </div>
+  </section>
 
-</div>
-</div>
-</div>
+  <!-- ANNOUNCEMENTS & MAYOR'S MESSAGE SECTION -->
+  <section class="announcements-mayor-section">
+    <div class="portal-container">
+      <div class="dual-columns-grid">
+        <!-- Left: Latest News & Announcements -->
+        <div class="portal-panel-card">
+          <div class="panel-header">
+            <h2 class="panel-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F47721" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+              <span>Latest News & Announcements</span>
+            </h2>
+            <a href="notices.php" class="panel-link-all">View All &rarr;</a>
+          </div>
 
+          <div class="announcements-list">
+            __home_announcements__
+          </div>
+        </div>
 
-__BOTTOMBAR__
+        <!-- Right: Leadership & Mayor's Message -->
+        <div class="portal-panel-card">
+          <div class="panel-header">
+            <h2 class="panel-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F47721" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              <span>Leadership &amp; Message</span>
+            </h2>
+            <a href="mayer.php?mid=__mid__" class="panel-link-all">Read More &rarr;</a>
+          </div>
 
+          <div class="mayor-card-content">
+            <div class="mayor-quote-box">
+              <div class="mayor-quote-text">"__mayor_quote_title__"</div>
+              <div style="font-size:12px; color:#9A3412; font-weight:600; margin-top:4px;">
+                __mayor_quote_subtitle__
+              </div>
+            </div>
+
+            <div class="leaders-dual-view">
+              <!-- Mayor Card -->
+              <div class="leader-box">
+                <div class="leader-photo">
+                  __Mayer_Image__
+                </div>
+                <div class="leader-name">__Mayer_Name__</div>
+                <div class="leader-role">महापौर / Mayor</div>
+                <a href="mayer.php?mid=__mid__" class="btn-leader-link">Profile & Message &rarr;</a>
+              </div>
+
+              <!-- Municipal Commissioner Card -->
+              <div class="leader-box">
+                <div class="leader-photo">
+                  __Commissioner_Image__
+                </div>
+                <div class="leader-name">__Comm_Name__</div>
+                <div class="leader-role">नगर आयुक्त / Commissioner</div>
+                <a href="commissioner.php?cid=__cid__" class="btn-leader-link">Profile & Administration &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY STATISTICS SECTION (4 STATS) -->
+  <section class="statistics-section">
+    <div class="portal-container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-blue">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+          <div class="stat-numbers">
+            <span class="stat-count">__stat_1_count__</span>
+            <span class="stat-label">__stat_1_label__</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-orange">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+          </div>
+          <div class="stat-numbers">
+            <span class="stat-count">__stat_2_count__</span>
+            <span class="stat-label">__stat_2_label__</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-green">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg>
+          </div>
+          <div class="stat-numbers">
+            <span class="stat-count">__stat_3_count__</span>
+            <span class="stat-label">__stat_3_label__</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-purple">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </div>
+          <div class="stat-numbers">
+            <span class="stat-count">__stat_4_count__</span>
+            <span class="stat-label">__stat_4_label__</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SWACHH JHANSI HIGHLIGHT BANNER -->
+  <section class="swachh-banner-section">
+    <div class="portal-container">
+      <div class="swachh-banner-card">
+        <div class="swachh-banner-inner">
+          <div>
+            <span class="swachh-badge">__swachh_badge__</span>
+            <h3 class="swachh-title">__swachh_title__</h3>
+            <p class="swachh-desc">
+              __swachh_desc__
+            </p>
+            <a href="__swachh_btn_url__" class="btn-swachh-action">
+              <span>__swachh_btn_text__</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+          <div class="swachh-banner-image">
+            <img src="__swachh_banner_image__" alt="Swachh Jhansi Abhiyan">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT JHANSI NAGAR NIGAM OVERVIEW -->
+  <section style="margin-bottom: 40px;">
+    <div class="portal-container">
+      __PAGE_CONTENTS__
+    </div>
+  </section>
+
+  <!-- HOMEPAGE BOTTOM GRIDS: TENDERS & PHOTO GALLERY -->
+  <section style="margin-bottom: 50px;">
+    <div class="portal-container">
+      <div class="home-bottom-grid">
+        <!-- Live Tenders Box -->
+        <div class="portal-panel-card">
+          <div class="panel-header">
+            <h2 class="panel-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F47721" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+              <span>Latest Tenders &amp; NIT</span>
+            </h2>
+            <a href="tenders.php" class="panel-link-all">View All &rarr;</a>
+          </div>
+
+          <ul class="tenders-home-list">
+            __tender_view__
+          </ul>
+        </div>
+
+        <!-- Photo Gallery & Map Box -->
+        <div class="portal-panel-card">
+          <div class="panel-header">
+            <h2 class="panel-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F47721" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+              <span>Jhansi Heritage &amp; Gallery</span>
+            </h2>
+            <a href="gallery.php" class="panel-link-all">View Gallery &rarr;</a>
+          </div>
+
+          <div class="gallery-preview-grid">
+            <div class="gallery-preview-item"><img src="pics/rani_histry.jpg" alt="Rani Lakshmibai Memorial"></div>
+            <div class="gallery-preview-item"><img src="pics/rani_histry_fost.jpg" alt="Jhansi Fort Ramparts"></div>
+            <div class="gallery-preview-item"><img src="pics/rani_hostry_fort10.jpg" alt="Historic Jhansi Landmark"></div>
+          </div>
+
+          <div class="map-container">
+            <iframe src="__contact_map_embed__" title="Nagar Nigam Jhansi Location Map"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFESSIONAL MULTI-COLUMN FOOTER -->
+  __BOTTOMBAR__
 
 </div>
 </div>
 </body>
 </html>
-
-
-

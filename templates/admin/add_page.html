@@ -1,36 +1,14 @@
-<Script language=javascript>
-<!--
-function checkSignUpDetails()
-{	with(window.document.add_page)
-	{	
-   if(name.value=="")
-		{	alert("Enter Page Name");
-			name.focus(); return false;
-		}
-		if(myeditor.value=="")
-		{	
-      alert("Enter Product Description");
-			myeditor.focus(); return false;
-		}
-		if(p_pdf.value=="")
-		{	alert("Upload Cutsheet for product");
-			p_pdf.focus(); return false;
-		}
-		if(p_pdf.value!="")
-		 {
-		   var j = new RegExp(); 
-		   j.compile("^.*\.(pdf)$");
-		   if (!j.test(p_pdf.value)) 
-	     {	
-         alert("Upload only pdf file");
-         p_pdf.focus(); return false;
-	     }
-     }
-		return true;
-	}
+<script type="text/javascript">
+function checkSignUpDetails() {
+    var f = document.forms["add_page"];
+    if(!f || !f.name.value.trim()) {
+        alert("Please enter Page Name");
+        if(f && f.name) f.name.focus();
+        return false;
+    }
+    return true;
 }
-//-->
-</Script>
+</script>
 <script type="text/javascript" src="tiny_mce/tiny_mce.js"></script>
 <!-- <script type="text/javascript">
     tinyMCE.init({

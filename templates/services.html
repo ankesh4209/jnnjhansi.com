@@ -1,12 +1,27 @@
-<table width="680px" border="0" cellspacing="0" cellpadding="0">
-			  <tr>
-			  	<td colspan="2" align="left" valign="top">
-					<h2 class="home_cont"><img src="images/content_header_img.png" alt="" align="absmiddle" />
-					Services</h2>
-					__pagecontent__
-					</td>
-			  </tr>
-			</table>
-		  </td>
-        </tr>
- </table>
+<div class="filterable-section">
+  <div style="margin-bottom: 24px;">
+    <h2 style="font-size: 24px; font-weight: 800; color: var(--primary); margin: 0 0 6px 0;">
+      Civic Services Directory
+    </h2>
+    <p style="color: var(--text-muted); font-size: 14px; margin: 0;">
+      Access all citizen services, online applications, licenses, tax payments, and grievance tracking.
+    </p>
+  </div>
+
+  <!-- Filter Category Tabs -->
+  <div class="filter-tabs-bar">
+    <button type="button" class="filter-tab-btn active" data-filter="all">All Services</button>
+    <button type="button" class="filter-tab-btn" data-filter="tax">Property &amp; Tax</button>
+    <button type="button" class="filter-tab-btn" data-filter="cert">Certificates</button>
+    <button type="button" class="filter-tab-btn" data-filter="noc">NOC &amp; Approvals</button>
+    <button type="button" class="filter-tab-btn" data-filter="utility">Utilities</button>
+    <button type="button" class="filter-tab-btn" data-filter="grievance">Public Services</button>
+  </div>
+
+  <!-- Services Grid (Dynamic from Admin Panel) -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; margin-top: 20px;">
+    __SERVICES_DIRECTORY__
+  </div>
+
+  __pagecontent__
+</div>

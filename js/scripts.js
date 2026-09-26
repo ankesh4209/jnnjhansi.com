@@ -8,10 +8,9 @@ window.onerror=function(desc,page,line,chr){
 }
 
 $(function(){
- $('a').focus(function(){this.blur();});
- SI.Files.stylizeAll();
- slider.init();
- mc.init();
+ if (typeof SI !== 'undefined' && SI.Files && SI.Files.stylizeAll) SI.Files.stylizeAll();
+ if (typeof slider !== 'undefined' && slider.init) slider.init();
+ if (typeof mc !== 'undefined' && mc.init) mc.init();
 
  $('input.text-default').each(function(){
   $(this).attr('default',$(this).val());
