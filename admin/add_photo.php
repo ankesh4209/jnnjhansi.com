@@ -12,6 +12,7 @@ include("../config/data.config.php");
 include("../phplib/functions.library.php");
 include("../phplib/class.database.php");
 include("../phplib/data.constant.php");
+include("../phplib/thumbclass.php");
 //include("../config/permission.config.php");
 
 $PAGE_NAME = "Welcome to the Administrative Panel";
@@ -61,107 +62,46 @@ flush();
 
 function addphoto($db)
  {
-   global $PROMPT,$DOCUMENT_ROOT;
+   global $PROMPT, $APP_ROOT;
    
-  if($_SERVER['SERVER_NAME']=='localhost')
-  {
-	$uploadPath=$DOCUMENT_ROOT.'jnnweb/pic/'.$_FILES['photo']['name'];
-  }
-  else
-  {
-	$uploadPath=$DOCUMENT_ROOT.'/pic/'.$_FILES['photo']['name'];
-  }
- 
-  
-   if(move_uploaded_file ($_FILES['photo']['tmp_name'],$uploadPath))
-   {
-	  //echo "Successfully uploaded the mage";
-		chmod("$uploadPath",0777);
-   }
-   else
-   { 
-	   $PROMPT= "Failed to upload file Contact Site admin to fix the problem";
+   $status = isset($_POST['status']) ? (int)$_POST['status'] : 1;
+   $photo_name = !empty($_FILES['photo']['name']) ? basename($_FILES['photo']['name']) : '';
+   
+   if (empty($photo_name) || empty($_FILES['photo']['tmp_name'])) {
+       $PROMPT = "Please select a photo to upload.";
        return false;
-  }
-  
-  
-  ///////// Start the thumbnail generation//////////////
-$s_thumb=getImagescales($uploadPath,150,150);
-$b_thumb=getImagescales($uploadPath,500,450);
+   }
 
-$n_width=$s_thumb['width'];
-$n_height=$s_thumb['height'];
+   $baseDir = ($APP_ROOT ?? (dirname(__DIR__) . '/')) . 'pic/';
+   $thumbDir = $baseDir . 'thumb/';
+   if (!file_exists($baseDir)) @mkdir($baseDir, 0777, true);
+   if (!file_exists($thumbDir)) @mkdir($thumbDir, 0777, true);
 
-$t_width=$b_thumb['width'];
-$t_height=$b_thumb['height'];
+   $uploadPath = $baseDir . $photo_name;
+   if (move_uploaded_file($_FILES['photo']['tmp_name'], $uploadPath)) {
+       @chmod($uploadPath, 0755);
+       try {
+           $thumb = new SimpleImage();
+           $thumb->load($uploadPath);
+           $thumb->resize(150, 150);
+           $thumb->save($thumbDir . $photo_name);
 
+           $thumbBig = new SimpleImage();
+           $thumbBig->load($uploadPath);
+           $thumbBig->resize(500, 450);
+           $thumbBig->save($thumbDir . 'thumb_' . $photo_name);
+       } catch (Exception $e) {}
 
-if($_SERVER['SERVER_NAME']=='localhost')
-{
-	$ThumbPath=$DOCUMENT_ROOT.'jnnweb/pic/thumb/'.$_FILES['photo']['name'];   // Path where thumb nail image will be stored
-	$ThumbPath1=$DOCUMENT_ROOT.'jnnweb/pic/thumb/thumb_'.$_FILES['photo']['name'];   // Path where thumb nail image will be stored
-}
-else
-{
-	$ThumbPath=$DOCUMENT_ROOT.'/pic/thumb/'.$_FILES['photo']['name'];
-	$ThumbPath1=$DOCUMENT_ROOT.'/pic/thumb/thumb_'.$_FILES['photo']['name'];  
-}
-if (!($_FILES[photo][type] =="image/pjpeg" ||$_FILES[photo][type] =="image/jpeg" || $_FILES[photo][type]=="image/gif"))
-{
-		$PROMPT= "Your uploaded file must be of JPG or GIF. Other file types are not allowed<BR>";
-		 return false;
-}
-
-/////////////////////////////////////////////// Starting of GIF thumb nail creation///////////
-if (@$_FILES[photo][type]=="image/gif")
-{
-	$im=ImageCreateFromGIF($uploadPath);
-	$width=ImageSx($im);              // Original picture width is stored
-	$height=ImageSy($im);                  // Original picture height is stored
-	$newimage=imagecreatetruecolor($n_width,$n_height);
-	$big_newimage=imagecreatetruecolor($n_width,$n_height);
-	imageCopyResized($newimage,$im,0,0,0,0,$n_width,$n_height,$width,$height);
-	imageCopyResized($big_newimage,$im,0,0,0,0,$t_width,$t_height,$width,$height);
-	if (function_exists("imagegif")) {
-	Header("Content-type: image/gif");
-	ImageGIF($newimage,$ThumbPath);
-	ImageGIF($big_newimage,$ThumbPath1);
-}
-elseif (function_exists("imagejpeg")) {
-	Header("Content-type: image/jpeg");
-	ImageJPEG($newimage,$ThumbPath);
-	ImageJPEG($big_newimage,$ThumbPath1);
-}
-chmod("$ThumbPath",0777);
-}////////// end of gif file thumb nail creation//////////
-
-////////////// starting of JPG thumb nail creation//////////
-if($_FILES[photo][type]=="image/pjpeg" || $_FILES[photo][type]=="image/jpeg")
-{
-	$im=ImageCreateFromJPEG($uploadPath); 
-	$width=ImageSx($im);              // Original picture width is stored
-	$height=ImageSy($im);             // Original picture height is stored
-	$newimage=imagecreatetruecolor($n_width,$n_height);
-    $big_newimage=imagecreatetruecolor($t_width,$t_height);                
-	imageCopyResized($newimage,$im,0,0,0,0,$n_width,$n_height,$width,$height);
-	imageCopyResized($big_newimage,$im,0,0,0,0,$t_width,$t_height,$width,$height);
-	ImageJpeg($newimage,$ThumbPath);
-	ImageJpeg($big_newimage,$ThumbPath1);
-	chmod("$ThumbPath",0777);
-}
-////////////////  End of JPG thumb nail creation //////////
-  
-  
-  $status=$_POST['status'];
-  $photo_name=$_FILES['photo']['name'];
-  $query="insert into tbl_gallary (photo_name,status) values('$photo_name','$status')";
-  $db->query($query);
-  $P_ID = $db->insert_id();
-
-   return true;
-   
- 
+       $query = "insert into tbl_gallary (photo_name,status) values('$photo_name','$status')";
+       $db->query($query);
+       $PROMPT = "Photo added successfully to gallery.";
+       return true;
+   } else {
+       $PROMPT = "Failed to upload file. Please check folder permissions.";
+       return false;
+   }
  }
+   
  
  function getImagescales($originalImage,$toWidth,$toHeight){
     

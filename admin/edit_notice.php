@@ -19,25 +19,22 @@ $PAGE_NAME = "Welcome to the Administrative Panel";
 $db=new DbConnect($DB_HOST, $DB_USERNAME, $DB_PASSWORD, $DB_NAME, $DB_REPORT_ERROR, $DB_PERSISTENT_CONN);
 $db->open() or die($db->error());
 
- $pdfId=$_GET['pdfId'];
-getpdfinfo($db,$pdfId);
+$pdfId = isset($_REQUEST['pdfId']) ? (int)$_REQUEST['pdfId'] : (isset($_REQUEST['id']) ? (int)$_REQUEST['id'] : 0);
+if ($pdfId > 0) {
+    getpdfinfo($db, $pdfId);
+}
 
-
-if($_POST["submit"]!='')
- {
-	  $pdfId=$_POST['pdfId'];
-   if(editpdffile($db,$pdfId))
-	 {
-    
-   echo "<script type='text/javascript'>
+if ($_POST["submit"] != '') {
+    $pdfId = isset($_POST['pdfId']) ? (int)$_POST['pdfId'] : $pdfId;
+    if (editpdffile($db, $pdfId)) {
+        echo "<script type='text/javascript'>
         <!-- 
-         window.location = 'notice_info.php'
+         window.location = 'notice_info.php';
         //-->
         </script>"; 
-	 }             
-        
-                   
- }
+        exit;
+    }
+}
 
 /*include("../FCKeditor/fckeditor.php");
 
@@ -73,55 +70,51 @@ flush();
 
 function editpdffile($db,$pdfId)
 {
-   global $PROMPT,$DOCUMENT_ROOT;
+   global $PROMPT, $APP_ROOT;
 
-   $p_description=addslashes($_POST["file_desc"]);
-   $status=$_POST['status'];
-   $filename=$_FILES['pdf_file']['name'];
-   $tdate=explode('/',$_POST['tdate']);
-   $tdate=$tdate['2']."-".$tdate['1']."-".$tdate['0']; 
-  
+   $p_description = addslashes($_POST["file_desc"] ?? '');
+   $status = isset($_POST['status']) ? $_POST['status'] : '1';
+   $filename = !empty($_FILES['pdf_file']['name']) ? basename($_FILES['pdf_file']['name']) : '';
+   
+   $tparts = !empty($_POST['tdate']) ? explode('/', $_POST['tdate']) : [];
+   if (count($tparts) == 3) {
+       $tdate = $tparts[2] . "-" . $tparts[1] . "-" . $tparts[0];
+   } else {
+       $tdate = date("Y-m-d");
+   }
 
-      if($_SERVER['SERVER_NAME']=='localhost')
-	  {
-		$uploadPath=$DOCUMENT_ROOT.'jnn/docs/'.$_FILES['pdf_file']['name'];
-		$del_path=$DOCUMENT_ROOT.'jnn/docs/';
-	  }
-	  else
-	  {
-		$uploadPath=$DOCUMENT_ROOT.'/docs/'.$_FILES['pdf_file']['name'];
-		$del_path=$DOCUMENT_ROOT.'/docs/';
-	  }
+   $docsDir = ($APP_ROOT ?? (dirname(__DIR__) . '/')) . 'docs/';
+   if (!file_exists($docsDir)) {
+       @mkdir($docsDir, 0777, true);
+   }
 
-	  if(is_uploaded_file($_FILES['pdf_file']['tmp_name'])){
-			$query="select Pdf_Name from notice where Pdf_Id='$pdfId'";
-			$db->query($query);
-			$rows = $db->fetch_array();
-			$filename=$rows['Pdf_Name'];
+   if (!empty($filename) && !empty($_FILES['pdf_file']['tmp_name'])) {
+       $query = "select Pdf_Name from notice where Pdf_Id='$pdfId'";
+       $db->query($query);
+       if ($rows = $db->fetch_array()) {
+           $oldFile = $rows['Pdf_Name'];
+           if (!empty($oldFile) && file_exists($docsDir . $oldFile)) {
+               @unlink($docsDir . $oldFile);
+           }
+       }
 
-			@unlink($del_path.$filename);
-	  }
-
-	  if(move_uploaded_file ($_FILES['pdf_file']['tmp_name'],$uploadPath))
-	   {
-		  	
-
-			chmod("$uploadPath",0777);
-			$pdfname=$_FILES['pdf_file']['name'];
-			
-		     $query="update notice set Pdf_Name='$pdfname',Pdf_Desc ='$p_description',AddedDate='$tdate',status='$status' where Pdf_Id='$pdfId'";
-
-			$db->query($query);
-		    $PROMPT = "Notice has been edited successfully.";
-		   
-			return true;
-			
-	   }
-	   else
-	   { 
-		   $PROMPT ="Failed to upload file Contact Site admin to fix the problem";
-		   return false;
-	   }
+       $uploadPath = $docsDir . $filename;
+       if (move_uploaded_file($_FILES['pdf_file']['tmp_name'], $uploadPath)) {
+           @chmod($uploadPath, 0755);
+           $query = "update notice set Pdf_Name='$filename', Pdf_Desc='$p_description', AddedDate='$tdate', status='$status' where Pdf_Id='$pdfId'";
+           $db->query($query);
+           $PROMPT = "Notice has been edited successfully.";
+           return true;
+       } else {
+           $PROMPT = "Failed to upload file. Please check folder permissions.";
+           return false;
+       }
+   } else {
+       $query = "update notice set Pdf_Desc='$p_description', AddedDate='$tdate', status='$status' where Pdf_Id='$pdfId'";
+       $db->query($query);
+       $PROMPT = "Notice has been edited successfully.";
+       return true;
+   }
 }
 
 

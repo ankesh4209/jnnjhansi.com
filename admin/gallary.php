@@ -19,13 +19,15 @@ $PAGE_NAME = "Welcome to the Administrative Panel";
 $db=new DbConnect($DB_HOST, $DB_USERNAME, $DB_PASSWORD, $DB_NAME, $DB_REPORT_ERROR, $DB_PERSISTENT_CONN);
 $db->open() or die($db->error());
 
-$pid = $_REQUEST['pid'];
+$pid = isset($_REQUEST['pid']) ? $_REQUEST['pid'] : (isset($_REQUEST['id']) ? [$_REQUEST['id']] : []);
+if (!is_array($pid) && !empty($pid)) {
+    $pid = [$pid];
+}
 
-if($_POST["SUBMIT_DELETE"])
+if (!empty($_POST["SUBMIT_DELETE"]) || (isset($_GET['action']) && $_GET['action'] == 'delete'))
 {	
- if (is_array($pid))
+    if (!empty($pid) && is_array($pid))
 	{
-	   
 		deleteaboutus($pid, $db);
 	}
 }
@@ -150,39 +152,28 @@ function viewpage($db)
  
 function deleteaboutus($pid, $db)
  {	
-	global $PROMPT,$DOCUMENT_ROOT;
+	global $PROMPT, $APP_ROOT;
 
-	foreach($pid as $value)
-	{
-      $query="select * from tbl_gallary where g_id='$value'";
-	  $db->query($query);
-	  $rows = $db->fetch_array();
-	  $photo=$rows['photo_name'];
-	  
-	  if($_SERVER['SERVER_NAME']=='localhost')
-		{
-		  @unlink($DOCUMENT_ROOT.'jnnweb/pic/thumb/'.$photo);
-		  @unlink($DOCUMENT_ROOT.'jnnweb/pic/thumb/thumb_'.$photo);
-	      @unlink($DOCUMENT_ROOT.'jnnweb/pic/'.$photo);
+	$baseDir = ($APP_ROOT ?? (dirname(__DIR__) . '/')) . 'pic/';
+	$cleanPids = array_map('intval', $pid);
+	$pids = implode(",", $cleanPids);
+	if (empty($pids)) return;
+
+	$res = $db->query("select photo_name from tbl_gallary where g_id in ($pids)");
+	while ($rows = $db->fetch_array($res)) {
+		$photo = $rows['photo_name'];
+		if (!empty($photo)) {
+			@unlink($baseDir . 'thumb/' . $photo);
+			@unlink($baseDir . 'thumb/thumb_' . $photo);
+			@unlink($baseDir . $photo);
 		}
-		else
-		{
-			
-			@unlink($DOCUMENT_ROOT.'/pic/thumb/'.$photo);
-			@unlink($DOCUMENT_ROOT.'/pic/thumb/thumb_'.$photo);
-	        @unlink($DOCUMENT_ROOT.'/pic/'.$photo);
-		}
-	 
 	}
 	
-	$product = implode(",", $pid);
-
- 	$delete = "delete from tbl_gallary where g_id in ($product)";
+ 	$delete = "delete from tbl_gallary where g_id in ($pids)";
 	$db->query($delete);
 
 	$total = $db->affected_rows();
-
-	$PROMPT = "Total $total Image have been deleted.";
+	$PROMPT = "Total $total Image(s) have been deleted.";
  }
 
 function ChangeStatus($pid, $db)

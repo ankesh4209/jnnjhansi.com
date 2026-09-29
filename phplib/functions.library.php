@@ -30,6 +30,69 @@ function RestoreData() {
 // Description	: Replace Content in Templates with Equivalent Variables
 
 function ReplaceContent($VarList) {
+	// Auto-load dynamic site settings if available and not yet loaded
+	if (empty($GLOBALS['site_settings']) && isset($GLOBALS['db']) && is_object($GLOBALS['db'])) {
+		if (file_exists(__DIR__ . '/portal_data.library.php')) {
+			require_once(__DIR__ . '/portal_data.library.php');
+			if (function_exists('LoadSiteSettings')) {
+				LoadSiteSettings($GLOBALS['db']);
+			}
+		}
+	}
+
+	// Auto-populate default page title if missing
+	if (empty($GLOBALS['pagetitle'])) {
+		$script = isset($_SERVER['SCRIPT_NAME']) ? basename($_SERVER['SCRIPT_NAME']) : '';
+		$titles = [
+			'index.php' => 'मुख्य पृष्ठ | Home',
+			'services.php' => 'नागरिक सेवाएँ | Citizen Services',
+			'contactus.php' => 'संपर्क एवं सहायता | Contact &amp; Help',
+			'tenders.php' => 'निविदाएँ | e-Tenders &amp; NIT',
+			'notices.php' => 'सार्वजनिक सूचनाएँ | Public Notices &amp; Circulars',
+			'mayer.php' => 'महापौर संदेश एवं परिचय | Mayor Profile',
+			'commissioner.php' => 'नगर आयुक्त संदेश | Municipal Commissioner',
+			'smart_city.php' => 'स्मार्ट सिटी झाँसी | Smart City Jhansi',
+			'gallery.php' => 'चित्र दीर्घा | Photo Gallery',
+			'administration.php' => 'प्रशासनिक अधिकारी | Administration &amp; Officers',
+			'aboutus.php' => 'नगर निगम परिचय | About Jhansi Nagar Nigam',
+			'departments.php' => 'विभागीय संरचना | Municipal Departments',
+			'sbm.php' => 'स्वच्छ भारत मिशन | Swachh Bharat Mission',
+			'downloads.php' => 'जीआईएस नक्शे एवं डाउनलोड | GIS Maps &amp; Downloads',
+			'citizen_charter.php' => 'नागरिक अधिकार पत्र | Citizen Charter',
+			'jhansi_history.php' => 'झाँसी का ऐतिहासिक परिचय | History of Jhansi',
+			'nagar_vikash.php' => 'नगर विकास विभाग | Nagar Vikas Vibhag',
+			'house_resolution.php' => 'सदन के संकल्प | House Resolutions',
+			'stastistics.php' => 'सांख्यिकी विवरण | City Statistics',
+			'finance_docs.php' => 'वित्त एवं बजट | Finance &amp; Budgets',
+			'404.php' => 'पृष्ठ नहीं मिला | Page Not Found'
+		];
+		$GLOBALS['pagetitle'] = isset($titles[$script]) ? $titles[$script] : ucwords(str_replace(['_', '.php'], [' ', ''], $script));
+	}
+
+	// Dynamic Base URL calculation for clean assets resolution across all subpaths and error pages
+	if (empty($GLOBALS['site_base_url'])) {
+		$script_dir = dirname($_SERVER['SCRIPT_NAME'] ?? '');
+		if (strpos($script_dir, '/admin') !== false) {
+			$base = preg_replace('#/admin.*$#', '', $script_dir);
+		} else {
+			$base = $script_dir;
+		}
+		$base = rtrim($base, '/\\');
+		$GLOBALS['site_base_url'] = ($base === '' || $base === '.') ? '/' : $base . '/';
+	}
+
+	// Ensure official Holiday Calendar PDFs exist in docs/
+	$docs_cal26 = __DIR__ . '/../docs/Calendar2026.pdf';
+	$docs_cal25 = __DIR__ . '/../docs/Calendar2025.pdf';
+	$tpl_cal = __DIR__ . '/../templates/common/Calendar2025.pdf';
+	if (file_exists($tpl_cal)) {
+		if (!file_exists($docs_cal26)) {
+			@copy($tpl_cal, $docs_cal26);
+		}
+		if (!file_exists($docs_cal25)) {
+			@copy($tpl_cal, $docs_cal25);
+		}
+	}
 
 	for($i=0; $i<count($VarList); $i++) {
 
@@ -42,9 +105,7 @@ function ReplaceContent($VarList) {
 		${$VarList[$i]}
 	);
 	}
-	//exit();
 	return 1;
-	// For Future Refrence :  $RIGHT_HOME_CONTENT=preg_replace("/__(\w+)__/e","$$1",$RIGHT_HOME_CONTENT);
 }
 
 #-------------------------------------------------------------
@@ -61,7 +122,7 @@ function placeScripts($ScriptList) {
 }
 
 
-function paginate($limit=10, $tot_rows)
+function paginate($limit = 10, $tot_rows = 0)
 {
 	global $TOTAL_PAGES, $pagination;
 	$numrows = $tot_rows;
@@ -221,7 +282,18 @@ function GetEventsinformaion($db)
    }
 }
 
-
+function FormatPortalDate($dateVal, $format = 'd-F-Y')
+{
+    if (empty($dateVal)) return '';
+    if (is_numeric($dateVal)) {
+        return date($format, (int)$dateVal);
+    }
+    $ts = strtotime($dateVal);
+    if ($ts !== false && $ts > 0) {
+        return date($format, $ts);
+    }
+    return $dateVal;
+}
 ?>
 
 <?php 

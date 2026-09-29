@@ -1,20 +1,18 @@
 <?php
-echo"Hi";
-die;
 include("../config/data.config.php");
 include("../phplib/functions.library.php");
 include("../phplib/class.database.php");
 include("../phplib/data.constant.php");
-//include("../config/permission.config.php");
 
-$PAGE_NAME = "Welcome to the Administrative Panel";
+$PAGE_NAME = "Concerning Officer List";
 
 $db=new DbConnect($DB_HOST, $DB_USERNAME, $DB_PASSWORD, $DB_NAME, $DB_REPORT_ERROR, $DB_PERSISTENT_CONN);
 $db->open() or die($db->error());
 
-  $id=$_GET['id'];
+$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$c_officer = "";
 
-  $sql="select * from con_officer where s_id='".$id."'";
+$sql = "select * from con_officer where s_id = " . $id;
     $row=$db->query($sql);
      if($db->num_rows())
     {

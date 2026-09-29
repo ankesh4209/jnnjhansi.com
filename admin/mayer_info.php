@@ -19,13 +19,15 @@ $PAGE_NAME = "Welcome to the Administrative Panel";
 $db=new DbConnect($DB_HOST, $DB_USERNAME, $DB_PASSWORD, $DB_NAME, $DB_REPORT_ERROR, $DB_PERSISTENT_CONN);
 $db->open() or die($db->error());
 
-$mid = $_REQUEST['mid'];
+$mid = isset($_REQUEST['mid']) ? $_REQUEST['mid'] : (isset($_REQUEST['id']) ? [$_REQUEST['id']] : []);
+if (!is_array($mid) && !empty($mid)) {
+    $mid = [$mid];
+}
 
-if($_POST["SUBMIT_DELETE"])
+if (!empty($_POST["SUBMIT_DELETE"]) || (isset($_GET['action']) && $_GET['action'] == 'delete'))
 {	
- if (is_array($mid))
+    if (!empty($mid) && is_array($mid))
 	{
-	 
 		deletemayers($mid, $db);
 	}
 }
@@ -153,36 +155,28 @@ function viewpage($db)
  
 function deletemayers($mid, $db)
  {	
-	global $PROMPT,$DOCUMENT_ROOT;
+	global $PROMPT, $APP_ROOT;
 
-	foreach($mid as $value)
-	{
-      $query="select * from mayers where Mayer_Id='$value'";
-	  $db->query($query);
-	  $rows = $db->fetch_array();
-	  $m_image=$rows['Mayer_Photo'];
-	  if($_SERVER['SERVER_NAME']=='localhost')
-		{
-		  @unlink($DOCUMENT_ROOT.'jnnweb/m_images/thumb/'.$m_image);
-	      @unlink($DOCUMENT_ROOT.'jnnweb/m_images/'.$m_image);
+	$baseDir = ($APP_ROOT ?? (dirname(__DIR__) . '/')) . 'm_images/';
+
+	$cleanMids = array_map('intval', $mid);
+	$mids = implode(",", $cleanMids);
+	if (empty($mids)) return;
+
+	$res = $db->query("select Mayer_Photo from mayers where Mayer_Id in ($mids)");
+	while ($rows = $db->fetch_array($res)) {
+		$m_image = $rows['Mayer_Photo'];
+		if (!empty($m_image)) {
+			@unlink($baseDir . 'thumbs/' . $m_image);
+			@unlink($baseDir . $m_image);
 		}
-		else
-		{
-			
-			@unlink($DOCUMENT_ROOT.'/m_images/thumb/'.$m_image);
-	        @unlink($DOCUMENT_ROOT.'/m_images/'.$m_image);
-		}
-	 
 	}
-
-	$mids= implode(",", $mid);
 
  	$delete = "delete from mayers where Mayer_Id in ($mids)";
 	$db->query($delete);
 
 	$total = $db->affected_rows();
-
-	$PROMPT = "Total $total mayers's have been deleted.";
+	$PROMPT = "Total $total mayer(s) have been deleted.";
  }
 
 function ChangeStatus($mid, $db)

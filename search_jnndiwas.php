@@ -72,7 +72,7 @@ function Search_comp($db,$complainno,$cdate,$contactno,$cname)
      $cid=$rows['c_id'];
      $name=$rows['c_name'];
      $summery=$rows['c_detail'];
-     $complain_date=date('d-F-Y',$rows['c_date']);
+     $complain_date=FormatPortalDate($rows['c_date']);
      
      $complain_status=$rows['status'];
      

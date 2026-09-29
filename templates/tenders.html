@@ -40,11 +40,12 @@
     <table class="portal-table">
       <thead>
         <tr> 
-          <th style="width:7%; text-align:center;">S.No.</th>
-          <th style="width:58%;">Tender Title &amp; Details</th>
-          <th style="width:15%; text-align:center;">Notice Date</th>
+          <th style="width:6%; text-align:center;">S.No.</th>
+          <th style="width:46%;">Tender Title &amp; Details</th>
+          <th style="width:13%; text-align:center;">Start Date</th>
+          <th style="width:13%; text-align:center;">End Date</th>
           <th style="width:10%; text-align:center;">Status</th>
-          <th style="width:10%; text-align:center;">Action</th>
+          <th style="width:12%; text-align:center;">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -59,4 +60,25 @@
     <div style="font-weight:600; color:var(--primary);">__PAGE_NAVS__</div>
     <div>__NEXT_PAGE_LINK__</div>
   </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var tabBtns = document.querySelectorAll('.filter-tab-btn');
+    tabBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        tabBtns.forEach(function(b) { b.classList.remove('active'); });
+        this.classList.add('active');
+        var filter = this.getAttribute('data-filter');
+        var rows = document.querySelectorAll('.tender-table-row');
+        rows.forEach(function(r) {
+          if (filter === 'all' || r.classList.contains(filter)) {
+            r.style.display = '';
+          } else {
+            r.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+  </script>
 </div>

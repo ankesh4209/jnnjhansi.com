@@ -19,7 +19,10 @@ $PAGE_NAME = "Welcome to the Administrative Panel";
 $db=new DbConnect($DB_HOST, $DB_USERNAME, $DB_PASSWORD, $DB_NAME, $DB_REPORT_ERROR, $DB_PERSISTENT_CONN);
 $db->open() or die($db->error());
 
-$pid = $_REQUEST['pid'];
+$pid = isset($_REQUEST['pid']) ? $_REQUEST['pid'] : (isset($_REQUEST['id']) ? [$_REQUEST['id']] : []);
+if (!is_array($pid) && !empty($pid)) {
+    $pid = [$pid];
+}
 
 $class1="leftab_on";
 $class2="leftab_off";
@@ -31,11 +34,10 @@ $class7="leftab_off";
 $class8="leftab_off";
 $class9="leftab_off";
 
-if($_POST["SUBMIT_DELETE"])
+if (!empty($_POST["SUBMIT_DELETE"]) || (isset($_GET['action']) && $_GET['action'] == 'delete'))
 {	
- if (is_array($pid))
+    if (!empty($pid) && is_array($pid))
 	{
-	 
 		deletePdf($pid, $db);
 	}
 }
@@ -151,34 +153,27 @@ function viewPdf($db)
  
 function deletePdf($pid, $db)
  {	
-	global $PROMPT,$DOCUMENT_ROOT;
+	global $PROMPT, $APP_ROOT;
 
-	$pids= implode(",", $pid);
-	$sel_pdffile="select Pdf_Name  from  pdffiles where Pdf_Id in ($pids) ";
+	$cleanPids = array_map('intval', $pid);
+	$pids = implode(",", $cleanPids);
+	if (empty($pids)) return;
+
+	$del_path = ($APP_ROOT ?? (dirname(__DIR__) . '/')) . 'docs/';
+
+	$sel_pdffile = "select Pdf_Name from pdffiles where Pdf_Id in ($pids)";
     $db->query($sel_pdffile);
-    while($rows=$db->fetch_array())
-	 {
-		 if($_SERVER['SERVER_NAME']=='localhost')
-		  {
-			
-			$del_path=$DOCUMENT_ROOT.'jnnweb/docs/';
-		  }
-		  else
-		  {
-			
-			$del_path=$DOCUMENT_ROOT.'jnnweb/docs/';
-		  }
-
-		   $pdfname=$rows['Pdf_Name'];
-		   @unlink($del_path.$pdfname);
-
-	 }
+    while ($rows = $db->fetch_array()) {
+		$pdfname = $rows['Pdf_Name'];
+		if (!empty($pdfname) && file_exists($del_path . $pdfname)) {
+			@unlink($del_path . $pdfname);
+		}
+	}
 
  	$delete = "delete from pdffiles where Pdf_Id in ($pids)";
 	$db->query($delete);
 
 	$total = $db->affected_rows();
-
 	$PROMPT = "Total $total tender(s) have been deleted.";
  }
 

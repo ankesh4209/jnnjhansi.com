@@ -6,17 +6,22 @@
 
 function LoadSiteSettings($db) {
     global $site_settings;
+    if (!empty($site_settings)) {
+        return $site_settings;
+    }
     $site_settings = [];
     
-    // Check if table exists
-    $res = $db->query("SHOW TABLES LIKE 'site_settings'");
-    if ($db->num_rows()) {
-        $q = $db->query("SELECT setting_key, setting_value FROM site_settings");
-        while ($row = $db->fetch_assoc()) {
-            $k = $row['setting_key'];
-            $v = $row['setting_value'];
-            $site_settings[$k] = $v;
-            $GLOBALS[$k] = $v;
+    // Check if table exists and query settings without mutating $db->result
+    if (isset($db->conn) && $db->conn) {
+        $q = @mysqli_query($db->conn, "SELECT setting_key, setting_value FROM site_settings");
+        if ($q) {
+            while ($row = mysqli_fetch_assoc($q)) {
+                $k = $row['setting_key'];
+                $v = $row['setting_value'];
+                $site_settings[$k] = $v;
+                $GLOBALS[$k] = $v;
+            }
+            mysqli_free_result($q);
         }
     }
 

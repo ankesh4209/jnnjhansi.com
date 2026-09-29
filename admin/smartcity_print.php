@@ -11,8 +11,10 @@ $db->open() or die($db->error());
 $db1=new DbConnect($DB_HOST, $DB_USERNAME, $DB_PASSWORD, $DB_NAME, $DB_REPORT_ERROR, $DB_PERSISTENT_CONN);
 $db1->open() or die($db1->error());
 
-$id=$_GET['id'];
-viewSmartCity($db,$db1,$id);
+$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+if ($id > 0) {
+    viewSmartCity($db,$db1,$id);
+}
 
 $PAGE_CONTENTS	= ReadTemplate("../$TEMPLATE_DIR/admin/smartcity_print.html");
 

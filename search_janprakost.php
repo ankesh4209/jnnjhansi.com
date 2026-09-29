@@ -42,24 +42,34 @@ function Search_comp($db,$complainno,$cdate,$contactno,$cname)
  {
    global $cid,$name,$summery,$complain_date,$complain_detail;
    
+   $complain_detail = "";
+   $complainno1 = "";
+   $contactno1 = "";
+   $cname1 = "";
+   $cdate1 = "";
+
    if($complainno!="")
     {
-      $complainno1=" and c_id='$complainno'";
+      $complainno_esc = $db->escape_string($complainno);
+      $complainno1=" and (c_id='$complainno_esc' or c_regno='$complainno_esc')";
     }
     
    if($contactno!="")
     {
-      $contactno1="and c_contno='$contactno'";
+      $contactno_esc = $db->escape_string($contactno);
+      $contactno1=" and c_contno='$contactno_esc'";
     }
    
    if($cname!="")
     {
-      $cname1="and c_name='$cname'";
+      $cname_esc = $db->escape_string($cname);
+      $cname1=" and c_name like '%$cname_esc%'";
     }
     
     if($cdate!="")
     {
-      $cdate1="and c_date='$cdate'";
+      $cdate_esc = $db->escape_string($cdate);
+      $cdate1=" and c_date like '%$cdate_esc%'";
     }
     
    $sql="select * from complainant where 1=1 $complainno1 $contactno1 $cname1 $cdate1 order by c_id desc";
@@ -71,7 +81,7 @@ function Search_comp($db,$complainno,$cdate,$contactno,$cname)
      $cid=$rows['c_id'];
      $name=$rows['c_name'];
      $summery=$rows['c_detail'];
-     $complain_date=date('d-F-Y',$rows['c_date']);
+     $complain_date=FormatPortalDate($rows['c_date']);
      
      $complain_status=$rows['status'];
      

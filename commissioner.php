@@ -13,14 +13,22 @@ $db->open() or die($db->error());
 
 GetNotices($db);
 
-$cid=$_GET['cid'];
-$query="select * from municipal_comm where Comm_Id='$cid'";
+$cid = isset($_GET['cid']) ? intval($_GET['cid']) : 0;
+if ($cid > 0) {
+    $query = "select * from municipal_comm where Comm_Id='$cid'";
+} else {
+    $query = "select * from municipal_comm where status='1' order by Comm_Id desc limit 1";
+}
 $db->query($query);
 $rows = $db->fetch_array();
-$c_image="<img src='c_images/thumbs/".$rows['Comm_Photo']."' style='max-width:100%; height:auto; border-radius:8px;'>";
 
-$Comm_Name=$rows['Comm_Name'];
-$Comm_Desc=$rows['Comm_Desc'];
+$comm_photo = (!empty($rows['Comm_Photo']) && file_exists('c_images/thumbs/' . $rows['Comm_Photo']))
+    ? "c_images/thumbs/" . $rows['Comm_Photo']
+    : "images/logo.png";
+$c_image = "<img src='" . $comm_photo . "' style='max-width:100%; height:auto; border-radius:8px;' alt='Municipal Commissioner'>";
+
+$Comm_Name = !empty($rows['Comm_Name']) ? $rows['Comm_Name'] : "Municipal Commissioner";
+$Comm_Desc = !empty($rows['Comm_Desc']) ? $rows['Comm_Desc'] : "Welcome to Jhansi Municipal Corporation official administrative portal.";
 
 $PAGE_CONTENTS	= ReadTemplate("$TEMPLATE_DIR/commissioner.html");
 $TEMPLATE		= ReadTemplate("$TEMPLATE_DIR/common/template_index.html");

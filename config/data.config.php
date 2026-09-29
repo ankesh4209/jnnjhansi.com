@@ -18,6 +18,7 @@
        }
        $HOST_NAME                        = isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : 'localhost';
        $DOCUMENT_ROOT                    = isset($_SERVER['DOCUMENT_ROOT']) ? $_SERVER['DOCUMENT_ROOT'] : '';
+       $APP_ROOT                         = str_replace('\\', '/', dirname(__DIR__)) . '/';
 
         //--------------------------------------------------------------
         // DATABASE PARAMETERS

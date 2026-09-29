@@ -19,7 +19,10 @@ $PAGE_NAME = "Welcome to the Administrative Panel";
 $db=new DbConnect($DB_HOST, $DB_USERNAME, $DB_PASSWORD, $DB_NAME, $DB_REPORT_ERROR, $DB_PERSISTENT_CONN);
 $db->open() or die($db->error());
 
-$oid = $_REQUEST['oid'];
+$oid = isset($_REQUEST['oid']) ? $_REQUEST['oid'] : (isset($_REQUEST['id']) ? [$_REQUEST['id']] : []);
+if (!is_array($oid) && !empty($oid)) {
+    $oid = [$oid];
+}
 
 $class1="leftab_off";
 $class2="leftab_off";
@@ -31,11 +34,10 @@ $class7="leftab_off";
 $class8="leftab_off";
 $class9="leftab_off";
 
-if($_POST["SUBMIT_DELETE"])
+if (!empty($_POST["SUBMIT_DELETE"]) || (isset($_GET['action']) && $_GET['action'] == 'delete'))
 {	
- if (is_array($oid))
+    if (!empty($oid) && is_array($oid))
 	{
-	 
 		deleteOfficers($oid, $db);
 	}
 }
@@ -152,16 +154,17 @@ function ViewOfficers($db)
  
 function deleteOfficers($oid, $db)
  {	
-	global $PROMPT,$DOCUMENT_ROOT;
+	global $PROMPT;
 
-	$oids= implode(",", $oid);
+	$cleanOids = array_map('intval', $oid);
+	$oids = implode(",", $cleanOids);
+	if (empty($oids)) return;
 
  	$delete = "delete from officers where Officer_Id in ($oids)";
 	$db->query($delete);
 
 	$total = $db->affected_rows();
-
-	$PROMPT = "Total $total Officer's have been deleted.";
+	$PROMPT = "Total $total Officer(s) have been deleted.";
  }
 
 function ChangeStatus($oid, $db)

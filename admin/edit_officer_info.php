@@ -19,29 +19,30 @@ $PAGE_NAME = "Welcome to the Administrative Panel";
 $db=new DbConnect($DB_HOST, $DB_USERNAME, $DB_PASSWORD, $DB_NAME, $DB_REPORT_ERROR, $DB_PERSISTENT_CONN);
 $db->open() or die($db->error());
 
- $oid=$_REQUEST['oid'];
-   
-  
-GetOfficerInfo($db,$oid);
-
+$oid = isset($_REQUEST['oid']) ? (int)$_REQUEST['oid'] : (isset($_REQUEST['id']) ? (int)$_REQUEST['id'] : 0);
+if ($oid > 0) {
+    GetOfficerInfo($db, $oid);
+}
 
 if($_POST["submit"]!='')
  {
-    $firstname=$_POST['Firstname'];
-	$lastname=$_POST['Lastname'];
-	$Designation=$_POST['Designation'];
-	$OfficeNo=$_POST['OfficeNo'];
-	$ResNo=$_POST['ResNo'];
-	$email=$_POST['Email'];
+    $oid = isset($_POST['oid']) ? (int)$_POST['oid'] : $oid;
+    $firstname   = $db->escape_string($_POST['Firstname'] ?? $_POST['firstname'] ?? $_POST['fname'] ?? '');
+	$lastname    = $db->escape_string($_POST['Lastname'] ?? $_POST['lastname'] ?? $_POST['lname'] ?? '');
+	$Designation = $db->escape_string($_POST['Designation'] ?? $_POST['designation'] ?? '');
+	$OfficeNo    = $db->escape_string($_POST['OfficeNo'] ?? $_POST['office_no'] ?? '');
+	$ResNo       = $db->escape_string($_POST['ResNo'] ?? $_POST['ResidenceNo'] ?? $_POST['residence_no'] ?? '');
+	$email       = $db->escape_string($_POST['Email'] ?? $_POST['email'] ?? '');
    
    $query="update officers set FirstName='$firstname',LastName='$lastname',Email='$email',Designation='$Designation',OfficeNo='$OfficeNo',ResidenceNo='$ResNo' where Officer_Id='$oid'";
    $db->query($query);
   
      echo "<script type='text/javascript'>
         <!-- 
-         window.location = 'officers_info.php'
+         window.location = 'officers_info.php';
         //-->
         </script>";
+     exit;
  }
 
 $class1="leftab_off";

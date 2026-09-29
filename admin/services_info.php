@@ -20,8 +20,8 @@ $sid = isset($_REQUEST['sid']) ? $_REQUEST['sid'] : '';
 $PROMPT = "";
 
 // Delete single via GET
-if (isset($_GET['action']) && $_GET['action'] == 'del' && isset($_GET['del_id'])) {
-    $del_id = (int)$_GET['del_id'];
+$del_id = isset($_GET['del_id']) ? (int)$_GET['del_id'] : (isset($_GET['sid']) ? (int)$_GET['sid'] : 0);
+if (isset($_GET['action']) && $_GET['action'] == 'del' && $del_id > 0) {
     $db->query("DELETE FROM portal_services WHERE service_id = $del_id");
     $PROMPT = "<div style='color:green; padding:5px; font-weight:bold;'>Service deleted successfully!</div>";
 }

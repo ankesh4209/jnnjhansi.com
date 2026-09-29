@@ -47,9 +47,10 @@ if($_POST['submit']!='') {
   }
 }
 
-$id= $_GET['id'];
-
-getCampaginData($db,$id);
+$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+if ($id > 0) {
+    getCampaginData($db, $id);
+}
 
 $PAGE_CONTENTS	= ReadTemplate("../$TEMPLATE_DIR/admin/campaign_form.html");
 if($_SESSION['type']==1) {

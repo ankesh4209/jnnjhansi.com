@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jhansi Nagar Nigam - Official Portal | झाँसी नगर निगम</title>
   
+  <base href="__site_base_url__">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="css/style.css" rel="stylesheet" type="text/css" />
   <link href="css/portal.css" rel="stylesheet" type="text/css" />
@@ -22,7 +23,7 @@
   __TOPBAR__
 
   <!-- HOMEPAGE HERO BANNER SECTION -->
-  <section class="hero-banner-section" style="background: linear-gradient(135deg, rgba(10, 31, 53, 0.92) 0%, rgba(18, 54, 90, 0.85) 60%, rgba(20, 60, 100, 0.70) 100%), url('__hero_banner_image__') center/cover no-repeat;">
+  <section class="hero-banner-section" style="background: linear-gradient(90deg, rgba(10, 31, 53, 0.94) 0%, rgba(10, 31, 53, 0.85) 48%, rgba(18, 54, 90, 0.60) 75%, rgba(10, 31, 53, 0.40) 100%), url('__hero_banner_image__') right center / cover no-repeat;">
     <div class="portal-container">
       <div class="hero-banner-inner">
         <!-- Left Column: Hero Text & Search Bar -->
@@ -244,6 +245,11 @@
           <ul class="tenders-home-list">
             __tender_view__
           </ul>
+          <div style="text-align: center; margin-top: 14px; padding-top: 10px; border-top: 1px dashed var(--border-color);">
+            <a href="tenders.php" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--primary); text-decoration: none; padding: 7px 18px; border-radius: var(--radius-full); background: #F1F5F9; border: 1px solid var(--border-color); transition: all 0.2s;">
+              <span>View All Tenders &amp; NIT Archive &rarr;</span>
+            </a>
+          </div>
         </div>
 
         <!-- Photo Gallery & Map Box -->

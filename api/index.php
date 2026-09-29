@@ -404,11 +404,15 @@ switch ($endpoint) {
     // 10. COMPLAINT / GRIEVANCE TRACKING
     // ==========================================
     case 'track_complaint':
-        $reg_no = isset($_GET['reg_no']) ? trim($_GET['reg_no']) : '';
-        $phone = isset($_GET['phone']) ? trim($_GET['phone']) : '';
+        $rawInput = json_decode(file_get_contents('php://input'), true);
+        if (!$rawInput) {
+            $rawInput = $_POST;
+        }
+        $reg_no = isset($_GET['reg_no']) ? trim($_GET['reg_no']) : (isset($rawInput['reg_no']) ? trim($rawInput['reg_no']) : '');
+        $phone  = isset($_GET['phone']) ? trim($_GET['phone']) : (isset($_GET['mobile']) ? trim($_GET['mobile']) : (isset($rawInput['phone']) ? trim($rawInput['phone']) : (isset($rawInput['mobile']) ? trim($rawInput['mobile']) : '')));
 
         if (empty($reg_no) && empty($phone)) {
-            echo json_response(400, "Please provide 'reg_no' or 'phone' query parameter");
+            echo json_response(400, "Please provide 'reg_no' or 'phone' / 'mobile' parameter");
             break;
         }
 
@@ -445,7 +449,7 @@ switch ($endpoint) {
             }
         } else {
             // Check in tbl_automation
-            $res = mysqli_query($conn, "SELECT a_id, a_rno, a_name, a_fname, a_contactno, a_rdate, app_status, a_detail FROM tbl_automation $where_auto LIMIT 10");
+            $res = mysqli_query($conn, "SELECT a_id, a_rno, a_name, a_fname, a_contactno, a_rdate, app_status, a_subject FROM tbl_automation $where_auto LIMIT 10");
             if ($res && mysqli_num_rows($res) > 0) {
                 while ($row = mysqli_fetch_assoc($res)) {
                     $statusText = "Pending";
@@ -461,7 +465,7 @@ switch ($endpoint) {
                         "registered_date" => is_numeric($row['a_rdate']) ? date('Y-m-d H:i:s', $row['a_rdate']) : $row['a_rdate'],
                         "status_code" => (int)$row['app_status'],
                         "status_text" => $statusText,
-                        "details" => $row['a_detail']
+                        "details" => $row['a_subject']
                     ];
                 }
             }
@@ -490,14 +494,14 @@ switch ($endpoint) {
         }
 
         $name = isset($input['name']) ? trim($input['name']) : '';
-        $phone = isset($input['phone']) ? trim($input['phone']) : '';
+        $phone = isset($input['phone']) ? trim($input['phone']) : (isset($input['mobile']) ? trim($input['mobile']) : '');
         $address = isset($input['address']) ? trim($input['address']) : '';
         $city = isset($input['city']) ? trim($input['city']) : 'Jhansi';
-        $details = isset($input['details']) ? trim($input['details']) : '';
+        $details = isset($input['details']) ? trim($input['details']) : (isset($input['message']) ? trim($input['message']) : '');
         $department_id = isset($input['department_id']) ? (int)$input['department_id'] : 1;
 
         if (empty($name) || empty($phone) || empty($details)) {
-            echo json_response(400, "Required fields missing: 'name', 'phone', and 'details' are mandatory.");
+            echo json_response(400, "Required fields missing: 'name', 'phone' (or 'mobile'), and 'details' (or 'message') are mandatory.");
             break;
         }
 
@@ -538,17 +542,29 @@ switch ($endpoint) {
         }
 
         $name = isset($input['name']) ? trim($input['name']) : '';
-        $mobile = isset($input['mobile']) ? trim($input['mobile']) : '';
-        $feedback = isset($input['feedback']) ? trim($input['feedback']) : '';
+        $mobile = isset($input['mobile']) ? trim($input['mobile']) : (isset($input['phone']) ? trim($input['phone']) : '');
+        $email = isset($input['email']) ? trim($input['email']) : '';
+        $subject = isset($input['subject']) ? trim($input['subject']) : '';
+        $feedback = isset($input['feedback']) ? trim($input['feedback']) : (isset($input['message']) ? trim($input['message']) : (isset($input['comments']) ? trim($input['comments']) : ''));
 
-        if (empty($name) || empty($mobile) || empty($feedback)) {
-            echo json_response(400, "Required fields: 'name', 'mobile', and 'feedback'.");
+        if (empty($name) || empty($feedback)) {
+            echo json_response(400, "Required fields: 'name' and 'feedback' (or 'message').");
             break;
         }
 
+        if (empty($mobile)) {
+            $mobile = !empty($email) ? substr($email, 0, 15) : '0000000000';
+        }
+
+        $meta = [];
+        if (!empty($subject)) $meta[] = "Sub: $subject";
+        if (!empty($email)) $meta[] = "Email: $email";
+        $full_feedback = !empty($meta) ? implode(" | ", $meta) . " - " . $feedback : $feedback;
+        $full_feedback = substr($full_feedback, 0, 248);
+
         $password = rand(10000, 99999);
         $stmt = mysqli_prepare($conn, "INSERT INTO smartcity_reg (name, mobile, password, address) VALUES (?, ?, ?, ?)");
-        mysqli_stmt_bind_param($stmt, "ssss", $name, $mobile, $password, $feedback);
+        mysqli_stmt_bind_param($stmt, "ssss", $name, $mobile, $password, $full_feedback);
 
         if (mysqli_stmt_execute($stmt)) {
             echo json_response(201, "Feedback submitted successfully", [

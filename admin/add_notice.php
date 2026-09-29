@@ -75,41 +75,45 @@ flush();
 
 function uploadpdffile($db)
 {
-   global $PROMPT,$DOCUMENT_ROOT;
+   global $PROMPT, $APP_ROOT;
 
-   $p_description=addslashes($_POST["file_desc"]);
-   $status=$_POST['status'];
-   $filename=$_FILES['pdf_file']['name'];
-   $tdate=explode('/',$_POST['tdate']);
-   $tdate=$tdate['2']."-".$tdate['1']."-".$tdate['0']; 
-  
+   $p_description = addslashes($_POST["file_desc"] ?? '');
+   $status = isset($_POST['status']) ? $_POST['status'] : '1';
+   $filename = !empty($_FILES['pdf_file']['name']) ? basename($_FILES['pdf_file']['name']) : '';
+   
+   $tparts = !empty($_POST['tdate']) ? explode('/', $_POST['tdate']) : [];
+   if (count($tparts) == 3) {
+       $tdate = $tparts[2] . "-" . $tparts[1] . "-" . $tparts[0];
+   } else {
+       $tdate = date("Y-m-d");
+   }
 
-      if($_SERVER['SERVER_NAME']=='localhost')
-	  {
-		$uploadPath=$DOCUMENT_ROOT.'jnn/docs/'.$_FILES['pdf_file']['name'];
-	  }
-	  else
-	  {
-		$uploadPath=$DOCUMENT_ROOT.'/docs/'.$_FILES['pdf_file']['name'];
-	  }
+   $docsDir = ($APP_ROOT ?? (dirname(__DIR__) . '/')) . 'docs/';
+   if (!file_exists($docsDir)) {
+       @mkdir($docsDir, 0777, true);
+   }
 
-	  if(move_uploaded_file ($_FILES['pdf_file']['tmp_name'],$uploadPath))
-	   {
-		  	chmod("$uploadPath",0777);
-			$pdfname=$_FILES['pdf_file']['name'];
-			$query="insert into notice (Pdf_Name,Pdf_Desc,AddedDate,status) values('$pdfname','$p_description','$tdate','$status')";
-		   
-			$db->query($query);
-		    $PROMPT = "Notice has been added successfully.";
-		    $P_ID = $db->insert_id();
-			return true;
-			
-	   }
-	   else
-	   { 
-		   $PROMPT ="Failed to upload file Contact Site admin to fix the problem";
-		   return false;
-	   }
+   if (!empty($filename) && !empty($_FILES['pdf_file']['tmp_name'])) {
+       $uploadPath = $docsDir . $filename;
+       if (move_uploaded_file($_FILES['pdf_file']['tmp_name'], $uploadPath)) {
+           @chmod($uploadPath, 0755);
+           $query = "insert into notice (Pdf_Name,Pdf_Desc,AddedDate,status) values('$filename','$p_description','$tdate','$status')";
+           $db->query($query);
+           $PROMPT = "Notice has been added successfully.";
+           return true;
+       } else {
+           $PROMPT = "Failed to upload file. Please check folder permissions.";
+           return false;
+       }
+   } else if (!empty($p_description)) {
+       $query = "insert into notice (Pdf_Name,Pdf_Desc,AddedDate,status) values('Notice','$p_description','$tdate','$status')";
+       $db->query($query);
+       $PROMPT = "Notice has been added successfully.";
+       return true;
+   } else {
+       $PROMPT = "Please provide notice description or select a PDF file.";
+       return false;
+   }
 }
 
 

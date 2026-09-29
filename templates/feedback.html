@@ -9,26 +9,28 @@
   </div>
 
   <div style="background: #FAFCFE; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 28px; max-width: 640px;">
-    <form action="" method="post" onsubmit="alert('Thank you for your valuable feedback! Your submission has been recorded.'); return false;">
+    <div id="feedback-alert" style="display:none; padding: 12px 16px; border-radius: 6px; margin-bottom: 16px; font-size: 14px; font-weight: 600;"></div>
+
+    <form id="feedbackForm" onsubmit="submitFeedbackForm(event)">
       <div class="portal-form-group">
         <label class="portal-form-label">Full Name</label>
-        <input type="text" name="name" class="portal-form-input" placeholder="Enter your full name" required>
+        <input type="text" name="name" id="fb_name" class="portal-form-input" placeholder="Enter your full name" required>
       </div>
 
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
         <div class="portal-form-group">
           <label class="portal-form-label">Mobile Number</label>
-          <input type="tel" name="mobile" class="portal-form-input" placeholder="10-digit mobile number" required>
+          <input type="tel" name="mobile" id="fb_mobile" class="portal-form-input" placeholder="10-digit mobile number" required>
         </div>
         <div class="portal-form-group">
           <label class="portal-form-label">Email Address</label>
-          <input type="email" name="email" class="portal-form-input" placeholder="yourname@domain.com">
+          <input type="email" name="email" id="fb_email" class="portal-form-input" placeholder="yourname@domain.com">
         </div>
       </div>
 
       <div class="portal-form-group">
         <label class="portal-form-label">Feedback Category</label>
-        <select name="category" class="portal-form-input">
+        <select name="category" id="fb_category" class="portal-form-input">
           <option value="sanitation">Sanitation &amp; Garbage Collection</option>
           <option value="roads">Roads &amp; Civil Works</option>
           <option value="lighting">Street Lighting (मार्ग प्रकाश)</option>
@@ -40,14 +42,70 @@
 
       <div class="portal-form-group">
         <label class="portal-form-label">Your Suggestion / Feedback</label>
-        <textarea name="feedback" class="portal-form-textarea" rows="4" placeholder="Please describe your suggestion or feedback in detail..." required></textarea>
+        <textarea name="feedback" id="fb_text" class="portal-form-textarea" rows="4" placeholder="Please describe your suggestion or feedback in detail..." required></textarea>
       </div>
 
-      <button type="submit" class="btn-portal-submit">
-        <span>Submit Feedback</span>
+      <button type="submit" id="fb_btn" class="btn-portal-submit">
+        <span id="fb_btn_text">Submit Feedback</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
       </button>
     </form>
+
+    <script>
+    function submitFeedbackForm(e) {
+      e.preventDefault();
+      var alertBox = document.getElementById('feedback-alert');
+      var btn = document.getElementById('fb_btn');
+      var btnText = document.getElementById('fb_btn_text');
+
+      var catSelect = document.getElementById('fb_category');
+      var catText = catSelect.options[catSelect.selectedIndex].text;
+
+      var payload = {
+        name: document.getElementById('fb_name').value.trim(),
+        mobile: document.getElementById('fb_mobile').value.trim(),
+        email: document.getElementById('fb_email').value.trim(),
+        subject: catText,
+        feedback: document.getElementById('fb_text').value.trim()
+      };
+
+      btn.disabled = true;
+      btnText.textContent = 'Submitting...';
+
+      fetch('api/index.php?endpoint=feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        btn.disabled = false;
+        btnText.textContent = 'Submit Feedback';
+        alertBox.style.display = 'block';
+        if (data && data.success) {
+          alertBox.style.background = '#ECFDF5';
+          alertBox.style.color = '#065F46';
+          alertBox.style.border = '1px solid #A7F3D0';
+          alertBox.innerHTML = '✓ Thank you! Your feedback has been recorded successfully (ID #' + data.data.feedback_id + '). Jhansi Nagar Nigam appreciates your contribution!';
+          document.getElementById('feedbackForm').reset();
+        } else {
+          alertBox.style.background = '#FEF2F2';
+          alertBox.style.color = '#991B1B';
+          alertBox.style.border = '1px solid #FECACA';
+          alertBox.textContent = data.message || 'Error submitting feedback. Please try again.';
+        }
+      })
+      .catch(function(err) {
+        btn.disabled = false;
+        btnText.textContent = 'Submit Feedback';
+        alertBox.style.display = 'block';
+        alertBox.style.background = '#FEF2F2';
+        alertBox.style.color = '#991B1B';
+        alertBox.style.border = '1px solid #FECACA';
+        alertBox.textContent = 'Network error. Please try again.';
+      });
+    }
+    </script>
   </div>
 
   <div style="margin-top: 20px;">

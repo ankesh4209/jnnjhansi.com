@@ -36,75 +36,74 @@ function ViewTenders($db)
 	 $TOTAL_PAGES=0;
 	 $TOTAL_RECORDSET=0;
 	 
-	 $page = $_GET['page'];
+	 $page = isset($_GET['page']) ? max(0, (int)$_GET['page']) : 0;
+	 $MAX = 10;
+	 $lastrow = $MAX + $page;
 	 
-	 if(!($page)) 
-	 $page = 0 ;
-	$MAX=10;
-	 $lastrow=$MAX+$page;
-	 
-	 
-	 $count="select count(Pdf_Id) as total from notice";
-   $db->query($count);
+	 $count = "select count(Pdf_Id) as total from notice where Status='1'";
+     $db->query($count);
 	 $row = $db->fetch_assoc();
-   $TOTAL_RECORDSET = $row['total'];
+     $TOTAL_RECORDSET = (int)$row['total'];
   
- $query="select * from notice where Status='1' order by Pdf_Id DESC ";
+     $query = "select * from notice where Status='1' order by Pdf_Id DESC limit $page, $MAX";
     
-   $db->query($query);
+     $db->query($query);
 		if($db->num_rows())
 		{
-		  $slno=$page+1;
+		  $slno = $page + 1;
 			while($rows = $db->fetch_array())
 			{
-			  $Pdf_Id=$rows['Pdf_Id'];
+			  $Pdf_Id = $rows['Pdf_Id'];
 			 
-			  $Pdf_Name=$rows['Pdf_Desc'];
-			  $TenderDate=$rows['AddedDate'];
+			  $Pdf_Name = $rows['Pdf_Desc'];
+			  $TenderDate = $rows['AddedDate'];
 			   if($_SERVER['SERVER_NAME']=='localhost')
 				{
-					$tender_view="<a href='docs/".$rows['Pdf_Name']."' style='color:#000000;' target='_new'>Download</a>";
+					$tender_view = "<a href='docs/".$rows['Pdf_Name']."' style='color:#FFFFFF;' target='_new'>Download</a>";
 				}
 				else
 				{
-					$tender_view="<a href='/docs/".$rows['Pdf_Name']."' style='color:#000000;' target='_new'>Download</a>";
+					$tender_view = "<a href='/docs/".$rows['Pdf_Name']."' style='color:#FFFFFF;' target='_new'>Download</a>";
 				}
 			
-			  
-			 
-			  
 			  ReplaceContent(Array("S1"));
-				$PRODUCT_LIST.=$S1;
+				$PRODUCT_LIST .= $S1;
 				$S1 = $S2;
 
 				$slno++;
 			
 			}
 			
-		 if($page > 0)
-			{	$prevpage=$page - $MAX;
-				$PREV_PAGE_LINK="<<a href='notices.php?page=$prevpage&max=$MAX&$next_links' >Prev</a>";
+		    if($page > 0)
+			{	
+			    $prevpage = max(0, $page - $MAX);
+				$PREV_PAGE_LINK = "<a href='notices.php?page=$prevpage&max=$MAX' style='color:var(--primary); font-weight:600; text-decoration:none;'>&laquo; Prev</a>";
+			} else {
+			    $PREV_PAGE_LINK = "";
 			}
 			
 			if($TOTAL_RECORDSET > $lastrow)
-			{	$NEXT_PAGE_LINK="<a href='notices.php?page=$lastrow&max=$MAX&$next_links' >Next></a>";
+			{	
+			    $NEXT_PAGE_LINK = "<a href='notices.php?page=$lastrow&max=$MAX' style='color:var(--primary); font-weight:600; text-decoration:none;'>Next &raquo;</a>";
+			} else {
+			    $NEXT_PAGE_LINK = "";
 			}
 							
-			$PAGE_NAVS="";
-			for($i=0,$toPrint=1;$i<	$TOTAL_RECORDSET;$i+=$MAX,$toPrint++)
+			$PAGE_NAVS = "";
+			for($i = 0, $toPrint = 1; $i < $TOTAL_RECORDSET; $i += $MAX, $toPrint++)
 			{	
-       if ($lastrow-$i==$MAX)
+                if ($i == $page)
 				{	
-          $PAGE_NAVS.=" <B>".$toPrint."</b> | ";
+                    $PAGE_NAVS .= " <b style='color:var(--accent); font-size:14px; padding:2px 8px; border-radius:4px; background:rgba(244,119,33,0.1);'>".$toPrint."</b> | ";
 					$CURRENT_PAGE_NO = $toPrint;
 				}
 				else
 				{	
-          $PAGE_NAVS.=" <a href='notices.php?page=$i&max=$MAX&left_id=1&$next_links' >$toPrint</a> |";
+                    $PAGE_NAVS .= " <a href='notices.php?page=$i&max=$MAX' style='color:var(--primary); text-decoration:none; padding:2px 6px;'>$toPrint</a> |";
 				}
-				$TOTAL_PAGES=$toPrint;
+				$TOTAL_PAGES = $toPrint;
 			}
-		$pages="Pages:";
+		    $pages = "Pages:";
 		}
 		else
 		{

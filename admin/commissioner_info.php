@@ -19,13 +19,15 @@ $PAGE_NAME = "Welcome to the Administrative Panel";
 $db=new DbConnect($DB_HOST, $DB_USERNAME, $DB_PASSWORD, $DB_NAME, $DB_REPORT_ERROR, $DB_PERSISTENT_CONN);
 $db->open() or die($db->error());
 
-$cid = $_REQUEST['cid'];
+$cid = isset($_REQUEST['cid']) ? $_REQUEST['cid'] : (isset($_REQUEST['id']) ? [$_REQUEST['id']] : []);
+if (!is_array($cid) && !empty($cid)) {
+    $cid = [$cid];
+}
 
-if($_POST["SUBMIT_DELETE"])
+if (!empty($_POST["SUBMIT_DELETE"]) || (isset($_GET['action']) && $_GET['action'] == 'delete'))
 {	
- if (is_array($cid))
+    if (!empty($cid) && is_array($cid))
 	{
-	 
 		deletecommissioner($cid, $db);
 	}
 }
@@ -153,36 +155,28 @@ function viewcommissioner($db)
  
 function deletecommissioner($cid, $db)
  {	
-	global $PROMPT,$DOCUMENT_ROOT;
+	global $PROMPT, $APP_ROOT;
 
-	foreach($cid as $value)
-	{
-      $query="select * from municipal_comm where Comm_Id='$value'";
-	  $db->query($query);
-	  $rows = $db->fetch_array();
-	  $m_image=$rows['Comm_Photo'];
-	  if($_SERVER['SERVER_NAME']=='localhost')
-		{
-		  @unlink($DOCUMENT_ROOT.'jnnweb/c_images/thumbs/'.$m_image);
-	      @unlink($DOCUMENT_ROOT.'jnnweb/c_images/'.$m_image);
+	$baseDir = ($APP_ROOT ?? (dirname(__DIR__) . '/')) . 'c_images/';
+
+	$cleanCids = array_map('intval', $cid);
+	$cids = implode(",", $cleanCids);
+	if (empty($cids)) return;
+
+	$res = $db->query("select Comm_Photo from municipal_comm where Comm_Id in ($cids)");
+	while ($rows = $db->fetch_array($res)) {
+		$m_image = $rows['Comm_Photo'];
+		if (!empty($m_image)) {
+			@unlink($baseDir . 'thumbs/' . $m_image);
+			@unlink($baseDir . $m_image);
 		}
-		else
-		{
-			
-			@unlink($DOCUMENT_ROOT.'/c_images/thumbs/'.$m_image);
-	        @unlink($DOCUMENT_ROOT.'/c_images/'.$m_image);
-		}
-	 
 	}
-
-	$cids= implode(",", $cid);
 
  	$delete = "delete from municipal_comm where Comm_Id in ($cids)";
 	$db->query($delete);
 
 	$total = $db->affected_rows();
-
-	$PROMPT = "Total $total commissioner's have been deleted.";
+	$PROMPT = "Total $total commissioner(s) have been deleted.";
  }
 
 function ChangeStatus($cid, $db)

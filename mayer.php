@@ -10,17 +10,25 @@ $db->open() or die($db->error());
 
 GetNotices($db);
 
-$mid = isset($_GET['mid']) ? intval($_GET['mid']) : 15;
-$query = "select * from mayers where Mayer_Id='$mid'";
+$mid = isset($_GET['mid']) ? intval($_GET['mid']) : 0;
+if ($mid > 0) {
+    $query = "select * from mayers where Mayer_Id='$mid'";
+} else {
+    $query = "select * from mayers where status='1' order by Mayer_Id desc limit 1";
+}
 $db->query($query);
 if ($db->num_rows() == 0) {
     $db->query("select * from mayers where status='1' order by Mayer_Id desc limit 1");
 }
 $rows = $db->fetch_array();
 
-$c_image = "<img src='m_images/thumbs/".$rows['Mayer_Photo']."' style='max-width:100%; height:auto; border-radius:8px;'>";
-$Mayer_Name = $rows['Mayer_Name'];
-$Mayer_Desc = $rows['Mayer_Desc'];
+$mayer_photo = (!empty($rows['Mayer_Photo']) && file_exists('m_images/thumbs/' . $rows['Mayer_Photo']))
+    ? "m_images/thumbs/" . $rows['Mayer_Photo']
+    : ((!empty($rows['Mayer_Photo']) && file_exists('m_images/' . $rows['Mayer_Photo'])) ? "m_images/" . $rows['Mayer_Photo'] : "images/logo.png");
+
+$c_image = "<img src='" . $mayer_photo . "' style='width:100%; height:100%; object-fit:cover; border-radius:8px;' alt='Mayor of Jhansi'>";
+$Mayer_Name = !empty($rows['Mayer_Name']) ? $rows['Mayer_Name'] : "Hon'ble Mayor";
+$Mayer_Desc = !empty($rows['Mayer_Desc']) ? $rows['Mayer_Desc'] : "Welcome to the official message from the Mayor, Jhansi Municipal Corporation.";
 
 $PAGE_CONTENTS = ReadTemplate("$TEMPLATE_DIR/mayer.html");
 $TEMPLATE      = ReadTemplate("$TEMPLATE_DIR/common/template_index.html");

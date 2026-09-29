@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var link = item.querySelector('.nav-link');
       if (link) {
         link.addEventListener('click', function (e) {
-          if (window.innerWidth <= 900) {
+          if (window.innerWidth <= 991) {
             e.preventDefault();
             item.classList.toggle('open-mobile');
           }

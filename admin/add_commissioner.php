@@ -74,54 +74,36 @@ flush();
 
 function addcommissioner($db)
  {
-   global $PROMPT,$DOCUMENT_ROOT;
+   global $PROMPT, $APP_ROOT;
    
-   $c_description=addslashes($_POST["t_message"]);
-   $status=$_POST['status'];
-   $Comm_Name=$_POST['Comm_Name'];
-   $Comm_Photo=$_FILES['Comm_Photo']['name'];
-    $AddedDate=date("m/d/Y");
+   $c_description = addslashes($_POST["t_message"] ?? '');
+   $status = isset($_POST['status']) ? $_POST['status'] : '1';
+   $Comm_Name = addslashes($_POST['Comm_Name'] ?? '');
+   $Comm_Photo = !empty($_FILES['Comm_Photo']['name']) ? basename($_FILES['Comm_Photo']['name']) : '';
+   $AddedDate = date("m/d/Y");
    
-	  if($_SERVER['SERVER_NAME']=='localhost')
-	  {
-		$uploadPath=$DOCUMENT_ROOT.'jnn/c_images/'.$_FILES['Comm_Photo']['name'];
-		$ThumbPath=$DOCUMENT_ROOT.'jnn/c_images/thumbs/';
-	  }
-	  else
-	  {
-		$uploadPath=$DOCUMENT_ROOT.'/c_images/'.$_FILES['Comm_Photo']['name'];
-		$ThumbPath=$DOCUMENT_ROOT.'/c_images/thumbs/';
-	  }
+   $baseDir = ($APP_ROOT ?? (dirname(__DIR__) . '/')) . 'c_images/';
+   $ThumbPath = $baseDir . 'thumbs/';
+   if (!file_exists($baseDir)) @mkdir($baseDir, 0777, true);
+   if (!file_exists($ThumbPath)) @mkdir($ThumbPath, 0777, true);
 
-	  if(move_uploaded_file ($_FILES['Comm_Photo']['tmp_name'],$uploadPath))
-	   {
-		  	chmod("$uploadPath",0777);
-	   }
-	   else
-	   { 
-		   $PROMPT ="Failed to upload file Contact Site admin to fix the problem";
-		   return false;
-	   }
+   if (!empty($Comm_Photo) && !empty($_FILES['Comm_Photo']['tmp_name'])) {
+       $uploadPath = $baseDir . $Comm_Photo;
+       if (move_uploaded_file($_FILES['Comm_Photo']['tmp_name'], $uploadPath)) {
+           @chmod($uploadPath, 0755);
+           try {
+               $thumb = new SimpleImage();
+               $thumb->load($uploadPath);
+               $thumb->resize(302, 177);
+               $thumb->save($ThumbPath . $Comm_Photo);
+           } catch (Exception $e) {}
+       }
+   }
 
-
-     $target_path=$uploadPath;
-	 $image = $target_path;
-	 $newImageName=$Comm_Photo;
-	 $thumb = new SimpleImage();
-	 $thumb->load($image);
-	 $width = 302;
-	 $height = 177;
-	 $thumb->resize($width,$height);
-	 $thumb->save($ThumbPath . $newImageName); 
-
-
-		 $query="insert into municipal_comm (Comm_Name,Comm_Photo,Comm_Desc,Status,AddedDate) values('$Comm_Name','$Comm_Photo','$c_description','$status','$AddedDate')";
-      $db->query($query);
-      $PROMPT = "Commissioner Added Successfully";
-      $P_ID = $db->insert_id();
-
-  
- 
+   $query = "insert into municipal_comm (Comm_Name,Comm_Photo,Comm_Desc,Status,AddedDate) values('$Comm_Name','$Comm_Photo','$c_description','$status','$AddedDate')";
+   $db->query($query);
+   $PROMPT = "Commissioner Added Successfully";
+   return true;
  }
  
  

@@ -48,7 +48,7 @@ echo "Table `portal_services` checked/created.\n";
 $initial_settings = [
     // Hero Banner
     ['hero_tagline', 'Clean City • Better Services • Brighter Tomorrow', 'hero', 'Hero Tagline Badge', 'text', 'Top badge above hero heading', 1],
-    ['hero_title', "एक स्वच्छ, सुंदर<br>और विकसित झाँसी<br>हम सबका संकल्प", 'hero', 'Hero Main Heading', 'textarea', 'Main bold title on homepage hero', 2],
+    ['hero_title', "एक स्वच्छ, सुंदर और विकसित झाँसी<br>हम सबका संकल्प", 'hero', 'Hero Main Heading', 'textarea', 'Main bold title on homepage hero', 2],
     ['hero_subtitle', 'Jhansi Nagar Nigam • Smart City Jhansi', 'hero', 'Hero Subtitle', 'text', 'Sub-heading below main heading', 3],
     ['hero_banner_image', 'images/hero_banner.jpg', 'hero', 'Hero Banner Background Image', 'file', 'Path to hero banner background', 4],
     ['hero_quote_verse', "खूब लड़ी मर्दानी वह तो<br>झाँसी वाली रानी थी", 'hero', 'Hero Quote Verse', 'textarea', 'Rani Lakshmibai inspirational verse', 5],

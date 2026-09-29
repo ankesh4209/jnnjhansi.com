@@ -4,15 +4,14 @@ include("config/data.config.php");
 include("phplib/functions.library.php");
 include("phplib/class.database.php");
 include("phplib/data.constant.php");
-
-//$PAGE_NAME = "Sign In...";
-
+include("phplib/portal_data.library.php");
 
 $db=new DbConnect($DB_HOST, $DB_USERNAME, $DB_PASSWORD, $DB_NAME, $DB_REPORT_ERROR, $DB_PERSISTENT_CONN);
 $db->open() or die($db->error());
 
+$settings = LoadSiteSettings($db);
+$pagetitle = "GIS Property Tax Maps & Ward Downloads";
 
-//GetPageContent($db);
 GetNotices($db);
 
 $PAGE_CONTENTS	= ReadTemplate("$TEMPLATE_DIR/downloads.html");
@@ -21,7 +20,12 @@ $BOTTOMBAR		= ReadTemplate("$TEMPLATE_DIR/common/bottombar.html");
 $TOPBAR      = ReadTemplate("$TEMPLATE_DIR/common/topbar.html");
 $RIGHTBAR      = ReadTemplate("$TEMPLATE_DIR/common/rightbar.html");
 
-ReplaceContent(Array("RIGHTBAR","TOPBAR", "BOTTOMBAR", "PAGE_CONTENTS", "TEMPLATE"));
+$replace_keys = array_merge(
+    ["RIGHTBAR", "TOPBAR", "BOTTOMBAR", "PAGE_CONTENTS", "TEMPLATE", "pagetitle"],
+    array_keys($settings)
+);
+
+ReplaceContent($replace_keys);
 print $TEMPLATE;
 flush();
 

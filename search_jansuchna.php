@@ -62,7 +62,7 @@ function Search_comp($db,$complainno,$phone,$rdate)
      $q_date="";
     }
     
-   $sql="select * from tbl_automation where 1=1 $q_compl $q_phone $rdate";
+   $sql="select * from tbl_automation where 1=1 $q_compl $q_phone $q_date";
    $res=$db->query($sql);
    if($db->num_rows())
    {
@@ -72,7 +72,7 @@ function Search_comp($db,$complainno,$phone,$rdate)
       $rid=$rows['a_rno'];
       $name=$rows['a_name'];
       $fname=$rows['a_fname'];
-      $complain_date=date('d-F-Y',$rows['a_rdate']);
+      $complain_date=FormatPortalDate($rows['a_rdate']);
      
       $complain_status=$rows['app_status'];
      

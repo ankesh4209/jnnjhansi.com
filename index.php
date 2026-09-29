@@ -121,7 +121,7 @@ function GetNews($db)
 function GetNotices($db)
 {
    global $Notice_Id,$NoticeName,$NoticeList,$cid,$notice_view;
-   $sql="select * from notice where Status='1' order by Pdf_Id DESC";
+   $sql="select * from notice where Status='1' order by Pdf_Id DESC limit 10";
    $res=$db->query($sql);
     $i=0;
 	while($rows = $db->fetch_array())
@@ -145,23 +145,17 @@ function GetNotices($db)
 function GetTenders($db)
 {
    global $Tender_Id,$TenderName,$TenderList,$cid,$tender_view;
-   $sql="select * from pdffiles where Status='1' order by Pdf_Id DESC";
+   $sql="select * from pdffiles where Status='1' order by Pdf_Id DESC limit 10";
    $res=$db->query($sql);
    $i=0;
 	while($rows = $db->fetch_array())
 	{
 		$Tender_Id=$rows['Pdf_Id'];
 	 
-	   $TenderName=$rows['Pdf_Desc'];
-	   if($_SERVER['SERVER_NAME']=='localhost')
-		{
-			$tender_view.="<li><a href='docs/".$rows['Pdf_Name']."' style='color:#000000;' target='_new'>".$TenderName."</a></li>";
-		}
-		else
-		{
-			$tender_view.="<li><a href='/docs/".$rows['Pdf_Name']."' style='color:#000000;' target='_new'>".$TenderName."</a></li>";
-		}
-	$i++;
+	   $TenderName=htmlspecialchars($rows['Pdf_Desc']);
+	   $PdfName=htmlspecialchars($rows['Pdf_Name']);
+	   $tender_view.="<li><a href='docs/$PdfName' target='_blank'>".$TenderName."</a></li>";
+	   $i++;
 	}			
 }
 

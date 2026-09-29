@@ -24,24 +24,25 @@ $db->open() or die($db->error());
 
 if($_POST["submit"]!='')
  {
-   
-    $firstname=$_POST['Firstname'];
-	$lastname=$_POST['Lastname'];
-	$Designation=$_POST['Designation'];
-	$OfficeNo=$_POST['OfficeNo'];
-	$ResNo=$_POST['ResNo'];
-	$AddeDate=date("m/d/Y");
-    $email=$_POST['Email'];
+    $firstname   = $db->escape_string($_POST['Firstname'] ?? $_POST['firstname'] ?? $_POST['fname'] ?? '');
+	$lastname    = $db->escape_string($_POST['Lastname'] ?? $_POST['lastname'] ?? $_POST['lname'] ?? '');
+	$Designation = $db->escape_string($_POST['Designation'] ?? $_POST['designation'] ?? '');
+	$OfficeNo    = $db->escape_string($_POST['OfficeNo'] ?? $_POST['office_no'] ?? '');
+	$ResNo       = $db->escape_string($_POST['ResNo'] ?? $_POST['ResidenceNo'] ?? $_POST['residence_no'] ?? '');
+	$AddeDate    = date("m/d/Y");
+    $email       = $db->escape_string($_POST['Email'] ?? $_POST['email'] ?? '');
+    $status      = isset($_POST['status']) ? (int)$_POST['status'] : 1;
 
-   $query="insert into officers (FirstName,LastName,Designation,OfficeNo,ResidenceNo,Email,AddedDate) values('$firstname','$lastname','$Designation','$OfficeNo','$ResNo','$email','$AddeDate')";
+   $query="insert into officers (FirstName,LastName,Designation,OfficeNo,ResidenceNo,Email,Status,AddedDate) values('$firstname','$lastname','$Designation','$OfficeNo','$ResNo','$email','$status','$AddeDate')";
 
      $db->query($query);
   
      echo "<script type='text/javascript'>
         <!-- 
-         window.location = 'officers_info.php'
+         window.location = 'officers_info.php';
         //-->
         </script>";
+     exit;
  }
 
 $class1="leftab_off";

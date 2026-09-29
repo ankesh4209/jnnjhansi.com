@@ -16,7 +16,7 @@ $db1->open() or die($db1->error());
 
 GetNotices($db);
 
-$complainno=$_GET['id'];
+$complainno = isset($_GET['id']) ? $_GET['id'] : (isset($_GET['cid']) ? $_GET['cid'] : '');
 Search_comp($db,$db1,$complainno);
 $PAGE_CONTENTS	= ReadTemplate("$TEMPLATE_DIR/jnnhpc_print.html");
 
@@ -29,6 +29,7 @@ function Search_comp($db,$db1,$complainno)
  {
    global $cid,$name,$summery,$complain_date,$complain_detail,$category,$nature,$tdate;
    
+   $complainno = addslashes($complainno);
    $sql="select * from complainant where c_id='$complainno'";
    $res=$db->query($sql);
    if($db->num_rows())
@@ -37,7 +38,7 @@ function Search_comp($db,$db1,$complainno)
      $cid=$rows['c_id'];
      $name=$rows['c_name'];
      $summery=$rows['c_detail'];
-     $complain_date=date('d-F-Y',$rows['c_date']);
+     $complain_date=FormatPortalDate($rows['c_date']);
      //$city=$rows['c_city'];
      $address=$rows['c_add'];
      $category=$rows['c_category'];
@@ -63,7 +64,7 @@ function Search_comp($db,$db1,$complainno)
       }
      else
       {
-        $tdate=date('d-F-Y',$rows['tdate']);
+        $tdate=FormatPortalDate($rows['tdate']);
       }
      
      $complain_status=$rows['status'];

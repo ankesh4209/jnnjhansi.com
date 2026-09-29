@@ -12,6 +12,7 @@ include("../config/data.config.php");
 include("../phplib/functions.library.php");
 include("../phplib/class.database.php");
 include("../phplib/data.constant.php");
+include("../phplib/thumbclass.php");
 //include("../config/permission.config.php");
 
 $PAGE_NAME = "Welcome to the Administrative Panel";
@@ -73,89 +74,36 @@ flush();
 
 function addmayer($db)
  {
-   global $PROMPT,$DOCUMENT_ROOT;
+   global $PROMPT, $APP_ROOT;
    
-   $m_description=addslashes($_POST["t_message"]);
-   $status=$_POST['status'];
-   $Mayer_Name=$_POST['Mayer_Name'];
-   $Mayer_Photo=$_FILES['Mayer_Photo']['name'];
-    $AddedDate=date("m/d/Y");
+   $m_description = addslashes($_POST["t_message"] ?? '');
+   $status = isset($_POST['status']) ? $_POST['status'] : '1';
+   $Mayer_Name = addslashes($_POST['Mayer_Name'] ?? '');
+   $Mayer_Photo = !empty($_FILES['Mayer_Photo']['name']) ? basename($_FILES['Mayer_Photo']['name']) : '';
+   $AddedDate = date("m/d/Y");
    
-	  if($_SERVER['SERVER_NAME']=='localhost')
-	  {
-		$uploadPath=$DOCUMENT_ROOT.'jnnweb/m_images/'.$_FILES['Mayer_Photo']['name'];
-	  }
-	  else
-	  {
-		$uploadPath=$DOCUMENT_ROOT.'/m_images/'.$_FILES['Mayer_Photo']['name'];
-	  }
+   $baseDir = ($APP_ROOT ?? (dirname(__DIR__) . '/')) . 'm_images/';
+   $ThumbPath = $baseDir . 'thumbs/';
+   if (!file_exists($baseDir)) @mkdir($baseDir, 0777, true);
+   if (!file_exists($ThumbPath)) @mkdir($ThumbPath, 0777, true);
 
-	  if(move_uploaded_file ($_FILES['Mayer_Photo']['tmp_name'],$uploadPath))
-	   {
-		  	chmod("$uploadPath",0777);
-	   }
-	   else
-	   { 
-		   $PROMPT ="Failed to upload file Contact Site admin to fix the problem";
-		   return false;
-	   }
+   if (!empty($Mayer_Photo) && !empty($_FILES['Mayer_Photo']['tmp_name'])) {
+       $uploadPath = $baseDir . $Mayer_Photo;
+       if (move_uploaded_file($_FILES['Mayer_Photo']['tmp_name'], $uploadPath)) {
+           @chmod($uploadPath, 0755);
+           try {
+               $thumb = new SimpleImage();
+               $thumb->load($uploadPath);
+               $thumb->resize(302, 177);
+               $thumb->save($ThumbPath . $Mayer_Photo);
+           } catch (Exception $e) {}
+       }
+   }
 
-
-///////// Start the thumbnail generation//////////////
-$n_width=302;          // Fix the width of the thumb nail images
-$n_height=177;         // Fix the height of the thumb nail imaage
-
-if($_SERVER['SERVER_NAME']=='localhost')
-{
-	$ThumbPath=$DOCUMENT_ROOT.'jnnweb/m_images/thumbs/'.$_FILES['Mayer_Photo']['name'];   // Path where thumb nail image will be stored
-}
-else
-{
-	$ThumbPath=$DOCUMENT_ROOT.'/m_images/thumbs/'.$_FILES['Mayer_Photo']['name'];
-}
-
-if (!($_FILES['Mayer_Photo']['type'] =="image/jpeg" OR $_FILES[e_image][type]=="image/gif")){
-	$PROMPT = "Your uploaded file must be of JPG or GIF. Other file types are not allowed<BR>";
-return false;}
-/////////////////////////////////////////////// Starting of GIF thumb nail creation///////////
-
-if (@$_FILES['Mayer_Photo']['type']=="image/gif" OR @$_FILES['Mayer_Photo']['type']=="image/jpeg")
-{
-$im=ImageCreateFromGIF($uploadPath);
-$width=ImageSx($im);              // Original picture width is stored
-$height=ImageSy($im);                  // Original picture height is stored
-$newimage=imagecreatetruecolor($n_width,$n_height);
-imageCopyResized($newimage,$im,0,0,0,0,$n_width,$n_height,$width,$height);
-if (function_exists("imagegif")) {
-Header("Content-type: image/gif");
-ImageGIF($newimage,$ThumbPath);
-}
-elseif (function_exists("imagejpeg")) {
-Header("Content-type: image/jpeg");
-ImageJPEG($newimage,$ThumbPath);
-}
-chmod("$ThumbPath",0777);
-}////////// end of gif file thumb nail creation//////////
-
-////////////// starting of JPG thumb nail creation//////////
-if($_FILES['Mayer_Photo']['type']=="image/gif" || $_FILES['Mayer_Photo']['type']=="image/jpeg"){
-$im=ImageCreateFromJPEG($uploadPath); 
-$width=ImageSx($im);              // Original picture width is stored
-$height=ImageSy($im);             // Original picture height is stored
-$newimage=imagecreatetruecolor($n_width,$n_height);                 
-imageCopyResized($newimage,$im,0,0,0,0,$n_width,$n_height,$width,$height);
-ImageJpeg($newimage,$ThumbPath);
-chmod("$ThumbPath",0777);
-}
-////////////////  End of JPG thumb nail creation //////////
-
-		 $query="insert into mayers (Mayer_Name,Mayer_Photo,Mayer_Desc,Status,AddedDate) values('$Mayer_Name','$Mayer_Photo','$m_description','$status','$AddedDate')";
-      $db->query($query);
-      $PROMPT = "Mayer Added Successfully";
-      $P_ID = $db->insert_id();
-
-  
- 
+   $query = "insert into mayers (Mayer_Name,Mayer_Photo,Mayer_Desc,Status,AddedDate) values('$Mayer_Name','$Mayer_Photo','$m_description','$status','$AddedDate')";
+   $db->query($query);
+   $PROMPT = "Mayer Added Successfully";
+   return true;
  }
  
  
