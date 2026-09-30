@@ -30,14 +30,15 @@ $mid=$_GET['mid'];
 $query="select * from mayers where Mayer_Id='$mid'";
 $db->query($query);
 $rows = $db->fetch_array();
- if($_SERVER['SERVER_NAME']=='localhost')
-  {
-	  $m_image="<img src='/jnnweb/m_images/".$rows['Mayer_Photo']."' width='302' height='177'>";
+  $photoName = $rows['Mayer_Photo'];
+  if (!empty($photoName) && file_exists("../m_images/" . $photoName)) {
+      $imgSrc = "../m_images/" . $photoName;
+  } elseif (!empty($photoName) && file_exists("../m_images/thumbs/" . $photoName)) {
+      $imgSrc = "../m_images/thumbs/" . $photoName;
+  } else {
+      $imgSrc = "../images/logo.png";
   }
-  else
-  {
-		$m_image="<img src='/m_images/".$rows['Mayer_Photo']."' width='302' height='177'>";
-  }
+  $m_image = "<img src='{$imgSrc}' alt='{$rows['Mayer_Name']}' style='max-width:300px; height:auto; border-radius:8px; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.1);'>";
 
 $Mayer_Name=$rows['Mayer_Name'];
 $Mayer_Desc=$rows['Mayer_Desc'];

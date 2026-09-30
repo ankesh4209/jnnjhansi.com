@@ -1,125 +1,97 @@
-<script language = javascript>
-<!--
-function selectAll()
-{	with(window.document.tender_info)
-	{
-		totalElements = elements.length;
-		for(i = 0; i < totalElements; i++)
-		{	if (elements[i].type == 'checkbox')
-			{	elements[i].checked = true;
-			}
-		}
-	}
+<script language="javascript">
+function selectAll() {
+  var frm = document.feedback_form;
+  for (var i = 0; i < frm.elements.length; i++) {
+    if (frm.elements[i].type == 'checkbox') frm.elements[i].checked = true;
+  }
 }
-
-function selectNone()
-{	with(window.document.tender_info)
-	{
-		totalElements = elements.length;
-		for(i = 0; i < totalElements; i++)
-		{
-			if (elements[i].type == 'checkbox')
-			{	elements[i].checked = false;
-			}
-		}
-	}
+function selectNone() {
+  var frm = document.feedback_form;
+  for (var i = 0; i < frm.elements.length; i++) {
+    if (frm.elements[i].type == 'checkbox') frm.elements[i].checked = false;
+  }
 }
-
-function checkSelected()
-{	with(window.document.tender_info)
-	{	totalChecked = 0;
-		totalElements = elements.length;
-		for(i = 0; i < totalElements; i++)
-		{
-			if (elements[i].type == 'checkbox')
-			{	if (elements[i].checked)
-				{	totalChecked++;
-					break;
-				}
-			}
-		}
-
-		if (totalChecked == 0)
-		{	alert("Select a items");
-			return false;
-		}
-
-		return true;
-	}
+function checkSelected() {
+  var frm = document.feedback_form;
+  for (var i = 0; i < frm.elements.length; i++) {
+    if (frm.elements[i].type == 'checkbox' && frm.elements[i].checked) return true;
+  }
+  alert("Please select at least one record to delete.");
+  return false;
 }
-
-function confirmDelete()
-{	with(window.document.tender_info)
-	{	if (checkSelected())
-		{	return confirm("The selected items will be deleted. Are you sure?");
-		}
-		else
-		{	return false;
-		}
-	}
+function confirmDelete() {
+  if (checkSelected()) {
+    return confirm("The selected feedback/inquiry records will be PERMANENTLY deleted from the system. Are you sure?");
+  }
+  return false;
 }
-
-function openPopup(file)
-{	
-  window.open (file,"mywindow","width=650,height=800,scrollbars=yes"); 
+function openPopup(file) {
+  window.open(file, "feedback_detail", "width=750,height=850,scrollbars=yes,resizable=yes");
 }
-
-
-//-->
 </script>
-<table width="100%" align="left" cellspacing="1" cellpadding="1">
 
-  <form name="tender_info" action="notice_info.php" method="post">
-  <tr>
-      <td><table width="100%" class="grayhead" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td class="grayheadleft">&nbsp;</td>
-          <td class="grayheadmid">Smart City</td>
-          <td class="grayheadright">&nbsp;</td>
+<!-- Header & Title Banner -->
+<div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 14px; margin-bottom: 20px;">
+  <div>
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 4px; flex-wrap: wrap;">
+      <h2 style="font-size: 20px; font-weight: 800; color: #12365A; margin: 0; display: flex; align-items: center; gap: 8px;">
+        <span>💬 Citizen Feedback &amp; Public Queries</span>
+      </h2>
+      <span style="background: #DCFCE7; color: #15803D; font-size: 11.5px; font-weight: 700; padding: 3px 10px; border-radius: 9999px;">
+        ● __TOTAL_RECORDSET__ Total Records
+      </span>
+    </div>
+    <p style="font-size: 12.5px; color: #64748B; margin: 0;">
+      Review citizen feedback, suggestions, and contact inquiries submitted via the live website portal.
+    </p>
+  </div>
+
+  <!-- Search Filter Form -->
+  <form action="smartcity_info.php" method="get" style="display: flex; gap: 8px; align-items: center; margin: 0; flex-wrap: wrap;">
+    <div style="position: relative;">
+      <input type="text" name="search" value="__SEARCH_VALUE__" placeholder="Search name, phone, message..." style="padding: 7px 12px 7px 32px; border: 1px solid #CBD5E1; border-radius: 6px; font-size: 12.5px; width: 230px; box-sizing: border-box;" />
+      <span style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #94A3B8; font-size: 13px;">🔍</span>
+    </div>
+    <button type="submit" class="button" style="padding: 7px 14px; font-size: 12.5px; background: #12365A; color: #FFFFFF;">Search</button>
+    __RESET_SEARCH_BTN__
+  </form>
+</div>
+
+<!-- Feedback Message Alert if any -->
+__PROMPT__
+
+<!-- Data Table Card Container -->
+<form name="feedback_form" action="smartcity_info.php" method="post">
+  <div class="table-responsive" style="border: 1px solid #E2E8F0; border-radius: 8px; background: #FFFFFF; box-shadow: 0 1px 3px rgba(0,0,0,0.03); margin-bottom: 16px;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse; min-width: 850px;">
+      <thead>
+        <tr style="background: #12365A; color: #FFFFFF; font-size: 12px; font-weight: 700; letter-spacing: 0.3px; border-bottom: 2px solid #F47721;">
+          <th style="width: 44px; padding: 12px 6px; text-align: center;">Sel</th>
+          <th style="width: 70px; padding: 12px 6px; text-align: center;"># ID</th>
+          <th style="width: 200px; padding: 12px 12px; text-align: left;">Citizen Details</th>
+          <th style="width: 170px; padding: 12px 10px; text-align: left;">Category / Subject</th>
+          <th style="padding: 12px 12px; text-align: left;">Feedback / Message</th>
+          <th style="width: 130px; padding: 12px 8px; text-align: center;">Actions</th>
         </tr>
-      </table></td>
-    </tr>
- <tr>
-     <td height="40"></td>
-    </tr>
-  <tr><td>__PROMPT__</td></tr>
-  <tr>
-    <td ><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr class="grayhdbg">
-       <td width="1%" align="center">&nbsp;</td>
-		<!--<td width="4%" align="center">Select</td>
-        <td width="10%" align="center">Notice Id</td>-->
-        <td width="20%" align="center">Name</td>
-        <td width="30%" align="center">Address</td>
-        <td width="20%" align="center">Mobile</td>
-        <td width="20%" align="center">&nbsp;</td>
-       
-      </tr>
-	  __PRODUCT_LIST__
-    </table></td>
-  </tr>
+      </thead>
+      <tbody>
+        __PRODUCT_LIST__
+      </tbody>
+    </table>
+  </div>
 
-  
+  <!-- Bottom Actions & Pagination Controls -->
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; padding: 6px 0;">
+    <!-- Bulk Select Actions -->
+    <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+      <input type="button" value="Select All" onclick="selectAll()" class="button" style="font-size: 12px; padding: 6px 12px; background: #E2E8F0; color: #334155;" />
+      <input type="button" value="Select None" onclick="selectNone()" class="button" style="font-size: 12px; padding: 6px 12px; background: #E2E8F0; color: #334155;" />
+      <input type="submit" name="SUBMIT_DELETE" value="🗑️ Delete Selected" onclick="return confirmDelete();" class="button" style="background: #EF4444 !important; color: #FFFFFF !important; border-color: #EF4444 !important; font-size: 12px; padding: 6px 14px;" />
+    </div>
 
-  <tr>
-  <td colspan="8" align="right">
-  <input type="button" value="Select All" onclick="return selectAll();" class="button">
-  <input type="button" value="Select None" onclick="return selectNone();"  class="button">
-  <input type="submit" name="SUBMIT_DELETE" value="Delete Selected" onclick="return confirmDelete();"  class="button">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input type="submit" name="SUBMIT_CHANGE" value="Change Selected"  class="button">
-  <select name="Status">
-   <option value="1">Active</option>
-   <option value="0">Inactive</option>
-  </select>
-  </td></tr>
-
-  <tr>
-  <td>
-  <table align="center" width="95%" style="border-color:#FFFFFF">
-   <tr><td align="right">__PREV_PAGE_LINK__&nbsp;&nbsp;&nbsp;__pages__ __PAGE_NAVS__&nbsp;&nbsp;&nbsp; __NEXT_PAGE_LINK__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-  </table>
+    <!-- Pagination Controls -->
+    <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; flex-wrap: wrap;">
+      __PAGINATION_HTML__
+    </div>
+  </div>
 </form>
-</td>
- </tr>
- </table>

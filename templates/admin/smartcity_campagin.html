@@ -68,58 +68,70 @@ function openPopup(file)
 //-->
 </script>
 <table width="100%" align="left" cellspacing="1" cellpadding="1">
-
-  <form name="tender_info" action="smartcity_campagin.php" method="post">
   <tr>
-      <td><table width="100%" class="grayhead" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td class="grayheadleft">&nbsp;</td>
-          <td class="grayheadmid">Smart City Campagin</td>
-          <td class="grayheadright">&nbsp;</td>
-        </tr>
-      </table></td>
-    </tr>
- <tr>
-     <td height="10"></td>
-    </tr>
-  <tr><td>__PROMPT__</td></tr>
-  <tr>
-    <td ><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr class="grayhdbg">
-       <td width="1%" align="center">id</td>
-        <td width="20%" align="center">Name</td>
-        <td width="30%" align="center">Address</td>
-        <td width="20%" align="center">Mobile</td>
-        <td width="20%" align="center">Gender</td>
-        <td width="20%" align="center">Age</td>
-        <td width="20%" align="center">Ward No</td>
-       
+    <td><table width="100%" class="grayhead" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td class="grayheadleft">&nbsp;</td>
+        <td class="grayheadmid">Smart City Campaign</td>
+        <td class="grayheadright">&nbsp;</td>
       </tr>
-	  __PRODUCT_LIST__
     </table></td>
   </tr>
-
-  
-
   <tr>
-  <td colspan="8" align="right">
-  <input type="button" value="Select All" onclick="return selectAll();" class="button">
-  <input type="button" value="Select None" onclick="return selectNone();"  class="button">
-  <input type="submit" name="SUBMIT_DELETE" value="Delete Selected" onclick="return confirmDelete();"  class="button">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input type="submit" name="SUBMIT_CHANGE" value="Change Selected"  class="button">
-  <select name="Status">
-   <option value="1">Active</option>
-   <option value="0">Inactive</option>
-  </select>
-  </td></tr>
-
+    <td style="padding: 10px 0;">
+      <!-- Modern Standalone Search & Filter Form -->
+      <form method="get" action="smartcity_campagin.php" class="admin-filter-bar">
+        <div class="admin-filter-group" style="flex: 1; min-width: 220px;">
+          <input type="text" name="search" value="__SEARCH_VAL__" placeholder="Search by name, phone, ward, address, ID..." class="admin-filter-input" style="width: 100%;">
+        </div>
+        <div class="admin-filter-group">
+          <select name="filter_gender" class="admin-filter-select">
+            <option value="">All Genders</option>
+            <option value="Male" __GENDER_MALE_SEL__>Male</option>
+            <option value="Female" __GENDER_FEMALE_SEL__>Female</option>
+          </select>
+        </div>
+        <div class="admin-filter-group">
+          <input type="date" name="filter_date" value="__DATE_VAL__" class="admin-filter-date" title="Filter by Date">
+        </div>
+        <div class="admin-filter-group">
+          <button type="submit" class="btn-filter-search"><i class="fa fa-search"></i> Search</button>
+          <a href="smartcity_campagin.php" class="btn-filter-reset"><i class="fa fa-rotate-left"></i> Reset</a>
+        </div>
+      </form>
+    </td>
+  </tr>
+  <tr><td>__PROMPT__</td></tr>
   <tr>
-  <td>
-  <table align="center" width="95%" style="border-color:#FFFFFF">
-   <tr><td align="right">__PREV_PAGE_LINK__&nbsp;&nbsp;&nbsp;__pages__ __PAGE_NAVS__&nbsp;&nbsp;&nbsp; __NEXT_PAGE_LINK__&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-  </table>
-</form>
-</td>
- </tr>
- </table>
+    <td>
+      <form name="tender_info" action="smartcity_campagin.php" method="post">
+        <div class="table-responsive">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr class="grayhdbg">
+              <th width="4%" align="center">Select</th>
+              <th width="8%" align="center">Id</th>
+              <th width="14%" align="center">Date</th>
+              <th width="18%" align="center">Name</th>
+              <th width="24%" align="center">Address</th>
+              <th width="12%" align="center">Mobile</th>
+              <th width="8%" align="center">Gender</th>
+              <th width="6%" align="center">Age</th>
+              <th width="6%" align="center">Ward</th>
+            </tr>
+            __PRODUCT_LIST__
+          </table>
+        </div>
+
+        <div style="display: flex; gap: 8px; justify-content: flex-end; align-items: center; flex-wrap: wrap; margin-top: 14px;">
+          <input type="button" value="Select All" onclick="return selectAll();" class="button">
+          <input type="button" value="Select None" onclick="return selectNone();" class="button">
+          <input type="submit" name="SUBMIT_DELETE" value="Delete Selected" onclick="return confirmDelete();" class="button" style="background: #EF4444 !important; color: #FFFFFF !important; border-color: #EF4444 !important;">
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; align-items: center; flex-wrap: wrap; margin-top: 12px; font-size: 12.5px;">
+          __PREV_PAGE_LINK__&nbsp;&nbsp;__pages__ __PAGE_NAVS__&nbsp;&nbsp;__NEXT_PAGE_LINK__
+        </div>
+      </form>
+    </td>
+  </tr>
+</table>

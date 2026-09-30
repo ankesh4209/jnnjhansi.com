@@ -64,7 +64,8 @@ flush();
 function viewcommissioner($db)
  {
    global $S1,$S2,$slno,$page,$prevpage,$NEXT_PAGE_LINK,$TOTAL_PAGES,$PREV_PAGE_LINK,$TEMPLATE_DIR,$PRODUCT_LIST;
-   global $TOTAL_RECORDSET,$PAGE_NAVS,$status,$Comm_Id,$Comm_Desc,$Comm_Name,$c_image;
+   global $TOTAL_RECORDSET,$PAGE_NAVS,$status,$Comm_Id,$Comm_Desc,$Comm_Name,$c_image,$Created_Date;
+   global $SEARCH_VAL,$STATUS_ACTIVE_SEL,$STATUS_INACTIVE_SEL,$DATE_VAL;
    
    $S1	= $S2 = ReadTemplate("../$TEMPLATE_DIR/admin/commissioner_infoGrid.html");
 
@@ -72,20 +73,50 @@ function viewcommissioner($db)
 	 $TOTAL_PAGES=0;
 	 $TOTAL_RECORDSET=0;
 	 
-	 $page = $_GET['page'];
-	 
-	 if(!($page)) 
-	 $page = 0 ;
+	 $search = trim($_REQUEST['search'] ?? '');
+	 $filter_status = isset($_REQUEST['filter_status']) && strlen($_REQUEST['filter_status']) > 0 ? (string)$_REQUEST['filter_status'] : '';
+	 $filter_date = trim($_REQUEST['filter_date'] ?? '');
+
+	 $where_clauses = [];
+	 $params = [];
+
+	 if ($search !== '') {
+	     $clean_search = addslashes($search);
+	     $where_clauses[] = "(Comm_Name LIKE '%$clean_search%' OR Comm_Desc LIKE '%$clean_search%' OR Comm_Id = '$clean_search')";
+	     $params['search'] = $search;
+	 }
+	 if ($filter_status !== '') {
+	     $clean_status = addslashes($filter_status);
+	     $where_clauses[] = "Status = '$clean_status'";
+	     $params['filter_status'] = $filter_status;
+	 }
+	 if ($filter_date !== '') {
+	     $clean_date = addslashes($filter_date);
+	     $where_clauses[] = "AddedDate LIKE '%$clean_date%'";
+	     $params['filter_date'] = $filter_date;
+	 }
+
+	 $where_sql = count($where_clauses) ? ' WHERE ' . implode(' AND ', $where_clauses) : '';
+	 $query_string = http_build_query($params);
+	 $next_links = $query_string ? '&' . $query_string : '';
+
+	 $SEARCH_VAL = htmlspecialchars($search);
+	 $STATUS_ACTIVE_SEL = ($filter_status === '1') ? 'selected' : '';
+	 $STATUS_INACTIVE_SEL = ($filter_status === '0') ? 'selected' : '';
+	 $DATE_VAL = htmlspecialchars($filter_date);
+
+	 $page = isset($_GET['page']) ? (int)$_GET['page'] : 0;
+	 if(!($page) || $page < 0) 
+	   $page = 0 ;
 	$MAX=10;
 	 $lastrow=$MAX+$page;
 	 
-	 
-	 $count="select count(Comm_Id) as total from municipal_comm";
+	 $count="select count(Comm_Id) as total from municipal_comm $where_sql";
    $db->query($count);
 	 $row = $db->fetch_assoc();
    $TOTAL_RECORDSET = $row['total'];
   
-   $query="select * from municipal_comm order by Comm_Id DESC limit  $page, $MAX";
+   $query="select * from municipal_comm $where_sql order by Comm_Id DESC limit  $page, $MAX";
     
    $db->query($query);
 		if($db->num_rows())
@@ -96,21 +127,31 @@ function viewcommissioner($db)
 			  $Comm_Id=$rows['Comm_Id'];
 			  $description=$rows['Comm_Desc'];
 			  $Comm_Desc=substr($description,0,30);
-			  $Comm_Name=$rows['Comm_Name'];
+			  $Comm_Name=htmlspecialchars($rows['Comm_Name']);
 			 	 
 			  $status=$rows['Status'];
-			  if($_SERVER['SERVER_NAME']=='localhost')
-			  {
-			     $c_image="<img src='/jnnweb/c_images/thumbs/".$rows['Comm_Photo']."' width='150' height='150'>";
+			  $photoName = $rows['Comm_Photo'];
+			  if (!empty($photoName) && file_exists("../c_images/thumbs/" . $photoName)) {
+				  $imgSrc = "../c_images/thumbs/" . $photoName;
+			  } elseif (!empty($photoName) && file_exists("../c_images/" . $photoName)) {
+				  $imgSrc = "../c_images/" . $photoName;
+			  } else {
+				  $imgSrc = "../images/logo.png";
 			  }
-			  else
-			  {
-				$c_image="<img src='/c_images/thumbs/".$rows['Comm_Photo']."' width='150' height='150'>";
+			  $c_image = "<img src='{$imgSrc}' alt='{$Comm_Name}' style='width:56px; height:56px; object-fit:cover; border-radius:50%; border:2px solid #E2E8F0; box-shadow:0 2px 6px rgba(0,0,0,0.08);'>";
+			  
+			  $rawDate = $rows['AddedDate'] ?? '';
+			  if (!empty($rawDate) && $rawDate != '0000-00-00') {
+				  $ts = strtotime(str_replace('/', '-', $rawDate));
+				  $Created_Date = $ts ? date('d-M-Y', $ts) : htmlspecialchars($rawDate);
+			  } else {
+				  $Created_Date = '-';
 			  }
+
 			  if($status==1)
-				{ $status="Live";}
+				{ $status='<span class="badge" style="background:#DEF7EC; color:#03543F; padding:4px 8px; border-radius:4px; font-size:11.5px; font-weight:600;">Live</span>';}
 			  else
-				{$status="Draft";}
+				{$status='<span class="badge" style="background:#FDE8E8; color:#9B1C1C; padding:4px 8px; border-radius:4px; font-size:11.5px; font-weight:600;">Draft</span>';}
 			  
 			  ReplaceContent(Array("S1"));
 				$PRODUCT_LIST.=$S1;
@@ -121,33 +162,28 @@ function viewcommissioner($db)
 			}
 			
 		 if($page > 0)
-			{	$prevpage=$page - $MAX;
-				$PREV_PAGE_LINK="<<a href='commissioner_info.php?page=$prevpage&max=$MAX&$next_links' >Prev</a>";
+			{	$prevpage = max(0, $page - $MAX);
+				$PREV_PAGE_LINK = "<a href='commissioner_info.php?page=$prevpage&max=$MAX$next_links' class='button' style='padding:5px 12px; font-size:12px; background:#fff; border:1px solid #CBD5E1; color:#12365A; text-decoration:none;'>&laquo; Prev</a>";
+			} else {
+				$PREV_PAGE_LINK = "<span class='button' style='padding:5px 12px; font-size:12px; background:#F1F5F9; border:1px solid #E2E8F0; color:#94A3B8; cursor:not-allowed;'>&laquo; Prev</span>";
 			}
 			
 			if($TOTAL_RECORDSET > $lastrow)
-			{	$NEXT_PAGE_LINK="<a href='commissioner_info.php?page=$lastrow&max=$MAX&$next_links' >Next></a>";
+			{	$NEXT_PAGE_LINK = "<a href='commissioner_info.php?page=$lastrow&max=$MAX$next_links' class='button' style='padding:5px 12px; font-size:12px; background:#fff; border:1px solid #CBD5E1; color:#12365A; text-decoration:none;'>Next &raquo;</a>";
+			} else {
+				$NEXT_PAGE_LINK = "<span class='button' style='padding:5px 12px; font-size:12px; background:#F1F5F9; border:1px solid #E2E8F0; color:#94A3B8; cursor:not-allowed;'>Next &raquo;</span>";
 			}
 							
-			$PAGE_NAVS="";
-			for($i=0,$toPrint=1;$i<	$TOTAL_RECORDSET;$i+=$MAX,$toPrint++)
-			{	
-       if ($lastrow-$i==$MAX)
-				{	
-          $PAGE_NAVS.=" <B>".$toPrint."</b> | ";
-					$CURRENT_PAGE_NO = $toPrint;
-				}
-				else
-				{	
-          $PAGE_NAVS.=" <a href='commissioner_info.php?page=$i&max=$MAX&left_id=1&$next_links' >$toPrint</a> |";
-				}
-				$TOTAL_PAGES=$toPrint;
-			}
-		
+			$curr_p = floor($page / $MAX) + 1;
+			$tot_p = max(1, ceil($TOTAL_RECORDSET / $MAX));
+			$PAGE_NAVS = "<span style='padding: 5px 12px; background: #12365A; color: #FFFFFF; border-radius: 4px; font-weight: 700; font-size: 12px;'>Page $curr_p of $tot_p</span> <span style='color: #64748B; font-size: 12px; margin-left: 6px;'>(Total: $TOTAL_RECORDSET items)</span>";
 		}
 		else
 		{
-      $PRODUCT_LIST="<tr><td colspan='5'>No commissioner(s) found</td></tr>";
+      $PRODUCT_LIST="<tr><td colspan='8' align='center' style='padding: 40px 20px; color: #94A3B8;'><div style='font-size: 32px; margin-bottom: 8px;'>📭</div><div style='font-size: 14px; font-weight: 600; color: #475569;'>No Commissioner records found matching your filter criteria.</div></td></tr>";
+      $PREV_PAGE_LINK = "";
+      $NEXT_PAGE_LINK = "";
+      $PAGE_NAVS = "";
     }
    
   return 1;

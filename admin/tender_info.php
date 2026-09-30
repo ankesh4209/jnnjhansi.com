@@ -1,10 +1,9 @@
-<?php session_start(); ?>
+<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } ?>
 <?php 
- if ($_SESSION['user_name']=='')
-  {	
-    header ("Location: index.php"); 				
-	  exit;
-  }
+if (empty($_SESSION['user_name'])) {	
+    header("Location: index.php"); 				
+    exit;
+}
 ?>
 
 <?php
@@ -64,7 +63,8 @@ flush();
 function viewPdf($db)
  {
    global $S1,$S2,$slno,$page,$prevpage,$NEXT_PAGE_LINK,$TOTAL_PAGES,$PREV_PAGE_LINK,$TEMPLATE_DIR,$PRODUCT_LIST;
-   global $TOTAL_RECORDSET,$PAGE_NAVS,$Status,$Pdf_Id,$Pdf_Name,$Pdf_Desc,$AddedDate,$pages;
+   global $TOTAL_RECORDSET,$PAGE_NAVS,$Status,$Pdf_Id,$Pdf_Name,$Pdf_Desc,$AddedDate,$StartDate,$EndDate,$pages;
+   global $SEARCH_VAL,$STATUS_ACTIVE_SEL,$STATUS_INACTIVE_SEL,$DATE_VAL;
    
    $S1	= $S2 = ReadTemplate("../$TEMPLATE_DIR/admin/tender_infoGrid.html");
 
@@ -72,20 +72,66 @@ function viewPdf($db)
 	 $TOTAL_PAGES=0;
 	 $TOTAL_RECORDSET=0;
 	 
-	 $page = $_GET['page'];
-	 
-	 if(!($page)) 
-	 $page = 0 ;
-	$MAX=10;
+	 $search = trim($_REQUEST['search'] ?? '');
+	 $filter_status = isset($_REQUEST['filter_status']) && strlen($_REQUEST['filter_status']) > 0 ? (string)$_REQUEST['filter_status'] : '';
+	 $filter_date = trim($_REQUEST['filter_date'] ?? '');
+
+	 $where_clauses = [];
+	 $params = [];
+
+	 if ($search !== '') {
+	     $clean_search = addslashes($search);
+	     $where_clauses[] = "(Pdf_Name LIKE '%$clean_search%' OR Pdf_Desc LIKE '%$clean_search%' OR Pdf_Id = '$clean_search')";
+	     $params['search'] = $search;
+	 }
+	 if ($filter_status !== '') {
+	     $clean_status = addslashes($filter_status);
+	     $where_clauses[] = "status = '$clean_status'";
+	     $params['filter_status'] = $filter_status;
+	 }
+	 if ($filter_date !== '') {
+	     $clean_date = addslashes($filter_date);
+	     $date_conditions = [
+	         "AddedDate LIKE '%$clean_date%'",
+	         "StartDate LIKE '%$clean_date%'",
+	         "EndDate LIKE '%$clean_date%'"
+	     ];
+	     $ts = strtotime(str_replace('/', '-', $filter_date));
+	     if ($ts) {
+	         $d_m_Y = date('d-m-Y', $ts);
+	         $d_sl_m_Y = date('d/m/Y', $ts);
+	         $Y_m_d = date('Y-m-d', $ts);
+	         foreach ([$d_m_Y, $d_sl_m_Y, $Y_m_d] as $fmt) {
+	             $date_conditions[] = "AddedDate LIKE '%$fmt%'";
+	             $date_conditions[] = "StartDate LIKE '%$fmt%'";
+	             $date_conditions[] = "EndDate LIKE '%$fmt%'";
+	         }
+	     }
+	     $where_clauses[] = "(" . implode(" OR ", array_unique($date_conditions)) . ")";
+	     $params['filter_date'] = $filter_date;
+	 }
+
+	 $where_sql = count($where_clauses) ? ' WHERE ' . implode(' AND ', $where_clauses) : '';
+	 $query_string = http_build_query($params);
+	 $next_links = $query_string ? '&' . $query_string : '';
+
+	 $SEARCH_VAL = htmlspecialchars($search);
+	 $STATUS_ACTIVE_SEL = ($filter_status === '1') ? 'selected' : '';
+	 $STATUS_INACTIVE_SEL = ($filter_status === '0') ? 'selected' : '';
+	 $DATE_VAL = htmlspecialchars($filter_date);
+
+	 $page = isset($_GET['page']) ? (int)$_GET['page'] : 0;
+	 if(!($page) || $page < 0) 
+	   $page = 0 ;
+	 $MAX=10;
 	 $lastrow=$MAX+$page;
 	 
-	 
-	 $count="select count(Pdf_Id) as total from pdffiles";
+	 $count="select count(Pdf_Id) as total from pdffiles $where_sql";
    $db->query($count);
 	 $row = $db->fetch_assoc();
    $TOTAL_RECORDSET = $row['total'];
   
-   $query="select * from pdffiles order by Pdf_Id DESC limit  $page, $MAX";
+   $query="select * from pdffiles $where_sql order by Pdf_Id DESC limit  $page, $MAX";
     
    $db->query($query);
 		if($db->num_rows())
@@ -94,58 +140,51 @@ function viewPdf($db)
 			while($rows = $db->fetch_array())
 			{
 			  $Pdf_Id=$rows['Pdf_Id'];
-			 
-			  $Pdf_Name=$rows['Pdf_Name'];
-			  $Pdf_Desc=substr($rows['Pdf_Desc'],1,30);
+			  $Pdf_Name=htmlspecialchars($rows['Pdf_Name']);
+			  $Pdf_Desc=htmlspecialchars($rows['Pdf_Desc']);
 			  $AddedDate=$rows['AddedDate'];
+
+			  $rawStart = trim($rows['StartDate'] ?? '');
+			  $rawEnd = trim($rows['EndDate'] ?? '');
+			  $StartDate = !empty($rawStart) ? htmlspecialchars($rawStart) : '<span style="color:#94A3B8;">—</span>';
+			  $EndDate = !empty($rawEnd) ? htmlspecialchars($rawEnd) : '<span style="color:#94A3B8;">—</span>';
 			 
-			  $Status=$rows['status'];
-			  
-			  if($Status==1)
-			  {  
-				  $Status="Active";
-			  }
-			  else
-			  {  
-				  $Status="Inactive";
-			  }
+			  $Status = ($rows['status'] == 1) 
+			      ? '<span style="background:#DCFCE7; color:#15803D; font-size:11px; font-weight:700; padding:3px 8px; border-radius:12px;">Active</span>' 
+			      : '<span style="background:#FEE2E2; color:#B91C1C; font-size:11px; font-weight:700; padding:3px 8px; border-radius:12px;">Inactive</span>';
 			  
 			  ReplaceContent(Array("S1"));
 				$PRODUCT_LIST.=$S1;
 				$S1 = $S2;
 
 				$slno++;
-			
 			}
 			
 		 if($page > 0)
-			{	$prevpage=$page - $MAX;
-				$PREV_PAGE_LINK="<<a href='tender_info.php?page=$prevpage&max=$MAX&$next_links' >Prev</a>";
+			{	$prevpage = max(0, $page - $MAX);
+				$PREV_PAGE_LINK = "<a href='tender_info.php?page=$prevpage&max=$MAX$next_links' class='button' style='padding:5px 12px; font-size:12px; background:#fff; border:1px solid #CBD5E1; color:#12365A; text-decoration:none;'>&laquo; Prev</a>";
+			} else {
+				$PREV_PAGE_LINK = "<span class='button' style='padding:5px 12px; font-size:12px; background:#F1F5F9; border:1px solid #E2E8F0; color:#94A3B8; cursor:not-allowed;'>&laquo; Prev</span>";
 			}
 			
 			if($TOTAL_RECORDSET > $lastrow)
-			{	$NEXT_PAGE_LINK="<a href='tender_info.php?page=$lastrow&max=$MAX&$next_links' >Next></a>";
+			{	$NEXT_PAGE_LINK = "<a href='tender_info.php?page=$lastrow&max=$MAX$next_links' class='button' style='padding:5px 12px; font-size:12px; background:#fff; border:1px solid #CBD5E1; color:#12365A; text-decoration:none;'>Next &raquo;</a>";
+			} else {
+				$NEXT_PAGE_LINK = "<span class='button' style='padding:5px 12px; font-size:12px; background:#F1F5F9; border:1px solid #E2E8F0; color:#94A3B8; cursor:not-allowed;'>Next &raquo;</span>";
 			}
 							
-			$PAGE_NAVS="";
-			for($i=0,$toPrint=1;$i<	$TOTAL_RECORDSET;$i+=$MAX,$toPrint++)
-			{	
-       if ($lastrow-$i==$MAX)
-				{	
-          $PAGE_NAVS.=" <B>".$toPrint."</b> | ";
-					$CURRENT_PAGE_NO = $toPrint;
-				}
-				else
-				{	
-          $PAGE_NAVS.=" <a href='tender_info.php?page=$i&max=$MAX&left_id=1&$next_links' >$toPrint</a> |";
-				}
-				$TOTAL_PAGES=$toPrint;
-			}
-		$pages="Pages:";
+			$curr_p = floor($page / $MAX) + 1;
+			$tot_p = max(1, ceil($TOTAL_RECORDSET / $MAX));
+			$PAGE_NAVS = "<span style='padding: 5px 12px; background: #12365A; color: #FFFFFF; border-radius: 4px; font-weight: 700; font-size: 12px;'>Page $curr_p of $tot_p</span> <span style='color: #64748B; font-size: 12px; margin-left: 6px;'>(Total: $TOTAL_RECORDSET items)</span>";
+			$pages = "";
 		}
 		else
 		{
-      $PRODUCT_LIST="<tr><td colspan='5'>No tender Found</td></tr>";
+      $PRODUCT_LIST="<tr><td colspan='8' align='center' style='padding: 40px 20px; color: #94A3B8;'><div style='font-size: 32px; margin-bottom: 8px;'>📭</div><div style='font-size: 14px; font-weight: 600; color: #475569;'>No tenders found matching your filter criteria.</div></td></tr>";
+      $PREV_PAGE_LINK = "";
+      $NEXT_PAGE_LINK = "";
+      $PAGE_NAVS = "";
+      $pages = "";
     }
    
   return 1;

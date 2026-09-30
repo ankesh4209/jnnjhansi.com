@@ -81,56 +81,40 @@ function editCommissioner($db,$cid)
 			$rows = $db->fetch_array();
 			$m_image=$rows['Comm_Photo'];
 
-			
+			$baseDir = dirname(__DIR__);
+			$uploadDir = $baseDir . '/c_images/';
+			$uploadthumb_Path = $baseDir . '/c_images/thumbs/';
 
-			if($_SERVER['SERVER_NAME']=='localhost')
-			{
-			  $uploadPath=$DOCUMENT_ROOT.'jnn/c_images/'.$_FILES['Comm_Photo']['name'];
-			  $uploadthumb_Path=$DOCUMENT_ROOT.'jnn/c_images/thumbs/';
-
-			  @unlink($DOCUMENT_ROOT.'jnn/c_images/thumbs/'.$m_image);
-			  @unlink($DOCUMENT_ROOT.'jnn/c_images/'.$m_image);
+			if (!empty($m_image)) {
+				@unlink($uploadthumb_Path . $m_image);
+				@unlink($uploadDir . $m_image);
 			}
-			else
+
+			$newImageName = time() . '_' . preg_replace('/[^a-zA-Z0-9_\.-]/', '_', $_FILES['Comm_Photo']['name']);
+			$uploadPath = $uploadDir . $newImageName;
+
+			if(move_uploaded_file($_FILES['Comm_Photo']['tmp_name'], $uploadPath))
 			{
-				$uploadPath=$DOCUMENT_ROOT.'/c_images/'.$_FILES['Comm_Photo']['name'];
-			    $uploadthumb_Path=$DOCUMENT_ROOT.'/c_images/thumbs/';
-
-				@unlink($DOCUMENT_ROOT.'/c_images/thumb/'.$m_image);
-				@unlink($DOCUMENT_ROOT.'/c_images/'.$m_image);
-			}
-			  
-			
-
-			  if(move_uploaded_file ($_FILES['Comm_Photo']['tmp_name'],$uploadPath))
-			   {
-					chmod("$uploadPath",0777);
-			   }
-			   else
-			   { 
-				   echo "Failed to upload file Contact Site admin to fix the problem";
-				   exit;
-			   }
-
-			   $target_path=$uploadPath;
-			 $image = $target_path;
-			 $newImageName=$_FILES['Comm_Photo']['name'];
-			 $thumb = new SimpleImage();
-			 $thumb->load($image);
-			 $width = 302;
-			 $height = 177;
-			 $thumb->resize($width,$height);
-			 $thumb->save($uploadthumb_Path . $newImageName); 
+				@chmod("$uploadPath", 0777);
+				$thumb = new SimpleImage();
+				$thumb->load($uploadPath);
+				$thumb->resize(302, 177);
+				$thumb->save($uploadthumb_Path . $newImageName); 
 
 				$c_description=addslashes($_POST["t_message"]);
-			    $status=$_POST['status'];
-			    $Comm_Name=$_POST['Comm_Name'];
-			    $Comm_Photo=$_FILES['Comm_Photo']['name'];
+				$status=$_POST['status'];
+				$Comm_Name=$_POST['Comm_Name'];
+				$Comm_Photo=$newImageName;
 				$AddedDate=date("m/d/Y");
 				
 				$query="update municipal_comm set Status='$status',Comm_Name ='$Comm_Name',Comm_Photo='$Comm_Photo',Comm_Desc='$c_description',AddedDate='$AddedDate' where Comm_Id='$cid'";
 				$db->query($query);
-      
+			}
+			else
+			{ 
+				echo "Failed to upload file. Please contact site admin.";
+				exit;
+			}
 	 }
 	 else
 	 {
@@ -143,13 +127,11 @@ function editCommissioner($db,$cid)
 				 $db->query($query);
 	 }
       return true;
- 
- 
  }
  
 function  getcommissionerinfo($db,$cid)
  {
-   global $Comm_Name,$status,$status1,$t_message,$Comm_Id;
+   global $Comm_Name,$status,$status1,$t_message,$Comm_Id,$CURRENT_PHOTO_PREVIEW;
    
    $query="select * from municipal_comm where Comm_Id='$cid'";
    $db->query($query);
@@ -165,7 +147,16 @@ function  getcommissionerinfo($db,$cid)
 	 }
 	 $t_message=stripslashes($rows['Comm_Desc']);
 	 $Comm_Name=stripslashes($rows['Comm_Name']);
-	}
+
+	 $c_photo = !empty($rows['Comm_Photo']) ? $rows['Comm_Photo'] : '';
+	 if (!empty($c_photo) && file_exists(dirname(__DIR__) . '/c_images/thumbs/' . $c_photo)) {
+		 $CURRENT_PHOTO_PREVIEW = "<img src='../c_images/thumbs/" . htmlspecialchars($c_photo) . "' style='max-height:90px; border-radius:6px; border:1px solid #ccc; box-shadow:0 2px 5px rgba(0,0,0,0.1);' />";
+	 } elseif (!empty($c_photo) && file_exists(dirname(__DIR__) . '/c_images/' . $c_photo)) {
+		 $CURRENT_PHOTO_PREVIEW = "<img src='../c_images/" . htmlspecialchars($c_photo) . "' style='max-height:90px; border-radius:6px; border:1px solid #ccc; box-shadow:0 2px 5px rgba(0,0,0,0.1);' />";
+	 } else {
+		 $CURRENT_PHOTO_PREVIEW = "<span style='color:#888;font-size:12px;'>No photo uploaded</span>";
+	 }
+}
 
 ?>
 

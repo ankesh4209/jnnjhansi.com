@@ -92,7 +92,7 @@ function addphoto($db)
            $thumbBig->save($thumbDir . 'thumb_' . $photo_name);
        } catch (Exception $e) {}
 
-       $query = "insert into tbl_gallary (photo_name,status) values('$photo_name','$status')";
+       $query = "insert into tbl_gallary (photo_name,status,AddedDate) values('$photo_name','$status',NOW())";
        $db->query($query);
        $PROMPT = "Photo added successfully to gallery.";
        return true;

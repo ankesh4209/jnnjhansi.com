@@ -33,7 +33,8 @@ html, body {
   margin: 0;
   padding: 0;
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
+  overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 13.5px;
   line-height: 1.5;
@@ -197,10 +198,15 @@ a:hover {
    2. LAYOUT CONTAINER & SIDEBAR
    ========================================================================== */
 .admin-layout-wrapper {
+  position: fixed;
+  top: var(--admin-header-height);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(100vh - var(--admin-header-height));
+  width: 100%;
   display: flex;
-  min-height: calc(100vh - var(--admin-header-height));
-  margin-top: var(--admin-header-height);
-  position: relative;
+  overflow: hidden;
 }
 
 /* Sidebar Backdrop (Mobile/Tablet overlay) */
@@ -223,15 +229,13 @@ a:hover {
   opacity: 1;
 }
 
-/* Fixed/Sticky Collapsible Sidebar */
+/* Fixed Collapsible Sidebar */
 .admin-sidebar {
   width: var(--admin-sidebar-width);
+  height: 100%;
   flex-shrink: 0;
   background: #FFFFFF;
   border-right: 1px solid var(--admin-border);
-  position: sticky;
-  top: var(--admin-header-height);
-  height: calc(100vh - var(--admin-header-height));
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 995;
@@ -362,15 +366,23 @@ body.sidebar-collapsed .sidebar-link:hover {
 .admin-main {
   flex: 1;
   min-width: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   background: var(--admin-bg-body);
 }
 
 .admin-content-inner {
   flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
   padding: 24px;
   max-width: 100%;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
 .admin-card-container {
@@ -685,11 +697,13 @@ input[type="button"]:hover, .btn-secondary:hover {
 
 /* Footer */
 .admin-footer {
+  flex-shrink: 0;
   background: #0A1F35;
   color: #94A3B8;
-  padding: 16px 24px;
+  padding: 12px 20px;
   font-size: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 990;
 }
 
 .admin-footer-inner {
@@ -698,6 +712,26 @@ input[type="button"]:hover, .btn-secondary:hover {
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+/* Custom Slim Scrollbars */
+.admin-content-inner::-webkit-scrollbar,
+.admin-sidebar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.admin-content-inner::-webkit-scrollbar-track,
+.admin-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.admin-content-inner::-webkit-scrollbar-thumb,
+.admin-sidebar::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+.admin-content-inner::-webkit-scrollbar-thumb:hover,
+.admin-sidebar::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
 }
 
 /* ==========================================================================
@@ -763,8 +797,37 @@ input[type="button"]:hover, .btn-secondary:hover {
 
 /* Small Mobile (max-width: 480px) */
 @media (max-width: 480px) {
+  .admin-header {
+    padding: 0 10px;
+  }
+
+  .header-left {
+    gap: 8px;
+  }
+
+  .header-brand {
+    gap: 8px;
+  }
+
+  .header-brand img {
+    width: 36px;
+    height: 36px;
+  }
+
   .header-brand-title {
     font-size: 13px;
+    max-width: 145px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .header-right {
+    gap: 6px;
+  }
+
+  .btn-portal-site {
+    padding: 6px 8px;
   }
 
   .btn-logout span {
@@ -772,7 +835,18 @@ input[type="button"]:hover, .btn-secondary:hover {
   }
 
   .btn-logout {
-    padding: 7px 10px;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .header-brand-title {
+    max-width: 110px;
+    font-size: 12px;
+  }
+  .btn-sidebar-toggle {
+    width: 34px;
+    height: 34px;
   }
 }
 
@@ -875,4 +949,444 @@ input[type="button"]:hover, .btn-secondary:hover {
   font-weight: 600 !important;
   margin-bottom: 16px !important;
   text-align: center;
+}
+
+/* ==========================================================================
+   8. MODERN RESPONSIVE DASHBOARD (ALL SCREEN SIZES)
+   ========================================================================== */
+
+/* Welcome Banner */
+.dash-welcome-banner {
+  background: linear-gradient(135deg, #12365A 0%, #1E4976 100%);
+  border-radius: 12px;
+  padding: 24px 28px;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 14px rgba(18, 54, 90, 0.12);
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.dash-welcome-text {
+  flex: 1;
+  min-width: 260px;
+}
+.dash-welcome-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.dash-welcome-title {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0 0 6px 0;
+  color: #FFFFFF;
+  line-height: 1.3;
+}
+.dash-welcome-desc {
+  font-size: 13.5px;
+  color: #CBD5E1;
+  margin: 0;
+  max-width: 650px;
+  line-height: 1.5;
+}
+.dash-welcome-btn {
+  background: #F47721;
+  color: #FFFFFF !important;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.dash-welcome-btn:hover {
+  background: #D86414;
+  transform: translateY(-1px);
+}
+
+/* Section Headers */
+.dash-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.dash-section-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #12365A;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dash-section-sub {
+  font-size: 12px;
+  color: #64748B;
+}
+
+/* Stats 6-Grid */
+.dash-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.dash-stat-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.dash-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.dash-stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.dash-stat-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748B;
+  margin-bottom: 2px;
+}
+.dash-stat-value {
+  font-size: 17px;
+  font-weight: 800;
+  color: #12365A;
+  line-height: 1.2;
+}
+
+/* Media Showcase Row 1 (Hero Banner & Leaders) */
+.dash-media-row1 {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.dash-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  display: flex;
+  flex-direction: column;
+}
+.dash-card-header {
+  padding: 12px 16px;
+  background: #F8FAFC;
+  border-bottom: 1px solid #E2E8F0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.dash-card-footer {
+  padding: 10px 16px;
+  border-top: 1px solid #F1F5F9;
+  background: #FAFCFE;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  gap: 8px;
+}
+
+/* Hero Banner Container */
+.dash-hero-preview {
+  position: relative;
+  height: 160px;
+  background: #0F172A;
+  overflow: hidden;
+}
+.dash-hero-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+}
+.dash-hero-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+  padding: 12px 16px;
+  color: #FFFFFF;
+}
+
+/* Leader Profile Body */
+.dash-leader-body {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.dash-leader-avatar {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+  background: #F8FAFC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dash-leader-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Gallery Strip Grid */
+.dash-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+
+/* Works Projects Grid */
+.dash-works-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* Management Modules 8-Grid */
+.dash-modules-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.dash-module-card {
+  background: #FAFCFE;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+  position: relative;
+}
+.dash-module-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(18, 54, 90, 0.08);
+  border-color: #CBD5E1;
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES FOR DASHBOARD
+   ========================================================================== */
+
+/* 1. Large Laptops & Desktops (< 1200px) */
+@media (max-width: 1200px) {
+  .dash-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .dash-media-row1 {
+    grid-template-columns: 1fr 1fr;
+  }
+  .dash-media-banner-card {
+    grid-column: 1 / -1;
+  }
+  .dash-modules-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dash-gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .dash-works-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 2. Tablets / iPads (< 992px) */
+@media (max-width: 992px) {
+  .dash-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dash-media-row1 {
+    grid-template-columns: 1fr;
+  }
+  .dash-modules-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dash-gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .dash-works-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 3. Small Tablets & Phablets (< 768px) */
+@media (max-width: 768px) {
+  .dash-welcome-banner {
+    padding: 18px 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .dash-welcome-title {
+    font-size: 18px;
+  }
+  .dash-welcome-desc {
+    font-size: 12.5px;
+  }
+  .dash-welcome-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .dash-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .dash-stat-card {
+    padding: 12px;
+    gap: 10px;
+  }
+  .dash-stat-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+  }
+  .dash-stat-value {
+    font-size: 15px;
+  }
+  .dash-hero-preview {
+    height: 140px;
+  }
+  .dash-leader-body {
+    padding: 14px;
+    gap: 14px;
+  }
+  .dash-leader-avatar {
+    width: 68px;
+    height: 68px;
+  }
+  .dash-modules-grid {
+    grid-template-columns: 1fr;
+  }
+  .dash-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .dash-works-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .dash-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}
+
+/* 4. Mobile Phones (< 576px) */
+@media (max-width: 576px) {
+  .dash-welcome-banner {
+    padding: 16px 12px;
+  }
+  .dash-welcome-title {
+    font-size: 16px;
+  }
+  .dash-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .dash-stat-card {
+    padding: 10px 8px;
+    gap: 8px;
+  }
+  .dash-stat-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    border-radius: 6px;
+  }
+  .dash-stat-value {
+    font-size: 13.5px;
+  }
+  .dash-stat-label {
+    font-size: 10.5px;
+  }
+  .dash-hero-preview {
+    height: 125px;
+  }
+  .dash-leader-body {
+    padding: 12px 10px;
+    gap: 10px;
+  }
+  .dash-leader-avatar {
+    width: 58px;
+    height: 58px;
+  }
+  .dash-card-header {
+    padding: 10px 12px;
+  }
+  .dash-card-footer {
+    padding: 10px 12px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .dash-card-footer a {
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .dash-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .dash-works-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .dash-module-card {
+    padding: 16px 14px;
+  }
+}
+
+/* 5. Extra Small Phones (< 380px) */
+@media (max-width: 380px) {
+  .dash-stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .dash-stat-card {
+    flex-direction: row;
+    align-items: center;
+  }
+  .dash-gallery-grid {
+    grid-template-columns: 1fr;
+  }
 }

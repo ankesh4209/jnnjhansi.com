@@ -2275,3 +2275,26 @@ html, body {
   overflow-x: hidden !important;
   max-width: 100vw !important;
 }
+
+/* Hide Frontend Header Search Bar and Search Icon completely on mobile view */
+@media (max-width: 992px) {
+  .nav-search-trigger,
+  .portal-nav-bar .nav-search-trigger,
+  .main-portal-header .header-search-bar,
+  .main-portal-header .nav-search-trigger,
+  .main-portal-header .search-trigger,
+  .search-icon-mobile,
+  .header-search-btn {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    clip: rect(0, 0, 0, 0) !important;
+  }
+}

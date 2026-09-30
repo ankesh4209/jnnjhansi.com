@@ -28,55 +28,82 @@ function confirmDelete() {
 </script>
 
 <table width="100%" align="left" border="0" cellpadding="0" cellspacing="0">
-  <form name="services_form" action="services_info.php" method="post">
-    <tr>
-      <td>
-        <table width="100%" class="grayhead" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td class="grayheadleft">&nbsp;</td>
-            <td class="grayheadmid">Manage Citizen Services (Homepage Quick Access &amp; Services Directory)</td>
-            <td class="grayheadright">&nbsp;</td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-    <tr>
-      <td height="40" style="font-size: 13px;">
-        <span style="background: #12365A; padding: 6px 14px; border-radius: 4px; display: inline-block; margin-bottom: 8px;">
-          <a href="add_service.php" style="color: #ffffff; text-decoration: none; font-weight: bold;">+ Add New Citizen Service</a>
-        </span>
-      </td>
-    </tr>
-    <tr>
-      <td align="center">__PROMPT__</td>
-    </tr>
-    <tr>
-      <td>
-        <table width="100%" border="0" cellspacing="0" cellpadding="4" style="border: 1px solid #dcdcdc;">
-          <tr class="grayhdbg" style="background: #12365A; color: #ffffff;">
-            <td width="4%" align="center">Select</td>
-            <td width="20%" align="left"><b>Service Title</b></td>
-            <td width="12%" align="center"><b>Category</b></td>
-            <td width="24%" align="left"><b>Subtitle / Description</b></td>
-            <td width="10%" align="center"><b>Show on Home</b></td>
-            <td width="8%" align="center"><b>Order</b></td>
-            <td width="8%" align="center"><b>Status</b></td>
-            <td width="14%" align="center"><b>Action</b></td>
-          </tr>
-          __SERVICES_LIST__
-        </table>
-      </td>
-    </tr>
-    <tr>
-      <td height="12"></td>
-    </tr>
-    <tr>
-      <td align="right">
-        <input type="button" value="Select All" onclick="selectAll()" style="padding: 4px 8px; cursor: pointer;" />
-        <input type="button" value="Select None" onclick="selectNone()" style="padding: 4px 8px; cursor: pointer;" />
-        <input type="submit" name="SUBMIT_CHANGE" value="Toggle Status" style="padding: 4px 8px; cursor: pointer;" />
-        <input type="submit" name="SUBMIT_DELETE" value="Delete Selected" onclick="return confirmDelete();" style="padding: 4px 8px; background: #dc3545; color: #fff; border: 1px solid #dc3545; cursor: pointer;" />
-      </td>
-    </tr>
-  </form>
+  <tr>
+    <td>
+      <table width="100%" class="grayhead" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="grayheadleft">&nbsp;</td>
+          <td class="grayheadmid">Manage Citizen Services (Homepage Quick Access &amp; Services Directory)</td>
+          <td class="grayheadright">&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 10px 0;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
+        <a href="add_service.php" class="btn-add-action" style="margin: 0;">+ Add New Citizen Service</a>
+      </div>
+
+      <!-- Modern Standalone Search & Filter Form -->
+      <form method="get" action="services_info.php" class="admin-filter-bar">
+        <div class="admin-filter-group" style="flex: 1; min-width: 220px;">
+          <input type="text" name="search" value="__SEARCH_VAL__" placeholder="Search by service title, subtitle, ID..." class="admin-filter-input" style="width: 100%;">
+        </div>
+        <div class="admin-filter-group">
+          <select name="filter_category" class="admin-filter-select">
+            <option value="">All Categories</option>
+            <option value="tax" __CAT_TAX_SEL__>Property / Tax</option>
+            <option value="cert" __CAT_CERT_SEL__>Certificates</option>
+            <option value="noc" __CAT_NOC_SEL__>NOC & Approvals</option>
+            <option value="grievance" __CAT_GRIEVANCE_SEL__>Grievance</option>
+            <option value="services" __CAT_SERVICES_SEL__>Citizen Services</option>
+            <option value="utility" __CAT_UTILITY_SEL__>Utility & Community</option>
+          </select>
+        </div>
+        <div class="admin-filter-group">
+          <select name="filter_status" class="admin-filter-select">
+            <option value="">All Status</option>
+            <option value="1" __STATUS_ACTIVE_SEL__>Active</option>
+            <option value="0" __STATUS_INACTIVE_SEL__>Draft</option>
+          </select>
+        </div>
+        <div class="admin-filter-group">
+          <button type="submit" class="btn-filter-search"><i class="fa fa-search"></i> Search</button>
+          <a href="services_info.php" class="btn-filter-reset"><i class="fa fa-rotate-left"></i> Reset</a>
+        </div>
+      </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">__PROMPT__</td>
+  </tr>
+  <tr>
+    <td>
+      <form name="services_form" action="services_info.php" method="post">
+        <div class="table-responsive">
+          <table width="100%" border="0" cellspacing="0" cellpadding="4" style="border: 1px solid #E2E8F0; width: 100%; border-collapse: collapse;">
+            <tr class="grayhdbg" style="background: #12365A; color: #ffffff;">
+              <td width="4%" align="center">Select</td>
+              <td width="20%" align="left"><b>Service Title</b></td>
+              <td width="12%" align="center"><b>Category</b></td>
+              <td width="24%" align="left"><b>Subtitle / Description</b></td>
+              <td width="10%" align="center"><b>Show on Home</b></td>
+              <td width="8%" align="center"><b>Order</b></td>
+              <td width="8%" align="center"><b>Status</b></td>
+              <td width="14%" align="center"><b>Action</b></td>
+            </tr>
+            __SERVICES_LIST__
+          </table>
+        </div>
+
+        <div style="display: flex; gap: 8px; justify-content: flex-end; align-items: center; flex-wrap: wrap; margin-top: 14px;">
+          <input type="button" value="Select All" onclick="selectAll()" class="button" />
+          <input type="button" value="Select None" onclick="selectNone()" class="button" />
+          <input type="submit" name="SUBMIT_CHANGE" value="Toggle Status" class="button" />
+          <input type="submit" name="SUBMIT_DELETE" value="Delete Selected" onclick="return confirmDelete();" class="button" style="background: #EF4444 !important; color: #FFFFFF !important; border-color: #EF4444 !important;" />
+        </div>
+      </form>
+    </td>
+  </tr>
 </table>

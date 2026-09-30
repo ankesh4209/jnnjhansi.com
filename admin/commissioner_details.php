@@ -30,14 +30,15 @@ $cid=$_GET['cid'];
 $query="select * from municipal_comm where Comm_Id='$cid'";
 $db->query($query);
 $rows = $db->fetch_array();
-if($_SERVER['SERVER_NAME']=='localhost')
-  {
-	  $c_image="<img src='/jnnweb/c_images/".$rows['Comm_Photo']."' width='302' height='177'>";
+  $photoName = $rows['Comm_Photo'];
+  if (!empty($photoName) && file_exists("../c_images/" . $photoName)) {
+      $imgSrc = "../c_images/" . $photoName;
+  } elseif (!empty($photoName) && file_exists("../c_images/thumbs/" . $photoName)) {
+      $imgSrc = "../c_images/thumbs/" . $photoName;
+  } else {
+      $imgSrc = "../images/logo.png";
   }
-  else
-  {
-		$c_image="<img src='/c_images/".$rows['Comm_Photo']."' width='302' height='177'>";
-  }
+  $c_image = "<img src='{$imgSrc}' alt='{$rows['Comm_Name']}' style='max-width:300px; height:auto; border-radius:8px; border:2px solid #E2E8F0; box-shadow:0 4px 10px rgba(0,0,0,0.1);'>";
 
 $Comm_Name=$rows['Comm_Name'];
 $Comm_Desc=$rows['Comm_Desc'];

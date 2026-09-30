@@ -57,139 +57,97 @@ $TEMPLATE		= ReadTemplate("../$TEMPLATE_DIR/admin/common/template_home.html");
 $BOTTOMBAR		= ReadTemplate("../$TEMPLATE_DIR/admin/common/bottombar.html");
 $TOPBAR      = ReadTemplate("../$TEMPLATE_DIR/admin/common/topbar.html");
 
-ReplaceContent(Array("TOPBAR", "BOTTOMBAR", "PAGE_CONTENTS", "TEMPLATE"));
+ReplaceContent(Array("TOPBAR", "BOTTOMBAR", "PAGE_CONTENTS", "TEMPLATE", "CURRENT_PHOTO_PREVIEW"));
 print $TEMPLATE;
 flush();
 
 function   editphoto($db,$pid)
  {
-   global $PROMPT,$DOCUMENT_ROOT,$cid,$smallimage,$bigimage,$pdf,$delsmallimage,$delbigimage,$delpdf,$scid;
+   global $PROMPT;
     
-	
-	 if(is_uploaded_file($_FILES['photo']['tmp_name']))
-	 {
-		      if($_SERVER['SERVER_NAME']=='localhost')
-			  {
-				$uploadPath=$DOCUMENT_ROOT.'jnnweb/pic/'.$_FILES['photo']['name'];
-			  }
-			  else
-			  {
-				$uploadPath=$DOCUMENT_ROOT.'/pic/'.$_FILES['photo']['name'];
-			  }
-			
-		   if(move_uploaded_file ($_FILES['photo']['tmp_name'],$uploadPath))
-		   {
-			  //echo "Successfully uploaded the mage";die;
-				chmod("$uploadPath",0777);
-		   }
-		   else
-		   { 
-			   $PROMPT= "Failed to upload file Contact Site admin to fix the problem";
-			   exit;
-		    }
-		  
-			  $query="select * from tbl_gallary where g_id='$pid'";
-			  $db->query($query);
-			  $rows = $db->fetch_array();
-			  $photo=$rows['photo_name'];
-			  if($_SERVER['SERVER_NAME']=='localhost')
-				{
-				  @unlink($DOCUMENT_ROOT.'jnnweb/pic/thumb/'.$photo);
-				  @unlink($DOCUMENT_ROOT.'jnnweb/pic/thumb/thumb_'.$photo);
-				  @unlink($DOCUMENT_ROOT.'jnnweb/pic/'.$photo);
-				}
-				else
-				{
-					
-					@unlink($DOCUMENT_ROOT.'/pic/thumb/'.$photo);
-					@unlink($DOCUMENT_ROOT.'/pic/thumb/thumb_'.$photo);
-					@unlink($DOCUMENT_ROOT.'/pic/'.$photo);
-				}
+	if(is_uploaded_file($_FILES['photo']['tmp_name']))
+	{
+		$baseDir = dirname(__DIR__);
+		$uploadDir = $baseDir . '/pic/';
+		$thumbDir = $baseDir . '/pic/thumb/';
 
-			  ///////// Start the thumbnail generation//////////////
-			
+		$query="select * from tbl_gallary where g_id='$pid'";
+		$db->query($query);
+		$rows = $db->fetch_array();
+		$old_photo=$rows['photo_name'];
 
-			$s_thumb=getImagescales($uploadPath,150,150);
-			$b_thumb=getImagescales($uploadPath,500,450);
-			
-			$n_width=$s_thumb['width'];
-			$n_height=$s_thumb['height'];
+		if (!empty($old_photo)) {
+			@unlink($thumbDir . $old_photo);
+			@unlink($thumbDir . 'thumb_' . $old_photo);
+			@unlink($uploadDir . $old_photo);
+		}
 
-			$t_width=$b_thumb['width'];
-			$t_height=$b_thumb['height'];
+		$newFileName = time() . '_' . preg_replace('/[^a-zA-Z0-9_\.-]/', '_', $_FILES['photo']['name']);
+		$uploadPath = $uploadDir . $newFileName;
 
-			if($_SERVER['SERVER_NAME']=='localhost')
-			{
-				$ThumbPath=$DOCUMENT_ROOT.'jnnweb/pic/thumb/'.$_FILES['photo']['name'];   // Path where thumb nail image will be stored
-				$ThumbPath1=$DOCUMENT_ROOT.'jnnweb/pic/thumb/thumb_'.$_FILES['photo']['name'];   // Path where thumb nail image will be stored
+		if(move_uploaded_file ($_FILES['photo']['tmp_name'], $uploadPath))
+		{
+			@chmod("$uploadPath", 0777);
+		}
+		else
+		{ 
+			$PROMPT = "Failed to upload file. Please contact site admin.";
+			return false;
+		}
+
+		$s_thumb = getImagescales($uploadPath, 200, 150);
+		$n_width = $s_thumb['width'];
+		$n_height = $s_thumb['height'];
+		$ThumbPath = $thumbDir . $newFileName;
+
+		if (@$_FILES['photo']['type']=="image/gif")
+		{
+			$im = @imagecreatefromgif($uploadPath);
+			if ($im) {
+				$newimage = imagecreatetruecolor($n_width, $n_height);
+				imagecopyresized($newimage, $im, 0, 0, 0, 0, $n_width, $n_height, imagesx($im), imagesy($im));
+				imagegif($newimage, $ThumbPath);
+				@imagedestroy($newimage);
+				@imagedestroy($im);
 			}
-			else
-			{
-				$ThumbPath=$DOCUMENT_ROOT.'/pic/thumb/'.$_FILES['photo']['name'];
-				$ThumbPath1=$DOCUMENT_ROOT.'/pic/thumb/thumb_'.$_FILES['photo']['name'];
-				
+		}
+		elseif (@$_FILES['photo']['type']=="image/png")
+		{
+			$im = @imagecreatefrompng($uploadPath);
+			if ($im) {
+				$newimage = imagecreatetruecolor($n_width, $n_height);
+				imagealphablending($newimage, false);
+				imagesavealpha($newimage, true);
+				imagecopyresampled($newimage, $im, 0, 0, 0, 0, $n_width, $n_height, imagesx($im), imagesy($im));
+				imagepng($newimage, $ThumbPath);
+				@imagedestroy($newimage);
+				@imagedestroy($im);
 			}
-			if (!($_FILES[photo][type] =="image/pjpeg" ||$_FILES[photo][type] =="image/jpeg" || $_FILES[photo][type]=="image/gif"))
-{
-					$PROMPT= "Your uploaded file must be of JPG or GIF. Other file types are not allowed<BR>";
-					return false;
+		}
+		else
+		{
+			$im = @imagecreatefromjpeg($uploadPath);
+			if ($im) {
+				$newimage = imagecreatetruecolor($n_width, $n_height);
+				imagecopyresampled($newimage, $im, 0, 0, 0, 0, $n_width, $n_height, imagesx($im), imagesy($im));
+				imagejpeg($newimage, $ThumbPath, 85);
+				@imagedestroy($newimage);
+				@imagedestroy($im);
 			}
-			/////////////////////////////////////////////// Starting of GIF thumb nail creation///////////
-			if (@$_FILES[photo][type]=="image/gif")
-			{
-				$im=ImageCreateFromGIF($uploadPath);
-				$width=ImageSx($im);              // Original picture width is stored
-				$height=ImageSy($im);                  // Original picture height is stored
-				$newimage=imagecreatetruecolor($n_width,$n_height);
-				$big_newimage=imagecreatetruecolor($t_width,$t_width);
-				imageCopyResized($newimage,$im,0,0,0,0,$n_width,$n_height,$width,$height);
-				imageCopyResized($big_newimage,$im,0,0,0,0,$t_width,$t_height,$width,$height);
-				if (function_exists("imagegif")) {
-				Header("Content-type: image/gif");
-				ImageGIF($newimage,$ThumbPath);
-				ImageGIF($big_newimage,$ThumbPath1);
-			}
-			elseif (function_exists("imagejpeg")) {
-				Header("Content-type: image/jpeg");
-				ImageJPEG($newimage,$ThumbPath);
-				ImageJPEG($big_newimage,$ThumbPath1);
-			}
-			chmod("$ThumbPath",0777);
-			}////////// end of gif file thumb nail creation//////////
+		}
 
-			////////////// starting of JPG thumb nail creation//////////
-			if($_FILES[photo][type]=="image/pjpeg" || $_FILES[photo][type]=="image/jpeg")
-			{
-				$im=ImageCreateFromJPEG($uploadPath); 
-				$width=ImageSx($im);              // Original picture width is stored
-				$height=ImageSy($im);             // Original picture height is stored
-				$newimage=imagecreatetruecolor($n_width,$n_height);
-				$big_newimage=imagecreatetruecolor($t_width,$t_height);                
-				imageCopyResized($newimage,$im,0,0,0,0,$n_width,$n_height,$width,$height);
-				imageCopyResized($big_newimage,$im,0,0,0,0,$t_width,$t_height,$width,$height);
-				ImageJpeg($newimage,$ThumbPath);
-				ImageJpeg($big_newimage,$ThumbPath1);
-				chmod("$ThumbPath",0777);
-			}
-			////////////////  End of JPG thumb nail creation //////////
+		$status = $_POST['status'];
+		$query = "update tbl_gallary set photo_name='$newFileName', status='$status' where g_id='$pid'";
+		$db->query($query);
+	}
+	else
+	{
+		$status = $_POST['status'];
+		$query = "update tbl_gallary set status='$status' where g_id='$pid'";
+		$db->query($query);
+	}
 
-			$photo_name=$_FILES['photo']['name'];
-           $status=$_POST['status'];
-           $query="update tbl_gallary set photo_name='$photo_name',status='$status' where g_id='$pid'";
-           $db->query($query);
-	 }
-	 else
-	 {
-           $status=$_POST['status'];
-           $query="update tbl_gallary set status='$status' where g_id='$pid'";
-           $db->query($query);
-	 }
-
-		   
-                
-      return true;
- 
- 
+	return true;
  }
 
  function getImagescales($originalImage,$toWidth,$toHeight){
@@ -217,7 +175,7 @@ function   editphoto($db,$pid)
  
 function  getpage($db,$pid)
  {
-   global $pid,$pname,$status,$status1,$t_message;
+   global $pid,$pname,$status,$status1,$t_message,$CURRENT_PHOTO_PREVIEW;
    
    $query="select * from tbl_gallary where g_id='$pid'";
    $db->query($query);
@@ -230,7 +188,14 @@ function  getpage($db,$pid)
 	{ $status="selected";}
    else
 	{$status1="selected";}
-	 $photoname=stripslashes($rows['photo_name']);
-	}
+
+   if (!empty($photoname) && file_exists(dirname(__DIR__) . '/pic/thumb/' . $photoname)) {
+	   $CURRENT_PHOTO_PREVIEW = "<img src='../pic/thumb/" . htmlspecialchars($photoname) . "' style='max-height:100px; border-radius:6px; border:1px solid #ccc; box-shadow:0 2px 5px rgba(0,0,0,0.1);' />";
+   } elseif (!empty($photoname) && file_exists(dirname(__DIR__) . '/pic/' . $photoname)) {
+	   $CURRENT_PHOTO_PREVIEW = "<img src='../pic/" . htmlspecialchars($photoname) . "' style='max-height:100px; border-radius:6px; border:1px solid #ccc; box-shadow:0 2px 5px rgba(0,0,0,0.1);' />";
+   } else {
+	   $CURRENT_PHOTO_PREVIEW = "<span style='color:#888;font-size:12px;'>No photo available</span>";
+   }
+}
 
 ?>

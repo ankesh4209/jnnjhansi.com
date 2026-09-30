@@ -23,36 +23,54 @@ function checkSignUpDetails()
 <!-- MAIN TABLE STARTS HERE-->
 <table width="100%" align="left">
   <tr>
-      <td><table width="100%" class="grayhead" border="0" cellspacing="0" cellpadding="0">
+    <td>
+      <table width="100%" class="grayhead" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td class="grayheadleft">&nbsp;</td>
           <td class="grayheadmid">Change Password</td>
           <td class="grayheadright">&nbsp;</td>
         </tr>
-      </table></td>
-    </tr>
-    <tr><td>__PROMPT__</td></tr>
-<tr><td>
-<form name="news" action="changepword.php" method="post" onsubmit='return checkSignUpDetails();'>
-<table align="left" cellspacing="5" cellpadding="5"  border="0">
- <tr>
-  <td colspan="2">__MESSAGE__</td>
- </tr>
- <tr>
-  <td ><span style="color:red">*</span> New Password</td>
-  <td align="left"><input type="password" name="password" ></td>
- </tr>
- <tr>
-  <td  nowrap><span style="color:red">*</span> Confirm Password</td>
-  <td align="left"><input type="password" name="cpassword" ></td>
- </tr>
- <tr>
-  <td></td>
-  <td><input type="submit" name="submit" value="Change" class="button"></td>
- </tr>
-</table>
-</form>
-</td></tr>
+      </table>
+    </td>
+  </tr>
+  <tr><td>__PROMPT__</td></tr>
+  <tr>
+    <td>
+      <div style="max-width: 580px; margin: 20px 0; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 8px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        
+        <!-- Last Password Changed Info Badge -->
+        <div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 6px; margin-bottom: 20px; font-size: 13.5px; color: #1E40AF;">
+          <i class="fa fa-history" style="font-size: 18px; color: #2563EB;"></i>
+          <div>
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #64748B; font-weight: 600;">Security Audit</div>
+            <div><strong>Last Password Changed:</strong> <span style="color: #1E40AF; font-weight: 600;">__LAST_CHANGED_DISPLAY__</span></div>
+          </div>
+        </div>
+
+        <div>__MESSAGE__</div>
+
+        <form name="news" action="changepword.php" method="post" onsubmit="return checkSignUpDetails();">
+          <div style="margin-bottom: 18px;">
+            <label style="display: block; font-size: 13px; font-weight: 600; color: #334155; margin-bottom: 6px;">
+              <span style="color: #EF4444;">*</span> New Password
+            </label>
+            <input type="password" name="password" id="password" style="width: 100%; max-width: 400px; padding: 8px 12px; font-size: 14px; border: 1px solid #CBD5E1; border-radius: 6px; box-sizing: border-box;" placeholder="Enter new password" required>
+          </div>
+
+          <div style="margin-bottom: 22px;">
+            <label style="display: block; font-size: 13px; font-weight: 600; color: #334155; margin-bottom: 6px;">
+              <span style="color: #EF4444;">*</span> Confirm Password
+            </label>
+            <input type="password" name="cpassword" id="cpassword" style="width: 100%; max-width: 400px; padding: 8px 12px; font-size: 14px; border: 1px solid #CBD5E1; border-radius: 6px; box-sizing: border-box;" placeholder="Confirm new password" required>
+          </div>
+
+          <div>
+            <input type="submit" name="submit" value="Update Password" class="button" style="padding: 9px 24px; font-size: 13.5px; font-weight: 600;">
+          </div>
+        </form>
+      </div>
+    </td>
+  </tr>
 </table>
 
 <!-- MAIN TABLE ENDS HERE-->

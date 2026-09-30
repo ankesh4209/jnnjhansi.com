@@ -91,7 +91,7 @@ function addpage($db)
 	  }
 	 else
 	  {
-    $query="insert into page (p_name,p_text,status) values('$p_name','$p_description','$status')";
+    $query="insert into page (p_name,p_text,status,AddedDate) values('$p_name','$p_description','$status',NOW())";
       $db->query($query);
       //$PROMPT = "Product Add Successfully";
       $P_ID = $db->insert_id();

@@ -7,14 +7,15 @@
   <title>Jhansi Nagar Nigam - Administrative Portal | झाँसी नगर निगम</title>
   
   <link rel="icon" type="image/x-icon" href="../favicon.ico" />
-  <link href="../css/admin_style.css?v=2.5" rel="stylesheet" type="text/css" />
-  <link href="/jnnjhansi/css/admin_style.css?v=2.5" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link href="../css/admin_style.css?v=2.6" rel="stylesheet" type="text/css" />
+  <link href="/jnnjhansi/css/admin_style.css?v=2.6" rel="stylesheet" type="text/css" />
   <script src="../js/datetimepicker.js" type="text/javascript"></script>
   <style>
     /* Critical admin layout styles */
     *, *::before, *::after { box-sizing: border-box; }
-    body {
-      margin: 0; padding: 0; min-height: 100vh;
+    html, body {
+      margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       font-size: 13.5px; line-height: 1.5; color: #1E293B; background-color: #F4F6F9;
     }
@@ -24,20 +25,240 @@
       border-bottom: 3px solid #F47721; z-index: 1000;
       display: flex; align-items: center; justify-content: space-between; padding: 0 20px;
     }
+    .header-left, .header-right {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .btn-sidebar-toggle {
+      background: rgba(255, 255, 255, 0.15) !important;
+      border: 1px solid rgba(255, 255, 255, 0.35) !important;
+      color: #FFFFFF !important;
+      width: 40px !important;
+      height: 40px !important;
+      border-radius: 8px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      cursor: pointer !important;
+      flex-shrink: 0 !important;
+      transition: all 0.2s ease !important;
+    }
+    .btn-sidebar-toggle:hover {
+      background: #F47721 !important;
+      border-color: #F47721 !important;
+    }
+    .btn-sidebar-toggle svg {
+      stroke: #FFFFFF !important;
+      width: 22px !important;
+      height: 22px !important;
+      display: block !important;
+    }
     .admin-layout-wrapper {
-      display: flex; min-height: calc(100vh - 64px); margin-top: 64px; position: relative;
+      position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
+      height: calc(100vh - 64px); display: flex; overflow: hidden; width: 100%;
     }
     .admin-sidebar {
-      width: 260px; flex-shrink: 0; background: #FFFFFF; border-right: 1px solid #E2E8F0;
-      position: sticky; top: 64px; height: calc(100vh - 64px); overflow-y: auto; z-index: 995;
+      width: 260px; height: 100%; flex-shrink: 0; background: #FFFFFF; border-right: 1px solid #E2E8F0;
+      overflow-y: auto; overflow-x: hidden; z-index: 995;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    body.sidebar-collapsed .admin-sidebar {
+      width: 0 !important;
+      overflow: hidden !important;
+      border-right: none !important;
+    }
+    .admin-sidebar-backdrop {
+      display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(2px); z-index: 998;
+    }
+    .admin-sidebar-backdrop.active {
+      display: block;
     }
     .admin-main {
-      flex: 1; min-width: 0; display: flex; flex-direction: column; background: #F4F6F9;
+      flex: 1; min-width: 0; width: 100%; height: 100%; display: flex; flex-direction: column; overflow: hidden; background: #F4F6F9;
     }
-    .admin-content-inner { flex: 1; padding: 24px; max-width: 100%; }
+    .admin-content-inner {
+      flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; padding: 24px; max-width: 100%; width: 100%;
+      -webkit-overflow-scrolling: touch;
+    }
     .admin-card-container {
       background: #FFFFFF; border-radius: 12px; border: 1px solid #E2E8F0;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05); padding: 24px; margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05); padding: 24px; margin-bottom: 24px; width: 100%;
+    }
+    .admin-footer {
+      flex-shrink: 0; background: #0A1F35; color: #94A3B8; padding: 12px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 12px; z-index: 990;
+    }
+
+    /* Universal Modern Filter / Search Bar */
+    .admin-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      margin-bottom: 18px;
+    }
+    .admin-filter-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .admin-filter-input {
+      padding: 7px 12px;
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      font-size: 13px;
+      background: #FFFFFF;
+      outline: none;
+      min-width: 180px;
+      transition: all 0.2s;
+    }
+    .admin-filter-input:focus {
+      border-color: #12365A;
+      box-shadow: 0 0 0 2px rgba(18,54,90,0.1);
+    }
+    .admin-filter-select {
+      padding: 7px 12px;
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      font-size: 13px;
+      background: #FFFFFF;
+      outline: none;
+      min-width: 130px;
+      cursor: pointer;
+    }
+    .btn-filter-search {
+      padding: 7px 16px;
+      background: #12365A;
+      color: #FFFFFF !important;
+      border: 1px solid #12365A;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-filter-search:hover {
+      background: #0A1F35;
+    }
+    .btn-filter-reset {
+      padding: 7px 14px;
+      background: #FFFFFF;
+      color: #475569 !important;
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-filter-reset:hover {
+      background: #F1F5F9;
+      color: #0F172A !important;
+    }
+
+    /* Custom Slim Scrollbars */
+    .admin-content-inner::-webkit-scrollbar,
+    .admin-sidebar::-webkit-scrollbar {
+      width: 6px; height: 6px;
+    }
+    .admin-content-inner::-webkit-scrollbar-track,
+    .admin-sidebar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .admin-content-inner::-webkit-scrollbar-thumb,
+    .admin-sidebar::-webkit-scrollbar-thumb {
+      background: #CBD5E1; border-radius: 4px;
+    }
+    .admin-content-inner::-webkit-scrollbar-thumb:hover,
+    .admin-sidebar::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+
+    @media (max-width: 992px) {
+      .admin-sidebar {
+        position: fixed !important;
+        top: 64px !important;
+        left: -260px !important;
+        bottom: 0 !important;
+        height: calc(100vh - 64px) !important;
+        z-index: 999 !important;
+        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.18) !important;
+      }
+      body.sidebar-open .admin-sidebar {
+        left: 0 !important;
+      }
+      .hide-tablet {
+        display: none !important;
+      }
+      .admin-content-inner {
+        padding: 16px 12px;
+      }
+      .admin-card-container {
+        padding: 18px 14px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .admin-header {
+        padding: 0 12px;
+      }
+      .hide-mobile {
+        display: none !important;
+      }
+      .header-brand-title {
+        font-size: 14px !important;
+      }
+      .admin-filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .admin-filter-input, .admin-filter-select, .admin-filter-group {
+        width: 100% !important;
+        min-width: 0 !important;
+      }
+      .btn-filter-search, .btn-filter-reset {
+        justify-content: center;
+        width: 100%;
+      }
+      .admin-content-inner {
+        padding: 12px 8px;
+      }
+      .admin-card-container {
+        padding: 14px 10px;
+        border-radius: 8px;
+      }
+      .admin-footer {
+        padding: 10px 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .admin-header {
+        padding: 0 8px;
+      }
+      .header-brand img {
+        width: 34px !important;
+        height: 34px !important;
+      }
+      .header-brand-title {
+        font-size: 13px !important;
+      }
+      .admin-content-inner {
+        padding: 8px 4px;
+      }
+      .admin-card-container {
+        padding: 12px 8px;
+      }
     }
   </style>
 </head>
@@ -131,11 +352,11 @@ __TOPBAR__
         </a>
       </li>
 
-      <!-- 9. Smart City Projects -->
+      <!-- 9. Citizen Feedback & Queries -->
       <li class="sidebar-menu-item">
         <a href="smartcity_info.php" class="sidebar-link" data-route="smartcity_info">
-          <span class="sidebar-icon">🏙️</span>
-          <span class="sidebar-label">Smart City Projects</span>
+          <span class="sidebar-icon">💬</span>
+          <span class="sidebar-label">Citizen Feedback &amp; Queries</span>
         </a>
       </li>
 
@@ -227,15 +448,27 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('admin_sidebar_collapsed', isCollapsed ? 'true' : 'false');
       }
     });
-  }
-
-  // Close Drawer on Backdrop Click
-  if (backdrop) {
     backdrop.addEventListener('click', function() {
       body.classList.remove('sidebar-open');
       backdrop.classList.remove('active');
     });
   }
+
+  // Close drawer on ESC key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && body.classList.contains('sidebar-open')) {
+      body.classList.remove('sidebar-open');
+      if (backdrop) backdrop.classList.remove('active');
+    }
+  });
+
+  // Reset drawer state on desktop resize
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 992) {
+      body.classList.remove('sidebar-open');
+      if (backdrop) backdrop.classList.remove('active');
+    }
+  });
 
   // Automatic Active Menu State Matching based on current URL (matching most specific route first)
   var currentPath = window.location.pathname.toLowerCase();

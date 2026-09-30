@@ -81,6 +81,27 @@
   font-size: 11px;
   margin-bottom: 6px;
 }
+@media (max-width: 768px) {
+  .form-group-row {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .form-group-label {
+    width: 100%;
+    padding-top: 0;
+  }
+  .form-group-field {
+    width: 100%;
+  }
+  .settings-input,
+  .settings-textarea {
+    width: 100% !important;
+  }
+  .btn-save-settings {
+    width: 100%;
+    text-align: center;
+  }
+}
 </style>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -135,7 +156,10 @@
             <div class="form-group-row">
               <div class="form-group-label">Hero Banner Image:</div>
               <div class="form-group-field">
-                <div class="current-file-badge">Current File: __hero_banner_image__</div><br />
+                <div style="margin-bottom: 8px;">
+                  <img src="../__hero_banner_image__" style="max-height: 120px; max-width: 320px; border-radius: 6px; border: 1px solid #cbd5e1; display: block; margin-bottom: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); object-fit: cover;" onerror="this.style.display='none';" />
+                  <div class="current-file-badge">Current File: __hero_banner_image__</div>
+                </div>
                 <input type="file" name="hero_banner_file" accept="image/*" />
                 <div class="settings-help">Upload a new image to replace the hero banner (Recommended: 1920x800 px).</div>
               </div>
@@ -284,7 +308,10 @@
             <div class="form-group-row">
               <div class="form-group-label">Banner Image:</div>
               <div class="form-group-field">
-                <div class="current-file-badge">Current File: __swachh_banner_image__</div><br />
+                <div style="margin-bottom: 8px;">
+                  <img src="../__swachh_banner_image__" style="max-height: 120px; max-width: 320px; border-radius: 6px; border: 1px solid #cbd5e1; display: block; margin-bottom: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); object-fit: cover;" onerror="this.style.display='none';" />
+                  <div class="current-file-badge">Current File: __swachh_banner_image__</div>
+                </div>
                 <input type="file" name="swachh_banner_file" accept="image/*" />
                 <div class="settings-help">Upload a new image for the Swachh Jhansi banner card.</div>
               </div>

@@ -76,7 +76,7 @@ function   editpage($db,$pid)
            $p_name=addslashes($_POST["p_name"]);
            $p_description=addslashes($_POST["t_message"]);
            $status=$_POST['status'];
-           $query="update page set p_name='$p_name',p_text='$p_description',status='$status' where p_id='$pid'";
+           $query="update page set p_name='$p_name',p_text='$p_description',status='$status',AddedDate=NOW() where p_id='$pid'";
            $db->query($query);
                 
       return true;

@@ -64,7 +64,8 @@ flush();
 function viewpage($db)
  {
    global $S1,$S2,$slno,$page,$prevpage,$NEXT_PAGE_LINK,$TOTAL_PAGES,$PREV_PAGE_LINK,$TEMPLATE_DIR,$PRODUCT_LIST;
-   global $TOTAL_RECORDSET,$PAGE_NAVS,$status,$pid,$photo,$description,$DOCUMENT_ROOT;
+   global $TOTAL_RECORDSET,$PAGE_NAVS,$status,$pid,$photo,$photo_title,$description,$DOCUMENT_ROOT,$Upload_Date;
+   global $SEARCH_VAL,$STATUS_ACTIVE_SEL,$STATUS_INACTIVE_SEL,$DATE_VAL;
    
    $S1	= $S2 = ReadTemplate("../$TEMPLATE_DIR/admin/gallaryDisplayGrid.html");
 
@@ -72,20 +73,60 @@ function viewpage($db)
 	 $TOTAL_PAGES=0;
 	 $TOTAL_RECORDSET=0;
 	 
-	 $page = $_GET['page'];
-	 
-	 if(!($page)) 
-	 $page = 0 ;
-	$MAX=10;
+	 $search = trim($_REQUEST['search'] ?? '');
+	 $filter_status = isset($_REQUEST['filter_status']) && strlen($_REQUEST['filter_status']) > 0 ? (string)$_REQUEST['filter_status'] : '';
+	 $filter_date = trim($_REQUEST['filter_date'] ?? '');
+
+	 $where_clauses = [];
+	 $params = [];
+
+	 if ($search !== '') {
+	     $clean_search = addslashes($search);
+	     $where_clauses[] = "(photo_name LIKE '%$clean_search%' OR g_id = '$clean_search')";
+	     $params['search'] = $search;
+	 }
+	 if ($filter_status !== '') {
+	     $clean_status = addslashes($filter_status);
+	     $where_clauses[] = "status = '$clean_status'";
+	     $params['filter_status'] = $filter_status;
+	 }
+	 if ($filter_date !== '') {
+	     $clean_date = addslashes($filter_date);
+	     $date_conditions = ["AddedDate LIKE '%$clean_date%'"];
+	     $ts = strtotime(str_replace('/', '-', $filter_date));
+	     if ($ts) {
+	         $d_m_Y = date('d-m-Y', $ts);
+	         $d_sl_m_Y = date('d/m/Y', $ts);
+	         $Y_m_d = date('Y-m-d', $ts);
+	         foreach ([$d_m_Y, $d_sl_m_Y, $Y_m_d] as $fmt) {
+	             $date_conditions[] = "AddedDate LIKE '%$fmt%'";
+	         }
+	     }
+	     $where_clauses[] = "(" . implode(" OR ", array_unique($date_conditions)) . ")";
+	     $params['filter_date'] = $filter_date;
+	 }
+
+	 $where_sql = count($where_clauses) ? ' WHERE ' . implode(' AND ', $where_clauses) : '';
+	 $query_string = http_build_query($params);
+	 $next_links = $query_string ? '&' . $query_string : '';
+
+	 $SEARCH_VAL = htmlspecialchars($search);
+	 $STATUS_ACTIVE_SEL = ($filter_status === '1') ? 'selected' : '';
+	 $STATUS_INACTIVE_SEL = ($filter_status === '0') ? 'selected' : '';
+	 $DATE_VAL = htmlspecialchars($filter_date);
+
+	 $page = isset($_GET['page']) ? (int)$_GET['page'] : 0;
+	 if(!($page) || $page < 0) 
+	   $page = 0 ;
+	 $MAX=10;
 	 $lastrow=$MAX+$page;
 	 
-	 
-	 $count="select count(g_id) as total from tbl_gallary";
+	 $count="select count(g_id) as total from tbl_gallary $where_sql";
    $db->query($count);
 	 $row = $db->fetch_assoc();
    $TOTAL_RECORDSET = $row['total'];
   
-   $query="select * from tbl_gallary limit  $page, $MAX";
+   $query="select * from tbl_gallary $where_sql order by g_id DESC limit  $page, $MAX";
     
    $db->query($query);
 		if($db->num_rows())
@@ -94,20 +135,30 @@ function viewpage($db)
 			while($rows = $db->fetch_array())
 			{
 			  $pid=$rows['g_id'];
-			    if($_SERVER['SERVER_NAME']=='localhost')
-				{
-			        $photo="<img src='/jnnweb/pic/thumb/".$rows['photo_name']."' >";
-				}
-				else
-				{
-					$photo="<img src='/pic/thumb/".$rows['photo_name']."' >";
-				}
+			    $photoName = $rows['photo_name'];
+			    if (!empty($photoName) && file_exists("../pic/thumb/" . $photoName)) {
+				    $imgSrc = "../pic/thumb/" . $photoName;
+			    } elseif (!empty($photoName) && file_exists("../pic/" . $photoName)) {
+				    $imgSrc = "../pic/" . $photoName;
+			    } else {
+				    $imgSrc = "../images/logo.png";
+			    }
+			    $photo = "<img src='{$imgSrc}' alt='Gallery Photo' style='width:90px; height:60px; object-fit:cover; border-radius:6px; border:1px solid #E2E8F0; box-shadow:0 2px 4px rgba(0,0,0,0.06);'>";
+			    $photo_title = htmlspecialchars(!empty($rows['photo_title']) ? $rows['photo_title'] : $photoName);
+			    
+			    $rawDate=$rows['AddedDate'] ?? '';
+			    if (!empty($rawDate) && $rawDate != '0000-00-00') {
+				    $ts = strtotime(str_replace('/', '-', $rawDate));
+				    $Upload_Date = $ts ? date('d-M-Y', $ts) : htmlspecialchars($rawDate);
+			    } else {
+				    $Upload_Date = '-';
+			    }
 			       
 			  $status=$rows['status'];
 			  if($status==1)
-				{ $status="Live";}
+				{ $status='<span class="badge" style="background:#DEF7EC; color:#03543F; padding:4px 8px; border-radius:4px; font-size:11.5px; font-weight:600;">Live</span>';}
 			  else
-				{$status="Draft";}
+				{ $status='<span class="badge" style="background:#FDE8E8; color:#9B1C1C; padding:4px 8px; border-radius:4px; font-size:11.5px; font-weight:600;">Draft</span>';}
 			  
 			  ReplaceContent(Array("S1"));
 				$PRODUCT_LIST.=$S1;

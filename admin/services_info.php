@@ -90,11 +90,43 @@ flush();
 function viewservices($db) {
     global $S1, $S2, $slno, $SERVICES_LIST, $TEMPLATE_DIR, $PROMPT;
     global $service_id, $service_title, $service_category, $service_subtitle, $service_link, $service_home, $service_status, $service_sort;
+    global $SEARCH_VAL, $STATUS_ACTIVE_SEL, $STATUS_INACTIVE_SEL;
+    global $CAT_TAX_SEL, $CAT_CERT_SEL, $CAT_NOC_SEL, $CAT_GRIEVANCE_SEL, $CAT_SERVICES_SEL, $CAT_UTILITY_SEL;
 
     $S1 = $S2 = ReadTemplate("../$TEMPLATE_DIR/admin/servicesDisplayGrid.html");
     $SERVICES_LIST = "";
 
-    $query = "SELECT * FROM portal_services ORDER BY sort_order ASC, service_id ASC";
+    $search = trim($_REQUEST['search'] ?? '');
+    $filter_category = trim($_REQUEST['filter_category'] ?? '');
+    $filter_status = isset($_REQUEST['filter_status']) && strlen($_REQUEST['filter_status']) > 0 ? (string)$_REQUEST['filter_status'] : '';
+
+    $where_clauses = [];
+    if ($search !== '') {
+        $clean_search = addslashes($search);
+        $where_clauses[] = "(title LIKE '%$clean_search%' OR subtitle LIKE '%$clean_search%' OR category LIKE '%$clean_search%' OR service_id = '$clean_search')";
+    }
+    if ($filter_category !== '') {
+        $clean_cat = addslashes($filter_category);
+        $where_clauses[] = "category = '$clean_cat'";
+    }
+    if ($filter_status !== '') {
+        $clean_status = addslashes($filter_status);
+        $where_clauses[] = "status = '$clean_status'";
+    }
+
+    $where_sql = count($where_clauses) ? ' WHERE ' . implode(' AND ', $where_clauses) : '';
+
+    $SEARCH_VAL = htmlspecialchars($search);
+    $STATUS_ACTIVE_SEL = ($filter_status === '1') ? 'selected' : '';
+    $STATUS_INACTIVE_SEL = ($filter_status === '0') ? 'selected' : '';
+    $CAT_TAX_SEL = ($filter_category === 'tax') ? 'selected' : '';
+    $CAT_CERT_SEL = ($filter_category === 'cert') ? 'selected' : '';
+    $CAT_NOC_SEL = ($filter_category === 'noc') ? 'selected' : '';
+    $CAT_GRIEVANCE_SEL = ($filter_category === 'grievance') ? 'selected' : '';
+    $CAT_SERVICES_SEL = ($filter_category === 'services') ? 'selected' : '';
+    $CAT_UTILITY_SEL = ($filter_category === 'utility') ? 'selected' : '';
+
+    $query = "SELECT * FROM portal_services $where_sql ORDER BY sort_order ASC, service_id ASC";
     $db->query($query);
     if ($db->num_rows()) {
         $slno = 1;
@@ -120,7 +152,7 @@ function viewservices($db) {
             $slno++;
         }
     } else {
-        $SERVICES_LIST = "<tr><td colspan='8' align='center' style='padding:20px;'>No citizen services found. Click Add Service above to create one.</td></tr>";
+        $SERVICES_LIST = "<tr><td colspan='8' align='center' style='padding:20px;'>No citizen services match your filter criteria.</td></tr>";
     }
 }
 ?>
