@@ -1,0 +1,371 @@
+{
+  "info": {
+    "_postman_id": "jnn-jhansi-api-v1",
+    "name": "Nagar Nigam Jhansi - RESTful API & WebServices",
+    "description": "Complete production Postman collection for Nagar Nigam Jhansi Municipal Portal & Mobile Applications.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost/jnnjhansi/api/index.php",
+      "type": "string"
+    },
+    {
+      "key": "ws_url",
+      "value": "http://localhost/jnnjhansi/webservice.php",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Home & Dashboard",
+      "item": [
+        {
+          "name": "Get Home Dashboard Aggregate",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{base_url}}?endpoint=home",
+              "host": ["{{base_url}}"],
+              "query": [
+                { "key": "endpoint", "value": "home" }
+              ]
+            },
+            "description": "Fetches all home screen dashboard data including Mayor, Municipal Commissioner, Top 5 Notices, Top 5 Tenders, News, and Quick Counts."
+          }
+        },
+        {
+          "name": "Get API Documentation / Catalog",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{base_url}}?endpoint=help",
+              "host": ["{{base_url}}"],
+              "query": [
+                { "key": "endpoint", "value": "help" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Public Notices & Tenders",
+      "item": [
+        {
+          "name": "Get Notices (Paginated)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{base_url}}?endpoint=notices&page=1&limit=10&search=",
+              "host": ["{{base_url}}"],
+              "query": [
+                { "key": "endpoint", "value": "notices" },
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "10" },
+                { "key": "search", "value": "" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Tenders (Paginated)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{base_url}}?endpoint=tenders&page=1&limit=10&search=",
+              "host": ["{{base_url}}"],
+              "query": [
+                { "key": "endpoint", "value": "tenders" },
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "10" },
+                { "key": "search", "value": "" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Executive & Administration",
+      "item": [
+        {
+          "name": "Get Mayor Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{base_url}}?endpoint=mayor",
+              "host": ["{{base_url}}"],
+              "query": [{ "key": "endpoint", "value": "mayor" }]
+            }
+          }
+        },
+        {
+          "name": "Get Municipal Commissioner Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{base_url}}?endpoint=commissioner",
+              "host": ["{{base_url}}"],
+              "query": [{ "key": "endpoint", "value": "commissioner" }]
+            }
+          }
+        },
+        {
+          "name": "Get Officers Directory",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{base_url}}?endpoint=officers",
+              "host": ["{{base_url}}"],
+              "query": [{ "key": "endpoint", "value": "officers" }]
+            }
+          }
+        },
+        {
+          "name": "Get Departments Directory",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{base_url}}?endpoint=departments",
+              "host": ["{{base_url}}"],
+              "query": [{ "key": "endpoint", "value": "departments" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Media & News",
+      "item": [
+        {
+          "name": "Get Development Works & News",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{base_url}}?endpoint=news",
+              "host": ["{{base_url}}"],
+              "query": [{ "key": "endpoint", "value": "news" }]
+            }
+          }
+        },
+        {
+          "name": "Get Photo Gallery",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{base_url}}?endpoint=gallery",
+              "host": ["{{base_url}}"],
+              "query": [{ "key": "endpoint", "value": "gallery" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. CMS Pages",
+      "item": [
+        {
+          "name": "Get CMS Pages List",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{base_url}}?endpoint=pages",
+              "host": ["{{base_url}}"],
+              "query": [{ "key": "endpoint", "value": "pages" }]
+            }
+          }
+        },
+        {
+          "name": "Get Single CMS Page Detail",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{base_url}}?endpoint=page&id=1",
+              "host": ["{{base_url}}"],
+              "query": [
+                { "key": "endpoint", "value": "page" },
+                { "key": "id", "value": "1" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Citizen Grievance Redressal",
+      "item": [
+        {
+          "name": "Track Complaint by Registration No.",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{base_url}}?endpoint=track_complaint&reg_no=JNN-20260925-4192",
+              "host": ["{{base_url}}"],
+              "query": [
+                { "key": "endpoint", "value": "track_complaint" },
+                { "key": "reg_no", "value": "JNN-20260925-4192" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Track Complaint by Phone Number",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{base_url}}?endpoint=track_complaint&phone=9818247988",
+              "host": ["{{base_url}}"],
+              "query": [
+                { "key": "endpoint", "value": "track_complaint" },
+                { "key": "phone", "value": "9818247988" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Lodge Citizen Grievance (POST)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Anil Sahu\",\n  \"phone\": \"9876543210\",\n  \"address\": \"45/2 Sipri Bazar\",\n  \"city\": \"Jhansi\",\n  \"department_id\": 1,\n  \"details\": \"Garbage cleanup required near community hall.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}?endpoint=lodge_complaint",
+              "host": ["{{base_url}}"],
+              "query": [{ "key": "endpoint", "value": "lodge_complaint" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "7. Citizen Feedback & Contact",
+      "item": [
+        {
+          "name": "Submit Citizen Feedback / Contact Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Sunita Verma\",\n  \"mobile\": \"9818247988\",\n  \"email\": \"sunita@example.com\",\n  \"subject\": \"Heritage Route Development\",\n  \"feedback\": \"Please install bilingual directional signage along Rani Mahal path.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}?endpoint=feedback",
+              "host": ["{{base_url}}"],
+              "query": [{ "key": "endpoint", "value": "feedback" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "8. Smart City WebServices",
+      "item": [
+        {
+          "name": "Smart City Citizen Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"login\",\n  \"mobile\": \"9818247988\",\n  \"password\": \"54321\"\n}"
+            },
+            "url": {
+              "raw": "{{ws_url}}",
+              "host": ["{{ws_url}}"]
+            }
+          }
+        },
+        {
+          "name": "Smart City Citizen Registration (Sends SMS)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"register\",\n  \"name\": \"Mohit Gupta\",\n  \"mobile\": \"9818247988\",\n  \"address\": \"Civil Lines, Jhansi\"\n}"
+            },
+            "url": {
+              "raw": "{{ws_url}}",
+              "host": ["{{ws_url}}"]
+            }
+          }
+        },
+        {
+          "name": "Submit Smart City 14-Point Survey",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"save_comment\",\n  \"user_id\": \"894\",\n  \"answer1\": \"Clean Drinking Water\",\n  \"answer2\": \"Solid Waste Management\",\n  \"answer3\": \"Underground Sewerage System\",\n  \"answer4\": \"Traffic Management & Parking\",\n  \"answer5\": \"LED Smart Street Lighting\",\n  \"answer6\": \"CCTV City Surveillance\",\n  \"answer7\": \"Fort Tourism Development\",\n  \"answer8\": \"Green Parks & Walking Tracks\",\n  \"answer9\": \"Digital Citizen Centers\",\n  \"answer10\": \"Affordable Housing\",\n  \"answer11\": \"24x7 Emergency Services\",\n  \"answer12\": \"Electric Bus Transport\",\n  \"answer13\": \"Industrial Cluster Development\",\n  \"answer14\": \"Solar Energy on Public Buildings\"\n}"
+            },
+            "url": {
+              "raw": "{{ws_url}}",
+              "host": ["{{ws_url}}"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

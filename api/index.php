@@ -55,8 +55,10 @@ $BASE_URL = getBaseUrl();
 // JSON response wrapper
 function json_response($status_code, $message, $data = null, $pagination = null) {
     http_response_code($status_code);
+    $isSuccess = ($status_code >= 200 && $status_code < 300);
     $response = [
-        "status" => ($status_code >= 200 && $status_code < 300) ? "success" : "error",
+        "success" => $isSuccess,
+        "status" => $isSuccess ? "success" : "error",
         "code" => $status_code,
         "message" => $message
     ];

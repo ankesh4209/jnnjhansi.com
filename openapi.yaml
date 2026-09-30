@@ -1,0 +1,379 @@
+openapi: 3.0.3
+info:
+  title: Nagar Nigam Jhansi RESTful API
+  description: Official dynamic RESTful API specification for Nagar Nigam Jhansi (Jhansi Municipal Corporation) portal and mobile applications.
+  version: 1.0.1
+  contact:
+    name: Jhansi Nagar Nigam Technical Cell
+    url: https://jnnjhansi.com
+    email: contact@jnnjhansi.com
+
+servers:
+  - url: http://localhost/jnnjhansi/api/index.php
+    description: Localhost Development Server
+  - url: https://jnnjhansi.com/api/index.php
+    description: Production Server
+
+paths:
+  /?endpoint=home:
+    get:
+      summary: Home Screen Aggregate Dashboard
+      description: Returns unified dashboard metrics for mobile application home screens (Mayor, Commissioner, Top Notices, Top Tenders, News, Statistics).
+      operationId: getHomeDashboard
+      responses:
+        '200':
+          description: Successful dashboard payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HomeDashboardResponse'
+
+  /?endpoint=notices:
+    get:
+      summary: Public Notices Directory
+      description: Returns a paginated list of public notices with optional full-text search.
+      operationId: getNotices
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Paginated notices list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedNoticesResponse'
+
+  /?endpoint=tenders:
+    get:
+      summary: E-Tenders Directory
+      description: Returns a paginated list of active tenders with direct PDF download links.
+      operationId: getTenders
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Paginated tenders list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedTendersResponse'
+
+  /?endpoint=news:
+    get:
+      summary: Nagar Vikas & Municipal News
+      description: Returns list of municipal development works and news with photo URLs.
+      operationId: getNews
+      responses:
+        '200':
+          description: News articles list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success: { type: boolean }
+                  status: { type: string }
+                  code: { type: integer }
+                  message: { type: string }
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/NewsItem'
+
+  /?endpoint=mayor:
+    get:
+      summary: Mayor Profile & Desk Message
+      operationId: getMayor
+      responses:
+        '200':
+          description: Mayor details
+        '404':
+          description: Mayor record not found
+
+  /?endpoint=commissioner:
+    get:
+      summary: Municipal Commissioner Profile
+      operationId: getCommissioner
+      responses:
+        '200':
+          description: Commissioner details
+        '404':
+          description: Commissioner record not found
+
+  /?endpoint=officers:
+    get:
+      summary: Key Officers Directory
+      operationId: getOfficers
+      responses:
+        '200':
+          description: Directory of municipal officers
+
+  /?endpoint=departments:
+    get:
+      summary: Municipal Departments Directory
+      operationId: getDepartments
+      responses:
+        '200':
+          description: List of municipal departments
+
+  /?endpoint=gallery:
+    get:
+      summary: Photo Gallery Catalog
+      operationId: getGallery
+      responses:
+        '200':
+          description: Photo gallery items
+
+  /?endpoint=pages:
+    get:
+      summary: CMS Pages Index
+      operationId: getPages
+      responses:
+        '200':
+          description: List of available CMS pages
+
+  /?endpoint=page:
+    get:
+      summary: Single CMS Page Detail
+      operationId: getPage
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: CMS Page content
+        '404':
+          description: Page not found
+
+  /?endpoint=track_complaint:
+    get:
+      summary: Track Citizen Grievance
+      operationId: trackComplaint
+      parameters:
+        - name: reg_no
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: phone
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Complaint records found
+        '400':
+          description: Missing query parameter
+        '404':
+          description: No complaint found
+
+  /?endpoint=lodge_complaint:
+    post:
+      summary: Register Citizen Grievance
+      operationId: lodgeComplaint
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LodgeComplaintRequest'
+      responses:
+        '201':
+          description: Complaint registered successfully
+        '400':
+          description: Validation error
+
+  /?endpoint=feedback:
+    post:
+      summary: Submit Citizen Feedback & Contact Message
+      operationId: submitFeedback
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeedbackRequest'
+      responses:
+        '201':
+          description: Feedback submitted successfully
+        '400':
+          description: Missing required fields
+
+components:
+  schemas:
+    HomeDashboardResponse:
+      type: object
+      properties:
+        success: { type: boolean, example: true }
+        status: { type: string, example: success }
+        code: { type: integer, example: 200 }
+        message: { type: string, example: Home dashboard data loaded }
+        data:
+          type: object
+          properties:
+            portal_name: { type: string, example: Nagar Nigam Jhansi }
+            base_url: { type: string, example: "http://localhost/jnnjhansi/" }
+            mayor:
+              type: object
+              properties:
+                id: { type: integer }
+                name: { type: string }
+                designation: { type: string }
+                photo_url: { type: string }
+                description: { type: string }
+                added_date: { type: string }
+            commissioner:
+              type: object
+              properties:
+                id: { type: integer }
+                name: { type: string }
+                designation: { type: string }
+                photo_url: { type: string }
+                description: { type: string }
+                added_date: { type: string }
+            latest_notices:
+              type: array
+              items:
+                $ref: '#/components/schemas/NoticeItem'
+            latest_tenders:
+              type: array
+              items:
+                $ref: '#/components/schemas/TenderItem'
+            latest_news:
+              type: array
+              items:
+                $ref: '#/components/schemas/NewsItem'
+            statistics:
+              type: object
+              properties:
+                active_notices: { type: integer }
+                active_tenders: { type: integer }
+                departments_count: { type: integer }
+
+    NoticeItem:
+      type: object
+      properties:
+        id: { type: integer, example: 105 }
+        title: { type: string, example: "Sanitation Guidelines Diwali" }
+        pdf_name: { type: string, example: "notice_105.pdf" }
+        pdf_url: { type: string, example: "http://localhost/jnnjhansi/docs/notice_105.pdf" }
+        date: { type: string, example: "2026-09-18" }
+
+    TenderItem:
+      type: object
+      properties:
+        id: { type: integer, example: 84 }
+        title: { type: string, example: "E-Tender for Road Construction" }
+        pdf_name: { type: string, example: "tender_84.pdf" }
+        pdf_url: { type: string, example: "http://localhost/jnnjhansi/docs/tender_84.pdf" }
+        date: { type: string, example: "2026-09-20" }
+
+    NewsItem:
+      type: object
+      properties:
+        id: { type: integer, example: 42 }
+        title: { type: string, example: "Solar Lighting Project Launched" }
+        description: { type: string }
+        image_url: { type: string }
+        thumb_url: { type: string }
+        added_date: { type: string }
+
+    PaginatedNoticesResponse:
+      type: object
+      properties:
+        success: { type: boolean, example: true }
+        status: { type: string, example: success }
+        code: { type: integer, example: 200 }
+        message: { type: string }
+        pagination:
+          type: object
+          properties:
+            current_page: { type: integer }
+            limit: { type: integer }
+            total_records: { type: integer }
+            total_pages: { type: integer }
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/NoticeItem'
+
+    PaginatedTendersResponse:
+      type: object
+      properties:
+        success: { type: boolean, example: true }
+        status: { type: string, example: success }
+        code: { type: integer, example: 200 }
+        message: { type: string }
+        pagination:
+          type: object
+          properties:
+            current_page: { type: integer }
+            limit: { type: integer }
+            total_records: { type: integer }
+            total_pages: { type: integer }
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TenderItem'
+
+    LodgeComplaintRequest:
+      type: object
+      required:
+        - name
+        - phone
+        - details
+      properties:
+        name: { type: string, example: "Anil Sahu" }
+        phone: { type: string, example: "9876543210" }
+        address: { type: string, example: "45/2 Sipri Bazar" }
+        city: { type: string, example: "Jhansi" }
+        department_id: { type: integer, example: 1 }
+        details: { type: string, example: "Garbage cleanup required near community hall." }
+
+    FeedbackRequest:
+      type: object
+      required:
+        - name
+        - feedback
+      properties:
+        name: { type: string, example: "Sunita Verma" }
+        mobile: { type: string, example: "9818247988" }
+        email: { type: string, example: "sunita@example.com" }
+        subject: { type: string, example: "Heritage Route Signboards" }
+        feedback: { type: string, example: "Install informative directional signboards." }

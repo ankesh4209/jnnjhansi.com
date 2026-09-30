@@ -1,88 +1,96 @@
-# Nagar Nigam Jhansi - RESTful API Documentation
-> **Version:** 1.0.0  
-> **Date:** September 2026  
-> **Target Audience:** Mobile App Developers (Flutter / React Native / Android Kotlin / iOS Swift)  
-> **Response Format:** JSON (UTF-8)  
-> **CORS:** Enabled (`Access-Control-Allow-Origin: *`)
+# Nagar Nigam Jhansi - Final Master API Documentation
+
+> **Ek Nazar Me Sab Kuch (All-in-One Guide)**  
+> Ye document pure project ke sabhi APIs ka single master reference hai. Isme saaf-saaf bataya gaya hai ki **kaun sa API kiske liye hai**, uska URL kya hai, aur usko kaise use karna hai.
 
 ---
 
-## 1. Overview & Base URLs
+## 🧭 "Kaun Kiska Hai" — Quick Summary Table
 
-This dynamic API connects mobile and web applications to the **Nagar Nigam Jhansi (Jhansi Municipal Corporation)** database. All responses are returned in standard JSON format with UTF-8 encoding.
+Agar aap **Mobile App (Flutter / React Native)** ya **Website Frontend** bana rahe hain, to aapko bas niche diye gaye table ko dekhna hai:
 
-### Environment URLs:
-* **Development (Localhost / XAMPP):**  
-  `http://localhost/jnnjhansi/api/index.php`  
-  *(Note for Physical Devices / Android Emulators: Use your computer's local IP, e.g. `http://192.168.1.X/jnnjhansi/api/index.php` or `http://10.0.2.2/jnnjhansi/api/index.php` for Android Emulator)*
-* **Production (Live Server):**  
-  `https://jnnjhansi.com/api/index.php`
+| S.No. | Kaam (Purpose) | Method | Endpoint / URL | Input Data | Kahan Use Hota Hai |
+|:---:|---|:---:|---|---|---|
+| **1** | **Home Screen Dashboard** (Mayor, Commissioner, Top 5 Notices, Tenders, News, Counts) | `GET` | `api/index.php?endpoint=home` | Kuch nahi | Mobile App Home Screen |
+| **2** | **Public Notices List** (Search + Pagination ke saath) | `GET` | `api/index.php?endpoint=notices` | `page`, `limit`, `search` | Notices Screen / Page |
+| **3** | **E-Tenders List** (Search + Download PDF link ke saath) | `GET` | `api/index.php?endpoint=tenders` | `page`, `limit`, `search` | Tenders Screen / Page |
+| **4** | **Nagar Vikas & News** (City Works photo + description) | `GET` | `api/index.php?endpoint=news` | Kuch nahi | News & Projects Screen |
+| **5** | **Mayor Profile** (Photo + Message) | `GET` | `api/index.php?endpoint=mayor` | Kuch nahi | Mayor Screen / About City |
+| **6** | **Municipal Commissioner Profile** (Photo + Message) | `GET` | `api/index.php?endpoint=commissioner` | Kuch nahi | Commissioner Screen |
+| **7** | **Officers Directory** (Name, Designation, Phone, Email) | `GET` | `api/index.php?endpoint=officers` | Kuch nahi | Officers / Contact Directory |
+| **8** | **Departments List** (Vibhag ke naam aur Nodal Officer) | `GET` | `api/index.php?endpoint=departments` | Kuch nahi | Departments List / Dropdown |
+| **9** | **Photo Gallery** (Photos & Thumbnails) | `GET` | `api/index.php?endpoint=gallery` | Kuch nahi | Photo Gallery Screen |
+| **10**| **CMS Pages List** (About Us, History, Rules etc.) | `GET` | `api/index.php?endpoint=pages` | Kuch nahi | Menu / Info Drawer |
+| **11**| **Single Page Content** (Kisi page ka pura text/HTML) | `GET` | `api/index.php?endpoint=page&id=1` | `id` (page ID) | Page Detail Screen |
+| **12**| **Shikayat Track Karo** (Grievance Tracking by Token/Phone) | `GET` | `api/index.php?endpoint=track_complaint` | `reg_no` ya `phone` | Complaint Tracking Screen |
+| **13**| **Nayi Shikayat Darj Karo** (Lodge Public Grievance) | `POST` | `api/index.php?endpoint=lodge_complaint` | `name`, `phone`, `details`, etc. | New Grievance Form |
+| **14**| **Feedback / Sampark Sandesh** (Citizen Feedback Form) | `POST` | `api/index.php?endpoint=feedback` | `name`, `mobile`, `feedback` | Contact Us / Feedback Page |
+| **15**| **Citizen Login** (Smart City Mobile App) | `POST` | `webservice.php` | `action: "login"`, `mobile`, `password` | Citizen Login Screen |
+| **16**| **Citizen Register (SMS OTP)** (Naya account + SMS password) | `POST` | `webservice.php` | `action: "register"`, `name`, `mobile` | Citizen Registration Form |
+| **17**| **Smart City 14-Point Survey** (Citizen survey submission) | `POST` | `webservice.php` | `action: "save_comment"`, `user_id`, answers | Smart City Survey Form |
 
 ---
 
-## 2. Global Headers & Formatting
+## 🌐 1. Base URLs
 
-### Request Headers
-```http
-Content-Type: application/json
-Accept: application/json
-```
+* **Localhost (XAMPP):**  
+  `http://localhost/jnnjhansi/`
+* **Live Production Server:**  
+  `https://jnnjhansi.com/`
 
-### Standard Response Structure
+> **Note for Android Emulator:** Agar aap Android Emulator se test kar rahe hain to `localhost` ki jagah `http://10.0.2.2/jnnjhansi/api/index.php` use karein.
 
-#### Success Response
+---
+
+## 📦 2. Standard Response Format
+
+Sabhi REST APIs ka response standard JSON format me aata hai:
+
 ```json
 {
+  "success": true,
   "status": "success",
   "code": 200,
-  "message": "Descriptive success message",
+  "message": "Data retrieved successfully",
   "data": { ... }
 }
 ```
 
-#### Paginated Response
+Agar Pagination ho:
 ```json
 {
+  "success": true,
   "status": "success",
   "code": 200,
-  "message": "Descriptive success message",
-  "data": [ ... ],
+  "message": "Notices retrieved successfully",
   "pagination": {
     "current_page": 1,
     "limit": 10,
-    "total_records": 77,
-    "total_pages": 8
-  }
-}
-```
-
-#### Error Response
-```json
-{
-  "status": "error",
-  "code": 400,
-  "message": "Detailed error description"
+    "total_records": 18,
+    "total_pages": 2
+  },
+  "data": [ ... ]
 }
 ```
 
 ---
 
-## 3. Endpoints Directory
+## 🚀 3. Detailed Endpoint Guide (Category-wise)
 
 ---
 
-### 3.1. Home Screen Dashboard (All-in-One)
-Fetches all essential data required for rendering the mobile application home screen in a single HTTP request.
+### Category A: Mobile App Dashboard & Feeds
 
-* **Endpoint:** `?endpoint=home`
+#### 1. Home Dashboard API
+Mobile App ke home screen par ek saath sab kuch dikhane ke liye (Mayor, Commissioner, Top 5 Notices, Top 5 Tenders, News aur Statistics).
+
 * **Method:** `GET`
-* **Authentication:** None
-* **Sample URL:**  
-  `GET /api/index.php?endpoint=home`
-
-#### Response `200 OK`:
+* **Complete URL:** `http://localhost/jnnjhansi/api/index.php?endpoint=home`
+* **Headers:** `Accept: application/json`
+* **Success Response (200 OK):**
 ```json
 {
+  "success": true,
   "status": "success",
   "code": 200,
   "message": "Home dashboard data loaded",
@@ -93,50 +101,48 @@ Fetches all essential data required for rendering the mobile application home sc
       "id": 1,
       "name": "Bihari Lal Arya",
       "designation": "Mayor, Jhansi Nagar Nigam",
-      "photo_url": "http://localhost/jnnjhansi/m_images/thumbs/photo.jpg",
-      "description": "Mayor's welcome message and vision for the city of Jhansi...",
-      "added_date": "2023-05-15"
+      "photo_url": "http://localhost/jnnjhansi/m_images/thumbs/mayor.jpg",
+      "description": "Mayor's city message..."
     },
     "commissioner": {
       "id": 1,
-      "name": "Shri Satyaprakash (IAS)",
+      "name": "Satya Prakash",
       "designation": "Municipal Commissioner",
       "photo_url": "http://localhost/jnnjhansi/c_images/thumbs/comm.jpg",
-      "description": "Commissioner's message on citizen services, cleanliness, and digitization...",
-      "added_date": "2023-06-01"
+      "description": "Commissioner's message..."
     },
     "latest_notices": [
       {
-        "id": 172,
-        "title": "OTS Form for Offline",
-        "pdf_name": "Offline Form_OTS_Nagar Vikas Vibhag.pdf",
-        "pdf_url": "http://localhost/jnnjhansi/docs/Offline Form_OTS_Nagar Vikas Vibhag.pdf",
-        "date": "2026-11-14"
+        "id": 105,
+        "title": "Sanitation Guidelines",
+        "pdf_name": "notice105.pdf",
+        "pdf_url": "http://localhost/jnnjhansi/docs/notice105.pdf",
+        "date": "2026-09-18"
       }
     ],
     "latest_tenders": [
       {
-        "id": 948,
-        "title": "Tender Date.18.09.2026 to 25.09.2026",
-        "pdf_name": "TENDER NIT DATE.18.09.2026 TO 25.09.2026.pdf",
-        "pdf_url": "http://localhost/jnnjhansi/docs/TENDER NIT DATE.18.09.2026 TO 25.09.2026.pdf",
-        "date": "2026-09-25"
+        "id": 84,
+        "title": "Road Construction Tender",
+        "pdf_name": "tender84.pdf",
+        "pdf_url": "http://localhost/jnnjhansi/docs/tender84.pdf",
+        "date": "2026-09-20"
       }
     ],
     "latest_news": [
       {
-        "id": 10,
-        "title": "Road Beautification Project Jhansi",
-        "description": "Development work underway at major intersections...",
-        "image_url": "http://localhost/jnnjhansi/w_images/work1.jpg",
-        "thumb_url": "http://localhost/jnnjhansi/w_images/thumbs/work1.jpg",
-        "date": "2026-08-10"
+        "id": 42,
+        "title": "Smart Solar Project",
+        "description": "Details about work...",
+        "image_url": "http://localhost/jnnjhansi/w_images/work42.jpg",
+        "thumb_url": "http://localhost/jnnjhansi/w_images/thumbs/work42.jpg",
+        "date": "2026-09-21"
       }
     ],
     "statistics": {
-      "active_notices": 77,
-      "active_tenders": 157,
-      "departments_count": 15
+      "active_notices": 18,
+      "active_tenders": 7,
+      "departments_count": 12
     }
   }
 }
@@ -144,111 +150,92 @@ Fetches all essential data required for rendering the mobile application home sc
 
 ---
 
-### 3.2. Public Notices
-Retrieves circulars, press releases, and public notices with direct PDF download links.
-
-* **Endpoint:** `?endpoint=notices`
+#### 2. Public Notices API
 * **Method:** `GET`
+* **Complete URL:** `http://localhost/jnnjhansi/api/index.php?endpoint=notices&page=1&limit=10&search=diwali`
 * **Query Parameters:**
-  | Parameter | Type | Required | Default | Description |
-  |---|---|---|---|---|
-  | `page` | Integer | No | `1` | Page number for pagination |
-  | `limit` | Integer | No | `10` | Records per page (Max: 100) |
-  | `search` | String | No | `""` | Search query matching notice title |
-
-* **Sample URLs:**
-  * `GET /api/index.php?endpoint=notices&page=1&limit=10`
-  * `GET /api/index.php?endpoint=notices&search=OTS`
-
-#### Response `200 OK`:
+  - `page` (Optional, default: 1): Page number
+  - `limit` (Optional, default: 10): Ek page par kitne records
+  - `search` (Optional): Search keyword
+* **Success Response (200 OK):**
 ```json
 {
+  "success": true,
   "status": "success",
   "code": 200,
   "message": "Notices retrieved successfully",
-  "data": [
-    {
-      "id": 172,
-      "title": "OTS Form for Offline",
-      "pdf_name": "Offline Form_OTS_Nagar Vikas Vibhag.pdf",
-      "pdf_url": "http://localhost/jnnjhansi/docs/Offline Form_OTS_Nagar Vikas Vibhag.pdf",
-      "added_date": "2026-11-14"
-    }
-  ],
   "pagination": {
     "current_page": 1,
     "limit": 10,
-    "total_records": 77,
-    "total_pages": 8
-  }
+    "total_records": 1,
+    "total_pages": 1
+  },
+  "data": [
+    {
+      "id": 105,
+      "title": "Sanitation Guidelines Diwali 2026",
+      "pdf_name": "sanitation_2026.pdf",
+      "pdf_url": "http://localhost/jnnjhansi/docs/sanitation_2026.pdf",
+      "added_date": "2026-09-18"
+    }
+  ]
 }
 ```
 
 ---
 
-### 3.3. E-Tenders & NIT
-Retrieves all municipal tenders, NITs, and bids with direct PDF download links.
-
-* **Endpoint:** `?endpoint=tenders`
+#### 3. E-Tenders API
 * **Method:** `GET`
+* **Complete URL:** `http://localhost/jnnjhansi/api/index.php?endpoint=tenders&page=1&limit=10&search=road`
 * **Query Parameters:**
-  | Parameter | Type | Required | Default | Description |
-  |---|---|---|---|---|
-  | `page` | Integer | No | `1` | Page number |
-  | `limit` | Integer | No | `10` | Records per page (Max: 100) |
-  | `search` | String | No | `""` | Search tender title/NIT keyword |
-
-* **Sample URL:**  
-  `GET /api/index.php?endpoint=tenders&page=1&limit=15`
-
-#### Response `200 OK`:
+  - `page` (Optional, default: 1)
+  - `limit` (Optional, default: 10)
+  - `search` (Optional): Tender title search
+* **Success Response (200 OK):**
 ```json
 {
+  "success": true,
   "status": "success",
   "code": 200,
   "message": "Tenders retrieved successfully",
-  "data": [
-    {
-      "id": 948,
-      "title": "Tender Date.18.09.2026 to 25.09.2026",
-      "pdf_name": "TENDER NIT DATE.18.09.2026 TO 25.09.2026.pdf",
-      "pdf_url": "http://localhost/jnnjhansi/docs/TENDER NIT DATE.18.09.2026 TO 25.09.2026.pdf",
-      "added_date": "2026-09-25"
-    }
-  ],
   "pagination": {
     "current_page": 1,
-    "limit": 15,
-    "total_records": 157,
-    "total_pages": 11
-  }
+    "limit": 10,
+    "total_records": 1,
+    "total_pages": 1
+  },
+  "data": [
+    {
+      "id": 84,
+      "title": "Road Construction Ward 5",
+      "pdf_name": "tender_84.pdf",
+      "pdf_url": "http://localhost/jnnjhansi/docs/tender_84.pdf",
+      "added_date": "2026-09-20"
+    }
+  ]
 }
 ```
 
 ---
 
-### 3.4. Development News & City Works
-List of municipal development works, news stories, and city initiatives.
-
-* **Endpoint:** `?endpoint=news` *(or `?endpoint=works`)*
+#### 4. Development Works & News (Nagar Vikas)
 * **Method:** `GET`
-* **Sample URL:**  
-  `GET /api/index.php?endpoint=news`
-
-#### Response `200 OK`:
+* **Complete URL:** `http://localhost/jnnjhansi/api/index.php?endpoint=news`
+* **Success Response (200 OK):**
 ```json
 {
+  "success": true,
   "status": "success",
   "code": 200,
   "message": "News & development works retrieved successfully",
   "data": [
     {
-      "id": 10,
-      "title": "Solid Waste Processing Plant Inauguration",
-      "description": "New waste processing unit inaugurated in Jhansi...",
-      "image_url": "http://localhost/jnnjhansi/w_images/waste_plant.jpg",
-      "thumb_url": "http://localhost/jnnjhansi/w_images/thumbs/waste_plant.jpg",
-      "added_date": "2026-07-15"
+      "id": 42,
+      "title": "Smart Solar Lighting across Jhansi Fort",
+      "description": "Nagar Nigam Jhansi installed 250 energy-efficient lights...",
+      "image_url": "http://localhost/jnnjhansi/w_images/work_42.jpg",
+      "thumb_url": "http://localhost/jnnjhansi/w_images/thumbs/work_42.jpg",
+      "added_date": "2026-09-21"
     }
   ]
 }
@@ -256,214 +243,63 @@ List of municipal development works, news stories, and city initiatives.
 
 ---
 
-### 3.5. Officers & Administration Directory
-Full phone & email directory of Nagar Nigam officers, executive engineers, and administrators.
+### Category B: Executive Profiles, Officers & Departments
 
-* **Endpoint:** `?endpoint=officers`
+#### 5. Mayor Profile
 * **Method:** `GET`
-* **Sample URL:**  
-  `GET /api/index.php?endpoint=officers`
+* **Complete URL:** `http://localhost/jnnjhansi/api/index.php?endpoint=mayor`
 
-#### Response `200 OK`:
-```json
-{
-  "status": "success",
-  "code": 200,
-  "message": "Officers directory retrieved successfully",
-  "data": [
-    {
-      "id": 2,
-      "name": "Mr. Anna Sudhan (I.A.S.)",
-      "designation": "Municipal Commissioner",
-      "office_contact": "8808053861",
-      "residence_contact": "0510-2332097",
-      "email": "nagarayukta@jnnjhansi.com"
-    },
-    {
-      "id": 3,
-      "name": "Harish Verma",
-      "designation": "Chief Engineer",
-      "office_contact": "8726447899",
-      "residence_contact": "",
-      "email": "ce@jnnjhansi.com"
-    }
-  ]
-}
-```
+#### 6. Commissioner Profile
+* **Method:** `GET`
+* **Complete URL:** `http://localhost/jnnjhansi/api/index.php?endpoint=commissioner`
+
+#### 7. Officers Directory
+* **Method:** `GET`
+* **Complete URL:** `http://localhost/jnnjhansi/api/index.php?endpoint=officers`
+* **Response:** Array of officers (Name, Designation, Office Contact, Email).
+
+#### 8. Departments Directory
+* **Method:** `GET`
+* **Complete URL:** `http://localhost/jnnjhansi/api/index.php?endpoint=departments`
+* **Response:** Departments list with Nodal Officer contact.
+
+#### 9. Photo Gallery
+* **Method:** `GET`
+* **Complete URL:** `http://localhost/jnnjhansi/api/index.php?endpoint=gallery`
+* **Response:** Photo list with full resolution URL and thumbnail URL.
+
+#### 10. CMS Pages (About Us, History, Rules)
+* **Page List:** `GET http://localhost/jnnjhansi/api/index.php?endpoint=pages`
+* **Specific Page Detail:** `GET http://localhost/jnnjhansi/api/index.php?endpoint=page&id=1`
 
 ---
 
-### 3.6. Departments List
-List of municipal departments (Property Tax, Health, Works, Street Light, etc.) with department in-charge contact numbers.
+### Category C: Citizen Grievances & Feedback
 
-* **Endpoint:** `?endpoint=departments`
+#### 11. Track Grievance (Shikayat Status)
 * **Method:** `GET`
-* **Sample URL:**  
-  `GET /api/index.php?endpoint=departments`
-
-#### Response `200 OK`:
+* **Complete URL (by Reg No):**  
+  `http://localhost/jnnjhansi/api/index.php?endpoint=track_complaint&reg_no=JNN-20260925-4192`
+* **Complete URL (by Mobile Number):**  
+  `http://localhost/jnnjhansi/api/index.php?endpoint=track_complaint&phone=9818247988`
+* **Success Response (200 OK):**
 ```json
 {
-  "status": "success",
-  "code": 200,
-  "message": "Departments list retrieved successfully",
-  "data": [
-    {
-      "id": 3,
-      "name": "Property Tax Department (सम्पत्ति विभाग)",
-      "officer_name": "Shri Harish Verma",
-      "officer_designation": "Chief Engineer",
-      "officer_contact": "8726447899",
-      "support_contact": "9935241173"
-    },
-    {
-      "id": 5,
-      "name": "Health Department (स्वास्थ्य विभाग)",
-      "officer_name": "Dr. Dushyant Singh",
-      "officer_designation": "Nagar Swasthya Adhikari",
-      "officer_contact": "9415878056",
-      "support_contact": "9935241173"
-    }
-  ]
-}
-```
-
----
-
-### 3.7. Photo Gallery
-Photo gallery of official events, historical monuments, and civic programs.
-
-* **Endpoint:** `?endpoint=gallery`
-* **Method:** `GET`
-* **Sample URL:**  
-  `GET /api/index.php?endpoint=gallery`
-
-#### Response `200 OK`:
-```json
-{
-  "status": "success",
-  "code": 200,
-  "message": "Photo gallery retrieved successfully",
-  "data": [
-    {
-      "id": 28,
-      "photo_name": "DSC_5380.JPG",
-      "image_url": "http://localhost/jnnjhansi/pic/DSC_5380.JPG",
-      "thumb_url": "http://localhost/jnnjhansi/pic/thumb/DSC_5380.JPG"
-    }
-  ]
-}
-```
-
----
-
-### 3.8. Dynamic CMS Pages (About Us, History, Citizen Charter)
-* **Endpoint:** `?endpoint=pages` (or `?endpoint=page&id={id}`)
-* **Method:** `GET`
-
-#### Get List of Pages:
-`GET /api/index.php?endpoint=pages`
-
-#### Get Specific Page Content:
-`GET /api/index.php?endpoint=page&id=1`
-
-#### Response `200 OK`:
-```json
-{
-  "status": "success",
-  "code": 200,
-  "message": "Page content retrieved",
-  "data": {
-    "id": 1,
-    "title": "About Jhansi Nagar Nigam",
-    "content_html": "<p>Jhansi Nagar Nigam was established to provide civic amenities...</p>",
-    "content_text": "Jhansi Nagar Nigam was established to provide civic amenities..."
-  }
-}
-```
-
----
-
-### 3.9. Lodge Citizen Grievance / Complaint
-Allows citizens to file a complaint directly from the mobile app.
-
-* **Endpoint:** `?endpoint=lodge_complaint`
-* **Method:** `POST`
-* **Headers:** `Content-Type: application/json`
-
-#### Request Body (JSON):
-```json
-{
-  "name": "Amit Sharma",
-  "phone": "9876543210",
-  "address": "45, Civil Lines, Jhansi",
-  "city": "Jhansi",
-  "details": "Street light pole #14 is non-functional for past 3 days.",
-  "department_id": 8
-}
-```
-
-#### Field Specifications:
-| Field | Type | Mandatory | Description |
-|---|---|---|---|
-| `name` | String | **Yes** | Full name of the complainant |
-| `phone` | String | **Yes** | 10-digit mobile number |
-| `address` | String | No | Citizen address/locality |
-| `city` | String | No | City (Defaults to `Jhansi`) |
-| `details` | String | **Yes** | Detailed grievance description |
-| `department_id` | Integer | No | Department ID (Defaults to `1`) |
-
-#### Response `201 Created`:
-```json
-{
-  "status": "success",
-  "code": 201,
-  "message": "Complaint registered successfully",
-  "data": {
-    "complaint_id": 6657,
-    "registration_no": "JNN-20260923-4819",
-    "applicant_name": "Amit Sharma",
-    "phone": "9876543210",
-    "status": "Pending",
-    "registered_date": "23-09-2026 17:05:12"
-  }
-}
-```
-
----
-
-### 3.10. Track Complaint Status
-Search and track grievance status by Registration Number or Registered Mobile Number.
-
-* **Endpoint:** `?endpoint=track_complaint`
-* **Method:** `GET`
-* **Query Parameters:**
-  | Parameter | Type | Mandatory | Description |
-  |---|---|---|---|
-  | `reg_no` | String | One of both | Unique Registration No (e.g. `JNN-20260923-4819`) |
-  | `phone` | String | One of both | 10-digit mobile number |
-
-* **Sample URLs:**
-  * `GET /api/index.php?endpoint=track_complaint&reg_no=JNN-20260923-4819`
-  * `GET /api/index.php?endpoint=track_complaint&phone=9876543210`
-
-#### Response `200 OK`:
-```json
-{
+  "success": true,
   "status": "success",
   "code": 200,
   "message": "Complaint record found",
   "data": [
     {
-      "id": 6657,
-      "registration_no": "JNN-20260923-4819",
-      "applicant_name": "Amit Sharma",
-      "phone": "9876543210",
-      "registered_date": "23-09-2026 17:05:12",
-      "status_code": 0,
-      "status_text": "Pending",
-      "details": "Street light pole #14 is non-functional for past 3 days.",
-      "disposal_remarks": ""
+      "id": 1502,
+      "registration_no": "JNN-20260925-4192",
+      "applicant_name": "Ramesh Kumar Sharma",
+      "phone": "9818247988",
+      "registered_date": "25-09-2026 11:32:00",
+      "status_code": 1,
+      "status_text": "Resolved",
+      "details": "Street light not functional pole #12 Civil Lines",
+      "disposal_remarks": "LED replaced on 27-09-2026"
     }
   ]
 }
@@ -471,161 +307,212 @@ Search and track grievance status by Registration Number or Registered Mobile Nu
 
 ---
 
-### 3.11. Citizen Feedback & Survey
-Submit citizen suggestion or survey answer.
-
-* **Endpoint:** `?endpoint=feedback`
+#### 12. Lodge Public Grievance (Nayi Shikayat)
 * **Method:** `POST`
+* **Complete URL:** `http://localhost/jnnjhansi/api/index.php?endpoint=lodge_complaint`
+* **Headers:** `Content-Type: application/json`
 * **Request Body (JSON):**
 ```json
 {
-  "name": "Vikas Patel",
-  "mobile": "9876543210",
-  "feedback": "Great initiative on online door-to-door waste collection."
+  "name": "Anil Sahu",
+  "phone": "9876543210",
+  "address": "45/2 Sipri Bazar",
+  "city": "Jhansi",
+  "department_id": 1,
+  "details": "Garbage cleanup required near community hall."
+}
+```
+* **Success Response (201 Created):**
+```json
+{
+  "success": true,
+  "status": "success",
+  "code": 201,
+  "message": "Complaint registered successfully",
+  "data": {
+    "complaint_id": 1503,
+    "registration_no": "JNN-20260930-8742",
+    "applicant_name": "Anil Sahu",
+    "phone": "9876543210",
+    "status": "Pending",
+    "registered_date": "30-09-2026 14:35:10"
+  }
 }
 ```
 
-#### Response `201 Created`:
+---
+
+#### 13. Citizen Feedback / Contact Submission
+* **Method:** `POST`
+* **Complete URL:** `http://localhost/jnnjhansi/api/index.php?endpoint=feedback`
+* **Headers:** `Content-Type: application/json`
+* **Request Body (JSON):**
 ```json
 {
+  "name": "Sunita Verma",
+  "mobile": "9818247988",
+  "email": "sunita@example.com",
+  "subject": "City Cleanliness",
+  "feedback": "Please arrange more dustbins near Elite circle."
+}
+```
+* **Success Response (201 Created):**
+```json
+{
+  "success": true,
   "status": "success",
   "code": 201,
   "message": "Feedback submitted successfully",
   "data": {
-    "feedback_id": 142,
-    "name": "Vikas Patel",
-    "mobile": "9876543210"
+    "feedback_id": 894,
+    "name": "Sunita Verma",
+    "mobile": "9818247988"
   }
 }
 ```
 
 ---
 
-## 4. Mobile Integration Code Samples
+### Category D: Citizen Login & SMS WebServices (`webservice.php`)
 
-### A. Flutter (Dart) Example
+Ye endpoints `webservice.php` par chalte hain aur raw JSON body accept karte hain:
 
+#### 14. Citizen Login
+* **Method:** `POST`
+* **Complete URL:** `http://localhost/jnnjhansi/webservice.php`
+* **Request Body:**
+```json
+{
+  "action": "login",
+  "mobile": "9818247988",
+  "password": "54321"
+}
+```
+* **Success Response:**
+```json
+{
+  "msg": "success",
+  "user_id": 894,
+  "username": "Sunita Verma"
+}
+```
+
+---
+
+#### 15. Citizen Registration (Sends SMS Password)
+* **Method:** `POST`
+* **Complete URL:** `http://localhost/jnnjhansi/webservice.php`
+* **Request Body:**
+```json
+{
+  "action": "register",
+  "name": "Mohit Gupta",
+  "mobile": "9818247988",
+  "address": "Civil Lines, Jhansi"
+}
+```
+* **Kaise Kaam Karta Hai:**
+  Ye backend me 5-digit random password generate karta hai aur citizen ke mobile par Cropsoft SMS Gateway se SMS bhejta hai.
+* **Success Response:**
+```json
+{
+  "msg": "success"
+}
+```
+
+---
+
+#### 16. Smart City 14-Point Survey
+* **Method:** `POST`
+* **Complete URL:** `http://localhost/jnnjhansi/webservice.php`
+* **Request Body:**
+```json
+{
+  "action": "save_comment",
+  "user_id": "894",
+  "answer1": "Clean Water",
+  "answer2": "Waste Management",
+  "answer3": "Sewerage",
+  "answer4": "Traffic",
+  "answer5": "Smart Lighting",
+  "answer6": "CCTV",
+  "answer7": "Tourism",
+  "answer8": "Parks",
+  "answer9": "Digital Centers",
+  "answer10": "Housing",
+  "answer11": "Emergency",
+  "answer12": "Transport",
+  "answer13": "Industry",
+  "answer14": "Solar Energy"
+}
+```
+* **Success Response:**
+```json
+{
+  "msg": "success"
+}
+```
+
+---
+
+## 💻 4. Ready-to-Use Frontend Integration Snippets
+
+### Flutter (Dart) Snippet:
 ```dart
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class JnnApiService {
-  static const String baseUrl = "http://YOUR_SERVER_IP/jnnjhansi/api/index.php";
+class JnnApi {
+  static const String baseUrl = "http://localhost/jnnjhansi/api/index.php";
 
-  // 1. Fetch Home Screen Dashboard Data
-  static Future<Map<String, dynamic>?> getHomeData() async {
-    final response = await http.get(Uri.parse("$baseUrl?endpoint=home"));
-    if (response.statusCode == 200) {
-      final json = jsonDecode(response.body);
-      return json['data'];
+  // 1. Home Screen Data
+  static Future<Map<String, dynamic>?> getHome() async {
+    final res = await http.get(Uri.parse("$baseUrl?endpoint=home"));
+    if (res.statusCode == 200) {
+      return jsonDecode(res.body)['data'];
     }
     return null;
   }
 
-  // 2. Fetch Notices with Pagination
-  static Future<List<dynamic>> getNotices({int page = 1, int limit = 10, String search = ""}) async {
-    final response = await http.get(Uri.parse("$baseUrl?endpoint=notices&page=$page&limit=$limit&search=$search"));
-    if (response.statusCode == 200) {
-      final json = jsonDecode(response.body);
-      return json['data'];
-    }
-    return [];
-  }
-
-  // 3. Lodge a Complaint (POST)
-  static Future<Map<String, dynamic>?> lodgeComplaint({
-    required String name,
-    required String phone,
-    required String address,
-    required String details,
-    int departmentId = 1,
-  }) async {
-    final response = await http.post(
-      Uri.parse("$baseUrl?endpoint=lodge_complaint"),
-      headers: {"Content-Type": "application/json"},
-      body: jsonEncode({
-        "name": name,
-        "phone": phone,
-        "address": address,
-        "city": "Jhansi",
-        "details": details,
-        "department_id": departmentId,
-      }),
-    );
-    if (response.statusCode == 201) {
-      final json = jsonDecode(response.body);
-      return json['data'];
-    }
-    return null;
-  }
-
-  // 4. Track Complaint
+  // 2. Track Grievance
   static Future<List<dynamic>> trackComplaint(String regNoOrPhone) async {
-    final isNumber = int.tryParse(regNoOrPhone) != null && regNoOrPhone.length == 10;
-    final param = isNumber ? "phone" : "reg_no";
-    final response = await http.get(Uri.parse("$baseUrl?endpoint=track_complaint&$param=$regNoOrPhone"));
-    if (response.statusCode == 200) {
-      final json = jsonDecode(response.body);
-      return json['data'];
+    final isNum = int.tryParse(regNoOrPhone) != null && regNoOrPhone.length == 10;
+    final param = isNum ? "phone" : "reg_no";
+    final res = await http.get(Uri.parse("$baseUrl?endpoint=track_complaint&$param=$regNoOrPhone"));
+    if (res.statusCode == 200) {
+      return jsonDecode(res.body)['data'] ?? [];
     }
     return [];
   }
 }
 ```
 
----
-
-### B. React Native / JavaScript Example
-
+### JavaScript / React Native Snippet:
 ```javascript
-const BASE_URL = "http://YOUR_SERVER_IP/jnnjhansi/api/index.php";
+const BASE_URL = "http://localhost/jnnjhansi/api/index.php";
 
-export const api = {
-  // 1. Get Home Dashboard
-  getHomeData: async () => {
-    const res = await fetch(`${BASE_URL}?endpoint=home`);
-    const data = await res.json();
-    return data.data;
-  },
+// 1. Get Notices
+async function getNotices(page = 1, search = "") {
+  const res = await fetch(`${BASE_URL}?endpoint=notices&page=${page}&search=${encodeURIComponent(search)}`);
+  return await res.json();
+}
 
-  // 2. Get Notices
-  getNotices: async (page = 1, search = "") => {
-    const res = await fetch(`${BASE_URL}?endpoint=notices&page=${page}&search=${encodeURIComponent(search)}`);
-    const data = await res.json();
-    return data;
-  },
-
-  // 3. Lodge Grievance
-  lodgeComplaint: async (complaintData) => {
-    const res = await fetch(`${BASE_URL}?endpoint=lodge_complaint`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(complaintData)
-    });
-    return await res.json();
-  },
-
-  // 4. Track Grievance
-  trackComplaint: async (regNo) => {
-    const res = await fetch(`${BASE_URL}?endpoint=track_complaint&reg_no=${encodeURIComponent(regNo)}`);
-    return await res.json();
-  }
-};
+// 2. Lodge Complaint
+async function lodgeComplaint(formData) {
+  const res = await fetch(`${BASE_URL}?endpoint=lodge_complaint`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(formData)
+  });
+  return await res.json();
+}
 ```
 
 ---
 
-## 5. HTTP Status Codes Summary
+## 📁 5. Testing Files Attached
 
-| Code | Status | Meaning |
-|---|---|---|
-| `200` | OK | Request was successful, data returned. |
-| `201` | Created | Resource successfully created (Complaint filed / Feedback saved). |
-| `400` | Bad Request | Missing required parameters or payload fields. |
-| `404` | Not Found | Requested record, page, or complaint does not exist. |
-| `405` | Method Not Allowed | Called with invalid HTTP method (e.g. GET instead of POST). |
-| `500` | Server Error | Database or server processing exception. |
-
----
-
-*Documentation maintained by Nagar Nigam Jhansi Technical Team.*
+1. **Postman Collection:** [`postman_collection.json`](file:///c:/xampp/htdocs/jnnjhansi/postman_collection.json) — Postman me direct **Import** karein aur 1-click me sabhi APIs test karein.
+2. **Swagger / OpenAPI:** [`openapi.yaml`](file:///c:/xampp/htdocs/jnnjhansi/openapi.yaml) — Swagger Editor ya automated SDK tools me use karein.
+3. **Audit Report:** [`API_AUDIT_REPORT.md`](file:///c:/xampp/htdocs/jnnjhansi/API_AUDIT_REPORT.md) — Bug findings and security analysis.
+4. **API Inventory:** [`API_INVENTORY.md`](file:///c:/xampp/htdocs/jnnjhansi/API_INVENTORY.md) — Detailed matrix of all 32 endpoints.
