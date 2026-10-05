@@ -30,33 +30,13 @@ function RestoreData() {
 // Description	: Replace Content in Templates with Equivalent Variables
 
 function ReplaceContent($VarList) {
-	//print_r("<pre>");
-	//var_dump($VarList);
 	for($i=0; $i<count($VarList); $i++) {
-		// print_r( $GLOBALS['$1']);die;
-		 global $preg=${$VarList[$i]};
-		 
-		//${$VarList[$i]} = preg_replace("/__(\w+)__/","\$GLOBALS['$1']",${$VarList[$i]});
-		/*${$VarList[$i]} = preg_replace_callback("/__(\w+)__/",function($matches){
-        foreach($matches as $match){
-            return $match;
-        }
-    },${$VarList[$i]});*/
-	$message = preg_replace_callback("/__(\w+)__/",
-        function($m) use($preg) {
-            $rep = $preg['replace'][1];
-            for ($i = 1; $i<count($m); $i++) {
-                $rep = str_replace('\\'.$i, '$m['.$i.']', $rep);
-                $rep = str_replace('\$'.$i, '$m['.$i.']', $rep);
-            }
-            eval('$str='.$rep);
-            return $str;
-        },
-    $message);
-		//$$VarList[$i] = preg_replace_callback("/__(\w+)__/",'ReplaceContent',$$VarList[$i]);
+		global ${$VarList[$i]};
+		${$VarList[$i]} = preg_replace_callback("/__(\w+)__/", function ($matches) {
+			return isset($GLOBALS[$matches[1]]) ? $GLOBALS[$matches[1]] : '';
+		}, ${$VarList[$i]});
 	}
 	return 1;
-	// For Future Refrence :  $RIGHT_HOME_CONTENT=preg_replace("/__(\w+)__/e","$$1",$RIGHT_HOME_CONTENT);
 }
 
 #-------------------------------------------------------------

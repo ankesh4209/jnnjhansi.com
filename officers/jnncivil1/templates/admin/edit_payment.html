@@ -1,0 +1,73 @@
+<script type="text/javascript">
+$(function () {
+$("#PayDate").datepicker({
+changeMonth: true,
+changeYear: true,
+yearRange: '2010:2020'
+});
+});
+
+$(function () {
+$("#CheckDate").datepicker({
+changeMonth: true,
+changeYear: true,
+yearRange: '2010:2020'
+});
+});
+</script>
+
+<table width="100%" align="left"> 
+      <tr><td> 
+         <form name="edit_items" action="edit_payment.php" method="post" onsubmit='return checkSignUpDetails();' > 
+         <table align="left" cellspacing="4" cellpadding="4" width="100%" border="0" align="center"> 
+           <tr>
+     <td height="40">
+      <a href='#'><b>Enter Payment Information</b></a>
+     </td>
+    </tr>
+		   <tr>    
+            <td ><span >Select Work Order No</span> :</td>    
+            <td align="left">
+              __WorkOrders__
+            </td>   
+          </tr>
+		    <tr>    
+            <td  width="220" ><span >Amount</span> :</td>    
+            <td align="left">
+              <input type="text" name="Amount" size="15" value='__Amount__'></td>   
+          </tr>
+		   <tr>    
+            <td  width="220" ><span >Installment</span> :</td>    
+            <td align="left">
+              <input type="text" name="Installment" size="25" value='__Installment__'></td>   
+          </tr>
+		  <tr><td  ><span  >Pay Date</span></td><td align='left'><span><input type="text" name="PayDate" id="PayDate" value='__PayDate__'  size='15' readonly> </td></tr>
+		  <tr>    
+            <td  width="220" ><span >Check No</span> :</td>    
+            <td align="left">
+              <input type="text" name="CheckNo" size="15" value='__CheckNo__'></td>   
+          </tr>
+		  <tr><td  ><span  >Check Date</span></td><td align='left'><span><input type="text" name="CheckDate" id="CheckDate" value='__CheckDate__'  size='15' readonly> </td></tr>
+          <tr><td>Comments:</td><td><textarea rows='4' name='Comments' cols='35'>__Comments__</textarea></td></tr>
+		  <tr><td>Work Status</td>
+		  <td>
+			<select name='Status'>
+			<option value='' >Select Status</option>
+			<option value='Not Started' __NotStarted__>Not Started</option>
+			<option value='Pending' __Pending__>Pending</option>
+			<option value='In Progress' __InProgress__>In Progress</option>
+			<option value='Cancelled' __Cancelled__>Cancelled</option>
+			<option value='Disputed' __Disputed__>Disputed</option>
+			<option value='Completed' __Completed__>Completed</option>
+			</select>
+		  </td></tr>
+           <td></td>   
+           <td>
+		      <input type='hidden' name='PayId' value='__PayId__'>
+              <input type="submit" name="submit" value="submit" class="button">
+           </td>   
+          </tr>  
+        </table>  
+      </form> 
+    </td></tr>
+  </table>

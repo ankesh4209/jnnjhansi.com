@@ -78,16 +78,9 @@ function addwork($db)
    $Work_Photo=$_FILES['Work_Photo']['name'];
     $AddedDate=date("m/d/Y");
    
-	  if($_SERVER['SERVER_NAME']=='localhost')
-	  {
-		$uploadPath=$DOCUMENT_ROOT.'jnn/w_images/'.$_FILES['Work_Photo']['name'];
-		$ThumbPath=$DOCUMENT_ROOT.'jnn/w_images/thumbs/';
-	  }
-	  else
-	  {
-		$uploadPath=$DOCUMENT_ROOT.'/w_images/'.$_FILES['Work_Photo']['name'];
-		$ThumbPath=$DOCUMENT_ROOT.'/w_images/thumbs/';
-	  }
+	  $baseDir = dirname(__DIR__);
+	  $uploadPath = $baseDir . '/w_images/' . $_FILES['Work_Photo']['name'];
+	  $ThumbPath = $baseDir . '/w_images/thumbs/';
 
 	  if(move_uploaded_file ($_FILES['Work_Photo']['tmp_name'],$uploadPath))
 	   {

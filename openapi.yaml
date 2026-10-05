@@ -9,10 +9,10 @@ info:
     email: contact@jnnjhansi.com
 
 servers:
-  - url: http://localhost/jnnjhansi/api/index.php
-    description: Localhost Development Server
-  - url: https://jnnjhansi.com/api/index.php
-    description: Production Server
+  - url: https://uat.test.jnnjhansi.com/api/index.php
+    description: Production UAT Server
+  - url: https://uat.test.jnnjhansi.com/
+    description: Production Web Root
 
 paths:
   /?endpoint=home:
@@ -248,7 +248,7 @@ components:
           type: object
           properties:
             portal_name: { type: string, example: Nagar Nigam Jhansi }
-            base_url: { type: string, example: "http://localhost/jnnjhansi/" }
+            base_url: { type: string, example: "https://uat.test.jnnjhansi.com/" }
             mayor:
               type: object
               properties:
@@ -292,7 +292,7 @@ components:
         id: { type: integer, example: 105 }
         title: { type: string, example: "Sanitation Guidelines Diwali" }
         pdf_name: { type: string, example: "notice_105.pdf" }
-        pdf_url: { type: string, example: "http://localhost/jnnjhansi/docs/notice_105.pdf" }
+        pdf_url: { type: string, example: "https://uat.test.jnnjhansi.com/docs/notice_105.pdf" }
         date: { type: string, example: "2026-09-18" }
 
     TenderItem:
@@ -301,7 +301,7 @@ components:
         id: { type: integer, example: 84 }
         title: { type: string, example: "E-Tender for Road Construction" }
         pdf_name: { type: string, example: "tender_84.pdf" }
-        pdf_url: { type: string, example: "http://localhost/jnnjhansi/docs/tender_84.pdf" }
+        pdf_url: { type: string, example: "https://uat.test.jnnjhansi.com/docs/tender_84.pdf" }
         date: { type: string, example: "2026-09-20" }
 
     NewsItem:

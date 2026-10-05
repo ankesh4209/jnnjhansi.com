@@ -1,10 +1,9 @@
 <?php
-$file=$_GET['file'];
-if($_SERVER['SERVER_NAME']=='localhost')
-{			
-  $fullpath=$_SERVER['DOCUMENT_ROOT']."jnn/excel/";
-}else{
-$fullpath=$_SERVER['DOCUMENT_ROOT']."/excel/";
+$file = basename($_GET['file'] ?? '');
+$docRoot = !empty($_SERVER['DOCUMENT_ROOT']) ? rtrim(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']), '/') : __DIR__;
+$fullpath = $docRoot . '/excel/';
+if (!file_exists($fullpath . $file)) {
+    $fullpath = __DIR__ . '/excel/';
 }
   header("Expires: 0");  
   header("Cache-Control: no-store, no-cache, must-revalidate");  

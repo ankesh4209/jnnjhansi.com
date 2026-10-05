@@ -94,7 +94,7 @@ $initial_settings = [
     ['social_facebook', 'https://www.facebook.com/CleanJhansi', 'social', 'Facebook Page URL', 'text', 'Full URL', 60],
     ['social_twitter', 'https://twitter.com/CleanJhansi', 'social', 'Twitter / X Profile URL', 'text', 'Full URL', 61],
     ['social_smartcity', 'https://smartcityjhansi.com/', 'social', 'Smart City Jhansi Portal URL', 'text', 'Full URL', 62],
-    ['social_webmail', 'http://webmail.jnnjhansi.com', 'social', 'Official Webmail Portal URL', 'text', 'Full URL', 63],
+    ['social_webmail', 'https://webmail.jnnjhansi.com', 'social', 'Official Webmail Portal URL', 'text', 'Full URL', 63],
 ];
 
 foreach ($initial_settings as $s) {

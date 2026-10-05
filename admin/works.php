@@ -212,17 +212,9 @@ function deleteworks($cid, $db)
 	  $db->query($query);
 	  $rows = $db->fetch_array();
 	  $w_image=$rows['Work_Photo'];
-	  if($_SERVER['SERVER_NAME']=='localhost')
-		{
-		  @unlink($DOCUMENT_ROOT.'jnnweb/w_images/thumbs/'.$w_image);
-	      @unlink($DOCUMENT_ROOT.'jnnweb/w_images/'.$w_image);
-		}
-		else
-		{
-			
-			@unlink($DOCUMENT_ROOT.'/w_images/thumbs/'.$w_image);
-	        @unlink($DOCUMENT_ROOT.'/w_images/'.$w_image);
-		}
+	  $baseDir = dirname(__DIR__);
+	  @unlink($baseDir . '/w_images/thumbs/' . $w_image);
+	  @unlink($baseDir . '/w_images/' . $w_image);
 	 
 	}
 

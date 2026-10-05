@@ -7,8 +7,20 @@
  * Municipal Commissioner, Officials Directory, Departments, Gallery, CMS Pages, and Grievance Tracking.
  */
 
-// Enable CORS and define JSON response headers
-header("Access-Control-Allow-Origin: *");
+// Enable production CORS and define JSON response headers
+$allowed_origins = [
+    'https://uat.test.jnnjhansi.com',
+    'https://www.jnnjhansi.com',
+    'http://localhost',
+    'http://127.0.0.1'
+];
+$origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
+if (in_array($origin, $allowed_origins)) {
+    header("Access-Control-Allow-Origin: " . $origin);
+    header("Access-Control-Allow-Credentials: true");
+} else {
+    header("Access-Control-Allow-Origin: https://uat.test.jnnjhansi.com");
+}
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
 header("Content-Type: application/json; charset=UTF-8");
@@ -38,9 +50,11 @@ mysqli_set_charset($conn, "utf8mb4");
 
 // Helper to determine dynamic Base URL
 function getBaseUrl() {
-    $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443);
+    $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || 
+               (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443) ||
+               (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https');
     $protocol = $isHttps ? "https://" : "http://";
-    $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+    $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'uat.test.jnnjhansi.com';
     
     // Compute root folder relative to api/
     $scriptDir = dirname(dirname($_SERVER['SCRIPT_NAME']));

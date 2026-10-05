@@ -108,7 +108,7 @@ function GetNews($db)
 	   $Work_Name=$rows['Work_Name'];
 	   if($_SERVER['SERVER_NAME']=='localhost')
 		{
-			$Work_view.="<div id='pic'><a href='w_images/".$rows['Work_Photo']."' style='color:#000000;' target='_new'><img src='/jnn/w_images/thumbs/".$rows['Work_Photo']."'></a></div>";
+			$Work_view.="<div id='pic'><a href='w_images/".$rows['Work_Photo']."' style='color:#000000;' target='_new'><img src='w_images/thumbs/".$rows['Work_Photo']."'></a></div>";
 		}
 		else
 		{

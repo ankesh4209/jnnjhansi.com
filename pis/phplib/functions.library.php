@@ -30,13 +30,13 @@ function RestoreData() {
 // Description	: Replace Content in Templates with Equivalent Variables
 
 function ReplaceContent($VarList) {
-	
 	for($i=0; $i<count($VarList); $i++) {
-		global $$VarList[$i];
-		$$VarList[$i] = preg_replace("/__(\w+)__/e","\$GLOBALS['$1']",$$VarList[$i]);
+		global ${$VarList[$i]};
+		${$VarList[$i]} = preg_replace_callback("/__(\w+)__/", function ($matches) {
+			return isset($GLOBALS[$matches[1]]) ? $GLOBALS[$matches[1]] : '';
+		}, ${$VarList[$i]});
 	}
 	return 1;
-	// For Future Refrence :  $RIGHT_HOME_CONTENT=preg_replace("/__(\w+)__/e","$$1",$RIGHT_HOME_CONTENT);
 }
 
 #-------------------------------------------------------------

@@ -1,0 +1,34 @@
+<table width="100%" align="left" border='0'> 
+       <tr>
+     <td height="40" colspan='2'>
+      <a href='#'><b>Bidding Information </b></a>
+     </td>
+    </tr>
+	  <tr><td colspan='2'>
+	  __strBiddingList__
+	  </td></tr>
+	   <tr>
+     <td height="40" colspan='2'>
+      &nbsp;
+     </td>
+    </tr>
+	  <tr><td> 
+         <form name="add_mad" action="cancel_tender.php" method="post" onsubmit='return checkSignUpDetails();' > 
+         <table align="left" cellspacing="4" cellpadding="4" width="100%" border="0" align="center"> 
+            <tr>    
+            <td  width="180" ><span>Comments</span> :</td>    
+            <td align="left">
+              <textarea style="font-family: kruti_dev_010regular;font-size:15px;" rows='4' cols='35' name='FinalComments'></textarea></td>   
+          </tr>
+		  
+			<tr>
+        
+           <td></td>   
+           <td align='center'>
+              <input type="submit" name="submit" value="Cancel Tender" class="button">&nbsp;<input type="button" name="Cancel" value="Back" class="button" onclick='javascript:history.go(-1);'><input type="hidden" name="TenderId" value="__TenderId__" ><input type="hidden" name="EstmtId" value="__EstmtId__" >
+           </td>   
+          </tr>  
+        </table>  
+      </form> 
+    </td></tr>
+  </table>

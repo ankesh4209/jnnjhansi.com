@@ -34,7 +34,7 @@ Agar aap **Mobile App (Flutter / React Native)** ya **Website Frontend** bana ra
 ## 🌐 1. Base URLs
 
 * **Localhost (XAMPP):**  
-  `http://localhost/jnnjhansi/`
+  `https://uat.test.jnnjhansi.com/`
 * **Live Production Server:**  
   `https://jnnjhansi.com/`
 
@@ -85,7 +85,7 @@ Agar Pagination ho:
 Mobile App ke home screen par ek saath sab kuch dikhane ke liye (Mayor, Commissioner, Top 5 Notices, Top 5 Tenders, News aur Statistics).
 
 * **Method:** `GET`
-* **Complete URL:** `http://localhost/jnnjhansi/api/index.php?endpoint=home`
+* **Complete URL:** `https://uat.test.jnnjhansi.com/api/index.php?endpoint=home`
 * **Headers:** `Accept: application/json`
 * **Success Response (200 OK):**
 ```json
@@ -96,19 +96,19 @@ Mobile App ke home screen par ek saath sab kuch dikhane ke liye (Mayor, Commissi
   "message": "Home dashboard data loaded",
   "data": {
     "portal_name": "Nagar Nigam Jhansi",
-    "base_url": "http://localhost/jnnjhansi/",
+    "base_url": "https://uat.test.jnnjhansi.com/",
     "mayor": {
       "id": 1,
       "name": "Bihari Lal Arya",
       "designation": "Mayor, Jhansi Nagar Nigam",
-      "photo_url": "http://localhost/jnnjhansi/m_images/thumbs/mayor.jpg",
+      "photo_url": "https://uat.test.jnnjhansi.com/m_images/thumbs/mayor.jpg",
       "description": "Mayor's city message..."
     },
     "commissioner": {
       "id": 1,
       "name": "Satya Prakash",
       "designation": "Municipal Commissioner",
-      "photo_url": "http://localhost/jnnjhansi/c_images/thumbs/comm.jpg",
+      "photo_url": "https://uat.test.jnnjhansi.com/c_images/thumbs/comm.jpg",
       "description": "Commissioner's message..."
     },
     "latest_notices": [
@@ -116,7 +116,7 @@ Mobile App ke home screen par ek saath sab kuch dikhane ke liye (Mayor, Commissi
         "id": 105,
         "title": "Sanitation Guidelines",
         "pdf_name": "notice105.pdf",
-        "pdf_url": "http://localhost/jnnjhansi/docs/notice105.pdf",
+        "pdf_url": "https://uat.test.jnnjhansi.com/docs/notice105.pdf",
         "date": "2026-09-18"
       }
     ],
@@ -125,7 +125,7 @@ Mobile App ke home screen par ek saath sab kuch dikhane ke liye (Mayor, Commissi
         "id": 84,
         "title": "Road Construction Tender",
         "pdf_name": "tender84.pdf",
-        "pdf_url": "http://localhost/jnnjhansi/docs/tender84.pdf",
+        "pdf_url": "https://uat.test.jnnjhansi.com/docs/tender84.pdf",
         "date": "2026-09-20"
       }
     ],
@@ -134,8 +134,8 @@ Mobile App ke home screen par ek saath sab kuch dikhane ke liye (Mayor, Commissi
         "id": 42,
         "title": "Smart Solar Project",
         "description": "Details about work...",
-        "image_url": "http://localhost/jnnjhansi/w_images/work42.jpg",
-        "thumb_url": "http://localhost/jnnjhansi/w_images/thumbs/work42.jpg",
+        "image_url": "https://uat.test.jnnjhansi.com/w_images/work42.jpg",
+        "thumb_url": "https://uat.test.jnnjhansi.com/w_images/thumbs/work42.jpg",
         "date": "2026-09-21"
       }
     ],
@@ -152,7 +152,7 @@ Mobile App ke home screen par ek saath sab kuch dikhane ke liye (Mayor, Commissi
 
 #### 2. Public Notices API
 * **Method:** `GET`
-* **Complete URL:** `http://localhost/jnnjhansi/api/index.php?endpoint=notices&page=1&limit=10&search=diwali`
+* **Complete URL:** `https://uat.test.jnnjhansi.com/api/index.php?endpoint=notices&page=1&limit=10&search=diwali`
 * **Query Parameters:**
   - `page` (Optional, default: 1): Page number
   - `limit` (Optional, default: 10): Ek page par kitne records
@@ -175,7 +175,7 @@ Mobile App ke home screen par ek saath sab kuch dikhane ke liye (Mayor, Commissi
       "id": 105,
       "title": "Sanitation Guidelines Diwali 2026",
       "pdf_name": "sanitation_2026.pdf",
-      "pdf_url": "http://localhost/jnnjhansi/docs/sanitation_2026.pdf",
+      "pdf_url": "https://uat.test.jnnjhansi.com/docs/sanitation_2026.pdf",
       "added_date": "2026-09-18"
     }
   ]
@@ -186,7 +186,7 @@ Mobile App ke home screen par ek saath sab kuch dikhane ke liye (Mayor, Commissi
 
 #### 3. E-Tenders API
 * **Method:** `GET`
-* **Complete URL:** `http://localhost/jnnjhansi/api/index.php?endpoint=tenders&page=1&limit=10&search=road`
+* **Complete URL:** `https://uat.test.jnnjhansi.com/api/index.php?endpoint=tenders&page=1&limit=10&search=road`
 * **Query Parameters:**
   - `page` (Optional, default: 1)
   - `limit` (Optional, default: 10)
@@ -209,7 +209,7 @@ Mobile App ke home screen par ek saath sab kuch dikhane ke liye (Mayor, Commissi
       "id": 84,
       "title": "Road Construction Ward 5",
       "pdf_name": "tender_84.pdf",
-      "pdf_url": "http://localhost/jnnjhansi/docs/tender_84.pdf",
+      "pdf_url": "https://uat.test.jnnjhansi.com/docs/tender_84.pdf",
       "added_date": "2026-09-20"
     }
   ]
@@ -220,7 +220,7 @@ Mobile App ke home screen par ek saath sab kuch dikhane ke liye (Mayor, Commissi
 
 #### 4. Development Works & News (Nagar Vikas)
 * **Method:** `GET`
-* **Complete URL:** `http://localhost/jnnjhansi/api/index.php?endpoint=news`
+* **Complete URL:** `https://uat.test.jnnjhansi.com/api/index.php?endpoint=news`
 * **Success Response (200 OK):**
 ```json
 {
@@ -233,8 +233,8 @@ Mobile App ke home screen par ek saath sab kuch dikhane ke liye (Mayor, Commissi
       "id": 42,
       "title": "Smart Solar Lighting across Jhansi Fort",
       "description": "Nagar Nigam Jhansi installed 250 energy-efficient lights...",
-      "image_url": "http://localhost/jnnjhansi/w_images/work_42.jpg",
-      "thumb_url": "http://localhost/jnnjhansi/w_images/thumbs/work_42.jpg",
+      "image_url": "https://uat.test.jnnjhansi.com/w_images/work_42.jpg",
+      "thumb_url": "https://uat.test.jnnjhansi.com/w_images/thumbs/work_42.jpg",
       "added_date": "2026-09-21"
     }
   ]
@@ -247,30 +247,30 @@ Mobile App ke home screen par ek saath sab kuch dikhane ke liye (Mayor, Commissi
 
 #### 5. Mayor Profile
 * **Method:** `GET`
-* **Complete URL:** `http://localhost/jnnjhansi/api/index.php?endpoint=mayor`
+* **Complete URL:** `https://uat.test.jnnjhansi.com/api/index.php?endpoint=mayor`
 
 #### 6. Commissioner Profile
 * **Method:** `GET`
-* **Complete URL:** `http://localhost/jnnjhansi/api/index.php?endpoint=commissioner`
+* **Complete URL:** `https://uat.test.jnnjhansi.com/api/index.php?endpoint=commissioner`
 
 #### 7. Officers Directory
 * **Method:** `GET`
-* **Complete URL:** `http://localhost/jnnjhansi/api/index.php?endpoint=officers`
+* **Complete URL:** `https://uat.test.jnnjhansi.com/api/index.php?endpoint=officers`
 * **Response:** Array of officers (Name, Designation, Office Contact, Email).
 
 #### 8. Departments Directory
 * **Method:** `GET`
-* **Complete URL:** `http://localhost/jnnjhansi/api/index.php?endpoint=departments`
+* **Complete URL:** `https://uat.test.jnnjhansi.com/api/index.php?endpoint=departments`
 * **Response:** Departments list with Nodal Officer contact.
 
 #### 9. Photo Gallery
 * **Method:** `GET`
-* **Complete URL:** `http://localhost/jnnjhansi/api/index.php?endpoint=gallery`
+* **Complete URL:** `https://uat.test.jnnjhansi.com/api/index.php?endpoint=gallery`
 * **Response:** Photo list with full resolution URL and thumbnail URL.
 
 #### 10. CMS Pages (About Us, History, Rules)
-* **Page List:** `GET http://localhost/jnnjhansi/api/index.php?endpoint=pages`
-* **Specific Page Detail:** `GET http://localhost/jnnjhansi/api/index.php?endpoint=page&id=1`
+* **Page List:** `GET https://uat.test.jnnjhansi.com/api/index.php?endpoint=pages`
+* **Specific Page Detail:** `GET https://uat.test.jnnjhansi.com/api/index.php?endpoint=page&id=1`
 
 ---
 
@@ -279,9 +279,9 @@ Mobile App ke home screen par ek saath sab kuch dikhane ke liye (Mayor, Commissi
 #### 11. Track Grievance (Shikayat Status)
 * **Method:** `GET`
 * **Complete URL (by Reg No):**  
-  `http://localhost/jnnjhansi/api/index.php?endpoint=track_complaint&reg_no=JNN-20260925-4192`
+  `https://uat.test.jnnjhansi.com/api/index.php?endpoint=track_complaint&reg_no=JNN-20260925-4192`
 * **Complete URL (by Mobile Number):**  
-  `http://localhost/jnnjhansi/api/index.php?endpoint=track_complaint&phone=9818247988`
+  `https://uat.test.jnnjhansi.com/api/index.php?endpoint=track_complaint&phone=9818247988`
 * **Success Response (200 OK):**
 ```json
 {
@@ -309,7 +309,7 @@ Mobile App ke home screen par ek saath sab kuch dikhane ke liye (Mayor, Commissi
 
 #### 12. Lodge Public Grievance (Nayi Shikayat)
 * **Method:** `POST`
-* **Complete URL:** `http://localhost/jnnjhansi/api/index.php?endpoint=lodge_complaint`
+* **Complete URL:** `https://uat.test.jnnjhansi.com/api/index.php?endpoint=lodge_complaint`
 * **Headers:** `Content-Type: application/json`
 * **Request Body (JSON):**
 ```json
@@ -344,7 +344,7 @@ Mobile App ke home screen par ek saath sab kuch dikhane ke liye (Mayor, Commissi
 
 #### 13. Citizen Feedback / Contact Submission
 * **Method:** `POST`
-* **Complete URL:** `http://localhost/jnnjhansi/api/index.php?endpoint=feedback`
+* **Complete URL:** `https://uat.test.jnnjhansi.com/api/index.php?endpoint=feedback`
 * **Headers:** `Content-Type: application/json`
 * **Request Body (JSON):**
 ```json
@@ -379,7 +379,7 @@ Ye endpoints `webservice.php` par chalte hain aur raw JSON body accept karte hai
 
 #### 14. Citizen Login
 * **Method:** `POST`
-* **Complete URL:** `http://localhost/jnnjhansi/webservice.php`
+* **Complete URL:** `https://uat.test.jnnjhansi.com/webservice.php`
 * **Request Body:**
 ```json
 {
@@ -401,7 +401,7 @@ Ye endpoints `webservice.php` par chalte hain aur raw JSON body accept karte hai
 
 #### 15. Citizen Registration (Sends SMS Password)
 * **Method:** `POST`
-* **Complete URL:** `http://localhost/jnnjhansi/webservice.php`
+* **Complete URL:** `https://uat.test.jnnjhansi.com/webservice.php`
 * **Request Body:**
 ```json
 {
@@ -424,7 +424,7 @@ Ye endpoints `webservice.php` par chalte hain aur raw JSON body accept karte hai
 
 #### 16. Smart City 14-Point Survey
 * **Method:** `POST`
-* **Complete URL:** `http://localhost/jnnjhansi/webservice.php`
+* **Complete URL:** `https://uat.test.jnnjhansi.com/webservice.php`
 * **Request Body:**
 ```json
 {
@@ -463,7 +463,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class JnnApi {
-  static const String baseUrl = "http://localhost/jnnjhansi/api/index.php";
+  static const String baseUrl = "https://uat.test.jnnjhansi.com/api/index.php";
 
   // 1. Home Screen Data
   static Future<Map<String, dynamic>?> getHome() async {
@@ -489,7 +489,7 @@ class JnnApi {
 
 ### JavaScript / React Native Snippet:
 ```javascript
-const BASE_URL = "http://localhost/jnnjhansi/api/index.php";
+const BASE_URL = "https://uat.test.jnnjhansi.com/api/index.php";
 
 // 1. Get Notices
 async function getNotices(page = 1, search = "") {

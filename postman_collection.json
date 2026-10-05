@@ -8,12 +8,12 @@
   "variable": [
     {
       "key": "base_url",
-      "value": "http://localhost/jnnjhansi/api/index.php",
+      "value": "https://uat.test.jnnjhansi.com/api/index.php",
       "type": "string"
     },
     {
       "key": "ws_url",
-      "value": "http://localhost/jnnjhansi/webservice.php",
+      "value": "https://uat.test.jnnjhansi.com/webservice.php",
       "type": "string"
     }
   ],

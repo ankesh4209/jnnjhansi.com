@@ -1,0 +1,8 @@
+body{margin:0;}
+.top{background:url(../img/top-bg.gif) repeat-x; height:114px;}
+.menu{background:url(../img/menu.gif) repeat-x; height:37px;}
+.main-menu a{text-decoration:none; font-family:Arial, Helvetica, sans-serif; font-size:12px; font-weight:normal; color:#FFFFFF; line-height:37px; text-align:center;}
+.main-menu a:hover{text-decoration:underline;}
+.col{background-color:#C1C4C5;}
+.sub-menu a{text-decoration:none; border-right:1px dotted #999999; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#333333; line-height:30px; padding-right:25px;}
+.sub-menua a{text-decoration:none; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#333333; line-height:30px; padding-right:25px;}

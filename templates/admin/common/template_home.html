@@ -8,8 +8,8 @@
   
   <link rel="icon" type="image/x-icon" href="../favicon.ico" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-  <link href="../css/admin_style.css?v=2.6" rel="stylesheet" type="text/css" />
-  <link href="/jnnjhansi/css/admin_style.css?v=2.6" rel="stylesheet" type="text/css" />
+  <link href="../css/admin_style.css?v=2.8" rel="stylesheet" type="text/css" />
+  <link href="/css/admin_style.css?v=2.8" rel="stylesheet" type="text/css" />
   <script src="../js/datetimepicker.js" type="text/javascript"></script>
   <style>
     /* Critical admin layout styles */
@@ -19,21 +19,28 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       font-size: 13.5px; line-height: 1.5; color: #1E293B; background-color: #F4F6F9;
     }
+    :root {
+      --admin-header-height: 64px;
+    }
     .admin-header {
-      position: fixed; top: 0; left: 0; right: 0; height: 64px;
+      position: fixed; top: 0; left: 0; right: 0; height: var(--admin-header-height);
       background: linear-gradient(135deg, #12365A 0%, #0D2640 100%);
       border-bottom: 3px solid #F47721; z-index: 1000;
       display: flex; align-items: center; justify-content: space-between; padding: 0 20px;
+      box-sizing: border-box; overflow: hidden;
     }
-    .header-left, .header-right {
-      display: flex; align-items: center; gap: 12px;
+    .header-left {
+      display: flex; align-items: center; gap: 12px; min-width: 0; flex: 1 1 auto;
+    }
+    .header-right {
+      display: flex; align-items: center; gap: 10px; flex-shrink: 0;
     }
     .btn-sidebar-toggle {
       background: rgba(255, 255, 255, 0.15) !important;
       border: 1px solid rgba(255, 255, 255, 0.35) !important;
       color: #FFFFFF !important;
-      width: 40px !important;
-      height: 40px !important;
+      width: 38px !important;
+      height: 38px !important;
       border-radius: 8px !important;
       display: inline-flex !important;
       align-items: center !important;
@@ -46,15 +53,14 @@
       background: #F47721 !important;
       border-color: #F47721 !important;
     }
-    .btn-sidebar-toggle svg {
-      stroke: #FFFFFF !important;
-      width: 22px !important;
-      height: 22px !important;
-      display: block !important;
+    .btn-sidebar-toggle i {
+      color: #FFFFFF !important;
+      font-size: 18px !important;
+      line-height: 1 !important;
     }
     .admin-layout-wrapper {
-      position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
-      height: calc(100vh - 64px); display: flex; overflow: hidden; width: 100%;
+      position: fixed; top: var(--admin-header-height); left: 0; right: 0; bottom: 0;
+      height: calc(100vh - var(--admin-header-height)); display: flex; overflow: hidden; width: 100%;
     }
     .admin-sidebar {
       width: 260px; height: 100%; flex-shrink: 0; background: #FFFFFF; border-right: 1px solid #E2E8F0;
@@ -66,12 +72,31 @@
       overflow: hidden !important;
       border-right: none !important;
     }
+    /* Sidebar Backdrop (Mobile overlay only - completely disabled on desktop/tablet) */
     .admin-sidebar-backdrop {
-      display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
-      background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(2px); z-index: 998;
+      display: none; position: fixed; top: var(--admin-header-height); left: 0; right: 0; bottom: 0;
+      background: rgba(10, 31, 53, 0.45); z-index: 998; opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
     }
     .admin-sidebar-backdrop.active {
-      display: block;
+      display: block; opacity: 1; pointer-events: auto;
+    }
+    @media (min-width: 769px) {
+      .admin-sidebar-backdrop,
+      .admin-sidebar-backdrop.active,
+      body.sidebar-open .admin-sidebar-backdrop {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
+      .admin-sidebar {
+        position: relative !important;
+        left: 0 !important;
+        box-shadow: none !important;
+      }
+      body.sidebar-open .admin-sidebar {
+        left: 0 !important;
+      }
     }
     .admin-main {
       flex: 1; min-width: 0; width: 100%; height: 100%; display: flex; flex-direction: column; overflow: hidden; background: #F4F6F9;
@@ -184,21 +209,41 @@
       background: #94A3B8;
     }
 
-    @media (max-width: 992px) {
-      .admin-sidebar {
-        position: fixed !important;
-        top: 64px !important;
-        left: -260px !important;
-        bottom: 0 !important;
-        height: calc(100vh - 64px) !important;
-        z-index: 999 !important;
-        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.18) !important;
-      }
-      body.sidebar-open .admin-sidebar {
-        left: 0 !important;
-      }
-      .hide-tablet {
+    /* Laptop & Medium Screens (max-width: 1150px) */
+    @media (max-width: 1150px) {
+      .header-brand-sub {
         display: none !important;
+      }
+      .admin-badge {
+        display: none !important;
+      }
+    }
+
+    /* Tablet & Desktop Layout (max-width: 992px) */
+    @media (max-width: 992px) {
+      .admin-header {
+        padding: 0 16px;
+      }
+      .admin-sidebar {
+        position: relative !important;
+        width: 250px !important;
+        flex-shrink: 0 !important;
+        box-shadow: none !important;
+      }
+      body.sidebar-collapsed .admin-sidebar {
+        width: 0 !important;
+        overflow: hidden !important;
+        border-right: none !important;
+      }
+      .hide-tablet, .header-brand-sub, .admin-badge {
+        display: none !important;
+      }
+      .header-brand-title {
+        font-size: 14.5px !important;
+      }
+      .btn-portal-site, .btn-logout {
+        padding: 6px 12px;
+        font-size: 12px;
       }
       .admin-content-inner {
         padding: 16px 12px;
@@ -208,15 +253,116 @@
       }
     }
 
+    /* Mobile Landscape & Portrait (max-width: 768px) */
     @media (max-width: 768px) {
-      .admin-header {
-        padding: 0 12px;
+      :root {
+        --admin-header-height: 58px;
       }
-      .hide-mobile {
-        display: none !important;
+      .admin-header {
+        height: 58px !important;
+        padding: 0 12px !important;
+      }
+
+      /* Drawer on Mobile only (< 768px) */
+      .admin-sidebar {
+        position: fixed !important;
+        top: 58px !important;
+        left: -270px !important;
+        width: 270px !important;
+        height: calc(100vh - 58px) !important;
+        z-index: 999 !important;
+        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.25) !important;
+        transition: left 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
+      body.sidebar-open .admin-sidebar {
+        left: 0 !important;
+      }
+
+      .admin-sidebar-backdrop {
+        display: none;
+        position: fixed;
+        top: 58px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(10, 31, 53, 0.45);
+        z-index: 998;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+      }
+      .admin-sidebar-backdrop.active,
+      body.sidebar-open .admin-sidebar-backdrop {
+        display: block !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+      }
+
+      .header-left, .header-right {
+        gap: 8px !important;
+      }
+      .header-brand {
+        gap: 8px !important;
+      }
+      .header-brand img, .header-brand-logo {
+        width: 34px !important;
+        height: 34px !important;
       }
       .header-brand-title {
         font-size: 14px !important;
+        max-width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .header-brand-tag, .hide-mobile {
+        display: none !important;
+      }
+      .header-brand-sub, .hide-tablet, .admin-badge {
+        display: none !important;
+      }
+      .btn-portal-site {
+        width: 36px !important;
+        height: 36px !important;
+        padding: 0 !important;
+        border-radius: 8px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+      .btn-portal-site .btn-nav-label,
+      .btn-portal-site span {
+        display: none !important;
+      }
+      .btn-portal-site i {
+        font-size: 15px !important;
+      }
+      .btn-logout {
+        width: 36px !important;
+        height: 36px !important;
+        padding: 0 !important;
+        border-radius: 8px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+      .btn-logout .btn-nav-label,
+      .btn-logout span {
+        display: none !important;
+      }
+      .btn-logout i {
+        font-size: 14px !important;
+      }
+      .btn-sidebar-toggle {
+        width: 36px !important;
+        height: 36px !important;
+      }
+      .btn-sidebar-toggle i {
+        font-size: 16px !important;
+      }
+      .admin-layout-wrapper {
+        top: 58px !important;
+        height: calc(100vh - 58px) !important;
       }
       .admin-filter-bar {
         flex-direction: column;
@@ -242,22 +388,83 @@
       }
     }
 
+    /* Small Mobile (max-width: 480px) */
     @media (max-width: 480px) {
-      .admin-header {
-        padding: 0 8px;
+      :root {
+        --admin-header-height: 54px;
       }
-      .header-brand img {
-        width: 34px !important;
-        height: 34px !important;
+      .admin-header {
+        height: 54px !important;
+        padding: 0 8px !important;
+      }
+      .header-left, .header-right {
+        gap: 6px !important;
+      }
+      .header-brand {
+        gap: 6px !important;
+      }
+      .header-brand img, .header-brand-logo {
+        width: 30px !important;
+        height: 30px !important;
       }
       .header-brand-title {
         font-size: 13px !important;
+        max-width: 135px !important;
+      }
+      .btn-sidebar-toggle {
+        width: 33px !important;
+        height: 33px !important;
+        border-radius: 6px !important;
+      }
+      .btn-sidebar-toggle i {
+        font-size: 15px !important;
+      }
+      .btn-portal-site {
+        width: 33px !important;
+        height: 33px !important;
+        border-radius: 6px !important;
+      }
+      .btn-logout {
+        width: 33px !important;
+        height: 33px !important;
+        border-radius: 6px !important;
+      }
+      .admin-layout-wrapper {
+        top: 54px !important;
+        height: calc(100vh - 54px) !important;
+      }
+      .admin-sidebar {
+        top: 54px !important;
+        height: calc(100vh - 54px) !important;
+      }
+      .admin-sidebar-backdrop {
+        top: 54px !important;
       }
       .admin-content-inner {
         padding: 8px 4px;
       }
       .admin-card-container {
         padding: 12px 8px;
+      }
+    }
+
+    /* Extra-small Mobile (max-width: 360px) */
+    @media (max-width: 360px) {
+      .header-brand-title {
+        font-size: 12px !important;
+        max-width: 105px !important;
+      }
+      .btn-sidebar-toggle {
+        width: 30px !important;
+        height: 30px !important;
+      }
+      .btn-portal-site, .btn-logout {
+        width: 30px !important;
+        height: 30px !important;
+      }
+      .header-brand img, .header-brand-logo {
+        width: 28px !important;
+        height: 28px !important;
       }
     }
   </style>
@@ -429,7 +636,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var body = document.body;
 
   // Restore collapsed desktop sidebar state from localStorage
-  if (window.innerWidth > 992 && localStorage.getItem('admin_sidebar_collapsed') === 'true') {
+  if (window.innerWidth > 768 && localStorage.getItem('admin_sidebar_collapsed') === 'true') {
     body.classList.add('sidebar-collapsed');
   }
 
@@ -437,22 +644,38 @@ document.addEventListener('DOMContentLoaded', function() {
   if (toggleBtn) {
     toggleBtn.addEventListener('click', function(e) {
       e.preventDefault();
-      if (window.innerWidth <= 992) {
-        // Mobile / Tablet Drawer
+      if (window.innerWidth <= 768) {
+        // Mobile Drawer only (< 768px)
         body.classList.toggle('sidebar-open');
-        backdrop.classList.toggle('active');
+        if (backdrop) backdrop.classList.toggle('active');
       } else {
-        // Desktop Collapse / Expand
+        // Desktop & Tablet (>= 769px): Collapse/Expand width in regular flow, NEVER show overlay!
+        body.classList.remove('sidebar-open');
+        if (backdrop) backdrop.classList.remove('active');
         body.classList.toggle('sidebar-collapsed');
         var isCollapsed = body.classList.contains('sidebar-collapsed');
         localStorage.setItem('admin_sidebar_collapsed', isCollapsed ? 'true' : 'false');
       }
     });
-    backdrop.addEventListener('click', function() {
-      body.classList.remove('sidebar-open');
-      backdrop.classList.remove('active');
-    });
+
+    if (backdrop) {
+      backdrop.addEventListener('click', function() {
+        body.classList.remove('sidebar-open');
+        backdrop.classList.remove('active');
+      });
+    }
   }
+
+  // Close mobile drawer when clicking any sidebar navigation link
+  var sidebarNavLinks = document.querySelectorAll('.sidebar-link');
+  sidebarNavLinks.forEach(function(link) {
+    link.addEventListener('click', function() {
+      if (window.innerWidth <= 768) {
+        body.classList.remove('sidebar-open');
+        if (backdrop) backdrop.classList.remove('active');
+      }
+    });
+  });
 
   // Close drawer on ESC key
   document.addEventListener('keydown', function(e) {
@@ -462,9 +685,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Reset drawer state on desktop resize
+  // Reset mobile drawer state on desktop resize (> 768px)
   window.addEventListener('resize', function() {
-    if (window.innerWidth > 992) {
+    if (window.innerWidth > 768) {
       body.classList.remove('sidebar-open');
       if (backdrop) backdrop.classList.remove('active');
     }

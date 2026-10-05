@@ -1,0 +1,82 @@
+<Script language=javascript>
+<!--
+function checkSignUpDetails()
+{	with(window.document.add_items)
+	{	
+        if(MadId.value=="")
+		{	
+            alert("Please select mad name.");
+			MadId.focus(); 
+            return false;
+		}
+		
+		if(Amount.value=="")
+		{	
+            alert("Please enter mad amount.");
+			Amount.focus(); 
+            return false;
+		}
+	}
+	
+}
+
+</Script>
+<script type="text/javascript">
+$(function () {
+$("#AddedDate").datepicker({
+changeMonth: true,
+changeYear: true,
+yearRange: '2012:2014'
+});
+});
+</script>
+
+<table width="100%" align="left"> 
+      <tr><td> 
+         <form name="add_items" action="add_amount.php" method="post" onsubmit='return checkSignUpDetails();' > 
+         <table align="left" cellspacing="4" cellpadding="4" width="100%" border="0" align="center"> 
+           <tr>
+     <td height="40">
+      <a href='#'><b>Enter Mad Amount Information</b></a>
+     </td>
+    </tr>
+		   <tr>    
+            <td ><span >Mad Name</span> :</td>    
+            <td align="left">
+              __madname__
+            </td>   
+          </tr>
+		    <tr>    
+            <td  width="220" ><span >Mad Information</span> :</td>    
+            <td align="left">
+              <input type="text" name="MadInfo" size="25" style='font-family: kruti_dev_010regular;font-size:15px;' ></td>   
+          </tr>
+		   <tr>    
+            <td  width="220" ><span >Mad Amount</span> :</td>    
+            <td align="left">
+              <input type="text" name="Amount" size="25" ></td>   
+          </tr>
+		  <tr>    
+            <td  width="220" ><span >Financial Year</span> :</td>    
+            <td align="left">
+              <select name='FinancialYear'>
+			  <option value=''>Select Finacial Year</option>
+			  <option value='2012-2013'>2012-2013</option>
+			  <option value='2013-2014'>2013-2014</option>
+			  <option value='2013-2014'>2014-2015</option>
+			  <option value='2013-2014'>2015-2016</option>
+			  <option value='2013-2014'>2016-2017</option>
+			  </select>
+			  </td>   
+          </tr>
+		  <tr><td  ><span  >Amount Date</span></td><td align='left'><span><input type="text" name="AddedDate" id="AddedDate"   size='15' readonly> </td></tr>
+          <tr>   
+           <td></td>   
+           <td>
+              <input type="submit" name="submit" value="submit" class="button">
+           </td>   
+          </tr>  
+        </table>  
+      </form> 
+    </td></tr>
+  </table>

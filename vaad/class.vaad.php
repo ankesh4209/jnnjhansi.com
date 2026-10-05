@@ -396,7 +396,7 @@ $message.="<tr bgcolor=\"#E8F6FF\">
 						 </tr>";
  $message.="<tr bgcolor=\"#E8F6FF\">
 			             <td height=\"21\" width=\"50%\" ><strong>RMS Site:</strong></td> 
-						 <td class=\"txtarea_id\" mrfcode\" height=\"21\"width=\"50%\" ><strong><a href=\" http://localhost/license\">LMS SITE</a></strong></td>
+						 <td class=\"txtarea_id\" mrfcode\" height=\"21\"width=\"50%\" ><strong><a href=\"https://uat.test.jnnjhansi.com/license/\">LMS SITE</a></strong></td>
 						 </tr>
 		 </table>
 	  </td>

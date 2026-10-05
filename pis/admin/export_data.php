@@ -74,5 +74,5 @@ $db->query($query);
 				$status="Inactive";
 		$slno++;	  
  }
- 
+} 
 ?>

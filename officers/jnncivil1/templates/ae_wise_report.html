@@ -1,0 +1,86 @@
+<script type="text/javascript">
+$(function () {
+$("#FromDate").datepicker({
+changeMonth: true,
+changeYear: true,
+yearRange: '2012:2020'
+});
+});
+
+$(function () {
+$("#ToDate").datepicker({
+changeMonth: true,
+changeYear: true,
+yearRange: '2012:2020'
+});
+});
+
+function SubmitFrm(){
+	document.frmReport.submit();
+}
+
+</script>
+<h2> A.E. wise Report </h2>
+      <div class="department_selection">
+      	
+        <form name='frmReport' action='ae_wise_report.php' method='get'>
+		<div class="radios">
+       		<table cellspacing='0' cellpadding='0' width='100%' border='0'>
+			<tr style='line-height:20px;'><td  style='padding-right:10px;' width='35%' align='right'>
+        	  
+        	   <label>Select AE :</label> </td><td align='left' style='padding-left:10px;'><input type="radio" name="AE" value="All" onclick='javascript:SubmitFrm()' __radioAll__/>
+        	    All
+        	    <input type="radio" name="AE" value="Single" onclick='javascript:SubmitFrm()' __radioSingle__/>
+        	    Single
+			    <label>__AEofficers__</label></td>
+               </tr>
+			    <tr style='line-height:20px;'><td style='padding-right:10px;'  align='right'><label>Select Physical Progress:</label> </td><td align='left' style='padding-left:10px;'><input  type="radio" name="PhysicalProgress" value="All" __all__ /><label>All</label><input type="radio" name="PhysicalProgress" value="Completed" __complete__/><label>Complete</label><input type="radio" name="PhysicalProgress" value="In Progress" __inprogress__/><label>In Progress</label><input type="radio" name="PhysicalProgress" value="Not Started" __notstarted__/><label>Not Started</label></td></tr>
+			    
+				<tr style='line-height:20px;'><td style='padding-right:10px;'  align='right'><label>Select Periods:</label> </td><td align='left' style='padding-left:10px;'><input  type="radio" name="Periods" onclick='javascript:SubmitFrm()' value="All" __allp__ /><label>All</label><input type="radio" name="Periods" value="SingleP" onclick='javascript:SubmitFrm()' __singlep__/><label>Specific</label><label>__ShowFromDate__</label><label>__ShowToDate__</label></td></tr>
+			   </table> 
+        </div>
+		<input name="showreport" type="submit" value="Show Report" />&nbsp;<input name="print" type="button" value="Print Report" onclick="printSelection(document.getElementById('PrintArea'));return false"/>
+      </form>
+	  </div><br>
+	  <div align='center'>
+	  __AEWork__
+	  <br>
+	  </div>
+	  <div id='PrintArea' class='pis_list'  align='center'>
+	  __indicator__
+	  <div style="height: 450px;width: 1010px;overflow: auto;">
+	  
+	  <table width='1010' border='1' cellspacing='0' cellpadding='5' align='center' >
+       __strHead__ 
+	   
+    <tbody>
+    
+        __PRODUCT_LIST__
+    	    
+        
+    </tbody>
+
+</table>
+</div>
+</div>
+<div class="pagination" align='center'>
+  <span class="disabled">__PREV_PAGE_LINK__</span>__PAGE_NAVS__&nbsp;__NEXT_PAGE_LINK__
+</div> 
+<div id='gvDiv' style='display:none;'>
+ <div id='PrintArea' class='pis_list'  align='center'>
+	  __indicator__
+	  
+	  
+	  <table width='1010' border='1' cellspacing='0' cellpadding='5' align='center' >
+       __strHead__ 
+	   
+    <tbody>
+    
+        __PRODUCT_LIST__
+    	    
+        
+    </tbody>
+
+</table>
+</div>
+ </div>

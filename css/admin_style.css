@@ -70,26 +70,31 @@ a:hover {
   justify-content: space-between;
   padding: 0 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .header-left {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
+  min-width: 0;
+  flex: 1 1 auto;
 }
 
 /* Sidebar Toggle Hamburger */
 .btn-sidebar-toggle {
   background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   color: #FFFFFF;
   width: 38px;
   height: 38px;
   border-radius: 8px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  flex-shrink: 0;
   transition: var(--admin-transition);
 }
 
@@ -99,46 +104,67 @@ a:hover {
   color: #FFFFFF;
 }
 
+.btn-sidebar-toggle i {
+  font-size: 18px;
+  color: #FFFFFF !important;
+  line-height: 1;
+}
+
 .header-brand {
   display: flex;
   align-items: center;
   gap: 12px;
   text-decoration: none;
+  min-width: 0;
 }
 
-.header-brand img {
-  width: 44px;
-  height: 44px;
+.header-brand img, .header-brand-logo {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: #FFFFFF;
   padding: 2px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   flex-shrink: 0;
+  object-fit: contain;
 }
 
 .header-brand-info {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .header-brand-title {
   color: #FFFFFF;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 800;
   letter-spacing: 0.3px;
-  line-height: 1.2;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header-brand-tag {
+  color: #FFAA70;
+  font-weight: 600;
 }
 
 .header-brand-sub {
   color: #FFAA70;
   font-size: 11.5px;
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .header-right {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 .btn-portal-site {
@@ -152,6 +178,7 @@ a:hover {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
   transition: var(--admin-transition);
 }
 
@@ -159,6 +186,10 @@ a:hover {
   background: #FFFFFF;
   color: var(--admin-primary) !important;
   border-color: #FFFFFF;
+}
+
+.btn-portal-site i {
+  font-size: 14px;
 }
 
 .admin-badge {
@@ -172,6 +203,12 @@ a:hover {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
+}
+
+.admin-badge i {
+  font-size: 13px;
+  color: #FFAA70;
 }
 
 .btn-logout {
@@ -186,12 +223,17 @@ a:hover {
   align-items: center;
   gap: 6px;
   cursor: pointer;
+  white-space: nowrap;
   transition: var(--admin-transition);
 }
 
 .btn-logout:hover {
   background: #DC2626;
   box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+}
+
+.btn-logout i {
+  font-size: 13px;
 }
 
 /* ==========================================================================
@@ -209,7 +251,7 @@ a:hover {
   overflow: hidden;
 }
 
-/* Sidebar Backdrop (Mobile/Tablet overlay) */
+/* Sidebar Backdrop (Mobile overlay only - completely disabled on desktop/tablet) */
 .admin-sidebar-backdrop {
   display: none;
   position: fixed;
@@ -217,16 +259,31 @@ a:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(10, 31, 53, 0.6);
-  backdrop-filter: blur(2px);
-  z-index: 990;
+  background: rgba(10, 31, 53, 0.45);
+  z-index: 998;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
 }
 
-.admin-sidebar-backdrop.active {
-  display: block;
-  opacity: 1;
+/* Strictly hide and disable overlay on all desktop & tablet screens */
+@media (min-width: 769px) {
+  .admin-sidebar-backdrop,
+  .admin-sidebar-backdrop.active,
+  body.sidebar-open .admin-sidebar-backdrop {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+  .admin-sidebar {
+    position: relative !important;
+    left: 0 !important;
+    box-shadow: none !important;
+  }
+  body.sidebar-open .admin-sidebar {
+    left: 0 !important;
+  }
 }
 
 /* Fixed Collapsible Sidebar */
@@ -738,19 +795,55 @@ input[type="button"]:hover, .btn-secondary:hover {
    6. RESPONSIVE BREAKPOINTS (DESKTOP + TABLET + MOBILE)
    ========================================================================== */
 
+/* Laptop & Medium Screens (max-width: 1150px) */
+@media (max-width: 1150px) {
+  .header-brand-sub {
+    display: none !important;
+  }
+  .admin-badge {
+    display: none !important;
+  }
+}
+
 /* Tablet & Mobile Drawer (max-width: 992px) */
 @media (max-width: 992px) {
-  .admin-sidebar {
-    position: fixed;
-    top: var(--admin-header-height);
-    left: calc(-1 * var(--admin-sidebar-width));
-    height: calc(100vh - var(--admin-header-height));
-    z-index: 999;
-    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+  .admin-header {
+    padding: 0 16px;
   }
 
-  body.sidebar-open .admin-sidebar {
-    left: 0;
+  .header-brand-sub {
+    display: none !important;
+  }
+
+  .admin-badge, .hide-tablet {
+    display: none !important;
+  }
+
+  .header-brand-title {
+    font-size: 14.5px;
+  }
+
+  .btn-portal-site {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .btn-logout {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .admin-sidebar {
+    position: relative;
+    width: var(--admin-sidebar-width);
+    flex-shrink: 0;
+    box-shadow: none;
+  }
+
+  body.sidebar-collapsed .admin-sidebar {
+    width: 0 !important;
+    overflow: hidden !important;
+    border-right: none !important;
   }
 
   .admin-content-inner {
@@ -758,26 +851,147 @@ input[type="button"]:hover, .btn-secondary:hover {
   }
 }
 
-/* Mobile (max-width: 768px) */
+/* Mobile Landscape & Portrait (max-width: 768px) */
 @media (max-width: 768px) {
-  .header-brand-sub {
+  :root {
+    --admin-header-height: 58px;
+  }
+
+  /* Drawer on Mobile only (< 768px) */
+  .admin-sidebar {
+    position: fixed !important;
+    top: 58px !important;
+    left: -270px !important;
+    width: 270px !important;
+    height: calc(100vh - 58px) !important;
+    z-index: 999 !important;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.25) !important;
+    transition: left 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  body.sidebar-open .admin-sidebar {
+    left: 0 !important;
+  }
+
+  .admin-sidebar-backdrop {
     display: none;
+    position: fixed;
+    top: 58px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 31, 53, 0.45);
+    z-index: 998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .admin-sidebar-backdrop.active,
+  body.sidebar-open .admin-sidebar-backdrop {
+    display: block !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .admin-header {
+    height: 58px !important;
+    padding: 0 12px !important;
+  }
+
+  .header-left {
+    gap: 8px !important;
+  }
+
+  .header-brand {
+    gap: 8px !important;
+  }
+
+  .header-brand img, .header-brand-logo {
+    width: 34px !important;
+    height: 34px !important;
   }
 
   .header-brand-title {
-    font-size: 14px;
+    font-size: 14px !important;
+    max-width: 220px;
+  }
+
+  .header-brand-tag, .hide-mobile {
+    display: none !important;
+  }
+
+  .header-brand-sub, .hide-tablet {
+    display: none !important;
   }
 
   .admin-badge {
-    display: none;
+    display: none !important;
   }
 
-  .btn-portal-site span {
-    display: none;
+  .header-right {
+    gap: 8px !important;
   }
 
   .btn-portal-site {
-    padding: 7px 10px;
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    border-radius: 8px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .btn-portal-site .btn-nav-label,
+  .btn-portal-site span {
+    display: none !important;
+  }
+
+  .btn-portal-site i {
+    font-size: 15px !important;
+  }
+
+  .btn-logout {
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    border-radius: 8px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .btn-logout .btn-nav-label,
+  .btn-logout span {
+    display: none !important;
+  }
+
+  .btn-logout i {
+    font-size: 14px !important;
+  }
+
+  .btn-sidebar-toggle {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .btn-sidebar-toggle i {
+    font-size: 16px !important;
+  }
+
+  .admin-layout-wrapper {
+    top: 58px !important;
+    height: calc(100vh - 58px) !important;
+  }
+
+  .admin-sidebar {
+    top: 58px !important;
+    height: calc(100vh - 58px) !important;
+  }
+
+  .admin-sidebar-backdrop {
+    top: 58px !important;
   }
 
   .admin-content-inner {
@@ -797,56 +1011,94 @@ input[type="button"]:hover, .btn-secondary:hover {
 
 /* Small Mobile (max-width: 480px) */
 @media (max-width: 480px) {
+  :root {
+    --admin-header-height: 54px;
+  }
+
   .admin-header {
-    padding: 0 10px;
+    height: 54px !important;
+    padding: 0 8px !important;
   }
 
   .header-left {
-    gap: 8px;
+    gap: 6px !important;
   }
 
   .header-brand {
-    gap: 8px;
+    gap: 6px !important;
   }
 
-  .header-brand img {
-    width: 36px;
-    height: 36px;
+  .btn-sidebar-toggle {
+    width: 33px !important;
+    height: 33px !important;
+    border-radius: 6px !important;
+  }
+
+  .btn-sidebar-toggle i {
+    font-size: 15px !important;
+  }
+
+  .header-brand img, .header-brand-logo {
+    width: 30px !important;
+    height: 30px !important;
   }
 
   .header-brand-title {
-    font-size: 13px;
-    max-width: 145px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: 13px !important;
+    max-width: 140px !important;
   }
 
   .header-right {
-    gap: 6px;
+    gap: 6px !important;
   }
 
   .btn-portal-site {
-    padding: 6px 8px;
-  }
-
-  .btn-logout span {
-    display: none;
+    width: 33px !important;
+    height: 33px !important;
+    border-radius: 6px !important;
   }
 
   .btn-logout {
-    padding: 6px 10px;
+    width: 33px !important;
+    height: 33px !important;
+    border-radius: 6px !important;
+  }
+
+  .admin-layout-wrapper {
+    top: 54px !important;
+    height: calc(100vh - 54px) !important;
+  }
+
+  .admin-sidebar {
+    top: 54px !important;
+    height: calc(100vh - 54px) !important;
+  }
+
+  .admin-sidebar-backdrop {
+    top: 54px !important;
   }
 }
 
+/* Extra-small Mobile (max-width: 360px) */
 @media (max-width: 360px) {
   .header-brand-title {
-    max-width: 110px;
-    font-size: 12px;
+    max-width: 110px !important;
+    font-size: 12px !important;
   }
+
   .btn-sidebar-toggle {
-    width: 34px;
-    height: 34px;
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .btn-portal-site, .btn-logout {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .header-brand img, .header-brand-logo {
+    width: 28px !important;
+    height: 28px !important;
   }
 }
 

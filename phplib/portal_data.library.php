@@ -65,7 +65,7 @@ function LoadSiteSettings($db) {
     if (empty($GLOBALS['social_facebook'])) $GLOBALS['social_facebook'] = 'https://www.facebook.com/CleanJhansi';
     if (empty($GLOBALS['social_twitter'])) $GLOBALS['social_twitter'] = 'https://twitter.com/CleanJhansi';
     if (empty($GLOBALS['social_smartcity'])) $GLOBALS['social_smartcity'] = 'https://smartcityjhansi.com/';
-    if (empty($GLOBALS['social_webmail'])) $GLOBALS['social_webmail'] = 'http://webmail.jnnjhansi.com';
+    if (empty($GLOBALS['social_webmail'])) $GLOBALS['social_webmail'] = 'https://webmail.jnnjhansi.com';
 
     return $site_settings;
 }

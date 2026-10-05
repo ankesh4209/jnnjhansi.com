@@ -1,20 +1,57 @@
+# ----------------------------------------------------------------------
+# Nagar Nigam Jhansi - Production Apache Configuration for cPanel
+# Production Domain: https://uat.test.jnnjhansi.com/
+# ----------------------------------------------------------------------
+
+# Disable Directory Browsing
 Options -Indexes
 
-# Custom 404 Error Document so Apache raw white error screen never shows
-ErrorDocument 404 /jnnjhansi/404.php
+# Custom 404 Error Document (Domain Root relative for cPanel)
+ErrorDocument 404 /404.php
 
 <IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteBase /jnnjhansi/
+    RewriteEngine On
+    RewriteBase /
 
-# Auto-redirect common typo / singular routes to plural / actual routes
-RewriteRule ^notice\.php$ notices.php [QSA,L,R=301]
-RewriteRule ^tender\.php$ tenders.php [QSA,L,R=301]
-RewriteRule ^mayor\.php$ mayer.php [QSA,L,R=301]
-RewriteRule ^mayers\.php$ mayer.php [QSA,L,R=301]
-RewriteRule ^commissioners\.php$ commissioner.php [QSA,L,R=301]
-RewriteRule ^smartcity\.php$ smart_city.php [QSA,L,R=301]
-RewriteRule ^service\.php$ services.php [QSA,L,R=301]
-RewriteRule ^gallary\.php$ gallery.php [QSA,L,R=301]
-RewriteRule ^department\.php$ departments.php [QSA,L,R=301]
+    # Safe HTTPS Enforcement for Production Domain (preserves local development)
+    RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:[0-9]+)?$ [NC]
+    RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Auto-redirect common typo / singular routes to plural / actual routes
+    RewriteRule ^notice\.php$ notices.php [QSA,L,R=301]
+    RewriteRule ^tender\.php$ tenders.php [QSA,L,R=301]
+    RewriteRule ^mayor\.php$ mayer.php [QSA,L,R=301]
+    RewriteRule ^mayers\.php$ mayer.php [QSA,L,R=301]
+    RewriteRule ^commissioners\.php$ commissioner.php [QSA,L,R=301]
+    RewriteRule ^smartcity\.php$ smart_city.php [QSA,L,R=301]
+    RewriteRule ^service\.php$ services.php [QSA,L,R=301]
+    RewriteRule ^gallary\.php$ gallery.php [QSA,L,R=301]
+    RewriteRule ^department\.php$ departments.php [QSA,L,R=301]
 </IfModule>
+
+# Security: Block access to hidden files (.env, .git, .htaccess, etc.)
+<FilesMatch "^\.">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order deny,allow
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Security: Block public access to sensitive database dumps, logs, backups, and configurations
+<FilesMatch "\.(sql|bak|backup|old|orig|log|ini|env|yaml|yml|jsonl)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order deny,allow
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Security: Protect sensitive backend directories
+RedirectMatch 403 ^/(_secure_vault|\.git)/
